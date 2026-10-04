@@ -1,0 +1,44 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { products } from "@/data/products";
+import { blogs } from "@/data/blogs";
+import { locations } from "@/data/locations";
+import { PageHero } from "@/components/site/common";
+import { seo } from "@/lib/seo";
+
+export const Route = createFileRoute("/search")({
+  head: () => ({ ...seo("Search | Unicare Medical Solutions", "Search products, articles and service locations.", "/search"), meta: [...seo("Search | Unicare Medical Solutions", "Search products, articles and service locations.", "/search").meta, { name: "robots", content: "noindex" }] }),
+  component: Search,
+});
+
+const norm = (s: string) => s.toLowerCase().replace(/\bot\b/g, "operation theatre");
+
+function Search() {
+  const [q, setQ] = useState("");
+  const terms = norm(q).split(/\s+/).filter((t) => t.length > 1);
+  const hit = (txt: string) => terms.length > 0 && terms.every((t) => norm(txt).includes(t) || (t === "price" || t === "cost"));
+  const ps = products.filter((p) => hit(`${p.name} ${p.shortName} ${p.short} ${p.category} price cost`));
+  const bs = blogs.filter((b) => hit(`${b.title} ${b.excerpt} ${b.category}`));
+  const ls = terms.length ? locations.filter((l) => hit(`${l.name} ${l.cities.join(" ")} modular operation theatre manufacturer`)) : [];
+  return (
+    <>
+      <PageHero title="Search" crumbs={[{ label: "Search" }]} />
+      <section className="site-wrap max-w-3xl py-12">
+        <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Try “modular OT price” or “gas pipeline Delhi”" className="w-full border border-input px-4 py-3 text-base outline-none focus:border-brand-blue" aria-label="Search" />
+        {terms.length > 0 && (
+          <div className="mt-8 space-y-8">
+            <Group title="Products">{ps.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="block border-b border-border py-3 hover:text-brand-blue">{p.name}</Link>)}</Group>
+            <Group title="Articles">{bs.map((b) => <Link key={b.slug} to="/blog/$slug" params={{ slug: b.slug }} className="block border-b border-border py-3 hover:text-brand-blue">{b.title}</Link>)}</Group>
+            <Group title="Locations">{ls.slice(0, 12).map((l) => <Link key={l.slug} to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="block border-b border-border py-3 hover:text-brand-blue">Modular OT Manufacturers in {l.name}</Link>)}</Group>
+            {!ps.length && !bs.length && !ls.length && <p className="text-muted-foreground">No results. Try a different word, or contact us directly.</p>}
+          </div>
+        )}
+      </section>
+    </>
+  );
+}
+
+function Group({ title, children }: { title: string; children: React.ReactNode[] }) {
+  if (!children.length) return null;
+  return <div><h2 className="eyebrow mb-2">{title}</h2>{children}</div>;
+}
