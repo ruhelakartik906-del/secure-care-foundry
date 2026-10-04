@@ -20,7 +20,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
-    <div className="container-x flex min-h-[60vh] flex-col items-start justify-center py-20">
+    <div className="site-wrap flex min-h-[60vh] flex-col items-start justify-center py-20">
       <p className="eyebrow">Error 404</p>
       <h1 className="mt-3 text-4xl font-bold text-foreground md:text-5xl">Page Not Found</h1>
       <p className="mt-4 max-w-lg text-muted-foreground">The page you are looking for may have been moved or no longer exists.</p>

@@ -22,12 +22,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <div className="hidden bg-navy text-navy-foreground md:block">
-        <div className="container-x flex h-9 items-center justify-between text-xs">
+        <div className="site-wrap flex h-9 items-center justify-between text-xs">
           <span>Modular Operation Theatres · Medical Gas Pipeline · Hospital Infrastructure</span>
           <a href={site.phoneHref} className="flex items-center gap-1.5 hover:underline"><Phone className="h-3 w-3" />{site.phone}</a>
         </div>
       </div>
-      <div className="container-x flex h-16 items-center justify-between gap-4 md:h-20">
+      <div className="site-wrap flex h-16 items-center justify-between gap-4 md:h-20">
         <Link to="/" className="shrink-0" aria-label="Unicare Medical Solutions home">
           <img src={logo.url} alt="Unicare Medical Solutions" width={180} height={60} className="h-11 w-auto md:h-14" />
         </Link>
@@ -63,11 +63,11 @@ export function Header() {
 
       {mobile && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-background lg:hidden">
-          <div className="container-x flex h-16 items-center justify-between border-b border-border">
+          <div className="site-wrap flex h-16 items-center justify-between border-b border-border">
             <img src={logo.url} alt="Unicare Medical Solutions" className="h-10 w-auto" />
             <button aria-label="Close menu" onClick={() => setMobile(false)} className="p-2"><X className="h-6 w-6" /></button>
           </div>
-          <nav className="container-x flex flex-col py-4" aria-label="Mobile">
+          <nav className="site-wrap flex flex-col py-4" aria-label="Mobile">
             <Link to="/" onClick={() => setMobile(false)} className="border-b border-border py-3 font-medium">Home</Link>
             <button onClick={() => setMProducts((v) => !v)} className="flex items-center justify-between border-b border-border py-3 text-left font-medium" aria-expanded={mProducts}>
               Products <ChevronDown className={`h-4 w-4 transition ${mProducts ? "rotate-180" : ""}`} />

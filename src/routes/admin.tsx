@@ -41,12 +41,12 @@ function Admin() {
   return (
     <div className="min-h-screen bg-muted">
       <header className="bg-navy text-navy-foreground">
-        <div className="container-x flex h-14 items-center justify-between">
+        <div className="site-wrap flex h-14 items-center justify-between">
           <Link to="/" className="font-display font-bold">Unicare Admin</Link>
           {session && <button className="text-sm underline" onClick={() => supabase.auth.signOut()}>Sign out</button>}
         </div>
       </header>
-      <div className="container-x py-8">
+      <div className="site-wrap py-8">
         {!session ? <Login /> : isAdmin === false ? (
           <div className="max-w-lg border border-border bg-background p-6 text-sm">
             <p className="font-semibold">Your account does not have admin access yet.</p>

@@ -23,7 +23,7 @@ function Search() {
   return (
     <>
       <PageHero title="Search" crumbs={[{ label: "Search" }]} />
-      <section className="container-x max-w-3xl py-12">
+      <section className="site-wrap max-w-3xl py-12">
         <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Try “modular OT price” or “gas pipeline Delhi”" className="w-full border border-input px-4 py-3 text-base outline-none focus:border-brand-blue" aria-label="Search" />
         {terms.length > 0 && (
           <div className="mt-8 space-y-8">

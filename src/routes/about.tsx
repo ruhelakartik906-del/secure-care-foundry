@@ -23,7 +23,7 @@ function About() {
   return (
     <>
       <PageHero title="About Unicare Medical Solutions" intro="Hospital infrastructure, planned and delivered as one project." crumbs={[{ label: "About Us" }]} />
-      <section className="container-x grid gap-12 py-16 lg:grid-cols-2">
+      <section className="site-wrap grid gap-12 py-16 lg:grid-cols-2">
         <img src={cssd} alt="Hospital sterile services department" loading="lazy" width={1024} height={1024} className="aspect-[4/3] w-full object-cover" />
         <div className="grid gap-px self-start border border-border bg-border sm:grid-cols-2">
           {blocks.map(([t, d]) => (
@@ -32,7 +32,7 @@ function About() {
         </div>
       </section>
       <section className="border-t border-border bg-muted py-16">
-        <div className="container-x max-w-3xl">
+        <div className="site-wrap max-w-3xl">
           <h2 className="text-3xl font-bold">Why Hospitals Trust Us</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">Hospitals work with us because we take responsibility for the full scope — planning, manufacturing, installation and support. Certifications, years of experience and project references will be listed here once provided.</p>
         </div>

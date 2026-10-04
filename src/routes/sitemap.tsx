@@ -10,7 +10,7 @@ export const Route = createFileRoute("/sitemap")({
   component: () => (
     <>
       <PageHero title="Sitemap" crumbs={[{ label: "Sitemap" }]} />
-      <section className="container-x grid gap-10 py-14 text-sm md:grid-cols-2 lg:grid-cols-4">
+      <section className="site-wrap grid gap-10 py-14 text-sm md:grid-cols-2 lg:grid-cols-4">
         <div><h2 className="mb-3 font-bold">Pages</h2><ul className="space-y-2">
           {([["/", "Home"], ["/products", "Products"], ["/about", "About Us"], ["/blog", "Blog"], ["/contact", "Contact Us"], ["/privacy-policy", "Privacy Policy"], ["/disclaimer", "Disclaimer"], ["/terms-and-conditions", "Terms & Conditions"]] as const).map(([to, l]) => <li key={to}><Link to={to} className="hover:text-brand-blue">{l}</Link></li>)}
         </ul></div>

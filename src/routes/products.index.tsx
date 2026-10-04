@@ -15,7 +15,7 @@ function Products() {
   return (
     <>
       <PageHero title="Hospital Infrastructure Products" intro="Systems and equipment for operation theatres, critical care, sterile services and hospital wards." crumbs={[{ label: "Products" }]} />
-      <section className="container-x py-12">
+      <section className="site-wrap py-12">
         <div className="mb-8 flex flex-wrap gap-2" role="tablist">
           {(["All", ...categories] as const).map((c) => (
             <button key={c} onClick={() => setCat(c)} role="tab" aria-selected={cat === c}

@@ -50,7 +50,7 @@ function Home() {
       <section className="relative overflow-hidden bg-navy text-navy-foreground">
         <img src={hero} alt="Modular operation theatre with laminar air flow ceiling and surgical lights" width={1600} height={1008} className="absolute inset-0 h-full w-full object-cover opacity-35" fetchPriority="high" />
         <div className="absolute inset-0 bg-navy/60" />
-        <div className="container-x relative py-20 md:py-28 lg:py-32">
+        <div className="site-wrap relative py-20 md:py-28 lg:py-32">
           <p className="eyebrow text-navy-foreground/80">Hospital Infrastructure · Medical Equipment</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-extrabold leading-[1.08] md:text-6xl">Complete Hospital Infrastructure &amp; Medical Equipment Solutions</h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-foreground/85">
@@ -74,7 +74,7 @@ function Home() {
       </section>
 
       {/* INTRO */}
-      <section className="container-x grid gap-10 py-20 lg:grid-cols-12">
+      <section className="site-wrap grid gap-10 py-20 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="eyebrow">About Unicare</p>
           <h2 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">Medical Infrastructure Built for Modern Healthcare</h2>
@@ -89,7 +89,7 @@ function Home() {
 
       {/* PRODUCTS */}
       <section className="border-t border-border bg-muted py-20">
-        <div className="container-x">
+        <div className="site-wrap">
           <SectionHead eyebrow="Products" title="Our Medical Infrastructure Solutions" intro="Engineered systems for operation theatres, critical care, sterilisation and hospital wards — each configured to your project." />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p) => <ProductCard key={p.slug} p={p} />)}
@@ -99,7 +99,7 @@ function Home() {
 
       {/* FEATURED OT */}
       <section className="bg-background py-20">
-        <div className="container-x grid items-center gap-12 lg:grid-cols-2">
+        <div className="site-wrap grid items-center gap-12 lg:grid-cols-2">
           <img src={ot.image} alt="Modular operation theatre installation" loading="lazy" width={1600} height={1008} className="aspect-[4/3] w-full object-cover" />
           <div>
             <p className="eyebrow">Featured Solution</p>
@@ -122,7 +122,7 @@ function Home() {
 
       {/* WHY */}
       <section className="border-t border-border bg-muted py-20">
-        <div className="container-x">
+        <div className="site-wrap">
           <SectionHead eyebrow="Why Unicare" title="Why Hospitals Choose Unicare Medical Solutions" />
           <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {why.map(({ icon: Icon, t, d }) => (
@@ -138,7 +138,7 @@ function Home() {
 
       {/* INFRA SOLUTIONS (categories) */}
       <section className="py-20">
-        <div className="container-x">
+        <div className="site-wrap">
           <SectionHead eyebrow="Capabilities" title="Hospital Infrastructure Solutions" intro="From the operation theatre to the ward, we cover the systems that keep clinical areas safe and functional." />
           <div className="grid gap-4 md:grid-cols-3">
             {[
@@ -158,7 +158,7 @@ function Home() {
 
       {/* PROCESS */}
       <section className="bg-navy py-20 text-navy-foreground">
-        <div className="container-x">
+        <div className="site-wrap">
           <p className="eyebrow text-navy-foreground/70">Our Process</p>
           <h2 className="mt-2 max-w-3xl text-3xl font-bold md:text-4xl">From Hospital Requirement to Complete Installation</h2>
           <ol className="mt-12 grid gap-px bg-navy-foreground/15 md:grid-cols-3 lg:grid-cols-6">
@@ -175,7 +175,7 @@ function Home() {
 
       {/* FACILITIES */}
       <section className="py-20">
-        <div className="container-x">
+        <div className="site-wrap">
           <SectionHead eyebrow="Who We Serve" title="Solutions for Healthcare Facilities" />
           <ul className="grid grid-cols-2 gap-px border border-border bg-border md:grid-cols-3 lg:grid-cols-4">
             {facilities.map((f) => <li key={f} className="bg-background px-5 py-5 text-sm font-semibold">{f}</li>)}
@@ -185,7 +185,7 @@ function Home() {
 
       {/* PROJECTS */}
       <section className="border-t border-border bg-muted py-20">
-        <div className="container-x">
+        <div className="site-wrap">
           <SectionHead eyebrow="Our Work" title="Hospital Infrastructure Projects" intro="A selection of the systems we deliver. Project photographs from completed installations will be added here." />
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             {products.slice(0, 8).map((p) => (
@@ -200,7 +200,7 @@ function Home() {
 
       {/* TESTIMONIALS */}
       <section className="py-20">
-        <div className="container-x">
+        <div className="site-wrap">
           <SectionHead eyebrow="Testimonials" title="What Our Clients Say" />
           <div className="border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
             Client testimonials will appear here once they are added and approved.
@@ -210,7 +210,7 @@ function Home() {
 
       {/* LEAD FORM */}
       <section className="bg-navy py-20 text-navy-foreground">
-        <div className="container-x grid gap-12 lg:grid-cols-12">
+        <div className="site-wrap grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <h2 className="text-3xl font-bold leading-tight md:text-4xl">Planning a New Hospital or Upgrading Your Existing Facility?</h2>
             <p className="mt-4 leading-relaxed text-navy-foreground/80">Share your requirement with our team and get the right medical infrastructure solution for your project.</p>
@@ -231,7 +231,7 @@ function Home() {
 
       {/* BLOGS */}
       <section className="py-20">
-        <div className="container-x">
+        <div className="site-wrap">
           <div className="flex items-end justify-between gap-4">
             <SectionHead eyebrow="Insights" title="Medical Infrastructure Insights" />
             <Link to="/blog" className="mb-10 hidden text-sm font-semibold text-brand-blue hover:underline md:block">All articles →</Link>

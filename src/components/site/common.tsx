@@ -57,7 +57,7 @@ export function Crumbs({ items }: { items: { label: string; to?: string }[] }) {
 export function PageHero({ title, intro, crumbs }: { title: string; intro?: string; crumbs: { label: string; to?: string }[] }) {
   return (
     <section className="bg-navy text-navy-foreground">
-      <div className="container-x py-12 md:py-16">
+      <div className="site-wrap py-12 md:py-16">
         <Crumbs items={crumbs} />
         <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">{title}</h1>
         {intro && <p className="mt-4 max-w-2xl text-base leading-relaxed text-navy-foreground/80">{intro}</p>}
@@ -70,7 +70,7 @@ export function CtaBand({ title = "Discuss Your Hospital Project", text = "Tell 
   const { open } = useEnquiry();
   return (
     <section className="border-t border-border bg-muted">
-      <div className="container-x flex flex-col items-start justify-between gap-6 py-12 md:flex-row md:items-center">
+      <div className="site-wrap flex flex-col items-start justify-between gap-6 py-12 md:flex-row md:items-center">
         <div>
           <h2 className="text-2xl font-bold text-foreground md:text-3xl">{title}</h2>
           <p className="mt-2 max-w-xl text-muted-foreground">{text}</p>

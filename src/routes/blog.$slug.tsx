@@ -31,7 +31,7 @@ function BlogPost() {
   return (
     <>
       <PageHero title={b.title} intro={b.excerpt} crumbs={[{ label: "Blog", to: "/blog" }, { label: b.category }]} />
-      <section className="container-x grid gap-12 py-14 lg:grid-cols-12">
+      <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <article className="prose-unicare lg:col-span-8">
           <p className="!text-xs uppercase tracking-wider">{b.category} · <time dateTime={b.date}>{new Date(b.date).toLocaleDateString("en-IN", { dateStyle: "long" })}</time></p>
           <img src={b.image} alt={b.title} width={1200} height={750} className="mb-6 aspect-[16/9] w-full object-cover" />

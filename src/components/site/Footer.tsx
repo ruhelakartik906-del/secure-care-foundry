@@ -10,7 +10,7 @@ export function Footer() {
   const shown = allLoc ? locations : locations.slice(0, 8);
   return (
     <footer className="bg-navy text-navy-foreground">
-      <div className="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
+      <div className="site-wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-3">
           <div className="inline-block bg-background p-2"><img src={logo.url} alt="Unicare Medical Solutions" className="h-12 w-auto" loading="lazy" /></div>
           <p className="mt-4 text-sm leading-relaxed text-navy-foreground/75">
@@ -55,7 +55,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-navy-foreground/15">
-        <div className="container-x flex flex-col gap-3 py-5 text-xs text-navy-foreground/70 md:flex-row md:items-center md:justify-between">
+        <div className="site-wrap flex flex-col gap-3 py-5 text-xs text-navy-foreground/70 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Unicare Medical Solutions. All Rights Reserved.</p>
           <div className="flex flex-wrap gap-5">
             <Link to="/privacy-policy" className="hover:text-navy-foreground">Privacy Policy</Link>

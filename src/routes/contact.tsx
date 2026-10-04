@@ -15,7 +15,7 @@ function Contact() {
   return (
     <>
       <PageHero title="Contact Us" intro="Tell us about your project. Our team will respond with the right next step." crumbs={[{ label: "Contact Us" }]} />
-      <section className="container-x grid gap-12 py-14 lg:grid-cols-12">
+      <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-5">
           <dl className="divide-y divide-border border-y border-border text-sm">
             {[["Address", site.address], ["Phone", site.phone], ["Email", site.email], ["Business hours", site.hours]].map(([k, v]) => (

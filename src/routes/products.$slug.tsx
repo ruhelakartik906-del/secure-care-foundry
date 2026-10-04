@@ -38,7 +38,7 @@ function ProductPage() {
   return (
     <>
       <PageHero title={p.name} crumbs={[{ label: "Products", to: "/products" }, { label: p.name }]} />
-      <section className="container-x grid gap-10 py-12 lg:grid-cols-12">
+      <section className="site-wrap grid gap-10 py-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <img src={p.image} alt={p.name} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
         </div>
@@ -57,7 +57,7 @@ function ProductPage() {
         </div>
       </section>
 
-      <section className="container-x grid gap-12 pb-16 lg:grid-cols-12">
+      <section className="site-wrap grid gap-12 pb-16 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
           {isOt && <OtLongForm />}
           <h2>Features</h2>
@@ -95,14 +95,14 @@ function ProductPage() {
 
       {relBlogs.length > 0 && (
         <section className="border-t border-border py-16">
-          <div className="container-x">
+          <div className="site-wrap">
             <SectionHead title="Related Articles" />
             <div className="grid gap-6 md:grid-cols-3">{relBlogs.map((b) => <BlogCard key={b.slug} b={b} />)}</div>
           </div>
         </section>
       )}
       <section className="border-t border-border bg-muted py-16">
-        <div className="container-x">
+        <div className="site-wrap">
           <SectionHead title="Related Products" />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{related.map((r) => <ProductCard key={r.slug} p={r} />)}</div>
         </div>

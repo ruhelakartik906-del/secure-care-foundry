@@ -23,7 +23,7 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
   return (
     <>
       <PageHero title={title} intro={`Design, manufacturing and installation of ${p.name.toLowerCase()} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: p.name, to: `/products/${p.slug}` }, { label: l.name }]} />
-      <section className="container-x grid gap-12 py-14 lg:grid-cols-12">
+      <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
           <h2>{p.shortName} solutions in {l.name}</h2>
           <p>{l.name} is {l.context} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {p.name.toLowerCase()} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
