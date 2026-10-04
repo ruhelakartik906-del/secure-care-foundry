@@ -214,14 +214,6 @@ function Home() {
           <div className="lg:col-span-5">
             <h2 className="text-3xl font-bold leading-tight md:text-4xl">Planning a New Hospital or Upgrading Your Existing Facility?</h2>
             <p className="mt-4 leading-relaxed text-navy-foreground/80">Share your requirement with our team and get the right medical infrastructure solution for your project.</p>
-            <div className="mt-8 border-t border-navy-foreground/20 pt-6 text-sm text-navy-foreground/75">
-              <p className="font-semibold text-navy-foreground">Popular locations</p>
-              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-                {locations.slice(0, 6).map((l) => (
-                  <Link key={l.slug} to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="underline-offset-4 hover:underline">Modular OT in {l.name}</Link>
-                ))}
-              </div>
-            </div>
           </div>
           <div className="bg-background p-6 text-foreground md:p-8 lg:col-span-7">
             <EnquiryForm source="consultation" variant="lead" submitLabel="Request a Consultation" />
