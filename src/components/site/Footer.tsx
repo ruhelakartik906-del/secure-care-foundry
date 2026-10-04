@@ -1,13 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import logo from "@/assets/logo.png.asset.json";
-import { products } from "@/data/products";
 import { locations } from "@/data/locations";
 import { site } from "@/data/site";
 
 export function Footer() {
   const [allLoc, setAllLoc] = useState(false);
-  const shown = allLoc ? locations : locations.slice(0, 8);
+  const shown = allLoc ? locations : locations.slice(0, 10);
   return (
     <footer className="bg-navy text-navy-foreground">
       <div className="site-wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
@@ -16,12 +15,6 @@ export function Footer() {
           <p className="mt-4 text-sm leading-relaxed text-navy-foreground/75">
             Design, manufacturing and installation of modular operation theatres, medical gas pipeline systems and hospital infrastructure.
           </p>
-        </div>
-        <div className="lg:col-span-3">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Products</h3>
-          <ul className="space-y-2 text-sm text-navy-foreground/75">
-            {products.map((p) => <li key={p.slug}><Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-navy-foreground">{p.shortName}</Link></li>)}
-          </ul>
         </div>
         <div className="lg:col-span-2">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Quick Links</h3>
@@ -42,9 +35,9 @@ export function Footer() {
             <li>{site.hours}</li>
           </ul>
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-5">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Service Locations</h3>
-          <ul className="space-y-2 text-sm text-navy-foreground/75">
+          <ul className="grid gap-2 text-sm text-navy-foreground/75 sm:grid-cols-2">
             {shown.map((l) => (
               <li key={l.slug}><Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="hover:text-navy-foreground">Modular OT in {l.name}</Link></li>
             ))}
