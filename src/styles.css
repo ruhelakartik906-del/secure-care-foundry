@@ -155,8 +155,8 @@
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.015em; }
   body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 }
-@utility site-wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: 1.25rem; }
-@utility eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-blue); }
+.site-wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: 1.25rem; }
+.eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-blue); }
 .prose-unicare h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--foreground); }
 .prose-unicare h3 { font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
 .prose-unicare p { margin: 0 0 1rem; line-height: 1.75; color: var(--muted-foreground); }
