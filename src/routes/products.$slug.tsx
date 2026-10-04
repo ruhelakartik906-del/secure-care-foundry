@@ -7,7 +7,7 @@ import { PageHero, ProductCard, Faqs, faqSchema, CtaBand, SectionHead } from "@/
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { seo, breadcrumbSchema } from "@/lib/seo";
-import { BlogCard } from "./index";
+import { BlogCard } from "@/components/site/BlogCard";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {

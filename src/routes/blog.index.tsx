@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { blogs } from "@/data/blogs";
 import { PageHero, CtaBand } from "@/components/site/common";
 import { seo } from "@/lib/seo";
-import { BlogCard } from "./index";
+import { BlogCard } from "@/components/site/BlogCard";
 
 export const Route = createFileRoute("/blog/")({
   head: () => seo("Medical Infrastructure Blog | Unicare Medical Solutions", "Guides on modular operation theatres, medical gas pipeline systems, laminar air flow, CSSD and hospital infrastructure planning.", "/blog"),
