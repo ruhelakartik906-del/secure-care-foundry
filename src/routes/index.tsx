@@ -3,7 +3,6 @@ import { ArrowRight, Building2, ClipboardCheck, Factory, Headphones, Layers, Wre
 import hero from "@/assets/modular-ot.jpg";
 import { products } from "@/data/products";
 import { blogs } from "@/data/blogs";
-import { locations } from "@/data/locations";
 import { Button } from "@/components/ui/button";
 import { ProductCard, SectionHead, CtaBand } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
