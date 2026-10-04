@@ -43,7 +43,7 @@ const facilities = ["Hospitals", "Multispecialty Hospitals", "Super Specialty Ho
 
 function Home() {
   const { open } = useEnquiry();
-  const ot = products[0];
+  const ot = products[0]!;
   return (
     <>
       {/* HERO */}
@@ -145,7 +145,7 @@ function Home() {
               ["Operation Theatre", "Modular OT, laminar air flow, AGSS and scrub stations.", "modular-operation-theatre"],
               ["Medical Gas & Critical Care", "MGPS, bed head panels and ICU curtain systems.", "medical-gas-pipeline-system"],
               ["CSSD & Hospital Furniture", "Sterile services planning and ward furniture packages.", "cssd-systems"],
-            ].map(([t, d, slug]) => (
+            ].map((x) => x as [string, string, string]).map(([t, d, slug]) => (
               <Link key={t} to="/products/$slug" params={{ slug }} className="group border border-border p-7 hover:border-brand-blue">
                 <h3 className="text-xl font-bold">{t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{d}</p>
