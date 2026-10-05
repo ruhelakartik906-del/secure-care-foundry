@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
 import { locations } from "@/data/locations";
-import { site } from "@/data/site";
+import { products } from "@/data/products";
+import { site, whatsappLink } from "@/data/site";
 
 export function Footer() {
   const shown = locations.slice(0, 6);
