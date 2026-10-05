@@ -95,7 +95,7 @@ export default {
       if (isProdHost && (url.hostname !== CANONICAL_HOST || url.protocol === "http:")) {
         return permanent(`${SITE_ORIGIN}${url.pathname}${url.search}`);
       }
-      const origin = isProdHost ? SITE_ORIGIN : url.origin;
+      const origin = SITE_ORIGIN; // sitemap always lists production URLs
 
       if (url.pathname === "/robots.txt") {
         const txt = `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /auth\nDisallow: /search\nDisallow: /private/\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`;
