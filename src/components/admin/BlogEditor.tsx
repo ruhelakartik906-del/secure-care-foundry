@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useEditor, EditorContent, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
@@ -63,13 +63,14 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
   const [linkPicker, setLinkPicker] = useState(false);
   const draftKey = `unicare_blog_draft_${row?.id ?? "new"}`;
   const [autosave, setAutosave] = useState("");
-  useEffect(() => {
+  const restored = useRef(false);
+  const editorRef = useRef<Editor | null>(null);
+  const restoreLocal = () => {
+    if (restored.current) return; restored.current = true;
     const saved = localStorage.getItem(draftKey);
     if (!saved) return;
     try { const d = JSON.parse(saved) as { f: Form; html: string; at: string }; if (d.at > (row?.updated_at ?? "") && confirm("An unsaved local copy of this post was found. Restore it?")) { setF(d.f); setHtml(d.html); editorRef.current?.commands.setContent(d.html); } else localStorage.removeItem(draftKey); } catch { localStorage.removeItem(draftKey); }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const editorRef = { current: null as Editor | null };
+  };
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setF((x) => ({ ...x, [k]: v }));
   useEffect(() => { supabase.from("blog_categories").select("name").order("sort_order").then(({ data }) => setCats((data ?? []).map((c) => c.name))); }, []);
 
@@ -82,6 +83,7 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
   });
 
   editorRef.current = editor;
+  useEffect(() => { if (editor) restoreLocal(); }, [editor]); // eslint-disable-line react-hooks/exhaustive-deps
   const dirty = useMemo(() => JSON.stringify(f) !== JSON.stringify(toForm(row)) || html !== (row?.content_html ?? legacyHtml(row?.content)), [f, html, row]);
   useEffect(() => {
     if (!dirty) return;
