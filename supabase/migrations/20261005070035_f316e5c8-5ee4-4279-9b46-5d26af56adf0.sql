@@ -1,0 +1,2 @@
+CREATE POLICY "Staff upload website media" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'website-media' AND public.is_staff(auth.uid()));
+CREATE POLICY "Staff read website media" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'website-media' AND public.is_staff(auth.uid()));
