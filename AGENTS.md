@@ -24,3 +24,4 @@
 - Canonical URLs are absolute on the production origin from `src/lib/site-url.ts` (no trailing slash), so previews never leak into canonicals or the sitemap.
 - Blog bodies are stored as HTML (`content_html`) from the TipTap editor with H1 disabled; the public page cleans it before rendering.
 - CMS location pages render at the top level through the `$pageSlug` catch-all route; built-in location pages use the plural `-manufacturers-in/$state` URLs, and singular or flat variants 301 to them.
+- The first Super Admin is bootstrapped by `claimInitialAdmin` (designated email, confirmed, only while no admin exists), so no password is ever stored in code.
