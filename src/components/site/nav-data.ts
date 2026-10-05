@@ -27,8 +27,11 @@ export const solutionGroups: { title: string; items: SolutionItem[] }[] = [
 // Any product in the catalogue not listed above is added automatically, so new products appear in the menu.
 const extraIcons: Record<string, typeof Activity> = { agss: ShieldCheck, "cssd-systems": Wrench, "hospital-furniture": Armchair, "bed-head-panel": BedDouble, "cubicle-curtain-system": PanelsTopLeft };
 const listed = new Set(solutionGroups.flatMap((g) => g.items.map((i) => i.productSlug).filter(Boolean)));
-solutionGroups[2]!.items.push(...products.filter((x) => !listed.has(x.slug)).map((x) => ({
-  label: x.name.replace(/\s*\(.*\)$/, "").split(" / ")[0]!, desc: x.short.split(/[.,]/)[0]!.slice(0, 70) + ".", path: `/products/${x.slug}`, productSlug: x.slug, icon: extraIcons[x.slug] ?? Activity,
+const extraDesc: Record<string, string> = { agss: "Removal of waste anaesthetic gases from theatres.", "cssd-systems": "Planning and equipment for sterile services.", "hospital-furniture": "Beds and furniture for wards and ICUs.", "bed-head-panel": "Bed head panels with integrated gas outlets.", "cubicle-curtain-system": "Ceiling curtain tracks for wards and ICUs." };
+const shortDesc = (t: string) => { const w = t.split(" "); let o = ""; for (const x of w) { if ((o + " " + x).length > 60) break; o = o ? o + " " + x : x; } return o.replace(/[.,;]$/, "") + "."; };
+solutionGroups.push({ title: "Hospital Infrastructure", items: [] });
+solutionGroups[3]!.items.push(...products.filter((x) => !listed.has(x.slug)).map((x) => ({
+  label: x.name.replace(/\s*\(.*\)$/, "").split(" / ")[0]!, desc: extraDesc[x.slug] ?? shortDesc(x.short), path: `/products/${x.slug}`, productSlug: x.slug, icon: extraIcons[x.slug] ?? Activity,
 })));
 
 export const solutionPaths = solutionGroups.flatMap((g) => g.items.map((i) => i.path));

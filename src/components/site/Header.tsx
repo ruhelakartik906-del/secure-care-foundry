@@ -76,8 +76,8 @@ export function Header() {
             </button>
             {mega && (
               <div className="absolute inset-x-0 top-full z-50 pt-0">
-                <div className="mx-auto max-w-[1100px] border border-border bg-popover shadow-lg">
-                  <div className="grid grid-cols-3 divide-x divide-border">
+                <div className="mx-auto max-w-[1240px] border border-border bg-popover shadow-lg">
+                  <div className="grid grid-cols-4 divide-x divide-border">
                     {solutionGroups.map((g) => (
                       <div key={g.title} className="p-5">
                         <p className="mb-3 text-xs font-bold uppercase tracking-wider text-brand-blue">{g.title}</p>
