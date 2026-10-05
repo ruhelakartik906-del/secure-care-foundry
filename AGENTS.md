@@ -18,3 +18,9 @@
 - Site-wide layout classes (`site-wrap`, `eyebrow`) are plain CSS in `src/styles.css`, because `@utility` versions did not generate.
 - Modular Operation Theatre child options live in the product helper, have dedicated detailed routes, and retain parent-page anchors for old links.
 - The public `/locations` directory is the only full locality index; product browsing remains separate and footer locality links stay intentionally limited.
+- Content visibility uses a `status` column (draft/published/archived); a trigger keeps the legacy `published` flag in sync so older queries keep working.
+- Staff access uses `is_staff()` (admin or content_manager) for content tables; settings, redirects, enquiries and roles stay admin-only.
+- Slug changes on published content create 301 rows in `redirects` via a database trigger; `src/server.ts` applies redirects, robots.txt, sitemap.xml, trailing-slash and www/HTTPS canonicalisation before SSR.
+- Canonical URLs are absolute on the production origin from `src/lib/site-url.ts` (no trailing slash), so previews never leak into canonicals or the sitemap.
+- Blog bodies are stored as HTML (`content_html`) from the TipTap editor with H1 disabled; the public page cleans it before rendering.
+- CMS location pages render at the top level through the `$pageSlug` catch-all route; built-in location pages use the plural `-manufacturers-in/$state` URLs, and singular or flat variants 301 to them.
