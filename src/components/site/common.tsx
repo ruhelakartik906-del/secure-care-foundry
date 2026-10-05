@@ -97,7 +97,7 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="whatsapp-fab group fixed bottom-5 right-4 z-50 flex h-13 items-center gap-2.5 rounded-full bg-[#25D366] py-3.5 pl-3.5 pr-3.5 text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl md:bottom-6 md:right-6"
+        className="whatsapp-fab group fixed bottom-5 right-4 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] py-3.5 pl-3.5 pr-3.5 text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl md:bottom-6 md:right-6"
       >
         <span className="whatsapp-fab-ring" aria-hidden="true" />
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 shrink-0" aria-hidden="true">
