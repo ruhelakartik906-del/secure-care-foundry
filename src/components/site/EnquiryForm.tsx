@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { products } from "@/data/products";
+import { modularOtOptions, products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 
 const schema = z.object({
@@ -82,17 +82,36 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
       <div><label className={label} htmlFor={`${source}-company`}>{variant === "contact" ? "Company" : "Hospital / Company"}</label><input id={`${source}-company`} name="company" className={field} autoComplete="organization" /></div>
       <div><label className={label} htmlFor={`${source}-phone`}>Phone *</label><input id={`${source}-phone`} name="phone" type="tel" className={field} autoComplete="tel" /><Err n="phone" /></div>
       <div><label className={label} htmlFor={`${source}-email`}>Email</label><input id={`${source}-email`} name="email" type="email" className={field} autoComplete="email" /><Err n="email" /></div>
-      {variant !== "contact" && (
+      {variant !== "contact" ? (
         <>
           <div><label className={label} htmlFor={`${source}-city`}>City</label><input id={`${source}-city`} name="city" className={field} /></div>
           <div><label className={label} htmlFor={`${source}-state`}>State</label><input id={`${source}-state`} name="state" className={field} /></div>
         </>
+      ) : (
+        <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-city`}>Address / City</label><input id={`${source}-city`} name="city" className={field} autoComplete="address-level2" /></div>
       )}
-      {variant !== "lead" && (
+      {variant !== "contact" && (
+        <div className="sm:col-span-2">
+          <label className={label} htmlFor={`${source}-product`}>Product / Requirement</label>
+          <select id={`${source}-product`} name="product" defaultValue={defaultProduct} className={field}>
+            <option value="">Select a product or service</option>
+            <optgroup label="Modular Operation Theatre">
+              <option value="Modular Operation Theatre">Modular Operation Theatre</option>
+              {modularOtOptions.map((option) => <option key={option.slug} value={option.name}>{option.menuName}</option>)}
+            </optgroup>
+            <optgroup label="Other hospital infrastructure">
+              {products.filter((p) => p.slug !== "modular-operation-theatre").map((p) => <option key={p.slug} value={p.name}>{p.name}</option>)}
+              <option value="Complete hospital project">Complete hospital project</option>
+            </optgroup>
+          </select>
+        </div>
+      )}
+      {variant === "contact" && (
         <div className={variant === "contact" ? "sm:col-span-2" : ""}>
-          <label className={label} htmlFor={`${source}-product`}>{variant === "contact" ? "Product / Requirement" : "Product"}</label>
+          <label className={label} htmlFor={`${source}-product`}>Product / Requirement</label>
           <select id={`${source}-product`} name="product" defaultValue={defaultProduct} className={field}>
             <option value="">Select a product</option>
+            {modularOtOptions.map((option) => <option key={option.slug} value={option.name}>{option.menuName}</option>)}
             {products.map((p) => <option key={p.slug} value={p.name}>{p.name}</option>)}
             <option value="Complete hospital project">Complete hospital project</option>
           </select>
@@ -101,9 +120,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
       {variant === "full" && (
         <div><label className={label} htmlFor={`${source}-qty`}>Quantity</label><input id={`${source}-qty`} name="quantity" className={field} placeholder="e.g. 2 OTs, 40 beds" /></div>
       )}
-      {variant !== "contact" && (
-        <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-req`}>{variant === "full" ? "Project Requirement" : "Requirement"}</label><input id={`${source}-req`} name="requirement" className={field} placeholder="New hospital, upgrade, expansion…" /></div>
-      )}
+      <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-req`}>{variant === "contact" ? "Requirement" : "Project Requirement"}</label><input id={`${source}-req`} name="requirement" className={field} placeholder="New hospital, OT upgrade, expansion…" /></div>
       <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-msg`}>Message</label><textarea id={`${source}-msg`} name="message" rows={3} className={field} /></div>
       {variant === "full" && (
         <div className="sm:col-span-2">

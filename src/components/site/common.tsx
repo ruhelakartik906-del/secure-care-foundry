@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Phone } from "lucide-react";
 import { priceLabel, type Product } from "@/data/products";
-import { whatsappLink } from "@/data/site";
+import { site, whatsappLink } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "./EnquiryDialog";
 
@@ -86,15 +86,16 @@ export function CtaBand({ title = "Discuss Your Hospital Project", text = "Tell 
   );
 }
 
-export function MobileBar() {
-  const { open } = useEnquiry();
+export function FloatingActions() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 border-t border-border bg-background md:hidden">
-      <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3.5 text-sm font-semibold text-accent">
-        <MessageCircle className="h-4 w-4" /> WhatsApp
-      </a>
-      <button onClick={() => open()} className="bg-primary py-3.5 text-sm font-semibold text-primary-foreground">Get a Quote</button>
-    </div>
+    <>
+      <Button size="icon" className="fixed bottom-5 left-4 z-30 h-12 w-12 rounded-full shadow-lg md:bottom-6 md:left-6 md:h-11 md:w-11" asChild>
+        <a href={site.phoneHref} aria-label={`Call Unicare at ${site.phone}`} title="Call Unicare"><Phone className="h-5 w-5" /></a>
+      </Button>
+      <Button size="icon" className="fixed bottom-5 right-4 z-30 h-12 w-12 rounded-full bg-accent text-accent-foreground shadow-lg hover:bg-accent/90 md:bottom-6 md:right-6 md:h-11 md:w-11" asChild>
+        <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="Chat with Unicare on WhatsApp" title="WhatsApp Unicare"><MessageCircle className="h-5 w-5" /></a>
+      </Button>
+    </>
   );
 }
 

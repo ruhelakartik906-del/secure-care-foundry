@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
-import { products } from "@/data/products";
+import { getProduct, modularOtOptions, products } from "@/data/products";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "./EnquiryDialog";
@@ -13,6 +13,10 @@ const nav = [
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
+
+const ot = getProduct("modular-operation-theatre");
+const gasSystems = products.filter((p) => ["medical-gas-pipeline-system", "agss", "laminar-air-flow"].includes(p.slug));
+const hospitalInfrastructure = products.filter((p) => ["cubicle-curtain-system", "surgical-scrub-sink-station", "cssd-systems", "hospital-furniture", "bed-head-panel"].includes(p.slug));
 
 export function Header() {
   const { open } = useEnquiry();
@@ -38,14 +42,24 @@ export function Header() {
             <Link to="/products" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground hover:text-brand-blue" activeProps={{ className: "text-brand-blue" }}>
               Products <ChevronDown className="h-3.5 w-3.5" />
             </Link>
-            <div className="invisible absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-              <div className="grid grid-cols-2 border border-border bg-popover p-3 shadow-lg">
-                {products.map((p) => (
-                  <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="border-l-2 border-transparent px-3 py-2.5 text-sm text-foreground hover:border-accent hover:bg-muted">
-                    {p.name}
-                  </Link>
-                ))}
-                <Link to="/products" className="col-span-2 mt-2 border-t border-border px-3 pt-3 text-xs font-semibold uppercase tracking-wider text-brand-blue">View all products →</Link>
+            <div className="invisible absolute left-1/2 top-full w-[860px] -translate-x-1/2 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="grid grid-cols-3 gap-7 border border-border bg-popover p-6 shadow-lg">
+                <div>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-blue">Operation Theatre</p>
+                  {ot && <Link to="/products/$slug" params={{ slug: ot.slug }} className="block border-l-2 border-accent bg-muted px-3 py-2 text-sm font-semibold">{ot.name}</Link>}
+                  <div className="mt-1">
+                    {modularOtOptions.map((option) => <Link key={option.slug} to="/products/$slug" params={{ slug: "modular-operation-theatre" }} hash={option.slug} className="block px-3 py-1.5 text-sm text-muted-foreground hover:text-brand-blue">{option.menuName}</Link>)}
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-blue">Medical Gas &amp; Air Systems</p>
+                  {gasSystems.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="block border-l-2 border-transparent px-3 py-2 text-sm hover:border-accent hover:bg-muted">{p.name}</Link>)}
+                </div>
+                <div>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-blue">Hospital Infrastructure</p>
+                  {hospitalInfrastructure.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="block border-l-2 border-transparent px-3 py-2 text-sm hover:border-accent hover:bg-muted">{p.name}</Link>)}
+                </div>
+                <Link to="/products" className="col-span-3 border-t border-border pt-3 text-xs font-semibold uppercase tracking-wider text-brand-blue">View all products →</Link>
               </div>
             </div>
           </div>
@@ -75,9 +89,13 @@ export function Header() {
             {mProducts && (
               <div className="flex flex-col border-b border-border bg-muted py-1">
                 <Link to="/products" onClick={() => setMobile(false)} className="px-4 py-2.5 text-sm font-semibold text-brand-blue">All products</Link>
-                {products.map((p) => (
-                  <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} onClick={() => setMobile(false)} className="px-4 py-2.5 text-sm">{p.name}</Link>
-                ))}
+                <p className="px-4 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Operation Theatre</p>
+                {ot && <Link to="/products/$slug" params={{ slug: ot.slug }} onClick={() => setMobile(false)} className="px-4 py-2 text-sm font-semibold">{ot.name}</Link>}
+                {modularOtOptions.map((option) => <Link key={option.slug} to="/products/$slug" params={{ slug: "modular-operation-theatre" }} hash={option.slug} onClick={() => setMobile(false)} className="px-7 py-1.5 text-sm text-muted-foreground">{option.menuName}</Link>)}
+                <p className="px-4 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Medical Gas &amp; Air Systems</p>
+                {gasSystems.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} onClick={() => setMobile(false)} className="px-4 py-2 text-sm">{p.name}</Link>)}
+                <p className="px-4 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Hospital Infrastructure</p>
+                {hospitalInfrastructure.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} onClick={() => setMobile(false)} className="px-4 py-2 text-sm">{p.name}</Link>)}
               </div>
             )}
             {nav.slice(1).map((n) => (

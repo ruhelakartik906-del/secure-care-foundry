@@ -14,7 +14,8 @@ import { useEffect, type ReactNode } from "react";
 import { EnquiryProvider } from "@/components/site/EnquiryDialog";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { MobileBar } from "@/components/site/common";
+import { FloatingActions } from "@/components/site/common";
+import { site } from "@/data/site";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -95,7 +96,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Unicare Medical Solutions" }),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: site.name,
+          legalName: site.legalName,
+          email: site.email,
+          telephone: site.phone,
+          address: [
+            { "@type": "PostalAddress", streetAddress: "357, Malkhan Singh Complex, Opp. Ambedkar Bhawan, Dasna Road", addressLocality: "Ghaziabad", postalCode: "201001", addressRegion: "Uttar Pradesh", addressCountry: "IN" },
+            { "@type": "PostalAddress", streetAddress: "Plot No. B/260, Adarsh Nagar, Subedar Colony", addressLocality: "Ballabhgarh", postalCode: "121004", addressRegion: "Haryana", addressCountry: "IN" },
+          ],
+        }),
       },
     ],
   }),
@@ -132,9 +144,9 @@ function RootComponent() {
         ) : (
           <>
             <Header />
-            <main className="pb-14 md:pb-0"><Outlet /></main>
+            <main><Outlet /></main>
             <Footer />
-            <MobileBar />
+            <FloatingActions />
           </>
         )}
       </EnquiryProvider>

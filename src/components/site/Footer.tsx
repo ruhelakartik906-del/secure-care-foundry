@@ -1,55 +1,55 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
 import { locations } from "@/data/locations";
-import { site } from "@/data/site";
+import { products } from "@/data/products";
+import { site, whatsappLink } from "@/data/site";
 
 export function Footer() {
-  const [allLoc, setAllLoc] = useState(false);
-  const shown = allLoc ? locations : locations.slice(0, 10);
+  const shown = locations.slice(0, 6);
+  const footerProducts = ["modular-operation-theatre", "medical-gas-pipeline-system", "agss", "laminar-air-flow", "cssd-systems", "hospital-furniture", "bed-head-panel"];
   return (
     <footer className="bg-navy text-navy-foreground">
       <div className="site-wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-3">
           <div className="inline-block bg-background p-2"><img src={logo.url} alt="Unicare Medical Solutions" className="h-12 w-auto" loading="lazy" /></div>
           <p className="mt-4 text-sm leading-relaxed text-navy-foreground/75">
-            Design, manufacturing and installation of modular operation theatres, medical gas pipeline systems and hospital infrastructure.
+            Design, manufacturing and installation of modular operation theatres, medical gas pipeline systems and hospital infrastructure solutions.
           </p>
         </div>
         <div className="lg:col-span-2">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Quick Links</h3>
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Products</h3>
           <ul className="space-y-2 text-sm text-navy-foreground/75">
-            <li><Link to="/about" className="hover:text-navy-foreground">About Us</Link></li>
-            <li><Link to="/products" className="hover:text-navy-foreground">All Products</Link></li>
-            <li><Link to="/blog" className="hover:text-navy-foreground">Blog</Link></li>
-            <li><Link to="/contact" className="hover:text-navy-foreground">Contact Us</Link></li>
-            <li><Link to="/search" className="hover:text-navy-foreground">Search</Link></li>
+            {footerProducts.map((slug) => {
+              const p = products.find((product) => product.slug === slug);
+              return p ? <li key={p.slug}><Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-navy-foreground">{p.shortName}</Link></li> : null;
+            })}
+            <li><Link to="/products" className="font-semibold text-navy-foreground hover:underline">View All Products →</Link></li>
           </ul>
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-3">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Contact</h3>
-          <ul className="space-y-2 text-sm text-navy-foreground/75">
-            <li>{site.address}</li>
-            <li><a href={site.phoneHref} className="hover:text-navy-foreground">{site.phone}</a></li>
-            <li><a href={`mailto:${site.email}`} className="break-all hover:text-navy-foreground">{site.email}</a></li>
-            <li>{site.hours}</li>
+          <ul className="space-y-3 text-sm text-navy-foreground/75">
+            <li className="flex gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /><span><strong className="text-navy-foreground">Office:</strong> {site.officeAddress}</span></li>
+            <li className="flex gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /><span><strong className="text-navy-foreground">Works:</strong> {site.worksAddress}</span></li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0" /><span><a href={site.phoneHref} className="hover:text-navy-foreground">{site.phone}</a><br /><a href={site.secondaryPhoneHref} className="hover:text-navy-foreground">{site.secondaryPhone}</a></span></li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0" /><a href={`mailto:${site.email}`} className="break-all hover:text-navy-foreground">{site.email}</a></li>
           </ul>
+          <div className="mt-4 flex gap-4 text-sm font-semibold"><a href={site.phoneHref} className="hover:underline">Call Us</a><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline"><MessageCircle className="h-4 w-4" />WhatsApp Us</a></div>
         </div>
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-4">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Service Locations</h3>
-          <ul className="grid gap-2 text-sm text-navy-foreground/75 sm:grid-cols-2">
+          <ul className="space-y-2 text-sm text-navy-foreground/75">
             {shown.map((l) => (
-              <li key={l.slug}><Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="hover:text-navy-foreground">Modular OT in {l.name}</Link></li>
+              <li key={l.slug}><Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="hover:text-navy-foreground">Modular Operation Theatre Manufacturer in {l.name}</Link></li>
             ))}
           </ul>
-          <button onClick={() => setAllLoc((v) => !v)} className="mt-3 text-xs font-semibold uppercase tracking-wider text-navy-foreground underline-offset-4 hover:underline">
-            {allLoc ? "Show fewer" : `All ${locations.length} locations`}
-          </button>
+          <Link to="/locations" className="mt-4 inline-block text-xs font-semibold uppercase tracking-wider text-navy-foreground underline-offset-4 hover:underline">View All Locations →</Link>
         </div>
       </div>
       <div className="border-t border-navy-foreground/15">
         <div className="site-wrap flex flex-col gap-3 py-5 text-xs text-navy-foreground/70 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Unicare Medical Solutions. All Rights Reserved.</p>
+          <p>© 2026 Unicare Medical Solutions. All Rights Reserved.</p>
           <div className="flex flex-wrap gap-5">
             <Link to="/privacy-policy" className="hover:text-navy-foreground">Privacy Policy</Link>
             <Link to="/disclaimer" className="hover:text-navy-foreground">Disclaimer</Link>

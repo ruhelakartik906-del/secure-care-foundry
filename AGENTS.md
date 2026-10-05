@@ -16,3 +16,5 @@
 - Admin access is granted via rows in `user_roles`, never on profiles, to avoid privilege escalation.
 - Location pages use one route file per product (`<product>-manufacturer.$state.tsx`) sharing `LocationPage`, because TanStack paths can't put a parameter inside a segment.
 - Site-wide layout classes (`site-wrap`, `eyebrow`) are plain CSS in `src/styles.css`, because `@utility` versions did not generate.
+- Modular Operation Theatre child options live in the product data helper and link to anchors on the parent product page, preventing duplicate thin product routes.
+- The public `/locations` directory is the only full locality index; product browsing remains separate and footer locality links stay intentionally limited.
