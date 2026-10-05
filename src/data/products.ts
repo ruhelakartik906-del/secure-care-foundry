@@ -1,12 +1,12 @@
-import modularOt from "@/assets/modular-ot.jpg";
-import gas from "@/assets/gas-pipeline.jpg";
-import laminar from "@/assets/laminar.jpg";
-import cssd from "@/assets/cssd.jpg";
-import scrub from "@/assets/scrub-sink.jpg";
-import curtain from "@/assets/curtain.jpg";
-import furniture from "@/assets/furniture.jpg";
-import bhp from "@/assets/bed-head-panel.jpg";
-import agss from "@/assets/agss.jpg";
+import modularOt from "@/assets/modular-ot.webp";
+import gas from "@/assets/gas-pipeline.webp";
+import laminar from "@/assets/laminar.webp";
+import cssd from "@/assets/cssd.webp";
+import scrub from "@/assets/scrub-sink.webp";
+import curtain from "@/assets/curtain.webp";
+import furniture from "@/assets/furniture.webp";
+import bhp from "@/assets/bed-head-panel.webp";
+import agss from "@/assets/agss.webp";
 
 export type Category =
   | "Operation Theatre"

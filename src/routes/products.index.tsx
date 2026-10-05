@@ -14,7 +14,7 @@ function Products() {
   const list = cat === "All" ? products : products.filter((p) => p.category === cat);
   return (
     <>
-      <PageHero title="Hospital Infrastructure Products" intro="Systems and equipment for operation theatres, critical care, sterile services and hospital wards." crumbs={[{ label: "Products" }]} />
+      <PageHero title="Medical Products & Hospital Infrastructure Solutions" intro="Systems and equipment for operation theatres, critical care, sterile services and hospital wards." crumbs={[{ label: "Products" }]} />
       <section className="site-wrap py-12">
         <div className="mb-8 flex flex-wrap gap-2" role="tablist">
           {(["All", ...categories] as const).map((c) => (
