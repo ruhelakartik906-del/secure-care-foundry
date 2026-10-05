@@ -33,7 +33,7 @@ function Solutions() {
           {products.map((p) => (
             <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="border border-border p-6 transition hover:border-brand-blue">
               <h2 className="text-lg font-bold">{p.name}</h2>
-              <p className="mt-2 text-sm text-muted-foreground">{p.shortDescription}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{p.short}</p>
             </Link>
           ))}
         </div>
