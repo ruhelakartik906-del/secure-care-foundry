@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, Phone, Search, X } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
 import { getProduct, modularOtOptions, products } from "@/data/products";
 import { site } from "@/data/site";
@@ -15,13 +15,12 @@ const nav = [
 ] as const;
 
 const ot = getProduct("modular-operation-theatre");
-const gasSystems = products.filter((p) => ["medical-gas-pipeline-system", "agss", "laminar-air-flow"].includes(p.slug));
-const hospitalInfrastructure = products.filter((p) => ["cubicle-curtain-system", "surgical-scrub-sink-station", "cssd-systems", "hospital-furniture", "bed-head-panel"].includes(p.slug));
 
 export function Header() {
   const { open } = useEnquiry();
   const [mobile, setMobile] = useState(false);
   const [mProducts, setMProducts] = useState(false);
+  const [mOt, setMOt] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
@@ -42,24 +41,16 @@ export function Header() {
             <Link to="/products" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground hover:text-brand-blue" activeProps={{ className: "text-brand-blue" }}>
               Products <ChevronDown className="h-3.5 w-3.5" />
             </Link>
-            <div className="invisible absolute left-1/2 top-full w-[860px] -translate-x-1/2 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-              <div className="grid grid-cols-3 gap-7 border border-border bg-popover p-6 shadow-lg">
-                <div>
+            <div className="invisible absolute left-1/2 top-full w-[760px] -translate-x-1/2 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="grid grid-cols-2 border border-border bg-popover shadow-lg">
+                <div className="border-r border-border p-5">
                   <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-blue">Operation Theatre</p>
-                  {ot && <Link to="/products/$slug" params={{ slug: ot.slug }} className="block border-l-2 border-accent bg-muted px-3 py-2 text-sm font-semibold">{ot.name}</Link>}
-                  <div className="mt-1">
-                    {modularOtOptions.map((option) => <Link key={option.slug} to="/products/$slug" params={{ slug: "modular-operation-theatre" }} hash={option.slug} className="block px-3 py-1.5 text-sm text-muted-foreground hover:text-brand-blue">{option.menuName}</Link>)}
-                  </div>
+                  {products.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className={`flex items-center justify-between border-l-2 px-3 py-2 text-sm ${p.slug === "modular-operation-theatre" ? "border-accent bg-muted font-semibold text-brand-blue" : "border-transparent hover:border-accent hover:bg-muted"}`}>{p.name}{p.slug === "modular-operation-theatre" && <ChevronRight className="h-4 w-4" />}</Link>)}
                 </div>
-                <div>
-                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-blue">Medical Gas &amp; Air Systems</p>
-                  {gasSystems.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="block border-l-2 border-transparent px-3 py-2 text-sm hover:border-accent hover:bg-muted">{p.name}</Link>)}
+                <div className="bg-muted/60 p-5">
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-blue">Modular OT Types</p>
+                  {modularOtOptions.map((option) => <Link key={option.slug} to="/products/modular-operation-theatre/$variant" params={{ variant: option.slug }} className="block border-l-2 border-transparent px-3 py-2 text-sm hover:border-accent hover:bg-background hover:text-brand-blue">{option.menuName}</Link>)}
                 </div>
-                <div>
-                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-blue">Hospital Infrastructure</p>
-                  {hospitalInfrastructure.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="block border-l-2 border-transparent px-3 py-2 text-sm hover:border-accent hover:bg-muted">{p.name}</Link>)}
-                </div>
-                <Link to="/products" className="col-span-3 border-t border-border pt-3 text-xs font-semibold uppercase tracking-wider text-brand-blue">View all products →</Link>
               </div>
             </div>
           </div>
@@ -70,7 +61,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Link to="/search" aria-label="Search" className="p-2 text-foreground hover:text-brand-blue"><Search className="h-5 w-5" /></Link>
-          <Button onClick={() => open()} className="hidden rounded-sm sm:inline-flex">Get a Quote</Button>
+          <Button onClick={() => open("Modular Operation Theatre")} className="hidden rounded-sm sm:inline-flex">Get a Quote</Button>
           <button className="p-2 lg:hidden" aria-label="Open menu" onClick={() => setMobile(true)}><Menu className="h-6 w-6" /></button>
         </div>
       </div>
@@ -88,14 +79,9 @@ export function Header() {
             </button>
             {mProducts && (
               <div className="flex flex-col border-b border-border bg-muted py-1">
-                <Link to="/products" onClick={() => setMobile(false)} className="px-4 py-2.5 text-sm font-semibold text-brand-blue">All products</Link>
                 <p className="px-4 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Operation Theatre</p>
-                {ot && <Link to="/products/$slug" params={{ slug: ot.slug }} onClick={() => setMobile(false)} className="px-4 py-2 text-sm font-semibold">{ot.name}</Link>}
-                {modularOtOptions.map((option) => <Link key={option.slug} to="/products/$slug" params={{ slug: "modular-operation-theatre" }} hash={option.slug} onClick={() => setMobile(false)} className="px-7 py-1.5 text-sm text-muted-foreground">{option.menuName}</Link>)}
-                <p className="px-4 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Medical Gas &amp; Air Systems</p>
-                {gasSystems.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} onClick={() => setMobile(false)} className="px-4 py-2 text-sm">{p.name}</Link>)}
-                <p className="px-4 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Hospital Infrastructure</p>
-                {hospitalInfrastructure.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} onClick={() => setMobile(false)} className="px-4 py-2 text-sm">{p.name}</Link>)}
+                {ot && <div><div className="flex items-center"><Link to="/products/$slug" params={{ slug: ot.slug }} onClick={() => setMobile(false)} className="flex-1 px-4 py-2 text-sm font-semibold">{ot.name}</Link><Button type="button" size="icon" variant="ghost" aria-label="Toggle Modular OT types" aria-expanded={mOt} onClick={() => setMOt((value) => !value)}><ChevronDown className={`h-4 w-4 transition ${mOt ? "rotate-180" : ""}`} /></Button></div>{mOt && <div className="border-l-2 border-accent bg-background py-1">{modularOtOptions.map((option) => <Link key={option.slug} to="/products/modular-operation-theatre/$variant" params={{ variant: option.slug }} onClick={() => setMobile(false)} className="block px-7 py-2 text-sm text-muted-foreground">{option.menuName}</Link>)}</div>}</div>}
+                {products.filter((p) => p.slug !== "modular-operation-theatre").map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} onClick={() => setMobile(false)} className="px-4 py-2 text-sm">{p.name}</Link>)}
               </div>
             )}
             {nav.slice(1).map((n) => (

@@ -14,6 +14,324 @@ export type Database = {
   }
   public: {
     Tables: {
+      cms_blog_posts: {
+        Row: {
+          author: string
+          category: string
+          content: Json
+          created_at: string
+          excerpt: string
+          featured_image_url: string | null
+          focus_keywords: string[]
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          og_description: string | null
+          og_title: string | null
+          published: boolean
+          published_at: string | null
+          related_product_slugs: string[]
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string
+          category?: string
+          content?: Json
+          created_at?: string
+          excerpt?: string
+          featured_image_url?: string | null
+          focus_keywords?: string[]
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_title?: string | null
+          published?: boolean
+          published_at?: string | null
+          related_product_slugs?: string[]
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          category?: string
+          content?: Json
+          created_at?: string
+          excerpt?: string
+          featured_image_url?: string | null
+          focus_keywords?: string[]
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_title?: string | null
+          published?: boolean
+          published_at?: string | null
+          related_product_slugs?: string[]
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      cms_locations: {
+        Row: {
+          canonical_path: string | null
+          city: string | null
+          content: Json
+          created_at: string
+          faqs: Json
+          focus_keywords: string[]
+          id: string
+          image_url: string | null
+          introduction: string
+          meta_description: string | null
+          noindex: boolean
+          og_description: string | null
+          og_title: string | null
+          product_slug: string
+          published: boolean
+          seo_title: string | null
+          slug: string
+          state: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          canonical_path?: string | null
+          city?: string | null
+          content?: Json
+          created_at?: string
+          faqs?: Json
+          focus_keywords?: string[]
+          id?: string
+          image_url?: string | null
+          introduction?: string
+          meta_description?: string | null
+          noindex?: boolean
+          og_description?: string | null
+          og_title?: string | null
+          product_slug: string
+          published?: boolean
+          seo_title?: string | null
+          slug: string
+          state: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          canonical_path?: string | null
+          city?: string | null
+          content?: Json
+          created_at?: string
+          faqs?: Json
+          focus_keywords?: string[]
+          id?: string
+          image_url?: string | null
+          introduction?: string
+          meta_description?: string | null
+          noindex?: boolean
+          og_description?: string | null
+          og_title?: string | null
+          product_slug?: string
+          published?: boolean
+          seo_title?: string | null
+          slug?: string
+          state?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      cms_products: {
+        Row: {
+          applications: Json
+          benefits: Json
+          category: string
+          created_at: string
+          faqs: Json
+          features: Json
+          focus_keyword: string | null
+          gallery: Json
+          id: string
+          image_url: string | null
+          introduction: string
+          meta_description: string | null
+          name: string
+          og_description: string | null
+          og_title: string | null
+          parent_slug: string | null
+          price_from: string | null
+          price_to: string | null
+          pricing_mode: string
+          published: boolean
+          schema_data: Json
+          secondary_keywords: string[]
+          seo_title: string | null
+          short_description: string
+          short_name: string
+          slug: string
+          sort_order: number
+          specifications: Json
+          updated_at: string
+        }
+        Insert: {
+          applications?: Json
+          benefits?: Json
+          category: string
+          created_at?: string
+          faqs?: Json
+          features?: Json
+          focus_keyword?: string | null
+          gallery?: Json
+          id?: string
+          image_url?: string | null
+          introduction?: string
+          meta_description?: string | null
+          name: string
+          og_description?: string | null
+          og_title?: string | null
+          parent_slug?: string | null
+          price_from?: string | null
+          price_to?: string | null
+          pricing_mode?: string
+          published?: boolean
+          schema_data?: Json
+          secondary_keywords?: string[]
+          seo_title?: string | null
+          short_description?: string
+          short_name: string
+          slug: string
+          sort_order?: number
+          specifications?: Json
+          updated_at?: string
+        }
+        Update: {
+          applications?: Json
+          benefits?: Json
+          category?: string
+          created_at?: string
+          faqs?: Json
+          features?: Json
+          focus_keyword?: string | null
+          gallery?: Json
+          id?: string
+          image_url?: string | null
+          introduction?: string
+          meta_description?: string | null
+          name?: string
+          og_description?: string | null
+          og_title?: string | null
+          parent_slug?: string | null
+          price_from?: string | null
+          price_to?: string | null
+          pricing_mode?: string
+          published?: boolean
+          schema_data?: Json
+          secondary_keywords?: string[]
+          seo_title?: string | null
+          short_description?: string
+          short_name?: string
+          slug?: string
+          sort_order?: number
+          specifications?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      cms_site_settings: {
+        Row: {
+          email: string
+          footer_description: string
+          id: string
+          logo_url: string | null
+          office_address: string
+          phone: string
+          secondary_phone: string
+          social_links: Json
+          updated_at: string
+          whatsapp: string
+          working_hours: string
+          works_address: string
+        }
+        Insert: {
+          email: string
+          footer_description: string
+          id?: string
+          logo_url?: string | null
+          office_address: string
+          phone: string
+          secondary_phone: string
+          social_links?: Json
+          updated_at?: string
+          whatsapp: string
+          working_hours: string
+          works_address: string
+        }
+        Update: {
+          email?: string
+          footer_description?: string
+          id?: string
+          logo_url?: string | null
+          office_address?: string
+          phone?: string
+          secondary_phone?: string
+          social_links?: Json
+          updated_at?: string
+          whatsapp?: string
+          working_hours?: string
+          works_address?: string
+        }
+        Relationships: []
+      }
+      cms_testimonials: {
+        Row: {
+          city: string | null
+          client_name: string
+          company: string | null
+          created_at: string
+          designation: string | null
+          id: string
+          photo_url: string | null
+          published: boolean
+          rating: number
+          sort_order: number
+          testimonial: string
+          updated_at: string
+        }
+        Insert: {
+          city?: string | null
+          client_name: string
+          company?: string | null
+          created_at?: string
+          designation?: string | null
+          id?: string
+          photo_url?: string | null
+          published?: boolean
+          rating?: number
+          sort_order?: number
+          testimonial: string
+          updated_at?: string
+        }
+        Update: {
+          city?: string | null
+          client_name?: string
+          company?: string | null
+          created_at?: string
+          designation?: string | null
+          id?: string
+          photo_url?: string | null
+          published?: boolean
+          rating?: number
+          sort_order?: number
+          testimonial?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       enquiries: {
         Row: {
           city: string | null
