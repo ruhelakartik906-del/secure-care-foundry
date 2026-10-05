@@ -120,9 +120,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
       {variant === "full" && (
         <div><label className={label} htmlFor={`${source}-qty`}>Quantity</label><input id={`${source}-qty`} name="quantity" className={field} placeholder="e.g. 2 OTs, 40 beds" /></div>
       )}
-      {variant !== "contact" && (
-        <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-req`}>Project Requirement</label><input id={`${source}-req`} name="requirement" className={field} placeholder="New hospital, OT upgrade, expansion…" /></div>
-      )}
+      <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-req`}>{variant === "contact" ? "Requirement" : "Project Requirement"}</label><input id={`${source}-req`} name="requirement" className={field} placeholder="New hospital, OT upgrade, expansion…" /></div>
       <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-msg`}>Message</label><textarea id={`${source}-msg`} name="message" rows={3} className={field} /></div>
       {variant === "full" && (
         <div className="sm:col-span-2">

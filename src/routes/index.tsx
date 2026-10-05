@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Activity, ArrowRight, Building2, ClipboardCheck, Cross, Factory, GraduationCap, HeartPulse, Hospital, Microscope, PackageCheck, ScanLine, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
+import { Activity, ArrowRight, Building2, ClipboardCheck, Cross, Factory, GraduationCap, HeartPulse, Hospital, Layers, Microscope, ScanLine, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
 import hero from "@/assets/modular-ot.jpg";
 import { modularOtOptions, products } from "@/data/products";
 import { blogs } from "@/data/blogs";
@@ -76,7 +76,7 @@ function Home() {
             Design, manufacturing and installation of modular operation theatres, medical gas pipeline systems and critical hospital infrastructure for healthcare projects across India.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button size="lg" className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => open()}>Get a Quote</Button>
+            <Button size="lg" className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => open("Modular Operation Theatre")}>Get a Quote</Button>
             <Button size="lg" variant="outline" className="rounded-sm border-navy-foreground/40 bg-transparent text-navy-foreground hover:bg-navy-foreground/10 hover:text-navy-foreground" asChild>
               <Link to="/products">View Products</Link>
             </Button>
