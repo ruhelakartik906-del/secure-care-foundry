@@ -24,10 +24,13 @@ import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wal
 import { Route as OperationTheatreElectricalSystemRouteImport } from './routes/operation-theatre-electrical-system'
 import { Route as OperationTheatreHvacSystemRouteImport } from './routes/operation-theatre-hvac-system'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as AdminDashboardRouteImport } from './routes/admin_.dashboard'
+import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as MedicalGasPipelineManufacturerStateRouteImport } from './routes/medical-gas-pipeline-manufacturer.$state'
@@ -117,6 +120,11 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
@@ -135,6 +143,16 @@ const SolutionsRoute = SolutionsRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin_/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin_/login',
+  path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -209,10 +227,13 @@ export interface FileRoutesByFullPath {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
@@ -240,10 +261,13 @@ export interface FileRoutesByTo {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
@@ -272,10 +296,13 @@ export interface FileRoutesById {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/admin_/dashboard': typeof AdminDashboardRoute
+  '/admin_/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
@@ -305,10 +332,13 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
+    | '/reset-password'
     | '/search'
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
+    | '/admin/dashboard'
+    | '/admin/login'
     | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
@@ -336,10 +366,13 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
+    | '/reset-password'
     | '/search'
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
+    | '/admin/dashboard'
+    | '/admin/login'
     | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
@@ -367,10 +400,13 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
+    | '/reset-password'
     | '/search'
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
+    | '/admin_/dashboard'
+    | '/admin_/login'
     | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
@@ -399,10 +435,13 @@ export interface RootRouteChildren {
   OperationTheatreElectricalSystemRoute: typeof OperationTheatreElectricalSystemRoute
   OperationTheatreHvacSystemRoute: typeof OperationTheatreHvacSystemRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SearchRoute: typeof SearchRoute
   SitemapRoute: typeof SitemapRoute
   SolutionsRoute: typeof SolutionsRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   BlogSlugRoute: typeof BlogSlugRoute
   MedicalGasPipelineManufacturerStateRoute: typeof MedicalGasPipelineManufacturerStateRoute
   MedicalGasPipelineManufacturersInStateRoute: typeof MedicalGasPipelineManufacturersInStateRoute
@@ -522,6 +561,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -548,6 +594,20 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin_/dashboard': {
+      id: '/admin_/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin_/login': {
+      id: '/admin_/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -640,10 +700,13 @@ const rootRouteChildren: RootRouteChildren = {
   OperationTheatreElectricalSystemRoute: OperationTheatreElectricalSystemRoute,
   OperationTheatreHvacSystemRoute: OperationTheatreHvacSystemRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SearchRoute: SearchRoute,
   SitemapRoute: SitemapRoute,
   SolutionsRoute: SolutionsRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminLoginRoute: AdminLoginRoute,
   BlogSlugRoute: BlogSlugRoute,
   MedicalGasPipelineManufacturerStateRoute:
     MedicalGasPipelineManufacturerStateRoute,
