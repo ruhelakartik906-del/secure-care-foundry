@@ -8,7 +8,6 @@ import { useEnquiry } from "./EnquiryDialog";
 import { isActiveItem, isSolutionPath, solutionGroups, type SolutionItem } from "./nav-data";
 
 const after = [
-  { to: "/projects", label: "Projects" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -73,7 +72,7 @@ export function Header() {
           <Link to="/about" onMouseEnter={() => setMega(false)} className={linkCls} activeProps={{ className: activeCls }}>About</Link>
           <div ref={megaRef} onMouseEnter={show} onMouseLeave={hide} className="static">
             <button type="button" aria-expanded={mega} aria-haspopup="true" onClick={() => setMega((v) => !v)} className={`flex items-center gap-1 ${linkCls} ${solActive ? activeCls : ""}`}>
-              Solutions <ChevronDown className={`h-3.5 w-3.5 transition ${mega ? "rotate-180" : ""}`} />
+              Products <ChevronDown className={`h-3.5 w-3.5 transition ${mega ? "rotate-180" : ""}`} />
             </button>
             {mega && (
               <div className="absolute inset-x-0 top-full z-50 pt-0">
@@ -95,8 +94,8 @@ export function Header() {
                     ))}
                   </div>
                   <div className="flex justify-between border-t border-border bg-muted/60 px-5 py-3 text-sm">
-                    <Link to="/solutions" onClick={closeAll} className="font-semibold text-brand-blue hover:underline">View all solutions →</Link>
-                    <Link to="/products" onClick={closeAll} className="text-muted-foreground hover:text-brand-blue">All products</Link>
+                    <Link to="/products" onClick={closeAll} className="font-semibold text-brand-blue hover:underline">View All Products →</Link>
+                    <Link to="/solutions" onClick={closeAll} className="text-muted-foreground hover:text-brand-blue">OT systems overview</Link>
                   </div>
                 </div>
               </div>
@@ -126,7 +125,7 @@ export function Header() {
               <Link to="/" onClick={closeAll} activeOptions={{ exact: true }} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">Home</Link>
               <Link to="/about" onClick={closeAll} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">About</Link>
               <button onClick={() => setMSol((v) => !v)} aria-expanded={mSol} className={`flex min-h-12 items-center justify-between border-b border-border text-left font-medium ${solActive ? "text-brand-blue" : ""}`}>
-                Solutions <ChevronDown className={`h-5 w-5 transition ${mSol ? "rotate-180" : ""}`} />
+                Products <ChevronDown className={`h-5 w-5 transition ${mSol ? "rotate-180" : ""}`} />
               </button>
               {mSol && (
                 <div className="border-b border-border bg-muted py-1">
@@ -134,7 +133,7 @@ export function Header() {
                     <p className="px-3 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">{g.title}</p>
                     {g.items.map((it) => <ItemLink key={it.path} item={it} onClick={closeAll} className={`flex min-h-11 items-center px-3 text-sm ${isActiveItem(pathname, it.path) ? "font-semibold text-brand-blue" : ""}`}>{it.label}</ItemLink>)}
                   </div>)}
-                  <Link to="/solutions" onClick={closeAll} className="mt-1 flex min-h-11 items-center px-3 text-sm font-semibold text-brand-blue">View All Solutions →</Link>
+                  <Link to="/products" onClick={closeAll} className="mt-1 flex min-h-11 items-center px-3 text-sm font-semibold text-brand-blue">View All Products →</Link>
                 </div>
               )}
               {after.map((n) => (

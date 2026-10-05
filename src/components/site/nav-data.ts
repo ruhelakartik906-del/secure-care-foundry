@@ -1,4 +1,5 @@
-import { Activity, AirVent, DoorOpen, Droplets, Fan, Grid3x3, Hospital, LayoutPanelTop, Wind, Zap } from "lucide-react";
+import { products } from "@/data/products";
+import { Activity, BedDouble, Armchair, PanelsTopLeft, ShieldCheck, Wrench, AirVent, DoorOpen, Droplets, Fan, Grid3x3, Hospital, LayoutPanelTop, Wind, Zap } from "lucide-react";
 
 export type SolutionItem = { label: string; desc: string; path: string; productSlug?: string; icon: typeof Activity };
 const p = (slug: string) => `/products/${slug}`;
@@ -11,17 +12,24 @@ export const solutionGroups: { title: string; items: SolutionItem[] }[] = [
     { label: "Modular OT Ceiling", desc: "Panelled ceiling systems integrated with OT services.", path: "/modular-ot-ceiling", icon: Grid3x3 },
     { label: "OT Doors", desc: "Hermetic and swing doors suited to operation theatres.", path: "/modular-ot-doors", icon: DoorOpen },
   ] },
-  { title: "Air Management", items: [
+  { title: "Air & Filtration", items: [
     { label: "OT HVAC System", desc: "Air management designed for operation theatre environments.", path: "/operation-theatre-hvac-system", icon: Fan },
     { label: "HEPA Filtration", desc: "Filtration for controlled, cleaner theatre air.", path: "/hepa-filtration-system-for-operation-theatre", icon: AirVent },
     { label: "Laminar Air Flow", desc: "Ceiling-mounted unidirectional airflow over the surgical zone.", path: p("laminar-air-flow"), productSlug: "laminar-air-flow", icon: Wind },
   ] },
-  { title: "Medical Infrastructure", items: [
+  { title: "OT Equipment & Infrastructure", items: [
     { label: "Medical Gas Pipeline", desc: "Oxygen, vacuum and air pipeline systems for hospitals.", path: p("medical-gas-pipeline-system"), productSlug: "medical-gas-pipeline-system", icon: Activity },
     { label: "Surgical Scrub Stations", desc: "Stainless steel scrub sinks for pre-surgery hand washing.", path: p("surgical-scrub-sink-station"), productSlug: "surgical-scrub-sink-station", icon: Droplets },
     { label: "OT Electrical Infrastructure", desc: "Power, lighting and control panels for theatres.", path: "/operation-theatre-electrical-system", icon: Zap },
   ] },
 ];
+
+// Any product in the catalogue not listed above is added automatically, so new products appear in the menu.
+const extraIcons: Record<string, typeof Activity> = { agss: ShieldCheck, "cssd-systems": Wrench, "hospital-furniture": Armchair, "bed-head-panel": BedDouble, "cubicle-curtain-system": PanelsTopLeft };
+const listed = new Set(solutionGroups.flatMap((g) => g.items.map((i) => i.productSlug).filter(Boolean)));
+solutionGroups[2]!.items.push(...products.filter((x) => !listed.has(x.slug)).map((x) => ({
+  label: x.name.replace(/\s*\(.*\)$/, "").split(" / ")[0]!, desc: x.short.split(/[.,]/)[0]!.slice(0, 70) + ".", path: `/products/${x.slug}`, productSlug: x.slug, icon: extraIcons[x.slug] ?? Activity,
+})));
 
 export const solutionPaths = solutionGroups.flatMap((g) => g.items.map((i) => i.path));
 export const isSolutionPath = (pathname: string) =>

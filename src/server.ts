@@ -111,6 +111,7 @@ export default {
         return new Response(await sitemapXml(origin), { headers: { "content-type": "application/xml; charset=utf-8", "cache-control": "public, max-age=900" } });
       }
 
+      if (url.pathname === "/projects" || url.pathname === "/projects/") return permanent("/products");
       if (url.pathname === "/rss.xml" || url.pathname === "/feed.xml") {
         return new Response(await rssXml(), { headers: { "content-type": "application/rss+xml; charset=utf-8", "cache-control": "public, max-age=900" } });
       }
