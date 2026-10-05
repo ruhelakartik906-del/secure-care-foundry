@@ -4,6 +4,7 @@ import { Activity, ArrowRight, Building2, Check, ClipboardCheck, Cross, Factory,
 import hero from "@/assets/modular-ot.jpg";
 import { modularOtOptions, products } from "@/data/products";
 import { blogs } from "@/data/blogs";
+import type { Blog } from "@/data/blogs";
 import { site, whatsappLink } from "@/data/site";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -51,7 +52,9 @@ type Testimonial = { id: string; client_name: string; designation: string | null
 function Home() {
   const { open } = useEnquiry();
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [latestBlogs, setLatestBlogs] = useState<Blog[]>(blogs.slice(0, 3));
   useEffect(() => { supabase.from("cms_testimonials").select("id,client_name,designation,company,city,testimonial,rating").eq("published", true).order("sort_order").limit(6).then(({ data }) => setTestimonials(data ?? [])); }, []);
+  useEffect(() => { supabase.from("cms_blog_posts").select("slug,title,category,excerpt,published_at,featured_image_url,related_product_slugs").eq("published", true).order("published_at", { ascending: false }).limit(6).then(({ data }) => { if (data?.length) setLatestBlogs(data.map((item) => ({ slug: item.slug, title: item.title, category: item.category, excerpt: item.excerpt, date: item.published_at ?? new Date().toISOString(), image: item.featured_image_url ?? blogs[0]?.image ?? "", relatedProducts: item.related_product_slugs, body: [] }))); }); }, []);
   return <>
     <section className="bg-navy text-navy-foreground">
       <div className="site-wrap grid min-h-[560px] items-stretch lg:grid-cols-2">
@@ -80,7 +83,7 @@ function Home() {
 
     <section className="bg-muted py-20"><div className="site-wrap"><SectionHead eyebrow="Client Testimonials" title="What Our Clients Say" />{testimonials.length ? <div className="grid gap-6 md:grid-cols-3">{testimonials.map((item) => <article key={item.id} className="border border-border bg-background p-6"><div className="text-accent" aria-label={`${item.rating} out of 5 stars`}>{"★".repeat(item.rating)}</div><blockquote className="mt-4 leading-relaxed text-muted-foreground">“{item.testimonial}”</blockquote><p className="mt-5 font-bold">{item.client_name}</p><p className="text-sm text-muted-foreground">{[item.designation, item.company, item.city].filter(Boolean).join(" · ")}</p></article>)}</div> : <div className="border border-dashed border-border bg-background p-10 text-center"><ShieldCheck className="mx-auto h-7 w-7 text-brand-blue" /><p className="mt-3 text-sm text-muted-foreground">Verified client testimonials will appear here after they are published.</p></div>}</div></section>
 
-    <section className="py-20"><div className="site-wrap"><div className="flex items-end justify-between gap-4"><SectionHead eyebrow="Latest Insights" title="Hospital Infrastructure Insights" /><Link to="/blog" className="mb-10 hidden text-sm font-semibold text-brand-blue hover:underline md:block">All articles <ArrowRight className="inline h-4 w-4" /></Link></div><div className="grid gap-6 md:grid-cols-3">{blogs.slice(0, 3).map((b) => <BlogCard key={b.slug} b={b} />)}</div></div></section>
+    <section className="py-20"><div className="site-wrap"><div className="flex items-end justify-between gap-4"><SectionHead eyebrow="Latest Insights" title="Hospital Infrastructure Insights" /><Link to="/blog" className="mb-10 hidden text-sm font-semibold text-brand-blue hover:underline md:block">All articles <ArrowRight className="inline h-4 w-4" /></Link></div><div className="grid gap-6 md:grid-cols-3">{latestBlogs.map((b) => <BlogCard key={b.slug} b={b} />)}</div></div></section>
     <CtaBand />
   </>;
 }
