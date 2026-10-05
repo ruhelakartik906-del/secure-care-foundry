@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useEditor, EditorContent, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
@@ -38,7 +38,7 @@ export function BlogManager() {
   const list = rows.filter((r) => !filter || r.status === filter);
   return <div>
     <div className="flex flex-wrap items-center justify-between gap-3"><h1 className="text-2xl font-bold">Blog Posts</h1><div className="flex gap-2"><select className={`${field} w-40`} value={filter} onChange={(e) => setFilter(e.target.value)}><option value="">All</option><option value="draft">Draft</option><option value="published">Published</option><option value="archived">Archived</option></select><Button onClick={() => setEditing("new")}>+ Create Blog</Button></div></div>
-    <div className="mt-5 space-y-2">{list.map((r) => <article key={r.id} className="flex items-center justify-between gap-4 border border-border bg-background p-4"><div><h2 className="font-bold">{r.title}</h2><p className="text-xs text-muted-foreground">{r.status}{r.published_at && new Date(r.published_at) > new Date() ? " · scheduled " + new Date(r.published_at).toLocaleString("en-IN") : ""} · /blog/{r.slug} · {r.category}</p></div><div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => setEditing(r)}>Edit</Button>{r.status === "published" && <Button size="sm" variant="ghost" asChild><a href={`/blog/${r.slug}`} target="_blank" rel="noreferrer">View</a></Button>}</div></article>)}{!list.length && <p className="text-sm text-muted-foreground">No blog posts yet.</p>}</div>
+    <div className="mt-5 space-y-2">{list.map((r) => <article key={r.id} className="flex items-center justify-between gap-4 border border-border bg-background p-4"><div><h2 className="font-bold">{r.title}</h2><p className="text-xs text-muted-foreground">{r.status}{r.published_at && new Date(r.published_at) > new Date() ? " · scheduled " + new Date(r.published_at).toLocaleString("en-IN") : ""} · /blog/{r.slug} · {r.category}</p></div><div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => setEditing(r)}>Edit</Button><Button size="sm" variant="ghost" onClick={async () => { const { id: _i, created_at: _c, updated_at: _u, ...rest } = r; const { error } = await supabase.from("cms_blog_posts").insert({ ...rest, title: `${r.title} (copy)`, slug: `${r.slug}-copy-${Date.now().toString(36)}`, status: "draft", published_at: null }); if (error) alert(error.message); load(); }}>Duplicate</Button><Button size="sm" variant="ghost" onClick={async () => { if (!confirm(`Delete “${r.title}” permanently?`)) return; await supabase.from("cms_blog_posts").delete().eq("id", r.id); load(); }}>Delete</Button>{r.status === "published" && <Button size="sm" variant="ghost" asChild><a href={`/blog/${r.slug}`} target="_blank" rel="noreferrer">View</a></Button>}</div></article>)}{!list.length && <p className="text-sm text-muted-foreground">No blog posts yet.</p>}</div>
   </div>;
 }
 
@@ -61,6 +61,16 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
   const [msg, setMsg] = useState("");
   const [preview, setPreview] = useState(false);
   const [linkPicker, setLinkPicker] = useState(false);
+  const draftKey = `unicare_blog_draft_${row?.id ?? "new"}`;
+  const [autosave, setAutosave] = useState("");
+  const restored = useRef(false);
+  const editorRef = useRef<Editor | null>(null);
+  const restoreLocal = () => {
+    if (restored.current) return; restored.current = true;
+    const saved = localStorage.getItem(draftKey);
+    if (!saved) return;
+    try { const d = JSON.parse(saved) as { f: Form; html: string; at: string }; if (d.at > (row?.updated_at ?? "") && confirm("An unsaved local copy of this post was found. Restore it?")) { setF(d.f); setHtml(d.html); editorRef.current?.commands.setContent(d.html); } else localStorage.removeItem(draftKey); } catch { localStorage.removeItem(draftKey); }
+  };
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setF((x) => ({ ...x, [k]: v }));
   useEffect(() => { supabase.from("blog_categories").select("name").order("sort_order").then(({ data }) => setCats((data ?? []).map((c) => c.name))); }, []);
 
@@ -72,6 +82,16 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
     editorProps: { attributes: { class: "prose-unicare min-h-[420px] max-w-none p-4 focus:outline-none" } },
   });
 
+  editorRef.current = editor;
+  useEffect(() => { if (editor) restoreLocal(); }, [editor]); // eslint-disable-line react-hooks/exhaustive-deps
+  const dirty = useMemo(() => JSON.stringify(f) !== JSON.stringify(toForm(row)) || html !== (row?.content_html ?? legacyHtml(row?.content)), [f, html, row]);
+  useEffect(() => {
+    if (!dirty) return;
+    setAutosave("Saving…");
+    const t = setTimeout(() => { localStorage.setItem(draftKey, JSON.stringify({ f, html, at: new Date().toISOString() })); setAutosave("Saved locally " + new Date().toLocaleTimeString("en-IN")); }, 1500);
+    return () => clearTimeout(t);
+  }, [f, html, dirty, draftKey]);
+  useEffect(() => { const h = (e: BeforeUnloadEvent) => { if (dirty) e.preventDefault(); }; window.addEventListener("beforeunload", h); return () => window.removeEventListener("beforeunload", h); }, [dirty]);
   const others = all.filter((r) => r.id !== f.id);
   const analysis = useMemo(() => analyzeSeo({ title: f.title, seoTitle: f.meta_title, metaDescription: f.meta_description, slug: f.slug, focusKeyword: f.focus_keyword, html, canonical: f.canonical_url, featuredImage: f.featured_image_url, featuredAlt: f.featured_image_alt, schemaType: f.schema_type, otherTitles: others.map((o) => o.meta_title || o.title), otherDescriptions: others.map((o) => o.meta_description ?? "").filter(Boolean) }), [f, html, others]);
   const dupSlug = others.some((o) => o.slug === f.slug);
@@ -97,7 +117,7 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
     };
     const { data, error } = await supabase.from("cms_blog_posts").upsert(payload).select().single();
     if (error) { setMsg(error.message); return; }
-    setF(toForm(data)); setMsg(status === "published" ? "Published. It is now live, in the sitemap and in Latest Blogs." : status === "archived" ? "Archived — removed from the site." : "Draft saved.");
+    localStorage.removeItem(draftKey); setAutosave(""); setF(toForm(data)); setMsg(status === "published" ? "Published. It is now live, in the sitemap and in Latest Blogs." : status === "archived" ? "Archived — removed from the site." : "Draft saved.");
   }
   async function remove() { if (!f.id || !confirm("Delete this post permanently?")) return; await supabase.from("cms_blog_posts").delete().eq("id", f.id); onDone(); }
 
@@ -105,7 +125,7 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
 
   return <div>
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <button className="text-sm underline" onClick={onDone}>← All posts</button>
+      <div className="flex items-center gap-3"><button className="text-sm underline" onClick={() => { if (!dirty || confirm("Leave without saving? A local copy is kept.")) onDone(); }}>← All posts</button>{autosave && <span className="text-xs text-muted-foreground">{autosave}</span>}</div>
       <div className="flex flex-wrap gap-2">
         <Button variant="outline" onClick={() => setPreview(true)}>Preview</Button>
         <Button variant="outline" onClick={() => save("draft")}>{f.status === "published" ? "Unpublish (draft)" : "Save draft"}</Button>

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { BlogManager } from "@/components/admin/BlogEditor";
 import { field, MediaUpload, SerpPreview } from "@/components/admin/shared";
 import { slugify } from "@/lib/seo-score";
-import { listStaff, grantStaffRole } from "@/lib/admin-users.functions";
+import { listStaff, grantStaffRole, claimInitialAdmin } from "@/lib/admin-users.functions";
 
 type Enquiry = Database["public"]["Tables"]["enquiries"]["Row"];
 type Status = Database["public"]["Enums"]["enquiry_status"];
@@ -37,13 +37,19 @@ function Admin() {
     const { data } = supabase.auth.onAuthStateChange((_e, s) => setSession(s));
     return () => data.subscription.unsubscribe();
   }, []);
+  const claim = useServerFn(claimInitialAdmin);
+  const [pw, setPw] = useState(false);
   useEffect(() => {
     if (!session) { setRole(undefined); return; }
-    supabase.from("user_roles").select("role").eq("user_id", session.user.id).then(({ data }) => {
+    const read = () => supabase.from("user_roles").select("role").eq("user_id", session.user.id).then(({ data }) => {
       const roles = (data ?? []).map((r) => r.role as string);
-      setRole(roles.includes("admin") ? "admin" : roles.includes("content_manager") ? "content_manager" : null);
+      return roles.includes("admin") ? "admin" : roles.includes("content_manager") ? "content_manager" : null;
     });
-  }, [session]);
+    read().then(async (r) => {
+      if (r === null) { const c = await claim().catch(() => ({ ok: false })); if (c.ok) { setRole(await read()); return; } }
+      setRole(r as Role | null);
+    });
+  }, [session, claim]);
 
   if (!ready) return null;
   return (
@@ -51,9 +57,10 @@ function Admin() {
       <header className="bg-navy text-navy-foreground">
         <div className="site-wrap flex h-14 items-center justify-between">
           <Link to="/" className="font-display font-bold">Unicare Admin</Link>
-          {session && <div className="flex items-center gap-4 text-sm"><span className="hidden opacity-80 sm:inline">{session.user.email} · {role === "admin" ? "Super Admin" : role === "content_manager" ? "Content Manager" : ""}</span><button className="underline" onClick={() => supabase.auth.signOut()}>Sign out</button></div>}
+          {session && <div className="flex items-center gap-4 text-sm"><span className="hidden opacity-80 sm:inline">{session.user.email} · {role === "admin" ? "Super Admin" : role === "content_manager" ? "Content Manager" : ""}</span><button className="underline" onClick={() => setPw(true)}>Change password</button><button className="underline" onClick={() => supabase.auth.signOut()}>Logout</button></div>}
         </div>
       </header>
+      {pw && session && <ChangePassword email={session.user.email ?? ""} onClose={() => setPw(false)} />}
       <div className="site-wrap py-8">
         {!session ? <Login /> : role === null ? (
           <div className="max-w-lg border border-border bg-background p-6 text-sm">
@@ -323,29 +330,61 @@ function Users() {
 }
 
 function Login() {
-  const [mode, setMode] = useState<"in" | "up">("in");
+  const [mode, setMode] = useState<"in" | "up" | "forgot">("in");
   const [msg, setMsg] = useState("");
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const email = String(f.get("email")), password = String(f.get("password"));
+    const email = String(f.get("email")), password = String(f.get("password") ?? "");
     setMsg("");
+    if (mode === "forgot") {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
+      setMsg(error ? error.message : "If this account exists, a reset link has been sent to the email.");
+      return;
+    }
     const { error } = mode === "in"
       ? await supabase.auth.signInWithPassword({ email, password })
       : await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${window.location.origin}/admin` } });
-    if (error) setMsg(error.message);
+    if (error) setMsg(mode === "in" ? "Incorrect email or password." : error.message);
     else if (mode === "up") setMsg("Check your email to confirm your account, then sign in.");
   }
   return (
     <form onSubmit={submit} className="mx-auto mt-10 max-w-sm space-y-4 border border-border bg-background p-6">
-      <h1 className="text-xl font-bold">{mode === "in" ? "Admin sign in" : "Create account"}</h1>
-      <input name="email" type="email" required placeholder="Email" className={field} />
-      <input name="password" type="password" required minLength={8} placeholder="Password" className={field} />
+      <h1 className="text-xl font-bold">{mode === "in" ? "Admin sign in" : mode === "up" ? "Create account" : "Reset password"}</h1>
+      <input name="email" type="email" required placeholder="Email" autoComplete="email" className={field} />
+      {mode !== "forgot" && <input name="password" type="password" required minLength={8} placeholder="Password" autoComplete={mode === "in" ? "current-password" : "new-password"} className={field} />}
       {msg && <p className="text-sm text-muted-foreground">{msg}</p>}
-      <Button type="submit" className="w-full rounded-sm">{mode === "in" ? "Sign in" : "Sign up"}</Button>
-      <button type="button" className="text-xs underline" onClick={() => setMode(mode === "in" ? "up" : "in")}>{mode === "in" ? "Need an account? Sign up" : "Have an account? Sign in"}</button>
+      <Button type="submit" className="w-full rounded-sm">{mode === "in" ? "Sign in" : mode === "up" ? "Sign up" : "Send reset link"}</Button>
+      <div className="flex justify-between text-xs">
+        <button type="button" className="underline" onClick={() => setMode(mode === "in" ? "up" : "in")}>{mode === "in" ? "Need an account? Sign up" : "Back to sign in"}</button>
+        {mode === "in" && <button type="button" className="underline" onClick={() => setMode("forgot")}>Forgot password?</button>}
+      </div>
     </form>
   );
+}
+
+function ChangePassword({ email, onClose }: { email: string; onClose: () => void }) {
+  const [msg, setMsg] = useState("");
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const current = String(f.get("cur")), p = String(f.get("p")), c = String(f.get("c"));
+    if (p !== c) return setMsg("New passwords do not match.");
+    const check = await supabase.auth.signInWithPassword({ email, password: current });
+    if (check.error) return setMsg("Current password is incorrect.");
+    const { error } = await supabase.auth.updateUser({ password: p, current_password: current } as never);
+    setMsg(error ? error.message : "Password changed.");
+  }
+  return <div className="fixed inset-0 z-50 flex items-start justify-center bg-navy/40 p-4 pt-24" onClick={onClose}>
+    <form onSubmit={submit} onClick={(e) => e.stopPropagation()} className="w-full max-w-sm space-y-3 bg-background p-6">
+      <h2 className="text-lg font-bold">Change password</h2>
+      <input name="cur" type="password" required placeholder="Current password" autoComplete="current-password" className={field} />
+      <input name="p" type="password" required minLength={8} placeholder="New password (min 8)" autoComplete="new-password" className={field} />
+      <input name="c" type="password" required minLength={8} placeholder="Confirm new password" autoComplete="new-password" className={field} />
+      {msg && <p className="text-sm text-muted-foreground">{msg}</p>}
+      <div className="flex gap-2"><Button type="submit">Update</Button><Button type="button" variant="ghost" onClick={onClose}>Close</Button></div>
+    </form>
+  </div>;
 }
 
 /* ---------------- Enquiries ---------------- */

@@ -86,6 +86,12 @@ async function sitemapXml(origin: string) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${body}\n</urlset>`;
 }
 
+async function rssXml() {
+  const { data } = await supabase.from("cms_blog_posts").select("slug,title,excerpt,published_at,category").eq("status", "published").eq("robots_index", true).lte("published_at", new Date().toISOString()).order("published_at", { ascending: false }).limit(30);
+  const items = (data ?? []).map((b) => `\n  <item><title>${xmlEsc(b.title)}</title><link>${SITE_ORIGIN}/blog/${b.slug}</link><guid>${SITE_ORIGIN}/blog/${b.slug}</guid><category>${xmlEsc(b.category)}</category><description>${xmlEsc(b.excerpt)}</description>${b.published_at ? `<pubDate>${new Date(b.published_at).toUTCString()}</pubDate>` : ""}</item>`).join("");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Unicare Medical Solutions Blog</title><link>${SITE_ORIGIN}/blog</link><description>Guides on modular operation theatres and hospital infrastructure.</description>${items}\n</channel></rss>`;
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
@@ -103,6 +109,10 @@ export default {
       }
       if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap-index.xml") {
         return new Response(await sitemapXml(origin), { headers: { "content-type": "application/xml; charset=utf-8", "cache-control": "public, max-age=900" } });
+      }
+
+      if (url.pathname === "/rss.xml" || url.pathname === "/feed.xml") {
+        return new Response(await rssXml(), { headers: { "content-type": "application/rss+xml; charset=utf-8", "cache-control": "public, max-age=900" } });
       }
 
       const isPage = request.method === "GET" && !/\.[a-z0-9]{2,5}$/i.test(url.pathname) && !url.pathname.startsWith("/_") && !url.pathname.startsWith("/api/") && !url.pathname.startsWith("/assets/");
