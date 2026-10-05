@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { utmParams } from "@/lib/utm";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { modularOtOptions, products } from "@/data/products";

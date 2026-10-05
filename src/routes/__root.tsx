@@ -18,6 +18,7 @@ import { FloatingActions } from "@/components/site/common";
 import { site } from "@/data/site";
 import { supabase } from "@/integrations/supabase/client";
 import { SITE_URL } from "@/lib/site-url";
+import { captureUtm } from "@/lib/utm";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -166,6 +167,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const isAdmin = useRouterState({ select: (r) => r.location.pathname.startsWith("/admin") });
+  useEffect(() => { captureUtm(); }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
