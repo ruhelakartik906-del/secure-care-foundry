@@ -12,7 +12,6 @@ export const systemHead = (page: SystemPage) => {
   return {
     ...base,
     scripts: [
-      ...((base as { scripts?: unknown[] }).scripts ?? []),
       breadcrumbSchema([{ name: "Solutions", path: "/solutions" }, { name: page.name, path: page.path }]),
       faqSchema(page.faqs),
     ],
