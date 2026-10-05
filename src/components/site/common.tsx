@@ -8,7 +8,7 @@ import { useEnquiry } from "./EnquiryDialog";
 export function ProductCard({ p }: { p: Product }) {
   const { open } = useEnquiry();
   return (
-    <article className="group flex flex-col border border-border bg-card">
+    <article className={`group flex flex-col border bg-card ${p.slug === "modular-operation-theatre" ? "border-brand-blue shadow-sm" : "border-border"}`}>
       <Link to="/products/$slug" params={{ slug: p.slug }} className="block aspect-[4/3] overflow-hidden bg-muted">
         <img src={p.image} alt={p.name} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
       </Link>
@@ -18,10 +18,10 @@ export function ProductCard({ p }: { p: Product }) {
           <Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-brand-blue">{p.name}</Link>
         </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.short}</p>
-        <p className="mt-4 border-t border-border pt-3 text-sm font-semibold text-foreground">{priceLabel(p.price)}</p>
+        <p className="mt-4 border-t border-border pt-3 text-sm font-semibold text-foreground">Price: {p.slug === "modular-operation-theatre" ? "Get Project Quote" : priceLabel(p.price)}</p>
         <div className="mt-4 grid grid-cols-2 gap-2">
           <Button asChild variant="outline" className="rounded-sm"><Link to="/products/$slug" params={{ slug: p.slug }}>View Details</Link></Button>
-          <Button className="rounded-sm" onClick={() => open(p.name)}>Request a Quote</Button>
+          <Button className="rounded-sm" onClick={() => open(p.name)}>{p.slug === "modular-operation-theatre" ? "Get Project Quote" : "Get a Quote"}</Button>
         </div>
       </div>
     </article>

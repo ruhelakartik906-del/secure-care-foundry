@@ -11,10 +11,10 @@
 
 # Project rules
 
-- Products, blogs and locations live in `src/data/*.ts` for now; they move to database tables when the admin CMS is built, so pages must read them only through the helpers there.
+- Products, blogs and locations have database-backed CMS tables with `src/data/*.ts` retained as migration-safe public fallbacks.
 - Enquiries are inserted straight from the browser into the `enquiries` table (insert-only for the public, admin-only read/update/delete via `has_role`), so no server function is needed for form submission.
 - Admin access is granted via rows in `user_roles`, never on profiles, to avoid privilege escalation.
 - Location pages use one route file per product (`<product>-manufacturer.$state.tsx`) sharing `LocationPage`, because TanStack paths can't put a parameter inside a segment.
 - Site-wide layout classes (`site-wrap`, `eyebrow`) are plain CSS in `src/styles.css`, because `@utility` versions did not generate.
-- Modular Operation Theatre child options live in the product data helper and link to anchors on the parent product page, preventing duplicate thin product routes.
+- Modular Operation Theatre child options live in the product helper, have dedicated detailed routes, and retain parent-page anchors for old links.
 - The public `/locations` directory is the only full locality index; product browsing remains separate and footer locality links stay intentionally limited.

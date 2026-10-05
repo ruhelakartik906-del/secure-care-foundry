@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 
 type Enquiry = Database["public"]["Tables"]["enquiries"]["Row"];
 type Status = Database["public"]["Enums"]["enquiry_status"];
+type CmsTable = "cms_products" | "cms_blog_posts" | "cms_testimonials" | "cms_locations";
 const STATUSES: { v: Status; l: string }[] = [
   { v: "new", l: "New" }, { v: "contacted", l: "Contacted" }, { v: "qualified", l: "Qualified" },
   { v: "proposal_sent", l: "Proposal Sent" }, { v: "converted", l: "Converted" }, { v: "closed", l: "Closed" },
@@ -52,10 +53,74 @@ function Admin() {
             <p className="font-semibold">Your account does not have admin access yet.</p>
             <p className="mt-2 text-muted-foreground">Signed in as {session.user.email}. Ask the site owner to grant admin access to this account.</p>
           </div>
-        ) : isAdmin ? <Enquiries /> : null}
+        ) : isAdmin ? <AdminDashboard /> : null}
       </div>
     </div>
   );
+}
+
+function AdminDashboard() {
+  const [tab, setTab] = useState<"enquiries" | CmsTable | "cms_site_settings">("enquiries");
+  const tabs: { key: typeof tab; label: string }[] = [{ key: "enquiries", label: "Enquiries" }, { key: "cms_products", label: "Products" }, { key: "cms_blog_posts", label: "Blogs" }, { key: "cms_testimonials", label: "Testimonials" }, { key: "cms_locations", label: "Locations" }, { key: "cms_site_settings", label: "Site Settings" }];
+  return <div><nav className="mb-7 flex gap-2 overflow-x-auto border-b border-border" aria-label="Admin sections">{tabs.map((item) => <Button key={item.key} variant={tab === item.key ? "default" : "ghost"} className="rounded-none" onClick={() => setTab(item.key)}>{item.label}</Button>)}</nav>{tab === "enquiries" ? <Enquiries /> : tab === "cms_site_settings" ? <SiteSettings /> : <CmsManager table={tab} />}</div>;
+}
+
+const cmsConfig: Record<CmsTable, { title: string; fields: { key: string; label: string; required?: boolean; area?: boolean; type?: string }[]; empty: Record<string, string | boolean | number> }> = {
+  cms_products: { title: "Products & Sub-products", fields: [{ key: "name", label: "Name", required: true }, { key: "short_name", label: "Short name", required: true }, { key: "slug", label: "Slug", required: true }, { key: "category", label: "Category", required: true }, { key: "parent_slug", label: "Parent slug" }, { key: "short_description", label: "Short description", area: true }, { key: "introduction", label: "Introduction", area: true }, { key: "image_url", label: "Image URL" }, { key: "seo_title", label: "SEO title" }, { key: "meta_description", label: "Meta description", area: true }, { key: "focus_keyword", label: "Focus keyword" }, { key: "sort_order", label: "Sort order", type: "number" }], empty: { name: "", short_name: "", slug: "", category: "", parent_slug: "", short_description: "", introduction: "", image_url: "", seo_title: "", meta_description: "", focus_keyword: "", sort_order: 0, published: false } },
+  cms_blog_posts: { title: "Blog Posts", fields: [{ key: "title", label: "Title", required: true }, { key: "slug", label: "Slug", required: true }, { key: "category", label: "Category" }, { key: "author", label: "Author" }, { key: "excerpt", label: "Excerpt", area: true }, { key: "content_text", label: "Article content", area: true }, { key: "featured_image_url", label: "Featured image URL" }, { key: "meta_title", label: "Meta title" }, { key: "meta_description", label: "Meta description", area: true }, { key: "focus_keywords_text", label: "Focus keywords (comma separated)" }, { key: "published_at", label: "Publish date", type: "datetime-local" }], empty: { title: "", slug: "", category: "Modular OT", author: "Unicare Medical Solutions", excerpt: "", content_text: "", featured_image_url: "", meta_title: "", meta_description: "", focus_keywords_text: "", published_at: "", published: false } },
+  cms_testimonials: { title: "Client Testimonials", fields: [{ key: "client_name", label: "Client name", required: true }, { key: "designation", label: "Designation" }, { key: "company", label: "Hospital / Company" }, { key: "city", label: "City" }, { key: "testimonial", label: "Testimonial", required: true, area: true }, { key: "photo_url", label: "Photo URL" }, { key: "rating", label: "Rating", type: "number" }, { key: "sort_order", label: "Sort order", type: "number" }], empty: { client_name: "", designation: "", company: "", city: "", testimonial: "", photo_url: "", rating: 5, sort_order: 0, published: false } },
+  cms_locations: { title: "Location Pages", fields: [{ key: "title", label: "Page title", required: true }, { key: "slug", label: "Slug", required: true }, { key: "product_slug", label: "Product slug", required: true }, { key: "state", label: "State", required: true }, { key: "city", label: "City" }, { key: "introduction", label: "Introduction", area: true }, { key: "content_text", label: "Localized content", area: true }, { key: "image_url", label: "Image URL" }, { key: "seo_title", label: "SEO title" }, { key: "meta_description", label: "Meta description", area: true }], empty: { title: "", slug: "", product_slug: "modular-operation-theatre", state: "", city: "", introduction: "", content_text: "", image_url: "", seo_title: "", meta_description: "", published: false } },
+};
+
+function CmsManager({ table }: { table: CmsTable }) {
+  const config = cmsConfig[table];
+  const [rows, setRows] = useState<Record<string, unknown>[]>([]);
+  const [form, setForm] = useState<Record<string, string | boolean | number>>({ ...config.empty });
+  const [msg, setMsg] = useState("");
+  const load = async () => { const { data } = await supabase.from(table).select("*").order("updated_at", { ascending: false }); setRows((data ?? []) as Record<string, unknown>[]); };
+  useEffect(() => { setForm({ ...config.empty }); load(); }, [table]);
+  function edit(row: Record<string, unknown>) {
+    const next = { ...config.empty };
+    for (const item of config.fields) next[item.key] = typeof row[item.key] === "number" ? Number(row[item.key]) : String(row[item.key] ?? "");
+    if (table === "cms_blog_posts") { next["content_text"] = Array.isArray(row["content"]) ? row["content"].map((x) => typeof x === "object" && x && "text" in x ? String(x.text) : "").join("\n\n") : ""; next["focus_keywords_text"] = Array.isArray(row["focus_keywords"]) ? row["focus_keywords"].join(", ") : ""; }
+    if (table === "cms_locations") next["content_text"] = Array.isArray(row["content"]) ? row["content"].map(String).join("\n\n") : "";
+    next["published"] = Boolean(row["published"]); if (typeof row["id"] === "string") next["id"] = row["id"]; setForm(next); window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  async function save(e: React.FormEvent) {
+    e.preventDefault(); setMsg("Saving…");
+    const payload: Record<string, unknown> = { ...form };
+    delete payload["content_text"]; delete payload["focus_keywords_text"];
+    if (table === "cms_blog_posts") { payload["content"] = String(form["content_text"] ?? "").split(/\n\s*\n/).filter(Boolean).map((text) => ({ heading: "", text })); payload["focus_keywords"] = String(form["focus_keywords_text"] ?? "").split(",").map((x) => x.trim()).filter(Boolean); payload["published_at"] = form["published_at"] || null; }
+    if (table === "cms_locations") payload["content"] = String(form["content_text"] ?? "").split(/\n\s*\n/).filter(Boolean);
+    const { error } = table === "cms_products" ? await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_products"]["Insert"]) : table === "cms_blog_posts" ? await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_blog_posts"]["Insert"]) : table === "cms_testimonials" ? await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_testimonials"]["Insert"]) : await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_locations"]["Insert"]);
+    setMsg(error?.message ?? "Saved."); if (!error) { setForm({ ...config.empty }); load(); }
+  }
+  async function remove(id: string) { if (!confirm("Delete this item permanently?")) return; if (table === "cms_products") await supabase.from(table).delete().eq("id", id); else if (table === "cms_blog_posts") await supabase.from(table).delete().eq("id", id); else if (table === "cms_testimonials") await supabase.from(table).delete().eq("id", id); else await supabase.from(table).delete().eq("id", id); load(); }
+  return <div><h1 className="text-2xl font-bold">{config.title}</h1><div className="mt-6 grid gap-8 lg:grid-cols-5"><form onSubmit={save} className="space-y-4 border border-border bg-background p-5 lg:col-span-2">{config.fields.map((item) => <label key={item.key} className="block text-xs font-semibold">{item.label}{item.area ? <textarea required={item.required} value={String(form[item.key] ?? "")} onChange={(e) => setForm({ ...form, [item.key]: e.target.value })} className={`${field} mt-1 min-h-24`} /> : <><input required={item.required} type={item.type ?? "text"} value={String(form[item.key] ?? "")} onChange={(e) => setForm({ ...form, [item.key]: item.type === "number" ? Number(e.target.value) : e.target.value })} className={`${field} mt-1`} />{["image_url", "featured_image_url", "photo_url"].includes(item.key) && <MediaUpload onUploaded={(url) => setForm({ ...form, [item.key]: url })} />}</>}</label>)}<label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={Boolean(form["published"])} onChange={(e) => setForm({ ...form, published: e.target.checked })} />Published</label>{msg && <p className="text-sm text-muted-foreground">{msg}</p>}<div className="flex gap-2"><Button type="submit">Save</Button><Button type="button" variant="outline" onClick={() => setForm({ ...config.empty })}>Clear</Button></div></form><div className="space-y-3 lg:col-span-3">{rows.map((row) => <article key={String(row["id"])} className="flex items-start justify-between gap-4 border border-border bg-background p-4"><div><h2 className="font-bold">{String(row["title"] ?? row["name"] ?? row["client_name"] ?? row["state"] ?? "Untitled")}</h2><p className="mt-1 text-xs text-muted-foreground">{row["published"] ? "Published" : "Draft"} · {String(row["slug"] ?? row["company"] ?? "")}</p></div><div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => edit(row)}>Edit</Button><Button size="sm" variant="destructive" onClick={() => remove(String(row["id"]))}>Delete</Button></div></article>)}{!rows.length && <p className="text-sm text-muted-foreground">No records yet. Add the first item using the form.</p>}</div></div></div>;
+}
+
+function MediaUpload({ onUploaded }: { onUploaded: (url: string) => void }) {
+  const [msg, setMsg] = useState("");
+  async function upload(file: File | undefined) {
+    if (!file) return;
+    setMsg("Uploading…");
+    const safeName = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-");
+    const path = `${Date.now()}-${safeName}`;
+    const { error } = await supabase.storage.from("website-media").upload(path, file, { contentType: file.type, upsert: false });
+    if (error) { setMsg(error.message); return; }
+    const { data, error: signError } = await supabase.storage.from("website-media").createSignedUrl(path, 31536000);
+    if (signError) { setMsg(signError.message); return; }
+    onUploaded(data.signedUrl); setMsg("Uploaded.");
+  }
+  return <span className="mt-2 block"><input type="file" accept="image/*" className="block w-full text-xs" onChange={(e) => upload(e.target.files?.[0])} />{msg && <span className="mt-1 block text-xs font-normal text-muted-foreground">{msg}</span>}</span>;
+}
+
+function SiteSettings() {
+  const [form, setForm] = useState({ phone: "", secondary_phone: "", whatsapp: "", email: "", office_address: "", works_address: "", working_hours: "", footer_description: "" });
+  const [msg, setMsg] = useState("");
+  useEffect(() => { supabase.from("cms_site_settings").select("*").eq("id", "main").maybeSingle().then(({ data }) => { if (data) setForm({ phone: data.phone, secondary_phone: data.secondary_phone, whatsapp: data.whatsapp, email: data.email, office_address: data.office_address, works_address: data.works_address, working_hours: data.working_hours, footer_description: data.footer_description }); }); }, []);
+  async function save(e: React.FormEvent) { e.preventDefault(); const { error } = await supabase.from("cms_site_settings").update(form).eq("id", "main"); setMsg(error?.message ?? "Settings saved."); }
+  return <form onSubmit={save} className="max-w-2xl space-y-4 border border-border bg-background p-6"><h1 className="text-2xl font-bold">Site Settings</h1>{Object.entries(form).map(([key, value]) => <label key={key} className="block text-xs font-semibold capitalize">{key.replaceAll("_", " ")}<textarea value={value} onChange={(e) => setForm({ ...form, [key]: e.target.value })} className={`${field} mt-1 min-h-10`} /></label>)}{msg && <p className="text-sm text-muted-foreground">{msg}</p>}<Button type="submit">Save Settings</Button></form>;
 }
 
 function Login() {

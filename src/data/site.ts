@@ -6,11 +6,12 @@ export const site = {
   phoneHref: "tel:+917736077740",
   secondaryPhone: "+91-7678443838",
   secondaryPhoneHref: "tel:+917678443838",
-  whatsapp: "917736077740",
+  whatsapp: "917678443838",
   email: "unicaremedical2023@gmail.com",
   officeAddress: "357, Malkhan Singh Complex, Opp. Ambedkar Bhawan, Dasna Road, Ghaziabad – 201001, U.P., India",
   worksAddress: "Plot No. B/260, Adarsh Nagar, Subedar Colony, Ballabhgarh, District Faridabad – 121004, Haryana, India",
+  hours: "Mon – Sat, 9:30 AM – 6:30 PM",
 };
 
-export const whatsappLink = (text = "Hello Unicare, I would like to discuss a hospital project.") =>
+export const whatsappLink = (text = "Hello Unicare Medical Solutions, I am interested in your Modular Operation Theatre solutions. Please share more details.") =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;

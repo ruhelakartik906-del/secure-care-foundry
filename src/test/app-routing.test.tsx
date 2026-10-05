@@ -30,5 +30,13 @@ describe("App routing", () => {
     expect(site.email).toBe("unicaremedical2023@gmail.com");
     expect(site.officeAddress).toContain("Ghaziabad – 201001");
     expect(site.worksAddress).toContain("Faridabad – 121004");
+    expect(site.whatsapp).toBe("917678443838");
+    expect(site.hours).toBe("Mon – Sat, 9:30 AM – 6:30 PM");
+  });
+
+  it("matches every dedicated Modular OT variant route", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    const matches = router.matchRoutes("/products/modular-operation-theatre/stainless-steel-modular-ot");
+    expect(matches.at(-1)?.routeId).toBe("/products/modular-operation-theatre/$variant");
   });
 });

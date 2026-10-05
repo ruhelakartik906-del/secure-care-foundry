@@ -1,11 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProduct, modularOtOptions, priceLabel, products } from "@/data/products";
 import { blogs } from "@/data/blogs";
-import { locations } from "@/data/locations";
 import { Button } from "@/components/ui/button";
 import { PageHero, ProductCard, Faqs, faqSchema, CtaBand, SectionHead } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { useEnquiry } from "@/components/site/EnquiryDialog";
+import { site, whatsappLink } from "@/data/site";
+import { MessageCircle, Phone } from "lucide-react";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { BlogCard } from "@/components/site/BlogCard";
 
@@ -68,6 +69,7 @@ function ProductPage() {
                   <article key={option.slug} id={option.slug} className="scroll-mt-28 border border-border p-4">
                     <h3 className="!mt-0">{option.name}</h3>
                     <p className="!mb-0">{option.description}</p>
+                    <Link to="/products/modular-operation-theatre/$variant" params={{ variant: option.slug }} className="mt-3 inline-block text-sm font-semibold text-brand-blue">View Details →</Link>
                   </article>
                 ))}
               </div>
@@ -90,12 +92,7 @@ function ProductPage() {
           <p>We handle design, manufacturing, installation and support as one coordinated project, so hospitals and contractors have a single point of responsibility.</p>
           <h2>Frequently Asked Questions</h2>
           <Faqs faqs={p.faqs} />
-          <h3>Service locations</h3>
-          <p>
-            {locations.slice(0, 8).map((l, i) => (
-              <span key={l.slug}>{i > 0 && " · "}<Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }}>{l.name}</Link></span>
-            ))}
-          </p>
+          <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild variant="outline"><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${p.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button></div>
         </div>
         <aside className="lg:col-span-4">
           <div className="sticky top-28 border border-border p-6">

@@ -9,14 +9,13 @@ export const Route = createFileRoute("/about")({
 });
 
 const blocks = [
-  ["Who We Are", "Unicare Medical Solutions is a hospital infrastructure company focused on operation theatres, medical gas systems, critical care and sterile services."],
-  ["Our Mission", "To help healthcare facilities build safe, functional clinical environments through well-planned, well-executed infrastructure projects."],
-  ["Our Vision", "To be a dependable infrastructure partner for hospitals and healthcare projects across India."],
+  ["Who We Are", "Unicare Medical Solutions is a medical engineering and hospital infrastructure company focused on operation theatres, medical gas systems, critical care and sterile services."],
   ["What We Do", "Modular operation theatres, medical gas pipeline systems, AGSS, laminar air flow, CSSD, scrub stations, bed head panels, ICU curtain systems and hospital furniture."],
-  ["Manufacturing", "Panels, systems and fittings are fabricated for each project before delivery to site."],
-  ["Installation", "Our site teams install, test and commission systems in coordination with your contractors."],
-  ["Project Support", "From requirement and drawings through handover, one team coordinates your project."],
-  ["Quality Commitment", "We follow defined checks at manufacturing, installation and testing stages."],
+  ["Our Expertise", "Coordinating specialised systems for surgical, sterile, ward and critical-care environments."],
+  ["Manufacturing Capability", "Panels, systems and fittings are fabricated for each project before delivery to site."],
+  ["Installation & Project Support", "Our site teams coordinate installation, testing and commissioning with hospital, civil and MEP teams."],
+  ["Healthcare Facilities We Serve", "Hospitals, nursing homes, clinics, diagnostic centres, medical colleges and public healthcare projects."],
+  ["Why Choose Us", "One accountable team for requirement review, technical planning, manufacturing, site execution and handover."],
 ];
 
 function About() {
@@ -33,11 +32,11 @@ function About() {
       </section>
       <section className="border-t border-border bg-muted py-16">
         <div className="site-wrap max-w-3xl">
-          <h2 className="text-3xl font-bold">Why Hospitals Trust Us</h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">Hospitals work with us because we take responsibility for the full scope — planning, manufacturing, installation and support. Certifications, years of experience and project references will be listed here once provided.</p>
+          <h2 className="text-3xl font-bold">Hospital Infrastructure, Coordinated as One Project</h2>
+          <p className="mt-4 leading-relaxed text-muted-foreground">We work with hospital owners, doctors, architects, consultants and contractors to translate clinical requirements into a practical manufacturing and installation scope.</p>
         </div>
       </section>
-      <CtaBand />
+      <CtaBand title="Discuss Your Project" />
     </>
   );
 }
