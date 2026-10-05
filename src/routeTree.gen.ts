@@ -15,10 +15,18 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
+import { Route as HepaFiltrationSystemForOperationTheatreRouteImport } from './routes/hepa-filtration-system-for-operation-theatre'
 import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as ModularOtCeilingRouteImport } from './routes/modular-ot-ceiling'
+import { Route as ModularOtDoorsRouteImport } from './routes/modular-ot-doors'
+import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wall-panels'
+import { Route as OperationTheatreElectricalSystemRouteImport } from './routes/operation-theatre-electrical-system'
+import { Route as OperationTheatreHvacSystemRouteImport } from './routes/operation-theatre-hvac-system'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapRouteImport } from './routes/sitemap'
+import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -61,11 +69,49 @@ const DisclaimerRoute = DisclaimerRouteImport.update({
   path: '/disclaimer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GetAQuoteRoute = GetAQuoteRouteImport.update({
+  id: '/get-a-quote',
+  path: '/get-a-quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HepaFiltrationSystemForOperationTheatreRoute =
+  HepaFiltrationSystemForOperationTheatreRouteImport.update({
+    id: '/hepa-filtration-system-for-operation-theatre',
+    path: '/hepa-filtration-system-for-operation-theatre',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LocationsRoute = LocationsRouteImport.update({
   id: '/locations',
   path: '/locations',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModularOtCeilingRoute = ModularOtCeilingRouteImport.update({
+  id: '/modular-ot-ceiling',
+  path: '/modular-ot-ceiling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModularOtDoorsRoute = ModularOtDoorsRouteImport.update({
+  id: '/modular-ot-doors',
+  path: '/modular-ot-doors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModularOtWallPanelsRoute = ModularOtWallPanelsRouteImport.update({
+  id: '/modular-ot-wall-panels',
+  path: '/modular-ot-wall-panels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OperationTheatreElectricalSystemRoute =
+  OperationTheatreElectricalSystemRouteImport.update({
+    id: '/operation-theatre-electrical-system',
+    path: '/operation-theatre-electrical-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const OperationTheatreHvacSystemRoute =
+  OperationTheatreHvacSystemRouteImport.update({
+    id: '/operation-theatre-hvac-system',
+    path: '/operation-theatre-hvac-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
@@ -79,6 +125,11 @@ const SearchRoute = SearchRouteImport.update({
 const SitemapRoute = SitemapRouteImport.update({
   id: '/sitemap',
   path: '/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
@@ -149,10 +200,18 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/get-a-quote': typeof GetAQuoteRoute
+  '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/modular-ot-ceiling': typeof ModularOtCeilingRoute
+  '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
+  '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
+  '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
+  '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
@@ -172,10 +231,18 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/get-a-quote': typeof GetAQuoteRoute
+  '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/modular-ot-ceiling': typeof ModularOtCeilingRoute
+  '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
+  '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
+  '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
+  '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
@@ -196,10 +263,18 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/get-a-quote': typeof GetAQuoteRoute
+  '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/modular-ot-ceiling': typeof ModularOtCeilingRoute
+  '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
+  '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
+  '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
+  '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
@@ -221,10 +296,18 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/disclaimer'
+    | '/get-a-quote'
+    | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/modular-ot-ceiling'
+    | '/modular-ot-doors'
+    | '/modular-ot-wall-panels'
+    | '/operation-theatre-electrical-system'
+    | '/operation-theatre-hvac-system'
     | '/privacy-policy'
     | '/search'
     | '/sitemap'
+    | '/solutions'
     | '/terms-and-conditions'
     | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
@@ -244,10 +327,18 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/disclaimer'
+    | '/get-a-quote'
+    | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/modular-ot-ceiling'
+    | '/modular-ot-doors'
+    | '/modular-ot-wall-panels'
+    | '/operation-theatre-electrical-system'
+    | '/operation-theatre-hvac-system'
     | '/privacy-policy'
     | '/search'
     | '/sitemap'
+    | '/solutions'
     | '/terms-and-conditions'
     | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
@@ -267,10 +358,18 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/disclaimer'
+    | '/get-a-quote'
+    | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/modular-ot-ceiling'
+    | '/modular-ot-doors'
+    | '/modular-ot-wall-panels'
+    | '/operation-theatre-electrical-system'
+    | '/operation-theatre-hvac-system'
     | '/privacy-policy'
     | '/search'
     | '/sitemap'
+    | '/solutions'
     | '/terms-and-conditions'
     | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
@@ -291,10 +390,18 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  GetAQuoteRoute: typeof GetAQuoteRoute
+  HepaFiltrationSystemForOperationTheatreRoute: typeof HepaFiltrationSystemForOperationTheatreRoute
   LocationsRoute: typeof LocationsRoute
+  ModularOtCeilingRoute: typeof ModularOtCeilingRoute
+  ModularOtDoorsRoute: typeof ModularOtDoorsRoute
+  ModularOtWallPanelsRoute: typeof ModularOtWallPanelsRoute
+  OperationTheatreElectricalSystemRoute: typeof OperationTheatreElectricalSystemRoute
+  OperationTheatreHvacSystemRoute: typeof OperationTheatreHvacSystemRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SearchRoute: typeof SearchRoute
   SitemapRoute: typeof SitemapRoute
+  SolutionsRoute: typeof SolutionsRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   MedicalGasPipelineManufacturerStateRoute: typeof MedicalGasPipelineManufacturerStateRoute
@@ -352,11 +459,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DisclaimerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/get-a-quote': {
+      id: '/get-a-quote'
+      path: '/get-a-quote'
+      fullPath: '/get-a-quote'
+      preLoaderRoute: typeof GetAQuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hepa-filtration-system-for-operation-theatre': {
+      id: '/hepa-filtration-system-for-operation-theatre'
+      path: '/hepa-filtration-system-for-operation-theatre'
+      fullPath: '/hepa-filtration-system-for-operation-theatre'
+      preLoaderRoute: typeof HepaFiltrationSystemForOperationTheatreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/locations': {
       id: '/locations'
       path: '/locations'
       fullPath: '/locations'
       preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-ceiling': {
+      id: '/modular-ot-ceiling'
+      path: '/modular-ot-ceiling'
+      fullPath: '/modular-ot-ceiling'
+      preLoaderRoute: typeof ModularOtCeilingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-doors': {
+      id: '/modular-ot-doors'
+      path: '/modular-ot-doors'
+      fullPath: '/modular-ot-doors'
+      preLoaderRoute: typeof ModularOtDoorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-wall-panels': {
+      id: '/modular-ot-wall-panels'
+      path: '/modular-ot-wall-panels'
+      fullPath: '/modular-ot-wall-panels'
+      preLoaderRoute: typeof ModularOtWallPanelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/operation-theatre-electrical-system': {
+      id: '/operation-theatre-electrical-system'
+      path: '/operation-theatre-electrical-system'
+      fullPath: '/operation-theatre-electrical-system'
+      preLoaderRoute: typeof OperationTheatreElectricalSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/operation-theatre-hvac-system': {
+      id: '/operation-theatre-hvac-system'
+      path: '/operation-theatre-hvac-system'
+      fullPath: '/operation-theatre-hvac-system'
+      preLoaderRoute: typeof OperationTheatreHvacSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -378,6 +534,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap'
       fullPath: '/sitemap'
       preLoaderRoute: typeof SitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms-and-conditions': {
@@ -467,10 +630,19 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   DisclaimerRoute: DisclaimerRoute,
+  GetAQuoteRoute: GetAQuoteRoute,
+  HepaFiltrationSystemForOperationTheatreRoute:
+    HepaFiltrationSystemForOperationTheatreRoute,
   LocationsRoute: LocationsRoute,
+  ModularOtCeilingRoute: ModularOtCeilingRoute,
+  ModularOtDoorsRoute: ModularOtDoorsRoute,
+  ModularOtWallPanelsRoute: ModularOtWallPanelsRoute,
+  OperationTheatreElectricalSystemRoute: OperationTheatreElectricalSystemRoute,
+  OperationTheatreHvacSystemRoute: OperationTheatreHvacSystemRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SearchRoute: SearchRoute,
   SitemapRoute: SitemapRoute,
+  SolutionsRoute: SolutionsRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   BlogSlugRoute: BlogSlugRoute,
   MedicalGasPipelineManufacturerStateRoute:
