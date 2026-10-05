@@ -14,65 +14,152 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_categories: {
+        Row: {
+          created_at: string
+          id: string
+          intro: string
+          meta_description: string | null
+          name: string
+          noindex: boolean
+          seo_title: string | null
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          intro?: string
+          meta_description?: string | null
+          name: string
+          noindex?: boolean
+          seo_title?: string | null
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          intro?: string
+          meta_description?: string | null
+          name?: string
+          noindex?: boolean
+          seo_title?: string | null
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       cms_blog_posts: {
         Row: {
           author: string
+          canonical_url: string | null
           category: string
           content: Json
+          content_html: string | null
           created_at: string
           excerpt: string
+          featured_image_alt: string | null
+          featured_image_caption: string | null
+          featured_image_description: string | null
+          featured_image_title: string | null
           featured_image_url: string | null
+          focus_keyword: string | null
           focus_keywords: string[]
           id: string
           meta_description: string | null
           meta_title: string | null
           og_description: string | null
+          og_image: string | null
           og_title: string | null
           published: boolean
           published_at: string | null
           related_product_slugs: string[]
+          robots_follow: boolean
+          robots_index: boolean
+          schema_type: string
           slug: string
+          status: string
+          tags: string[]
           title: string
+          twitter_description: string | null
+          twitter_image: string | null
+          twitter_title: string | null
           updated_at: string
         }
         Insert: {
           author?: string
+          canonical_url?: string | null
           category?: string
           content?: Json
+          content_html?: string | null
           created_at?: string
           excerpt?: string
+          featured_image_alt?: string | null
+          featured_image_caption?: string | null
+          featured_image_description?: string | null
+          featured_image_title?: string | null
           featured_image_url?: string | null
+          focus_keyword?: string | null
           focus_keywords?: string[]
           id?: string
           meta_description?: string | null
           meta_title?: string | null
           og_description?: string | null
+          og_image?: string | null
           og_title?: string | null
           published?: boolean
           published_at?: string | null
           related_product_slugs?: string[]
+          robots_follow?: boolean
+          robots_index?: boolean
+          schema_type?: string
           slug: string
+          status?: string
+          tags?: string[]
           title: string
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_title?: string | null
           updated_at?: string
         }
         Update: {
           author?: string
+          canonical_url?: string | null
           category?: string
           content?: Json
+          content_html?: string | null
           created_at?: string
           excerpt?: string
+          featured_image_alt?: string | null
+          featured_image_caption?: string | null
+          featured_image_description?: string | null
+          featured_image_title?: string | null
           featured_image_url?: string | null
+          focus_keyword?: string | null
           focus_keywords?: string[]
           id?: string
           meta_description?: string | null
           meta_title?: string | null
           og_description?: string | null
+          og_image?: string | null
           og_title?: string | null
           published?: boolean
           published_at?: string | null
           related_product_slugs?: string[]
+          robots_follow?: boolean
+          robots_index?: boolean
+          schema_type?: string
           slug?: string
+          status?: string
+          tags?: string[]
           title?: string
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_title?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -86,17 +173,22 @@ export type Database = {
           faqs: Json
           focus_keywords: string[]
           id: string
+          image_alt: string | null
           image_url: string | null
+          internal_links: Json
           introduction: string
           meta_description: string | null
           noindex: boolean
           og_description: string | null
+          og_image: string | null
           og_title: string | null
           product_slug: string
           published: boolean
+          schema_type: string
           seo_title: string | null
           slug: string
           state: string
+          status: string
           title: string
           updated_at: string
         }
@@ -108,17 +200,22 @@ export type Database = {
           faqs?: Json
           focus_keywords?: string[]
           id?: string
+          image_alt?: string | null
           image_url?: string | null
+          internal_links?: Json
           introduction?: string
           meta_description?: string | null
           noindex?: boolean
           og_description?: string | null
+          og_image?: string | null
           og_title?: string | null
           product_slug: string
           published?: boolean
+          schema_type?: string
           seo_title?: string | null
           slug: string
           state: string
+          status?: string
           title: string
           updated_at?: string
         }
@@ -130,17 +227,22 @@ export type Database = {
           faqs?: Json
           focus_keywords?: string[]
           id?: string
+          image_alt?: string | null
           image_url?: string | null
+          internal_links?: Json
           introduction?: string
           meta_description?: string | null
           noindex?: boolean
           og_description?: string | null
+          og_image?: string | null
           og_title?: string | null
           product_slug?: string
           published?: boolean
+          schema_type?: string
           seo_title?: string | null
           slug?: string
           state?: string
+          status?: string
           title?: string
           updated_at?: string
         }
@@ -150,6 +252,7 @@ export type Database = {
         Row: {
           applications: Json
           benefits: Json
+          canonical_url: string | null
           category: string
           created_at: string
           faqs: Json
@@ -157,18 +260,23 @@ export type Database = {
           focus_keyword: string | null
           gallery: Json
           id: string
+          image_alt: string | null
           image_url: string | null
           introduction: string
           meta_description: string | null
           name: string
           og_description: string | null
+          og_image: string | null
           og_title: string | null
           parent_slug: string | null
           price_from: string | null
           price_to: string | null
           pricing_mode: string
           published: boolean
+          robots_follow: boolean
+          robots_index: boolean
           schema_data: Json
+          schema_type: string
           secondary_keywords: string[]
           seo_title: string | null
           short_description: string
@@ -176,11 +284,13 @@ export type Database = {
           slug: string
           sort_order: number
           specifications: Json
+          status: string
           updated_at: string
         }
         Insert: {
           applications?: Json
           benefits?: Json
+          canonical_url?: string | null
           category: string
           created_at?: string
           faqs?: Json
@@ -188,18 +298,23 @@ export type Database = {
           focus_keyword?: string | null
           gallery?: Json
           id?: string
+          image_alt?: string | null
           image_url?: string | null
           introduction?: string
           meta_description?: string | null
           name: string
           og_description?: string | null
+          og_image?: string | null
           og_title?: string | null
           parent_slug?: string | null
           price_from?: string | null
           price_to?: string | null
           pricing_mode?: string
           published?: boolean
+          robots_follow?: boolean
+          robots_index?: boolean
           schema_data?: Json
+          schema_type?: string
           secondary_keywords?: string[]
           seo_title?: string | null
           short_description?: string
@@ -207,11 +322,13 @@ export type Database = {
           slug: string
           sort_order?: number
           specifications?: Json
+          status?: string
           updated_at?: string
         }
         Update: {
           applications?: Json
           benefits?: Json
+          canonical_url?: string | null
           category?: string
           created_at?: string
           faqs?: Json
@@ -219,18 +336,23 @@ export type Database = {
           focus_keyword?: string | null
           gallery?: Json
           id?: string
+          image_alt?: string | null
           image_url?: string | null
           introduction?: string
           meta_description?: string | null
           name?: string
           og_description?: string | null
+          og_image?: string | null
           og_title?: string | null
           parent_slug?: string | null
           price_from?: string | null
           price_to?: string | null
           pricing_mode?: string
           published?: boolean
+          robots_follow?: boolean
+          robots_index?: boolean
           schema_data?: Json
+          schema_type?: string
           secondary_keywords?: string[]
           seo_title?: string | null
           short_description?: string
@@ -238,49 +360,95 @@ export type Database = {
           slug?: string
           sort_order?: number
           specifications?: Json
+          status?: string
           updated_at?: string
         }
         Relationships: []
       }
       cms_site_settings: {
         Row: {
+          bing_verification: string | null
+          company_name: string
+          default_meta_description: string | null
+          default_og_image: string | null
+          default_seo_title: string | null
           email: string
+          favicon_url: string | null
           footer_description: string
+          ga4_id: string | null
+          google_maps_url: string | null
+          gsc_verification: string | null
+          gtm_id: string | null
           id: string
+          latitude: number | null
           logo_url: string | null
+          longitude: number | null
+          meta_pixel_id: string | null
           office_address: string
+          organization_logo: string | null
           phone: string
           secondary_phone: string
           social_links: Json
           updated_at: string
+          website_url: string
           whatsapp: string
           working_hours: string
           works_address: string
         }
         Insert: {
+          bing_verification?: string | null
+          company_name?: string
+          default_meta_description?: string | null
+          default_og_image?: string | null
+          default_seo_title?: string | null
           email: string
+          favicon_url?: string | null
           footer_description: string
+          ga4_id?: string | null
+          google_maps_url?: string | null
+          gsc_verification?: string | null
+          gtm_id?: string | null
           id?: string
+          latitude?: number | null
           logo_url?: string | null
+          longitude?: number | null
+          meta_pixel_id?: string | null
           office_address: string
+          organization_logo?: string | null
           phone: string
           secondary_phone: string
           social_links?: Json
           updated_at?: string
+          website_url?: string
           whatsapp: string
           working_hours: string
           works_address: string
         }
         Update: {
+          bing_verification?: string | null
+          company_name?: string
+          default_meta_description?: string | null
+          default_og_image?: string | null
+          default_seo_title?: string | null
           email?: string
+          favicon_url?: string | null
           footer_description?: string
+          ga4_id?: string | null
+          google_maps_url?: string | null
+          gsc_verification?: string | null
+          gtm_id?: string | null
           id?: string
+          latitude?: number | null
           logo_url?: string | null
+          longitude?: number | null
+          meta_pixel_id?: string | null
           office_address?: string
+          organization_logo?: string | null
           phone?: string
           secondary_phone?: string
           social_links?: Json
           updated_at?: string
+          website_url?: string
           whatsapp?: string
           working_hours?: string
           works_address?: string
@@ -300,6 +468,7 @@ export type Database = {
           rating: number
           sort_order: number
           testimonial: string
+          testimonial_date: string | null
           updated_at: string
         }
         Insert: {
@@ -314,6 +483,7 @@ export type Database = {
           rating?: number
           sort_order?: number
           testimonial: string
+          testimonial_date?: string | null
           updated_at?: string
         }
         Update: {
@@ -328,6 +498,7 @@ export type Database = {
           rating?: number
           sort_order?: number
           testimonial?: string
+          testimonial_date?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -340,16 +511,23 @@ export type Database = {
           created_at: string
           email: string | null
           id: string
+          internal_notes: string | null
           message: string | null
           name: string
           page_url: string | null
           phone: string
           product: string | null
+          project_type: string | null
           quantity: string | null
           requirement: string | null
           source: string
           state: string | null
           status: Database["public"]["Enums"]["enquiry_status"]
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
         }
         Insert: {
           city?: string | null
@@ -358,16 +536,23 @@ export type Database = {
           created_at?: string
           email?: string | null
           id?: string
+          internal_notes?: string | null
           message?: string | null
           name: string
           page_url?: string | null
           phone: string
           product?: string | null
+          project_type?: string | null
           quantity?: string | null
           requirement?: string | null
           source?: string
           state?: string | null
           status?: Database["public"]["Enums"]["enquiry_status"]
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Update: {
           city?: string | null
@@ -376,16 +561,53 @@ export type Database = {
           created_at?: string
           email?: string | null
           id?: string
+          internal_notes?: string | null
           message?: string | null
           name?: string
           page_url?: string | null
           phone?: string
           product?: string | null
+          project_type?: string | null
           quantity?: string | null
           requirement?: string | null
           source?: string
           state?: string | null
           status?: Database["public"]["Enums"]["enquiry_status"]
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Relationships: []
+      }
+      redirects: {
+        Row: {
+          auto_created: boolean
+          created_at: string
+          from_path: string
+          id: string
+          status_code: number
+          to_path: string
+          updated_at: string
+        }
+        Insert: {
+          auto_created?: boolean
+          created_at?: string
+          from_path: string
+          id?: string
+          status_code?: number
+          to_path: string
+          updated_at?: string
+        }
+        Update: {
+          auto_created?: boolean
+          created_at?: string
+          from_path?: string
+          id?: string
+          status_code?: number
+          to_path?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -419,9 +641,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      app_role: "admin" | "user"
+      app_role: "admin" | "user" | "content_manager"
       enquiry_status:
         | "new"
         | "contacted"
@@ -556,7 +779,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user"],
+      app_role: ["admin", "user", "content_manager"],
       enquiry_status: [
         "new",
         "contacted",

@@ -27,6 +27,7 @@ import { Route as ModularOperationTheatreManufacturerStateRouteImport } from './
 import { Route as ModularOperationTheatreManufacturersInStateRouteImport } from './routes/modular-operation-theatre-manufacturers-in.$state'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as BlogCategoryCategoryRouteImport } from './routes/blog.category.$category'
 import { Route as ProductsModularOperationTheatreVariantRouteImport } from './routes/products.modular-operation-theatre.$variant'
 
 const IndexRoute = IndexRouteImport.update({
@@ -123,6 +124,11 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogCategoryCategoryRoute = BlogCategoryCategoryRouteImport.update({
+  id: '/blog/category/$category',
+  path: '/blog/category/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsModularOperationTheatreVariantRoute =
   ProductsModularOperationTheatreVariantRouteImport.update({
     id: '/products/modular-operation-theatre/$variant',
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/products/$slug': typeof ProductsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
 }
 export interface FileRoutesByTo {
@@ -170,6 +177,7 @@ export interface FileRoutesByTo {
   '/products/$slug': typeof ProductsSlugRoute
   '/blog': typeof BlogIndexRoute
   '/products': typeof ProductsIndexRoute
+  '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
 }
 export interface FileRoutesById {
@@ -192,6 +200,7 @@ export interface FileRoutesById {
   '/products/$slug': typeof ProductsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
 }
 export interface FileRouteTypes {
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/blog/'
     | '/products/'
+    | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -236,6 +246,7 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/blog'
     | '/products'
+    | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
   id:
     | '__root__'
@@ -257,6 +268,7 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/blog/'
     | '/products/'
+    | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
   fileRoutesById: FileRoutesById
 }
@@ -279,6 +291,7 @@ export interface RootRouteChildren {
   ProductsSlugRoute: typeof ProductsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
+  BlogCategoryCategoryRoute: typeof BlogCategoryCategoryRoute
   ProductsModularOperationTheatreVariantRoute: typeof ProductsModularOperationTheatreVariantRoute
 }
 
@@ -410,6 +423,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/category/$category': {
+      id: '/blog/category/$category'
+      path: '/blog/category/$category'
+      fullPath: '/blog/category/$category'
+      preLoaderRoute: typeof BlogCategoryCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/modular-operation-theatre/$variant': {
       id: '/products/modular-operation-theatre/$variant'
       path: '/products/modular-operation-theatre/$variant'
@@ -443,6 +463,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsSlugRoute: ProductsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
+  BlogCategoryCategoryRoute: BlogCategoryCategoryRoute,
   ProductsModularOperationTheatreVariantRoute:
     ProductsModularOperationTheatreVariantRoute,
 }

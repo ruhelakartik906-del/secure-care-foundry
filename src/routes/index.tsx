@@ -54,7 +54,7 @@ function Home() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [latestBlogs, setLatestBlogs] = useState<Blog[]>(blogs.slice(0, 3));
   useEffect(() => { supabase.from("cms_testimonials").select("id,client_name,designation,company,city,testimonial,rating").eq("published", true).order("sort_order").limit(6).then(({ data }) => setTestimonials(data ?? [])); }, []);
-  useEffect(() => { supabase.from("cms_blog_posts").select("slug,title,category,excerpt,published_at,featured_image_url,related_product_slugs").eq("published", true).order("published_at", { ascending: false }).limit(6).then(({ data }) => { if (data?.length) setLatestBlogs(data.map((item) => ({ slug: item.slug, title: item.title, category: item.category, excerpt: item.excerpt, date: item.published_at ?? new Date().toISOString(), image: item.featured_image_url ?? blogs[0]?.image ?? "", relatedProducts: item.related_product_slugs, body: [] }))); }); }, []);
+  useEffect(() => { supabase.from("cms_blog_posts").select("slug,title,category,excerpt,published_at,featured_image_url,related_product_slugs").eq("status", "published").order("published_at", { ascending: false }).limit(6).then(({ data }) => { if (data?.length) setLatestBlogs(data.map((item) => ({ slug: item.slug, title: item.title, category: item.category, excerpt: item.excerpt, date: item.published_at ?? new Date().toISOString(), image: item.featured_image_url ?? blogs[0]?.image ?? "", relatedProducts: item.related_product_slugs, body: [] }))); }); }, []);
   return <>
     <section className="bg-navy text-navy-foreground">
       <div className="site-wrap grid min-h-[560px] items-stretch lg:grid-cols-2">
