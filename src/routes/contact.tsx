@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageCircle, Phone } from "lucide-react";
+import { Factory, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site, whatsappLink } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/common";
@@ -12,21 +12,24 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const mapQuery = encodeURIComponent("357 Malkhan Singh Complex Opp Ambedkar Bhawan Dasna Road Ghaziabad 201001 Uttar Pradesh India");
   return (
     <>
       <PageHero title="Contact Us" intro="Tell us about your project. Our team will respond with the right next step." crumbs={[{ label: "Contact Us" }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-5">
-          <dl className="divide-y divide-border border-y border-border text-sm">
-            {[["Address", site.address], ["Phone", site.phone], ["Email", site.email], ["Business hours", site.hours]].map(([k, v]) => (
-              <div key={k} className="grid grid-cols-3 gap-4 py-4"><dt className="font-semibold">{k}</dt><dd className="col-span-2 break-words text-muted-foreground">{v}</dd></div>
-            ))}
-          </dl>
-          <div className="grid grid-cols-2 gap-3">
-            <Button size="lg" className="rounded-sm" asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button>
-            <Button size="lg" variant="outline" className="rounded-sm" asChild><a href={whatsappLink()} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button>
+          <div><p className="eyebrow">Contact Details</p><h2 className="mt-2 text-3xl font-bold">Get In Touch</h2></div>
+          <div className="divide-y divide-border border-y border-border text-sm">
+            <div className="flex gap-4 py-4"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" /><div><h3 className="font-bold">Office Address</h3><p className="mt-1 text-muted-foreground">{site.officeAddress}</p></div></div>
+            <div className="flex gap-4 py-4"><Factory className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" /><div><h3 className="font-bold">Works Address</h3><p className="mt-1 text-muted-foreground">{site.worksAddress}</p></div></div>
+            <div className="flex gap-4 py-4"><Phone className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" /><div><h3 className="font-bold">Phone</h3><a href={site.phoneHref} className="mt-1 block text-muted-foreground hover:text-brand-blue">{site.phone}</a><a href={site.secondaryPhoneHref} className="block text-muted-foreground hover:text-brand-blue">{site.secondaryPhone}</a></div></div>
+            <div className="flex gap-4 py-4"><Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" /><div><h3 className="font-bold">Email</h3><a href={`mailto:${site.email}`} className="mt-1 block break-all text-muted-foreground hover:text-brand-blue">{site.email}</a></div></div>
           </div>
-          <div className="flex aspect-[4/3] items-center justify-center border border-dashed border-border bg-muted text-sm text-muted-foreground">Map will appear once the office address is added</div>
+          <div className="grid grid-cols-2 gap-3">
+            <Button size="lg" className="rounded-sm" asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Us</a></Button>
+            <Button size="lg" variant="outline" className="rounded-sm" asChild><a href={whatsappLink()} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp Us</a></Button>
+          </div>
+          <iframe title="Unicare Medical Solutions office map" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="aspect-[4/3] w-full border border-border" />
         </div>
         <div className="border border-border p-6 md:p-8 lg:col-span-7">
           <h2 className="mb-6 text-2xl font-bold">Send an Enquiry</h2>

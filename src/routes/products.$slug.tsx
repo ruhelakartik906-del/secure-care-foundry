@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getProduct, priceLabel, products } from "@/data/products";
+import { getProduct, modularOtOptions, priceLabel, products } from "@/data/products";
 import { blogs } from "@/data/blogs";
 import { locations } from "@/data/locations";
 import { Button } from "@/components/ui/button";
@@ -60,6 +60,19 @@ function ProductPage() {
       <section className="site-wrap grid gap-12 pb-16 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
           {isOt && <OtLongForm />}
+          {isOt && (
+            <section aria-labelledby="modular-ot-options">
+              <h2 id="modular-ot-options">Modular Operation Theatre Options</h2>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {modularOtOptions.map((option) => (
+                  <article key={option.slug} id={option.slug} className="scroll-mt-28 border border-border p-4">
+                    <h3 className="!mt-0">{option.name}</h3>
+                    <p className="!mb-0">{option.description}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
           <h2>Features</h2>
           <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
           <h2>Specifications</h2>
