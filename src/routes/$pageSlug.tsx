@@ -59,7 +59,7 @@ function CmsLocationPage() {
         {!!related.length && <><h2>Other service locations</h2><p>{related.map((r, i) => <span key={r.slug}>{i > 0 && " · "}<a href={`/${r.slug}`}>{r.title}</a></span>)}</p></>}
         <h2>Contact</h2><p>Call <a href={site.phoneHref}>{site.phone}</a> or email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
       </article>
-      <aside className="lg:col-span-4"><div className="border border-border p-5"><h2 className="font-bold">Request a quotation</h2><EnquiryForm source="location" variant="lead" defaultProduct={product?.name} /></div></aside>
+      <aside className="lg:col-span-4"><div className="border border-border p-5"><h2 className="font-bold">Request a quotation</h2><EnquiryForm source="location" variant="lead" defaultProduct={product?.name ?? ""} /></div></aside>
     </section>
     <CtaBand />
   </>;
