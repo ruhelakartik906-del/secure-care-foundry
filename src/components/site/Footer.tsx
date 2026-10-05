@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/unicare-logo.webp";
 import { locations } from "@/data/locations";
 import { products } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="bg-navy text-navy-foreground">
       <div className="site-wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-3">
-          <div className="inline-block bg-background p-2"><img src={logo.url} alt="Unicare Medical Solutions" className="h-12 w-auto" loading="lazy" /></div>
+          <div className="inline-block bg-background p-2"><img src={logo} alt="Unicare Medical Solutions" className="h-12 w-auto" loading="lazy" /></div>
           <p className="mt-4 text-sm leading-relaxed text-navy-foreground/75">
             Design, manufacturing and installation of modular operation theatres, medical gas pipeline systems and hospital infrastructure solutions.
           </p>

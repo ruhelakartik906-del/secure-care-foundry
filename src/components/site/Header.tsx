@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/unicare-logo.webp";
 import { site } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "./EnquiryDialog";
@@ -64,7 +64,7 @@ export function Header() {
       </div>
       <div className="site-wrap relative flex h-16 items-center justify-between gap-4 md:h-20">
         <Link to="/" className="shrink-0" aria-label="Unicare Medical Solutions home">
-          <img src={logo.url} alt="Unicare Medical Solutions" width={180} height={60} className="h-11 w-auto md:h-14" />
+          <img src={logo} alt="Unicare Medical Solutions" width={180} height={60} className="h-11 w-auto md:h-14" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
@@ -118,7 +118,7 @@ export function Header() {
           <div className="absolute inset-0 bg-navy/50" onClick={() => setMobile(false)} />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-background shadow-xl">
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4">
-              <img src={logo.url} alt="Unicare Medical Solutions" className="h-10 w-auto" />
+              <img src={logo} alt="Unicare Medical Solutions" className="h-10 w-auto" />
               <button aria-label="Close menu" onClick={() => setMobile(false)} className="grid h-11 w-11 place-items-center"><X className="h-6 w-6" /></button>
             </div>
             <nav className="flex flex-col px-4 py-3" aria-label="Mobile">
