@@ -294,7 +294,7 @@ function SiteSettings() {
     e.preventDefault();
     const { id: _id, updated_at: _u, ...rest } = form;
     const clean = Object.fromEntries(Object.entries(rest).map(([k, v]) => [k, k === "latitude" || k === "longitude" ? (v === "" || v == null ? null : Number(v)) : v]));
-    const { error } = await supabase.from("cms_site_settings").update(clean).eq("id", "main"); setMsg(error?.message ?? "Settings saved.");
+    const { error } = await supabase.from("cms_site_settings").update(clean as Database["public"]["Tables"]["cms_site_settings"]["Update"]).eq("id", "main"); setMsg(error?.message ?? "Settings saved.");
   }
   return <form onSubmit={save} className="max-w-3xl space-y-6"><h1 className="text-2xl font-bold">Site & SEO Settings</h1>
     {settingGroups.map((g) => <fieldset key={g.title} className="space-y-3 border border-border bg-background p-5"><legend className="px-1 font-bold">{g.title}</legend>{g.fields.map(([k, l, area]) => <label key={k} className="block text-xs font-semibold">{l}{area ? <textarea value={String(form[k] ?? "")} onChange={(e) => setForm({ ...form, [k]: e.target.value })} className={`${field} mt-1 min-h-16`} /> : <input value={String(form[k] ?? "")} onChange={(e) => setForm({ ...form, [k]: e.target.value })} className={`${field} mt-1`} />}</label>)}</fieldset>)}

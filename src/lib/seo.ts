@@ -5,10 +5,10 @@ const defaultImage = "/favicon.png";
 export type SeoOptions = {
   index?: boolean;
   follow?: boolean;
-  canonical?: string | null;
-  twitterTitle?: string | null;
-  twitterDescription?: string | null;
-  twitterImage?: string | null;
+  canonical?: string | null | undefined;
+  twitterTitle?: string | null | undefined;
+  twitterDescription?: string | null | undefined;
+  twitterImage?: string | null | undefined;
 };
 
 export const robotsContent = (index = true, follow = true) =>
