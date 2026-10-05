@@ -24,6 +24,7 @@ import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wal
 import { Route as OperationTheatreElectricalSystemRouteImport } from './routes/operation-theatre-electrical-system'
 import { Route as OperationTheatreHvacSystemRouteImport } from './routes/operation-theatre-hvac-system'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapRouteImport } from './routes/sitemap'
@@ -118,6 +119,11 @@ const OperationTheatreHvacSystemRoute =
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -227,6 +233,7 @@ export interface FileRoutesByFullPath {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/projects': typeof ProjectsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
@@ -261,6 +268,7 @@ export interface FileRoutesByTo {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/projects': typeof ProjectsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
@@ -296,6 +304,7 @@ export interface FileRoutesById {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/projects': typeof ProjectsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
@@ -332,6 +341,7 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
+    | '/projects'
     | '/reset-password'
     | '/search'
     | '/sitemap'
@@ -366,6 +376,7 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
+    | '/projects'
     | '/reset-password'
     | '/search'
     | '/sitemap'
@@ -400,6 +411,7 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
+    | '/projects'
     | '/reset-password'
     | '/search'
     | '/sitemap'
@@ -435,6 +447,7 @@ export interface RootRouteChildren {
   OperationTheatreElectricalSystemRoute: typeof OperationTheatreElectricalSystemRoute
   OperationTheatreHvacSystemRoute: typeof OperationTheatreHvacSystemRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ProjectsRoute: typeof ProjectsRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SearchRoute: typeof SearchRoute
   SitemapRoute: typeof SitemapRoute
@@ -559,6 +572,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy-policy'
       fullPath: '/privacy-policy'
       preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -700,6 +720,7 @@ const rootRouteChildren: RootRouteChildren = {
   OperationTheatreElectricalSystemRoute: OperationTheatreElectricalSystemRoute,
   OperationTheatreHvacSystemRoute: OperationTheatreHvacSystemRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ProjectsRoute: ProjectsRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SearchRoute: SearchRoute,
   SitemapRoute: SitemapRoute,

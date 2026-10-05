@@ -3,7 +3,7 @@ import { PageHero, CtaBand } from "@/components/site/common";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/projects")({
-  head: () => seo("Projects | Unicare Medical Solutions", "Modular operation theatre and hospital infrastructure projects by Unicare Medical Solutions. Contact us to request project references.", "/projects"),
+  head: () => seo("Projects | Unicare Medical Solutions", "Modular operation theatre and hospital infrastructure projects by Unicare Medical Solutions. Contact us to request project references.", "/projects", { index: false }),
   component: Projects,
 });
 
