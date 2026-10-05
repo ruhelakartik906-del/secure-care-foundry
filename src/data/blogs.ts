@@ -1,6 +1,6 @@
-import modularOt from "@/assets/modular-ot.jpg";
-import gas from "@/assets/gas-pipeline.jpg";
-import laminar from "@/assets/laminar.jpg";
+import modularOt from "@/assets/modular-ot.webp";
+import gas from "@/assets/gas-pipeline.webp";
+import laminar from "@/assets/laminar.webp";
 
 export type Blog = {
   slug: string;
