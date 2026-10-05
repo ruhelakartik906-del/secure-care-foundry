@@ -223,5 +223,22 @@ export const products: Product[] = [
 
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug);
 
+export type ModularOtOption = {
+  slug: string;
+  name: string;
+  menuName: string;
+  description: string;
+  image: string;
+};
+
+export const modularOtOptions: ModularOtOption[] = [
+  { slug: "stainless-steel", name: "Stainless Steel Modular Operation Theatre", menuName: "Stainless Steel Modular OT", description: "A modular OT option with stainless-steel internal surfaces selected around project and cleaning requirements.", image: modularOt },
+  { slug: "ppgi", name: "PPGI Modular Operation Theatre", menuName: "PPGI Modular OT", description: "A practical panel-based theatre option configured to the room layout and hospital project scope.", image: modularOt },
+  { slug: "hospital", name: "Hospital Modular Operation Theatre", menuName: "Hospital Modular OT", description: "A coordinated operation theatre solution for new hospitals, extensions and theatre upgrades.", image: modularOt },
+  { slug: "glass", name: "Glass Modular Operation Theatre", menuName: "Glass Modular OT", description: "A modular theatre option using suitable glass surfaces where specified in the project design.", image: modularOt },
+  { slug: "bioclad", name: "Bioclad Modular Operation Theatre", menuName: "Bioclad Modular OT", description: "A wall-cladding based modular OT option planned to suit the clinical environment and project brief.", image: modularOt },
+  { slug: "semi-modular", name: "Semi Modular Operation Theatre", menuName: "Semi Modular OT", description: "A selective modular upgrade for hospitals adapting an existing operation theatre within a defined scope.", image: modularOt },
+];
+
 export const priceLabel = (p: PriceInfo) =>
   p.type === "starting" ? `Starting from ₹${p.amount}` : p.type === "range" ? `₹${p.from} – ₹${p.to}` : "Price available on request";

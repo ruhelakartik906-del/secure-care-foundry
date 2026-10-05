@@ -1,13 +1,15 @@
-// Company details. Values marked as placeholders must be replaced with real information.
 export const site = {
   name: "Unicare Medical Solutions",
+  legalName: "Unicare Medical Solution",
   tagline: "Hospital Infrastructure & Medical Equipment",
-  phone: "+91 00000 00000", // placeholder
-  phoneHref: "tel:+910000000000",
-  whatsapp: "910000000000", // placeholder, digits only
-  email: "info@unicaremedical.example", // placeholder
-  address: "Office address to be added", // placeholder
-  hours: "Mon – Sat, 9:30 AM – 6:30 PM", // placeholder
+  phone: "+91-7736077740",
+  phoneHref: "tel:+917736077740",
+  secondaryPhone: "+91-7678443838",
+  secondaryPhoneHref: "tel:+917678443838",
+  whatsapp: "917736077740",
+  email: "unicaremedical2023@gmail.com",
+  officeAddress: "357, Malkhan Singh Complex, Opp. Ambedkar Bhawan, Dasna Road, Ghaziabad – 201001, U.P., India",
+  worksAddress: "Plot No. B/260, Adarsh Nagar, Subedar Colony, Ballabhgarh, District Faridabad – 121004, Haryana, India",
 };
 
 export const whatsappLink = (text = "Hello Unicare, I would like to discuss a hospital project.") =>
