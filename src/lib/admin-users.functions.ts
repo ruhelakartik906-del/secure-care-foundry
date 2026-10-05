@@ -30,3 +30,18 @@ export const grantStaffRole = createServerFn({ method: "POST" })
     const { error } = await supabaseAdmin.from("user_roles").upsert({ user_id: user.id, role: data.role as never }, { onConflict: "user_id,role" });
     return error ? { ok: false as const, message: error.message } : { ok: true as const, message: "Access granted." };
   });
+
+/** One-time bootstrap: the designated owner email becomes Super Admin, only while no admin exists yet. */
+const INITIAL_ADMIN_EMAIL = "nitinupgrowbharat@gmail.com";
+export const claimInitialAdmin = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: u } = await supabaseAdmin.auth.admin.getUserById(context.userId);
+    const user = u.user;
+    if (!user || user.email?.toLowerCase() !== INITIAL_ADMIN_EMAIL || !user.email_confirmed_at) return { ok: false };
+    const { count } = await supabaseAdmin.from("user_roles").select("id", { count: "exact", head: true }).eq("role", "admin");
+    if ((count ?? 0) > 0) return { ok: false };
+    const { error } = await supabaseAdmin.from("user_roles").insert({ user_id: user.id, role: "admin" });
+    return { ok: !error };
+  });
