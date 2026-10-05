@@ -89,7 +89,7 @@ export function CtaBand({ title = "Discuss Your Hospital Project", text = "Tell 
 export function FloatingActions() {
   return (
     <>
-      <Button size="icon" className="fixed bottom-5 left-4 z-30 h-12 w-12 rounded-full shadow-lg md:bottom-6 md:left-6 md:h-11 md:w-11" asChild>
+      <Button size="icon" className="fixed bottom-[86px] right-[18px] z-50 h-12 w-12 rounded-full shadow-lg md:bottom-[90px] md:right-[26px] md:h-11 md:w-11" asChild>
         <a href={site.phoneHref} aria-label={`Call Unicare at ${site.phone}`} title="Call Unicare"><Phone className="h-5 w-5" /></a>
       </Button>
       <a
