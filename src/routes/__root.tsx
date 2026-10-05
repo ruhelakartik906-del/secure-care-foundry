@@ -16,6 +16,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/common";
 import { site } from "@/data/site";
+import { supabase } from "@/integrations/supabase/client";
+import { SITE_URL } from "@/lib/site-url";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -28,6 +30,7 @@ function NotFoundComponent() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link to="/" className="bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">Go Home</Link>
         <Link to="/products" className="border border-border px-5 py-3 text-sm font-semibold">View Products</Link>
+        <Link to="/blog" className="border border-border px-5 py-3 text-sm font-semibold">Read Blog</Link>
         <Link to="/contact" className="border border-border px-5 py-3 text-sm font-semibold">Contact Us</Link>
       </div>
     </div>
@@ -72,8 +75,24 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+type Tracking = { gsc_verification: string | null; bing_verification: string | null; ga4_id: string | null; gtm_id: string | null; meta_pixel_id: string | null; latitude: number | null; longitude: number | null; google_maps_url: string | null };
+const safeId = (v: string | null | undefined, re: RegExp) => (v && re.test(v.trim()) ? v.trim() : null);
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
+  loader: async (): Promise<{ tracking: Tracking | null }> => {
+    try {
+      const { data } = await supabase.from("cms_site_settings").select("gsc_verification,bing_verification,ga4_id,gtm_id,meta_pixel_id,latitude,longitude,google_maps_url").eq("id", "main").maybeSingle();
+      return { tracking: (data as Tracking | null) ?? null };
+    } catch { return { tracking: null }; }
+  },
+  head: ({ loaderData }) => {
+    const t = loaderData?.tracking;
+    const ga = safeId(t?.ga4_id, /^G-[A-Z0-9]{4,20}$/);
+    const gtm = safeId(t?.gtm_id, /^GTM-[A-Z0-9]{4,12}$/);
+    const pixel = safeId(t?.meta_pixel_id, /^\d{8,20}$/);
+    const gsc = safeId(t?.gsc_verification, /^[A-Za-z0-9_-]{10,100}$/);
+    const bing = safeId(t?.bing_verification, /^[A-Za-z0-9]{10,100}$/);
+    return {
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -82,6 +101,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Unicare Medical Solutions" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ...(gsc ? [{ name: "google-site-verification", content: gsc }] : []),
+      ...(bing ? [{ name: "msvalidate.01", content: bing }] : []),
     ],
     links: [
       {
@@ -99,8 +120,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
+          "@id": `${SITE_URL}/#organization`,
           name: site.name,
           legalName: site.legalName,
+          url: `${SITE_URL}/`,
+          logo: `${SITE_URL}/favicon.png`,
           email: site.email,
           telephone: site.phone,
           address: [
@@ -109,8 +133,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           ],
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: site.name, url: `${SITE_URL}/`, publisher: { "@id": `${SITE_URL}/#organization` } }),
+      },
+      ...(ga ? [{ src: `https://www.googletagmanager.com/gtag/js?id=${ga}`, async: true }, { children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga}');` }] : []),
+      ...(gtm ? [{ children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');` }] : []),
+      ...(pixel ? [{ children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${pixel}');fbq('track','PageView');` }] : []),
     ],
-  }),
+  };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

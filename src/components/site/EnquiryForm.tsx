@@ -55,6 +55,8 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
       requirement: d.requirement || null,
       message: d.message || null,
       contact_method: d.contact_method || null,
+      project_type: d.requirement || null,
+      ...utmParams(),
       page_url: typeof window !== "undefined" ? window.location.pathname.slice(0, 500) : null,
     });
     if (error) {

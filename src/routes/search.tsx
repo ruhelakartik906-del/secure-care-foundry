@@ -7,7 +7,7 @@ import { PageHero } from "@/components/site/common";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/search")({
-  head: () => ({ ...seo("Search | Unicare Medical Solutions", "Search products, articles and service locations.", "/search"), meta: [...seo("Search | Unicare Medical Solutions", "Search products, articles and service locations.", "/search").meta, { name: "robots", content: "noindex" }] }),
+  head: () => seo("Search | Unicare Medical Solutions", "Search products, articles and service locations.", "/search", "website", undefined, { index: false }),
   component: Search,
 });
 
