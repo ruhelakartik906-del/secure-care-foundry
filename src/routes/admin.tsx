@@ -1,13 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
+import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 import { Button } from "@/components/ui/button";
+import { BlogManager } from "@/components/admin/BlogEditor";
+import { field, MediaUpload, SerpPreview } from "@/components/admin/shared";
+import { slugify } from "@/lib/seo-score";
+import { listStaff, grantStaffRole } from "@/lib/admin-users.functions";
 
 type Enquiry = Database["public"]["Tables"]["enquiries"]["Row"];
 type Status = Database["public"]["Enums"]["enquiry_status"];
-type CmsTable = "cms_products" | "cms_blog_posts" | "cms_testimonials" | "cms_locations";
+type Role = "admin" | "content_manager";
+type CmsTable = "cms_products" | "cms_testimonials" | "cms_locations";
+type Tab = "dashboard" | "enquiries" | "blogs" | CmsTable | "categories" | "redirects" | "settings" | "users";
+
 const STATUSES: { v: Status; l: string }[] = [
   { v: "new", l: "New" }, { v: "contacted", l: "Contacted" }, { v: "qualified", l: "Qualified" },
   { v: "proposal_sent", l: "Proposal Sent" }, { v: "converted", l: "Converted" }, { v: "closed", l: "Closed" },
@@ -15,27 +23,26 @@ const STATUSES: { v: Status; l: string }[] = [
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
-  head: () => ({ meta: [{ title: "Admin | Unicare" }, { name: "robots", content: "noindex, nofollow" }] }),
+  head: () => ({ meta: [{ title: "Admin | Unicare Medical Solutions" }, { name: "robots", content: "noindex, nofollow" }] }),
   component: Admin,
 });
-
-const field = "w-full border border-input bg-background px-3 py-2 text-sm";
 
 function Admin() {
   const [session, setSession] = useState<Session | null>(null);
   const [ready, setReady] = useState(false);
-  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [role, setRole] = useState<Role | null | undefined>(undefined);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => { setSession(data.session); setReady(true); });
     const { data } = supabase.auth.onAuthStateChange((_e, s) => setSession(s));
     return () => data.subscription.unsubscribe();
   }, []);
-
   useEffect(() => {
-    if (!session) { setIsAdmin(null); return; }
-    supabase.from("user_roles").select("role").eq("user_id", session.user.id).eq("role", "admin").maybeSingle()
-      .then(({ data }) => setIsAdmin(!!data));
+    if (!session) { setRole(undefined); return; }
+    supabase.from("user_roles").select("role").eq("user_id", session.user.id).then(({ data }) => {
+      const roles = (data ?? []).map((r) => r.role as string);
+      setRole(roles.includes("admin") ? "admin" : roles.includes("content_manager") ? "content_manager" : null);
+    });
   }, [session]);
 
   if (!ready) return null;
@@ -44,83 +51,275 @@ function Admin() {
       <header className="bg-navy text-navy-foreground">
         <div className="site-wrap flex h-14 items-center justify-between">
           <Link to="/" className="font-display font-bold">Unicare Admin</Link>
-          {session && <button className="text-sm underline" onClick={() => supabase.auth.signOut()}>Sign out</button>}
+          {session && <div className="flex items-center gap-4 text-sm"><span className="hidden opacity-80 sm:inline">{session.user.email} · {role === "admin" ? "Super Admin" : role === "content_manager" ? "Content Manager" : ""}</span><button className="underline" onClick={() => supabase.auth.signOut()}>Sign out</button></div>}
         </div>
       </header>
       <div className="site-wrap py-8">
-        {!session ? <Login /> : isAdmin === false ? (
+        {!session ? <Login /> : role === null ? (
           <div className="max-w-lg border border-border bg-background p-6 text-sm">
             <p className="font-semibold">Your account does not have admin access yet.</p>
-            <p className="mt-2 text-muted-foreground">Signed in as {session.user.email}. Ask the site owner to grant admin access to this account.</p>
+            <p className="mt-2 text-muted-foreground">Signed in as {session.user.email}. Ask a Super Admin to grant access to this account.</p>
           </div>
-        ) : isAdmin ? <AdminDashboard /> : null}
+        ) : role ? <AdminApp role={role} /> : null}
       </div>
     </div>
   );
 }
 
-function AdminDashboard() {
-  const [tab, setTab] = useState<"enquiries" | CmsTable | "cms_site_settings">("enquiries");
-  const tabs: { key: typeof tab; label: string }[] = [{ key: "enquiries", label: "Enquiries" }, { key: "cms_products", label: "Products" }, { key: "cms_blog_posts", label: "Blogs" }, { key: "cms_testimonials", label: "Testimonials" }, { key: "cms_locations", label: "Locations" }, { key: "cms_site_settings", label: "Site Settings" }];
-  return <div><nav className="mb-7 flex gap-2 overflow-x-auto border-b border-border" aria-label="Admin sections">{tabs.map((item) => <Button key={item.key} variant={tab === item.key ? "default" : "ghost"} className="rounded-none" onClick={() => setTab(item.key)}>{item.label}</Button>)}</nav>{tab === "enquiries" ? <Enquiries /> : tab === "cms_site_settings" ? <SiteSettings /> : <CmsManager table={tab} />}</div>;
+function AdminApp({ role }: { role: Role }) {
+  const [tab, setTab] = useState<Tab>("dashboard");
+  const tabs: { key: Tab; label: string; admin?: boolean }[] = [
+    { key: "dashboard", label: "Dashboard" }, { key: "enquiries", label: "Enquiries", admin: true }, { key: "blogs", label: "Blogs" }, { key: "cms_products", label: "Products" },
+    { key: "cms_locations", label: "Locations" }, { key: "cms_testimonials", label: "Testimonials" }, { key: "categories", label: "Categories" },
+    { key: "redirects", label: "Redirects", admin: true }, { key: "settings", label: "Site & SEO Settings", admin: true }, { key: "users", label: "Users", admin: true },
+  ];
+  const visible = tabs.filter((t) => !t.admin || role === "admin");
+  return <div>
+    <nav className="mb-7 flex gap-1 overflow-x-auto border-b border-border" aria-label="Admin sections">{visible.map((t) => <Button key={t.key} variant={tab === t.key ? "default" : "ghost"} className="shrink-0 rounded-none" onClick={() => setTab(t.key)}>{t.label}</Button>)}</nav>
+    {tab === "dashboard" ? <Dashboard role={role} go={setTab} /> : tab === "enquiries" ? <Enquiries /> : tab === "blogs" ? <BlogManager /> : tab === "categories" ? <Categories /> : tab === "redirects" ? <Redirects /> : tab === "settings" ? <SiteSettings /> : tab === "users" ? <Users /> : <CmsManager table={tab} />}
+  </div>;
 }
 
-const cmsConfig: Record<CmsTable, { title: string; fields: { key: string; label: string; required?: boolean; area?: boolean; type?: string }[]; empty: Record<string, string | boolean | number> }> = {
-  cms_products: { title: "Products & Sub-products", fields: [{ key: "name", label: "Name", required: true }, { key: "short_name", label: "Short name", required: true }, { key: "slug", label: "Slug", required: true }, { key: "category", label: "Category", required: true }, { key: "parent_slug", label: "Parent slug" }, { key: "short_description", label: "Short description", area: true }, { key: "introduction", label: "Introduction", area: true }, { key: "image_url", label: "Image URL" }, { key: "seo_title", label: "SEO title" }, { key: "meta_description", label: "Meta description", area: true }, { key: "focus_keyword", label: "Focus keyword" }, { key: "sort_order", label: "Sort order", type: "number" }], empty: { name: "", short_name: "", slug: "", category: "", parent_slug: "", short_description: "", introduction: "", image_url: "", seo_title: "", meta_description: "", focus_keyword: "", sort_order: 0, published: false } },
-  cms_blog_posts: { title: "Blog Posts", fields: [{ key: "title", label: "Title", required: true }, { key: "slug", label: "Slug", required: true }, { key: "category", label: "Category" }, { key: "author", label: "Author" }, { key: "excerpt", label: "Excerpt", area: true }, { key: "content_text", label: "Article content", area: true }, { key: "featured_image_url", label: "Featured image URL" }, { key: "meta_title", label: "Meta title" }, { key: "meta_description", label: "Meta description", area: true }, { key: "focus_keywords_text", label: "Focus keywords (comma separated)" }, { key: "published_at", label: "Publish date", type: "datetime-local" }], empty: { title: "", slug: "", category: "Modular OT", author: "Unicare Medical Solutions", excerpt: "", content_text: "", featured_image_url: "", meta_title: "", meta_description: "", focus_keywords_text: "", published_at: "", published: false } },
-  cms_testimonials: { title: "Client Testimonials", fields: [{ key: "client_name", label: "Client name", required: true }, { key: "designation", label: "Designation" }, { key: "company", label: "Hospital / Company" }, { key: "city", label: "City" }, { key: "testimonial", label: "Testimonial", required: true, area: true }, { key: "photo_url", label: "Photo URL" }, { key: "rating", label: "Rating", type: "number" }, { key: "sort_order", label: "Sort order", type: "number" }], empty: { client_name: "", designation: "", company: "", city: "", testimonial: "", photo_url: "", rating: 5, sort_order: 0, published: false } },
-  cms_locations: { title: "Location Pages", fields: [{ key: "title", label: "Page title", required: true }, { key: "slug", label: "Slug", required: true }, { key: "product_slug", label: "Product slug", required: true }, { key: "state", label: "State", required: true }, { key: "city", label: "City" }, { key: "introduction", label: "Introduction", area: true }, { key: "content_text", label: "Localized content", area: true }, { key: "image_url", label: "Image URL" }, { key: "seo_title", label: "SEO title" }, { key: "meta_description", label: "Meta description", area: true }], empty: { title: "", slug: "", product_slug: "modular-operation-theatre", state: "", city: "", introduction: "", content_text: "", image_url: "", seo_title: "", meta_description: "", published: false } },
+function Dashboard({ role, go }: { role: Role; go: (t: Tab) => void }) {
+  const [s, setS] = useState<Record<string, number>>({});
+  useEffect(() => {
+    const count = async (key: string, q: PromiseLike<{ count: number | null }>) => { const { count: n } = await q; setS((x) => ({ ...x, [key]: n ?? 0 })); };
+    const c = (t: "cms_products" | "cms_blog_posts" | "cms_locations") => supabase.from(t).select("id", { count: "exact", head: true });
+    count("products", c("cms_products")); count("productsPub", c("cms_products").eq("status", "published")); count("productsDraft", c("cms_products").eq("status", "draft"));
+    count("blogs", c("cms_blog_posts")); count("blogsPub", c("cms_blog_posts").eq("status", "published")); count("blogsDraft", c("cms_blog_posts").eq("status", "draft"));
+    count("locations", c("cms_locations")); count("locationsPub", c("cms_locations").eq("status", "published"));
+    if (role === "admin") (["new", "contacted", "converted"] as const).forEach((st) => count(`enq_${st}`, supabase.from("enquiries").select("id", { count: "exact", head: true }).eq("status", st)));
+  }, [role]);
+  const cards: [string, string][] = [["Total Products", "products"], ["Published Products", "productsPub"], ["Draft Products", "productsDraft"], ["Total Blogs", "blogs"], ["Published Blogs", "blogsPub"], ["Draft Blogs", "blogsDraft"], ["Location Pages", "locations"], ["Published Locations", "locationsPub"], ...(role === "admin" ? [["New Enquiries", "enq_new"], ["Contacted Enquiries", "enq_contacted"], ["Converted Enquiries", "enq_converted"]] as [string, string][] : [])];
+  const actions: [string, Tab, boolean?][] = [["+ Create Blog", "blogs"], ["+ Add Product", "cms_products"], ["+ Add Location Page", "cms_locations"], ["View Enquiries", "enquiries", true], ["Manage SEO", "settings", true], ["Site Settings", "settings", true]];
+  return <div>
+    <h1 className="text-2xl font-bold">Dashboard</h1>
+    <p className="mt-1 text-sm text-muted-foreground">Counts cover content added in the CMS. Built-in pages remain live alongside it.</p>
+    <div className="mt-5 grid grid-cols-2 gap-px border border-border bg-border md:grid-cols-4 xl:grid-cols-6">{cards.map(([l, k]) => <div key={k} className="bg-background p-4"><p className="text-xs text-muted-foreground">{l}</p><p className="mt-1 text-2xl font-bold">{s[k] ?? "–"}</p></div>)}</div>
+    <h2 className="mt-8 font-bold">Quick actions</h2>
+    <div className="mt-3 flex flex-wrap gap-2">{actions.filter((a) => !a[2] || role === "admin").map(([l, t]) => <Button key={l} variant="outline" onClick={() => go(t)}>{l}</Button>)}</div>
+  </div>;
+}
+
+/* ---------------- Generic CMS manager (products, locations, testimonials) ---------------- */
+type FieldDef = { key: string; label: string; kind?: "text" | "area" | "number" | "lines" | "pairs" | "bool" | "image" | "select" | "date"; options?: string[]; required?: boolean; hint?: string; pairKeys?: [string, string] };
+const seoFields: FieldDef[] = [
+  { key: "seo_title", label: "SEO title" }, { key: "meta_description", label: "Meta description", kind: "area" },
+  { key: "og_title", label: "OG title" }, { key: "og_description", label: "OG description", kind: "area" }, { key: "og_image", label: "OG image", kind: "image" },
+];
+const cmsConfig: Record<CmsTable, { title: string; label: (r: Record<string, unknown>) => string; path: (f: Record<string, unknown>) => string; fields: FieldDef[] }> = {
+  cms_products: {
+    title: "Products & Sub-products", label: (r) => String(r["name"]), path: (f) => `/products/${f["parent_slug"] ? `${String(f["parent_slug"])}/` : ""}${String(f["slug"])}`,
+    fields: [
+      { key: "name", label: "Name", required: true }, { key: "short_name", label: "Short name", required: true }, { key: "slug", label: "Slug", required: true },
+      { key: "category", label: "Category", kind: "select", options: ["Operation Theatre", "Medical Gas", "Hospital Infrastructure"], required: true },
+      { key: "parent_slug", label: "Parent product slug", hint: "Use modular-operation-theatre for Modular OT variants; leave empty for main products." },
+      { key: "short_description", label: "Short description", kind: "area" }, { key: "introduction", label: "Introduction", kind: "area" },
+      { key: "image_url", label: "Main image", kind: "image" }, { key: "image_alt", label: "Image alt text" },
+      { key: "features", label: "Features (one per line)", kind: "lines" }, { key: "applications", label: "Applications (one per line)", kind: "lines" }, { key: "benefits", label: "Benefits (one per line)", kind: "lines" },
+      { key: "specifications", label: "Specifications (Label :: Value per line)", kind: "pairs", pairKeys: ["label", "value"] },
+      { key: "faqs", label: "FAQs (Question :: Answer per line)", kind: "pairs", pairKeys: ["q", "a"] },
+      ...seoFields, { key: "focus_keyword", label: "Focus keyword" }, { key: "secondary_keywords", label: "Secondary keywords (one per line)", kind: "lines" },
+      { key: "canonical_url", label: "Canonical URL", hint: "Leave empty to use the page's own URL." },
+      { key: "schema_type", label: "Schema type", kind: "select", options: ["Product", "Service"] },
+      { key: "robots_index", label: "Index", kind: "bool" }, { key: "robots_follow", label: "Follow", kind: "bool" }, { key: "sort_order", label: "Sort order", kind: "number" },
+    ],
+  },
+  cms_locations: {
+    title: "Location Pages", label: (r) => String(r["title"]), path: (f) => `/${String(f["slug"])}`,
+    fields: [
+      { key: "title", label: "H1 / page title", required: true }, { key: "slug", label: "Slug", required: true, hint: "e.g. modular-operation-theatre-manufacturers-in-lucknow" },
+      { key: "product_slug", label: "Product slug", required: true }, { key: "state", label: "State", required: true }, { key: "city", label: "City" },
+      { key: "introduction", label: "Introduction", kind: "area" }, { key: "content", label: "Main content (one paragraph per line, start a line with ## for a heading)", kind: "lines" },
+      { key: "faqs", label: "FAQs (Question :: Answer per line)", kind: "pairs", pairKeys: ["q", "a"] },
+      { key: "internal_links", label: "Internal links (Anchor text :: /path per line)", kind: "pairs", pairKeys: ["label", "path"] },
+      { key: "image_url", label: "Featured image", kind: "image" }, { key: "image_alt", label: "Image alt text" },
+      ...seoFields, { key: "focus_keywords", label: "Focus keywords (one per line)", kind: "lines" }, { key: "canonical_path", label: "Canonical path" },
+      { key: "schema_type", label: "Schema type", kind: "select", options: ["Service", "LocalBusiness"] }, { key: "noindex", label: "Noindex", kind: "bool" },
+    ],
+  },
+  cms_testimonials: {
+    title: "Client Testimonials", label: (r) => String(r["client_name"]), path: () => "/",
+    fields: [
+      { key: "client_name", label: "Client name", required: true }, { key: "designation", label: "Designation" }, { key: "company", label: "Hospital / Company" }, { key: "city", label: "City" },
+      { key: "testimonial", label: "Testimonial", kind: "area", required: true }, { key: "photo_url", label: "Photo", kind: "image" }, { key: "rating", label: "Rating (1–5)", kind: "number" },
+      { key: "testimonial_date", label: "Date", kind: "date" }, { key: "sort_order", label: "Sort order", kind: "number" },
+    ],
+  },
 };
 
+type Val = string | number | boolean;
 function CmsManager({ table }: { table: CmsTable }) {
   const config = cmsConfig[table];
+  const hasStatus = table !== "cms_testimonials";
+  const blank = () => { const o: Record<string, Val> = { status: "draft", published: false }; config.fields.forEach((d) => { o[d.key] = d.kind === "bool" ? d.key !== "noindex" : d.kind === "number" ? (d.key === "rating" ? 5 : 0) : d.kind === "select" ? d.options![0]! : ""; }); if (table === "cms_locations") o["product_slug"] = "modular-operation-theatre"; return o; };
   const [rows, setRows] = useState<Record<string, unknown>[]>([]);
-  const [form, setForm] = useState<Record<string, string | boolean | number>>({ ...config.empty });
+  const [form, setForm] = useState<Record<string, Val>>(blank);
   const [msg, setMsg] = useState("");
   const load = async () => { const { data } = await supabase.from(table).select("*").order("updated_at", { ascending: false }); setRows((data ?? []) as Record<string, unknown>[]); };
-  useEffect(() => { setForm({ ...config.empty }); load(); }, [table]);
+  useEffect(() => { setForm(blank()); setMsg(""); load(); }, [table]);
+
   function edit(row: Record<string, unknown>) {
-    const next = { ...config.empty };
-    for (const item of config.fields) next[item.key] = typeof row[item.key] === "number" ? Number(row[item.key]) : String(row[item.key] ?? "");
-    if (table === "cms_blog_posts") { next["content_text"] = Array.isArray(row["content"]) ? row["content"].map((x) => typeof x === "object" && x && "text" in x ? String(x.text) : "").join("\n\n") : ""; next["focus_keywords_text"] = Array.isArray(row["focus_keywords"]) ? row["focus_keywords"].join(", ") : ""; }
-    if (table === "cms_locations") next["content_text"] = Array.isArray(row["content"]) ? row["content"].map(String).join("\n\n") : "";
-    next["published"] = Boolean(row["published"]); if (typeof row["id"] === "string") next["id"] = row["id"]; setForm(next); window.scrollTo({ top: 0, behavior: "smooth" });
+    const next = blank();
+    for (const d of config.fields) {
+      const v = row[d.key];
+      if (d.kind === "lines") next[d.key] = Array.isArray(v) ? v.map((x) => typeof x === "string" ? x : typeof x === "object" && x && "text" in x ? String(x.text) : JSON.stringify(x)).join("\n") : "";
+      else if (d.kind === "pairs") next[d.key] = Array.isArray(v) ? v.map((x) => { const o = x as Record<string, unknown>; return `${String(o[d.pairKeys![0]] ?? "")} :: ${String(o[d.pairKeys![1]] ?? "")}`; }).join("\n") : "";
+      else if (d.kind === "bool") next[d.key] = Boolean(v);
+      else if (d.kind === "number") next[d.key] = Number(v ?? 0);
+      else next[d.key] = String(v ?? "");
+    }
+    next["id"] = String(row["id"]); next["status"] = String(row["status"] ?? (row["published"] ? "published" : "draft")); next["published"] = Boolean(row["published"]);
+    setForm(next); window.scrollTo({ top: 0, behavior: "smooth" });
   }
   async function save(e: React.FormEvent) {
-    e.preventDefault(); setMsg("Saving…");
-    const payload: Record<string, unknown> = { ...form };
-    delete payload["content_text"]; delete payload["focus_keywords_text"];
-    if (table === "cms_blog_posts") { payload["content"] = String(form["content_text"] ?? "").split(/\n\s*\n/).filter(Boolean).map((text) => ({ heading: "", text })); payload["focus_keywords"] = String(form["focus_keywords_text"] ?? "").split(",").map((x) => x.trim()).filter(Boolean); payload["published_at"] = form["published_at"] || null; }
-    if (table === "cms_locations") payload["content"] = String(form["content_text"] ?? "").split(/\n\s*\n/).filter(Boolean);
-    const { error } = table === "cms_products" ? await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_products"]["Insert"]) : table === "cms_blog_posts" ? await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_blog_posts"]["Insert"]) : table === "cms_testimonials" ? await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_testimonials"]["Insert"]) : await supabase.from(table).upsert(payload as Database["public"]["Tables"]["cms_locations"]["Insert"]);
-    setMsg(error?.message ?? "Saved."); if (!error) { setForm({ ...config.empty }); load(); }
+    e.preventDefault();
+    if ("slug" in form && rows.some((r) => r["slug"] === form["slug"] && r["id"] !== form["id"])) { setMsg("Another item already uses this slug."); return; }
+    setMsg("Saving…");
+    const payload: Record<string, unknown> = {};
+    for (const d of config.fields) {
+      const v = form[d.key];
+      if (d.kind === "lines") payload[d.key] = String(v).split("\n").map((x) => x.trim()).filter(Boolean);
+      else if (d.kind === "pairs") payload[d.key] = String(v).split("\n").map((x) => x.split("::")).filter((p) => p.length >= 2).map(([a, ...b]) => ({ [d.pairKeys![0]]: a!.trim(), [d.pairKeys![1]]: b.join("::").trim() }));
+      else if (d.kind === "number") payload[d.key] = Number(v);
+      else if (d.kind === "bool") payload[d.key] = Boolean(v);
+      else payload[d.key] = v === "" && !d.required ? null : v;
+    }
+    if (form["id"]) payload["id"] = form["id"];
+    if (hasStatus) payload["status"] = form["status"]; else payload["published"] = Boolean(form["published"]);
+    const { error } = await supabase.from(table).upsert(payload as never);
+    setMsg(error?.message ?? "Saved."); if (!error) { setForm(blank()); load(); }
   }
-  async function remove(id: string) { if (!confirm("Delete this item permanently?")) return; if (table === "cms_products") await supabase.from(table).delete().eq("id", id); else if (table === "cms_blog_posts") await supabase.from(table).delete().eq("id", id); else if (table === "cms_testimonials") await supabase.from(table).delete().eq("id", id); else await supabase.from(table).delete().eq("id", id); load(); }
-  return <div><h1 className="text-2xl font-bold">{config.title}</h1><div className="mt-6 grid gap-8 lg:grid-cols-5"><form onSubmit={save} className="space-y-4 border border-border bg-background p-5 lg:col-span-2">{config.fields.map((item) => <label key={item.key} className="block text-xs font-semibold">{item.label}{item.area ? <textarea required={item.required} value={String(form[item.key] ?? "")} onChange={(e) => setForm({ ...form, [item.key]: e.target.value })} className={`${field} mt-1 min-h-24`} /> : <><input required={item.required} type={item.type ?? "text"} value={String(form[item.key] ?? "")} onChange={(e) => setForm({ ...form, [item.key]: item.type === "number" ? Number(e.target.value) : e.target.value })} className={`${field} mt-1`} />{["image_url", "featured_image_url", "photo_url"].includes(item.key) && <MediaUpload onUploaded={(url) => setForm({ ...form, [item.key]: url })} />}</>}</label>)}<label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={Boolean(form["published"])} onChange={(e) => setForm({ ...form, published: e.target.checked })} />Published</label>{msg && <p className="text-sm text-muted-foreground">{msg}</p>}<div className="flex gap-2"><Button type="submit">Save</Button><Button type="button" variant="outline" onClick={() => setForm({ ...config.empty })}>Clear</Button></div></form><div className="space-y-3 lg:col-span-3">{rows.map((row) => <article key={String(row["id"])} className="flex items-start justify-between gap-4 border border-border bg-background p-4"><div><h2 className="font-bold">{String(row["title"] ?? row["name"] ?? row["client_name"] ?? row["state"] ?? "Untitled")}</h2><p className="mt-1 text-xs text-muted-foreground">{row["published"] ? "Published" : "Draft"} · {String(row["slug"] ?? row["company"] ?? "")}</p></div><div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => edit(row)}>Edit</Button><Button size="sm" variant="destructive" onClick={() => remove(String(row["id"]))}>Delete</Button></div></article>)}{!rows.length && <p className="text-sm text-muted-foreground">No records yet. Add the first item using the form.</p>}</div></div></div>;
+  async function remove(id: string) { if (!confirm("Delete this item permanently?")) return; const { error } = await supabase.from(table).delete().eq("id", id); if (error) setMsg(error.message); load(); }
+
+  const input = (d: FieldDef) => {
+    const v = form[d.key];
+    const onChange = (val: Val) => setForm((f) => ({ ...f, [d.key]: val, ...(d.key === "name" || (d.key === "title" && table === "cms_locations") ? (!f["id"] && !f["slugTouched"] ? { slug: slugify(String(val)) } : {}) : {}), ...(d.key === "slug" ? { slugTouched: true, slug: slugify(String(val)) } : {}) }));
+    if (d.kind === "bool") return <label key={d.key} className="flex items-center gap-2 text-sm"><input type="checkbox" checked={Boolean(v)} onChange={(e) => onChange(e.target.checked)} />{d.label}</label>;
+    return <label key={d.key} className="block text-xs font-semibold">{d.label}
+      {d.kind === "area" || d.kind === "lines" || d.kind === "pairs" ? <textarea required={d.required} value={String(v ?? "")} onChange={(e) => onChange(e.target.value)} className={`${field} mt-1 min-h-24`} />
+        : d.kind === "select" ? <select value={String(v)} onChange={(e) => onChange(e.target.value)} className={`${field} mt-1`}>{d.options!.map((o) => <option key={o}>{o}</option>)}</select>
+        : <input required={d.required} type={d.kind === "number" ? "number" : d.kind === "date" ? "date" : "text"} value={String(v ?? "")} onChange={(e) => onChange(d.kind === "number" ? Number(e.target.value) : e.target.value)} className={`${field} mt-1`} />}
+      {d.kind === "image" && <MediaUpload onUploaded={(url) => onChange(url)} />}
+      {d.hint && <span className="mt-1 block font-normal text-muted-foreground">{d.hint}</span>}
+    </label>;
+  };
+  const hasSeo = config.fields.some((d) => d.key === "seo_title");
+  return <div><h1 className="text-2xl font-bold">{config.title}</h1>
+    {table === "cms_testimonials" && <p className="mt-1 text-sm text-muted-foreground">Only add genuine client feedback you have permission to publish.</p>}
+    <div className="mt-6 grid gap-8 lg:grid-cols-5">
+      <form onSubmit={save} className="space-y-4 border border-border bg-background p-5 lg:col-span-2">
+        {config.fields.map(input)}
+        {hasSeo && <SerpPreview title={String(form["seo_title"] || form["name"] || form["title"] || "")} path={config.path(form)} description={String(form["meta_description"] || form["short_description"] || form["introduction"] || "")} />}
+        {hasStatus ? <label className="block text-xs font-semibold">Status<select value={String(form["status"])} onChange={(e) => setForm({ ...form, status: e.target.value })} className={`${field} mt-1`}><option value="draft">Draft</option><option value="published">Published</option><option value="archived">Archived</option></select></label>
+          : <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={Boolean(form["published"])} onChange={(e) => setForm({ ...form, published: e.target.checked })} />Published</label>}
+        {msg && <p className="text-sm text-muted-foreground">{msg}</p>}
+        <div className="flex gap-2"><Button type="submit">Save</Button><Button type="button" variant="outline" onClick={() => setForm(blank())}>New / Clear</Button></div>
+      </form>
+      <div className="space-y-3 lg:col-span-3">{rows.map((row) => <article key={String(row["id"])} className="flex items-start justify-between gap-4 border border-border bg-background p-4"><div><h2 className="font-bold">{config.label(row)}</h2><p className="mt-1 text-xs text-muted-foreground">{String(row["status"] ?? (row["published"] ? "published" : "draft"))} · {String(row["slug"] ?? row["company"] ?? "")}</p></div><div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => edit(row)}>Edit</Button><Button size="sm" variant="destructive" onClick={() => remove(String(row["id"]))}>Delete</Button></div></article>)}{!rows.length && <p className="text-sm text-muted-foreground">No records yet. Add the first item using the form.</p>}</div>
+    </div>
+  </div>;
 }
 
-function MediaUpload({ onUploaded }: { onUploaded: (url: string) => void }) {
+/* ---------------- Categories ---------------- */
+type Cat = Database["public"]["Tables"]["blog_categories"]["Row"];
+function Categories() {
+  const blank = { id: "", name: "", slug: "", intro: "", seo_title: "", meta_description: "", noindex: false, sort_order: 0 };
+  const [rows, setRows] = useState<Cat[]>([]);
+  const [f, setF] = useState(blank);
   const [msg, setMsg] = useState("");
-  async function upload(file: File | undefined) {
-    if (!file) return;
-    setMsg("Uploading…");
-    const safeName = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-");
-    const path = `${Date.now()}-${safeName}`;
-    const { error } = await supabase.storage.from("website-media").upload(path, file, { contentType: file.type, upsert: false });
-    if (error) { setMsg(error.message); return; }
-    const { data, error: signError } = await supabase.storage.from("website-media").createSignedUrl(path, 31536000);
-    if (signError) { setMsg(signError.message); return; }
-    onUploaded(data.signedUrl); setMsg("Uploaded.");
-  }
-  return <span className="mt-2 block"><input type="file" accept="image/*" className="block w-full text-xs" onChange={(e) => upload(e.target.files?.[0])} />{msg && <span className="mt-1 block text-xs font-normal text-muted-foreground">{msg}</span>}</span>;
+  const load = () => supabase.from("blog_categories").select("*").order("sort_order").then(({ data }) => setRows(data ?? []));
+  useEffect(() => { load(); }, []);
+  async function save(e: React.FormEvent) { e.preventDefault(); const { id, ...rest } = f; const { error } = await supabase.from("blog_categories").upsert({ ...(id ? { id } : {}), ...rest, seo_title: rest.seo_title || null, meta_description: rest.meta_description || null }); setMsg(error?.message ?? "Saved."); if (!error) { setF(blank); load(); } }
+  async function del(id: string) { if (!confirm("Delete category? Posts keep their category text.")) return; const { error } = await supabase.from("blog_categories").delete().eq("id", id); setMsg(error?.message ?? ""); load(); }
+  return <div><h1 className="text-2xl font-bold">Blog Categories</h1><div className="mt-6 grid gap-8 lg:grid-cols-5">
+    <form onSubmit={save} className="space-y-3 border border-border bg-background p-5 lg:col-span-2">
+      <label className="block text-xs font-semibold">Name<input required value={f.name} onChange={(e) => setF({ ...f, name: e.target.value, slug: f.id ? f.slug : slugify(e.target.value) })} className={`${field} mt-1`} /></label>
+      <label className="block text-xs font-semibold">Slug (/blog/category/…)<input required value={f.slug} onChange={(e) => setF({ ...f, slug: slugify(e.target.value) })} className={`${field} mt-1`} /></label>
+      <label className="block text-xs font-semibold">Intro content<textarea value={f.intro} onChange={(e) => setF({ ...f, intro: e.target.value })} className={`${field} mt-1 min-h-20`} /></label>
+      <label className="block text-xs font-semibold">SEO title<input value={f.seo_title} onChange={(e) => setF({ ...f, seo_title: e.target.value })} className={`${field} mt-1`} /></label>
+      <label className="block text-xs font-semibold">Meta description<textarea value={f.meta_description} onChange={(e) => setF({ ...f, meta_description: e.target.value })} className={`${field} mt-1`} /></label>
+      <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={f.noindex} onChange={(e) => setF({ ...f, noindex: e.target.checked })} />Noindex this category</label>
+      <SerpPreview title={f.seo_title || `${f.name} Articles | Unicare Medical Solutions`} path={`/blog/category/${f.slug}`} description={f.meta_description} />
+      {msg && <p className="text-sm text-muted-foreground">{msg}</p>}<div className="flex gap-2"><Button type="submit">Save</Button><Button type="button" variant="outline" onClick={() => setF(blank)}>Clear</Button></div>
+    </form>
+    <div className="space-y-2 lg:col-span-3">{rows.map((c) => <article key={c.id} className="flex items-center justify-between border border-border bg-background p-3"><div><p className="font-semibold">{c.name}</p><p className="text-xs text-muted-foreground">/blog/category/{c.slug}{c.noindex ? " · noindex" : ""}</p></div><div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => setF({ id: c.id, name: c.name, slug: c.slug, intro: c.intro, seo_title: c.seo_title ?? "", meta_description: c.meta_description ?? "", noindex: c.noindex, sort_order: c.sort_order })}>Edit</Button><Button size="sm" variant="destructive" onClick={() => del(c.id)}>Delete</Button></div></article>)}</div>
+  </div></div>;
 }
 
+/* ---------------- Redirects ---------------- */
+type Redirect = Database["public"]["Tables"]["redirects"]["Row"];
+const normPath = (p: string) => { const s = p.trim().replace(/^https?:\/\/[^/]+/i, "").split(/[?#]/)[0] ?? ""; const w = s.startsWith("/") ? s : `/${s}`; return w.length > 1 ? w.replace(/\/+$/, "") : w; };
+function Redirects() {
+  const [rows, setRows] = useState<Redirect[]>([]);
+  const [f, setF] = useState({ from: "", to: "", code: 301 });
+  const [msg, setMsg] = useState("");
+  const load = () => supabase.from("redirects").select("*").order("created_at", { ascending: false }).then(({ data }) => setRows(data ?? []));
+  useEffect(() => { load(); }, []);
+  async function add(e: React.FormEvent) {
+    e.preventDefault();
+    const from = normPath(f.from), to = f.code === 410 ? from : (/^https?:\/\//.test(f.to) ? f.to.trim() : normPath(f.to));
+    if (f.code !== 410 && from === to) { setMsg("Old and new URL are the same."); return; }
+    // loop protection: follow the chain from the destination
+    let cur = to; const seen = new Set([from]);
+    for (let i = 0; i < 10; i++) { const next = rows.find((r) => r.from_path === cur); if (!next) break; if (seen.has(next.to_path)) { setMsg("This would create a redirect loop."); return; } seen.add(cur); cur = next.to_path; }
+    const { error } = await supabase.from("redirects").upsert({ from_path: from, to_path: to, status_code: f.code }, { onConflict: "from_path" });
+    setMsg(error?.message ?? "Redirect saved. It takes effect within a minute."); if (!error) { setF({ from: "", to: "", code: 301 }); load(); }
+  }
+  async function del(id: string) { await supabase.from("redirects").delete().eq("id", id); load(); }
+  return <div><h1 className="text-2xl font-bold">Redirects</h1><p className="mt-1 text-sm text-muted-foreground">Changing the URL of a published blog, product or location page adds a 301 here automatically.</p>
+    <form onSubmit={add} className="mt-5 grid gap-3 border border-border bg-background p-5 md:grid-cols-[1fr_1fr_160px_auto]">
+      <input required placeholder="/old-url" value={f.from} onChange={(e) => setF({ ...f, from: e.target.value })} className={field} />
+      <input required={f.code !== 410} disabled={f.code === 410} placeholder="/new-url" value={f.to} onChange={(e) => setF({ ...f, to: e.target.value })} className={field} />
+      <select value={f.code} onChange={(e) => setF({ ...f, code: Number(e.target.value) })} className={field}><option value={301}>301 Permanent</option><option value={302}>302 Temporary</option><option value={410}>410 Gone</option></select>
+      <Button type="submit">Add</Button>
+    </form>{msg && <p className="mt-2 text-sm text-muted-foreground">{msg}</p>}
+    <div className="mt-4 overflow-x-auto border border-border bg-background"><table className="w-full text-sm"><thead className="bg-muted text-left text-xs uppercase text-muted-foreground"><tr><th className="p-3">From</th><th className="p-3">To</th><th className="p-3">Type</th><th className="p-3" /></tr></thead><tbody>{rows.map((r) => <tr key={r.id} className="border-t border-border"><td className="p-3 font-mono text-xs">{r.from_path}</td><td className="p-3 font-mono text-xs">{r.status_code === 410 ? "—" : r.to_path}</td><td className="p-3">{r.status_code}{r.auto_created ? " · auto" : ""}</td><td className="p-3 text-right"><Button size="sm" variant="ghost" onClick={() => del(r.id)}>Remove</Button></td></tr>)}{!rows.length && <tr><td colSpan={4} className="p-6 text-center text-muted-foreground">No redirects yet.</td></tr>}</tbody></table></div>
+  </div>;
+}
+
+/* ---------------- Site settings ---------------- */
+type Settings = Database["public"]["Tables"]["cms_site_settings"]["Row"];
+const settingGroups: { title: string; fields: [keyof Settings, string, boolean?][] }[] = [
+  { title: "Company & contact", fields: [["company_name", "Company name"], ["logo_url", "Logo URL"], ["favicon_url", "Favicon URL"], ["phone", "Phone"], ["secondary_phone", "Secondary phone"], ["whatsapp", "WhatsApp number (digits, with country code)"], ["email", "Email"], ["office_address", "Office address", true], ["works_address", "Works address", true], ["working_hours", "Working hours"], ["footer_description", "Footer description", true]] },
+  { title: "Local SEO", fields: [["google_maps_url", "Google Maps URL"], ["latitude", "Latitude"], ["longitude", "Longitude"]] },
+  { title: "Default SEO", fields: [["website_url", "Website URL"], ["default_seo_title", "Default SEO title"], ["default_meta_description", "Default meta description", true], ["default_og_image", "Default OG image URL"], ["organization_logo", "Organization logo URL"]] },
+  { title: "Search Console & analytics", fields: [["gsc_verification", "Google Search Console verification code (content value only)"], ["bing_verification", "Bing Webmaster verification code"], ["ga4_id", "Google Analytics Measurement ID (G-XXXX)"], ["gtm_id", "Google Tag Manager ID (GTM-XXXX)"], ["meta_pixel_id", "Meta Pixel ID"]] },
+];
 function SiteSettings() {
-  const [form, setForm] = useState({ phone: "", secondary_phone: "", whatsapp: "", email: "", office_address: "", works_address: "", working_hours: "", footer_description: "" });
+  const [form, setForm] = useState<Partial<Settings>>({});
   const [msg, setMsg] = useState("");
-  useEffect(() => { supabase.from("cms_site_settings").select("*").eq("id", "main").maybeSingle().then(({ data }) => { if (data) setForm({ phone: data.phone, secondary_phone: data.secondary_phone, whatsapp: data.whatsapp, email: data.email, office_address: data.office_address, works_address: data.works_address, working_hours: data.working_hours, footer_description: data.footer_description }); }); }, []);
-  async function save(e: React.FormEvent) { e.preventDefault(); const { error } = await supabase.from("cms_site_settings").update(form).eq("id", "main"); setMsg(error?.message ?? "Settings saved."); }
-  return <form onSubmit={save} className="max-w-2xl space-y-4 border border-border bg-background p-6"><h1 className="text-2xl font-bold">Site Settings</h1>{Object.entries(form).map(([key, value]) => <label key={key} className="block text-xs font-semibold capitalize">{key.replaceAll("_", " ")}<textarea value={value} onChange={(e) => setForm({ ...form, [key]: e.target.value })} className={`${field} mt-1 min-h-10`} /></label>)}{msg && <p className="text-sm text-muted-foreground">{msg}</p>}<Button type="submit">Save Settings</Button></form>;
+  useEffect(() => { supabase.from("cms_site_settings").select("*").eq("id", "main").maybeSingle().then(({ data }) => { if (data) setForm(data); }); }, []);
+  async function save(e: React.FormEvent) {
+    e.preventDefault();
+    const { id: _id, updated_at: _u, ...rest } = form;
+    const clean = Object.fromEntries(Object.entries(rest).map(([k, v]) => [k, k === "latitude" || k === "longitude" ? (v === "" || v == null ? null : Number(v)) : v]));
+    const { error } = await supabase.from("cms_site_settings").update(clean).eq("id", "main"); setMsg(error?.message ?? "Settings saved.");
+  }
+  return <form onSubmit={save} className="max-w-3xl space-y-6"><h1 className="text-2xl font-bold">Site & SEO Settings</h1>
+    {settingGroups.map((g) => <fieldset key={g.title} className="space-y-3 border border-border bg-background p-5"><legend className="px-1 font-bold">{g.title}</legend>{g.fields.map(([k, l, area]) => <label key={k} className="block text-xs font-semibold">{l}{area ? <textarea value={String(form[k] ?? "")} onChange={(e) => setForm({ ...form, [k]: e.target.value })} className={`${field} mt-1 min-h-16`} /> : <input value={String(form[k] ?? "")} onChange={(e) => setForm({ ...form, [k]: e.target.value })} className={`${field} mt-1`} />}</label>)}</fieldset>)}
+    {msg && <p className="text-sm text-muted-foreground">{msg}</p>}<Button type="submit">Save Settings</Button>
+  </form>;
+}
+
+/* ---------------- Users / roles ---------------- */
+function Users() {
+  const list = useServerFn(listStaff);
+  const grant = useServerFn(grantStaffRole);
+  const [rows, setRows] = useState<{ user_id: string; role: string; email: string }[]>([]);
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState<Role>("content_manager");
+  const [msg, setMsg] = useState("");
+  const load = () => list().then(setRows).catch((e: unknown) => setMsg(e instanceof Error ? e.message : "Could not load users"));
+  useEffect(() => { load(); }, []);
+  async function add(e: React.FormEvent) { e.preventDefault(); const r = await grant({ data: { email, role } }); setMsg(r.message); if (r.ok) { setEmail(""); load(); } }
+  async function revoke(user_id: string, r: string) { if (!confirm("Remove this access?")) return; const { error } = await supabase.from("user_roles").delete().eq("user_id", user_id).eq("role", r as never); setMsg(error?.message ?? "Access removed."); load(); }
+  return <div className="max-w-3xl"><h1 className="text-2xl font-bold">Users & Roles</h1>
+    <p className="mt-1 text-sm text-muted-foreground">Super Admin: everything. Content Manager: blogs, products, locations, testimonials and categories. The person must first create an account at /admin.</p>
+    <form onSubmit={add} className="mt-5 flex flex-wrap gap-2 border border-border bg-background p-4"><input required type="email" placeholder="email@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`${field} max-w-xs`} /><select value={role} onChange={(e) => setRole(e.target.value as Role)} className={`${field} w-48`}><option value="content_manager">Content Manager</option><option value="admin">Super Admin</option></select><Button type="submit">Grant access</Button></form>
+    {msg && <p className="mt-2 text-sm text-muted-foreground">{msg}</p>}
+    <div className="mt-4 space-y-2">{rows.map((r) => <div key={r.user_id + r.role} className="flex items-center justify-between border border-border bg-background p-3 text-sm"><span>{r.email} · <b>{r.role === "admin" ? "Super Admin" : "Content Manager"}</b></span><Button size="sm" variant="ghost" onClick={() => revoke(r.user_id, r.role)}>Remove</Button></div>)}</div>
+  </div>;
 }
 
 function Login() {
@@ -139,98 +338,73 @@ function Login() {
   }
   return (
     <form onSubmit={submit} className="mx-auto mt-10 max-w-sm space-y-4 border border-border bg-background p-6">
-      <h1 className="text-xl font-bold">{mode === "in" ? "Admin sign in" : "Create admin account"}</h1>
+      <h1 className="text-xl font-bold">{mode === "in" ? "Admin sign in" : "Create account"}</h1>
       <input name="email" type="email" required placeholder="Email" className={field} />
       <input name="password" type="password" required minLength={8} placeholder="Password" className={field} />
       {msg && <p className="text-sm text-muted-foreground">{msg}</p>}
       <Button type="submit" className="w-full rounded-sm">{mode === "in" ? "Sign in" : "Sign up"}</Button>
-      <button type="button" className="text-xs underline" onClick={() => setMode(mode === "in" ? "up" : "in")}>
-        {mode === "in" ? "Need an account? Sign up" : "Have an account? Sign in"}
-      </button>
+      <button type="button" className="text-xs underline" onClick={() => setMode(mode === "in" ? "up" : "in")}>{mode === "in" ? "Need an account? Sign up" : "Have an account? Sign in"}</button>
     </form>
   );
 }
 
+/* ---------------- Enquiries ---------------- */
 function Enquiries() {
   const [rows, setRows] = useState<Enquiry[]>([]);
   const [q, setQ] = useState("");
   const [status, setStatus] = useState<Status | "">("");
   const [sel, setSel] = useState<Enquiry | null>(null);
-
+  const [notes, setNotes] = useState("");
   const load = () => supabase.from("enquiries").select("*").order("created_at", { ascending: false }).limit(1000).then(({ data }) => setRows(data ?? []));
   useEffect(() => { load(); }, []);
-
-  const list = useMemo(() => rows.filter((r) =>
-    (!status || r.status === status) &&
-    (!q || [r.name, r.company, r.phone, r.email, r.city, r.state, r.product].join(" ").toLowerCase().includes(q.toLowerCase()))), [rows, q, status]);
-
-  async function setRowStatus(id: string, s: Status) {
-    await supabase.from("enquiries").update({ status: s }).eq("id", id);
-    setRows((rs) => rs.map((r) => (r.id === id ? { ...r, status: s } : r)));
-    setSel((x) => (x && x.id === id ? { ...x, status: s } : x));
-  }
-  async function del(id: string) {
-    if (!confirm("Delete this enquiry permanently?")) return;
-    await supabase.from("enquiries").delete().eq("id", id);
-    setRows((rs) => rs.filter((r) => r.id !== id));
-    setSel(null);
-  }
+  useEffect(() => { setNotes(sel?.internal_notes ?? ""); }, [sel?.id]);
+  const list = useMemo(() => rows.filter((r) => (!status || r.status === status) && (!q || [r.name, r.company, r.phone, r.email, r.city, r.state, r.product].join(" ").toLowerCase().includes(q.toLowerCase()))), [rows, q, status]);
+  async function patch(id: string, p: Partial<Enquiry>) { await supabase.from("enquiries").update(p).eq("id", id); setRows((rs) => rs.map((r) => (r.id === id ? { ...r, ...p } : r))); setSel((x) => (x && x.id === id ? { ...x, ...p } : x)); }
+  async function del(id: string) { if (!confirm("Delete this enquiry permanently?")) return; await supabase.from("enquiries").delete().eq("id", id); setRows((rs) => rs.filter((r) => r.id !== id)); setSel(null); }
   function exportCsv() {
-    const cols: (keyof Enquiry)[] = ["created_at", "status", "source", "name", "company", "phone", "email", "city", "state", "product", "quantity", "requirement", "message", "contact_method", "page_url"];
+    const cols: (keyof Enquiry)[] = ["created_at", "status", "source", "name", "company", "phone", "email", "city", "state", "product", "project_type", "quantity", "requirement", "message", "contact_method", "page_url", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
     const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
     const csv = [cols.join(","), ...list.map((r) => cols.map((c) => esc(r[c])).join(","))].join("\n");
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-    a.download = `enquiries-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
+    const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = `enquiries-${new Date().toISOString().slice(0, 10)}.csv`; a.click();
   }
-
   const counts = STATUSES.map((s) => ({ ...s, n: rows.filter((r) => r.status === s.v).length }));
   return (
     <div>
       <h1 className="text-2xl font-bold">Enquiries</h1>
-      <div className="mt-4 grid grid-cols-3 gap-px border border-border bg-border md:grid-cols-6">
-        {counts.map((c) => <div key={c.v} className="bg-background p-3"><p className="text-xs text-muted-foreground">{c.l}</p><p className="text-xl font-bold">{c.n}</p></div>)}
-      </div>
+      <div className="mt-4 grid grid-cols-3 gap-px border border-border bg-border md:grid-cols-6">{counts.map((c) => <div key={c.v} className="bg-background p-3"><p className="text-xs text-muted-foreground">{c.l}</p><p className="text-xl font-bold">{c.n}</p></div>)}</div>
       <div className="mt-6 flex flex-wrap gap-3">
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, phone, hospital, product…" className={`${field} max-w-sm`} />
-        <select value={status} onChange={(e) => setStatus(e.target.value as Status | "")} className={`${field} w-44`}>
-          <option value="">All statuses</option>{STATUSES.map((s) => <option key={s.v} value={s.v}>{s.l}</option>)}
-        </select>
+        <select value={status} onChange={(e) => setStatus(e.target.value as Status | "")} className={`${field} w-44`}><option value="">All statuses</option>{STATUSES.map((s) => <option key={s.v} value={s.v}>{s.l}</option>)}</select>
         <Button variant="outline" className="rounded-sm" onClick={exportCsv}>Export CSV</Button>
       </div>
       <div className="mt-4 overflow-x-auto border border-border bg-background">
         <table className="w-full text-sm">
-          <thead className="bg-muted text-left text-xs uppercase tracking-wider text-muted-foreground">
-            <tr>{["Date", "Name", "Hospital / Company", "Phone", "Product", "Location", "Status"].map((h) => <th key={h} className="p-3">{h}</th>)}</tr>
-          </thead>
+          <thead className="bg-muted text-left text-xs uppercase tracking-wider text-muted-foreground"><tr>{["Date", "Name", "Hospital / Company", "Phone", "Product", "Location", "Source", "Status"].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
           <tbody>
             {list.map((r) => (
               <tr key={r.id} className="cursor-pointer border-t border-border hover:bg-muted" onClick={() => setSel(r)}>
-                <td className="whitespace-nowrap p-3">{new Date(r.created_at).toLocaleDateString("en-IN")}</td>
-                <td className="p-3 font-medium">{r.name}</td><td className="p-3">{r.company}</td><td className="p-3">{r.phone}</td>
-                <td className="p-3">{r.product}</td><td className="p-3">{[r.city, r.state].filter(Boolean).join(", ")}</td>
-                <td className="p-3">{STATUSES.find((s) => s.v === r.status)?.l}</td>
+                <td className="whitespace-nowrap p-3">{new Date(r.created_at).toLocaleDateString("en-IN")}</td><td className="p-3 font-medium">{r.name}</td><td className="p-3">{r.company}</td><td className="p-3">{r.phone}</td>
+                <td className="p-3">{r.product}</td><td className="p-3">{[r.city, r.state].filter(Boolean).join(", ")}</td><td className="p-3 text-xs">{r.utm_source ?? "direct"}</td><td className="p-3">{STATUSES.find((s) => s.v === r.status)?.l}</td>
               </tr>
             ))}
-            {!list.length && <tr><td colSpan={7} className="p-8 text-center text-muted-foreground">No enquiries found.</td></tr>}
+            {!list.length && <tr><td colSpan={8} className="p-8 text-center text-muted-foreground">No enquiries found.</td></tr>}
           </tbody>
         </table>
       </div>
-
       {sel && (
         <div className="fixed inset-0 z-50 flex justify-end bg-navy/40" onClick={() => setSel(null)}>
           <div className="h-full w-full max-w-md overflow-y-auto bg-background p-6" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between"><h2 className="text-lg font-bold">{sel.name}</h2><button onClick={() => setSel(null)} className="text-sm underline">Close</button></div>
             <dl className="mt-4 space-y-2 text-sm">
-              {([["Company", sel.company], ["Phone", sel.phone], ["Email", sel.email], ["City", sel.city], ["State", sel.state], ["Product", sel.product], ["Quantity", sel.quantity], ["Requirement", sel.requirement], ["Message", sel.message], ["Preferred contact", sel.contact_method], ["Form", sel.source], ["Page", sel.page_url], ["Received", new Date(sel.created_at).toLocaleString("en-IN")]] as const).map(([k, v]) => v ? (
+              {([["Company", sel.company], ["Phone", sel.phone], ["Email", sel.email], ["City", sel.city], ["State", sel.state], ["Product", sel.product], ["Project type", sel.project_type], ["Quantity", sel.quantity], ["Requirement", sel.requirement], ["Message", sel.message], ["Preferred contact", sel.contact_method], ["Form", sel.source], ["Source page", sel.page_url], ["UTM source", sel.utm_source], ["UTM medium", sel.utm_medium], ["UTM campaign", sel.utm_campaign], ["UTM term", sel.utm_term], ["UTM content", sel.utm_content], ["Received", new Date(sel.created_at).toLocaleString("en-IN")]] as const).map(([k, v]) => v ? (
                 <div key={k} className="grid grid-cols-3 gap-2 border-b border-border pb-2"><dt className="font-semibold">{k}</dt><dd className="col-span-2 whitespace-pre-wrap break-words text-muted-foreground">{v}</dd></div>
               ) : null)}
             </dl>
             <label className="mt-6 block text-xs font-semibold">Status</label>
-            <select value={sel.status} onChange={(e) => setRowStatus(sel.id, e.target.value as Status)} className={`${field} mt-1`}>
-              {STATUSES.map((s) => <option key={s.v} value={s.v}>{s.l}</option>)}
-            </select>
+            <select value={sel.status} onChange={(e) => patch(sel.id, { status: e.target.value as Status })} className={`${field} mt-1`}>{STATUSES.map((s) => <option key={s.v} value={s.v}>{s.l}</option>)}</select>
+            <label className="mt-4 block text-xs font-semibold">Internal notes (private)</label>
+            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className={`${field} mt-1 min-h-24`} />
+            <Button size="sm" variant="outline" className="mt-2" onClick={() => patch(sel.id, { internal_notes: notes || null })}>Save notes</Button>
             <div className="mt-6 flex gap-3">
               <Button asChild className="rounded-sm"><a href={`tel:${sel.phone}`}>Call</a></Button>
               <Button variant="destructive" className="rounded-sm" onClick={() => del(sel.id)}>Delete</Button>
