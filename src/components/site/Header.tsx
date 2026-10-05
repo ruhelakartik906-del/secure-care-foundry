@@ -10,6 +10,7 @@ import { useEnquiry } from "./EnquiryDialog";
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
+  { to: "/solutions", label: "Solutions" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
