@@ -17,8 +17,8 @@ export const Route = createFileRoute("/sitemap")({
         <div><h2 className="mb-3 font-bold">Products</h2><ul className="space-y-2">{products.map((p) => <li key={p.slug}><Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-brand-blue">{p.name}</Link></li>)}{modularOtOptions.map((p) => <li key={p.slug}><Link to="/products/modular-operation-theatre/$variant" params={{ variant: p.slug }} className="hover:text-brand-blue">{p.name}</Link></li>)}</ul></div>
         <div><h2 className="mb-3 font-bold">Blog</h2><ul className="space-y-2">{blogs.map((b) => <li key={b.slug}><Link to="/blog/$slug" params={{ slug: b.slug }} className="hover:text-brand-blue">{b.title}</Link></li>)}</ul></div>
         <div><h2 className="mb-3 font-bold">Locations</h2><ul className="space-y-2">
-          {locations.map((l) => <li key={l.slug}><Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="hover:text-brand-blue">Modular OT — {l.name}</Link></li>)}
-          {locations.map((l) => <li key={`g-${l.slug}`}><Link to="/medical-gas-pipeline-manufacturer/$state" params={{ state: l.slug }} className="hover:text-brand-blue">Medical Gas Pipeline — {l.name}</Link></li>)}
+          {locations.map((l) => <li key={l.slug}><Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }} className="hover:text-brand-blue">Modular OT — {l.name}</Link></li>)}
+          {locations.map((l) => <li key={`g-${l.slug}`}><Link to="/medical-gas-pipeline-manufacturers-in/$state" params={{ state: l.slug }} className="hover:text-brand-blue">Medical Gas Pipeline — {l.name}</Link></li>)}
         </ul></div>
       </section>
     </>

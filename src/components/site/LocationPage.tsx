@@ -42,7 +42,7 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           <h3>Related products</h3>
           <p>{products.filter((x) => x.slug !== p.slug).slice(0, 5).map((x, i) => <span key={x.slug}>{i > 0 && " · "}<Link to="/products/$slug" params={{ slug: x.slug }}>{x.shortName}</Link></span>)}</p>
           <h3>Other locations</h3>
-          <p>{locations.filter((x) => x.slug !== l.slug).slice(0, 10).map((x, i) => <span key={x.slug}>{i > 0 && " · "}<Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: x.slug }}>{x.name}</Link></span>)}</p>
+          <p>{locations.filter((x) => x.slug !== l.slug).slice(0, 10).map((x, i) => <span key={x.slug}>{i > 0 && " · "}<Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: x.slug }}>{x.name}</Link></span>)}</p>
         </div>
         <aside className="lg:col-span-4">
           <div className="sticky top-28 border border-border p-6">

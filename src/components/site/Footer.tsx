@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import logo from "@/assets/unicare-logo.webp";
-import { locations } from "@/data/locations";
+import { priorityCityPaths } from "@/lib/routes";
 import { products } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
 
 export function Footer() {
-  const shown = locations.slice(0, 10);
+  const footerProducts = products.filter((p) => ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow", "ot-pendant", "led-surgical-light", "modular-icu-nicu"].includes(p.slug));
   return (
     <footer className="bg-navy text-navy-foreground">
       <div className="site-wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
@@ -16,18 +16,30 @@ export function Footer() {
             Design, manufacturing and installation of modular operation theatres, medical gas pipeline systems and hospital infrastructure solutions.
           </p>
         </div>
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-2">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Products</h3>
           <ul className="space-y-2 text-sm text-navy-foreground/75">
-            {products.map((p) => <li key={p.slug}><Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-navy-foreground">{p.shortName}</Link></li>)}
+            {footerProducts.map((p) => <li key={p.slug}><Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-navy-foreground">{p.shortName}</Link></li>)}
+            <li><Link to="/products" className="font-semibold hover:text-navy-foreground">All Products →</Link></li>
           </ul>
         </div>
-        <div className="lg:col-span-3">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Service Locations</h3>
+        <div className="lg:col-span-2">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Locations</h3>
           <ul className="space-y-2 text-sm text-navy-foreground/75">
-            {shown.map((l) => <li key={l.slug}><Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="hover:text-navy-foreground">Modular OT in {l.name}</Link></li>)}
+            {priorityCityPaths.map((c) => <li key={c.url}><a href={c.url} className="hover:text-navy-foreground">Modular OT {c.name}</a></li>)}
+            <li><Link to="/locations" className="font-semibold hover:text-navy-foreground">All Locations →</Link></li>
           </ul>
-          <Link to="/locations" className="mt-4 inline-block text-xs font-semibold uppercase tracking-wider underline-offset-4 hover:underline">View All Locations →</Link>
+        </div>
+        <div className="lg:col-span-2">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Resources</h3>
+          <ul className="space-y-2 text-sm text-navy-foreground/75">
+            <li><Link to="/modular-ot-cost-india" className="hover:text-navy-foreground">Pricing Guide</Link></li>
+            <li><Link to="/resources/compliance" className="hover:text-navy-foreground">Compliance</Link></li>
+            <li><Link to="/resources/comparisons" className="hover:text-navy-foreground">Comparisons</Link></li>
+            <li><Link to="/faqs" className="hover:text-navy-foreground">FAQs</Link></li>
+            <li><Link to="/blog" className="hover:text-navy-foreground">Blog</Link></li>
+            <li><Link to="/about" className="hover:text-navy-foreground">About Us</Link></li>
+          </ul>
         </div>
         <div className="lg:col-span-3">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Contact</h3>

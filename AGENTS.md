@@ -26,3 +26,4 @@
 - CMS location pages render at the top level through the `$pageSlug` catch-all route; built-in location pages use the plural `-manufacturers-in/$state` URLs, and singular or flat variants 301 to them.
 - The first Super Admin is bootstrapped by `claimInitialAdmin` (designated email, confirmed, only while no admin exists), so no password is ever stored in code.
 - Header menu groups live in `src/components/site/nav-data.ts` (shared by desktop and mobile); catalogue products not listed there are appended automatically.
+- Public URLs are built from helpers in `src/lib/routes.ts` (and `cityPath`), so header, footer, homepage, related links and the sitemap never diverge for the same page.
