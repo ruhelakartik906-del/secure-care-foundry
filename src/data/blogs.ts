@@ -1,5 +1,5 @@
 import modularOt from "@/assets/modular-ot.webp";
-import gas from "@/assets/gas-pipeline.webp";
+import gas from "@/assets/mgps-copper-pipeline.png.asset.json";
 import laminar from "@/assets/laminar.webp";
 
 export type Blog = {
@@ -50,7 +50,7 @@ export const blogs: Blog[] = [
     category: "Medical Gas",
     excerpt: "Source equipment, pipelines, valves, alarms and outlets — how a hospital MGPS works.",
     date: "2026-09-02",
-    image: gas,
+    image: gas.url,
     relatedProducts: ["medical-gas-pipeline-system", "bed-head-panel", "agss"],
     body: [
       { h: "What MGPS does", p: ["An MGPS supplies medical gases from a central plant room to the points of use in wards, ICUs and operation theatres."] },
