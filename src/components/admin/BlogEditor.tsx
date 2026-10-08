@@ -22,7 +22,7 @@ const empty = {
   featured_image_url: "", featured_image_alt: "", featured_image_title: "", featured_image_caption: "", featured_image_description: "",
   meta_title: "", meta_description: "", focus_keyword: "", secondary: "", canonical_url: "", og_title: "", og_description: "", og_image: "",
   twitter_title: "", twitter_description: "", twitter_image: "", robots_index: true, robots_follow: true, schema_type: "BlogPosting",
-  status: "draft", published_at: "", related: "",
+  status: "draft", published_at: "", related: "", faqs: "",
 };
 type Form = typeof empty;
 
@@ -50,6 +50,7 @@ function toForm(r: Row | null): Form {
     meta_title: r.meta_title ?? "", meta_description: r.meta_description ?? "", focus_keyword: r.focus_keyword ?? "", secondary: r.focus_keywords.join(", "), canonical_url: r.canonical_url ?? "",
     og_title: r.og_title ?? "", og_description: r.og_description ?? "", og_image: r.og_image ?? "", twitter_title: r.twitter_title ?? "", twitter_description: r.twitter_description ?? "", twitter_image: r.twitter_image ?? "",
     robots_index: r.robots_index, robots_follow: r.robots_follow, schema_type: r.schema_type, status: r.status, published_at: r.published_at ? r.published_at.slice(0, 16) : "", related: r.related_product_slugs.join(", "),
+    faqs: (Array.isArray(r.faqs) ? r.faqs : []).map((x) => { const o = x as { q?: string; a?: string }; return `${o.q ?? ""} | ${o.a ?? ""}`; }).join("\n"),
   };
 }
 
@@ -114,6 +115,7 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
       robots_index: f.robots_index, robots_follow: f.robots_follow, schema_type: f.schema_type, status,
       published_at: status === "published" ? (f.published_at ? new Date(f.published_at).toISOString() : (row?.published_at ?? new Date().toISOString())) : (f.published_at ? new Date(f.published_at).toISOString() : null),
       related_product_slugs: f.related.split(",").map((x) => x.trim()).filter(Boolean),
+      faqs: f.faqs.split("\n").map((l) => l.split("|")).filter((p) => p.length > 1 && p[0]!.trim() && p.slice(1).join("|").trim()).map((p) => ({ q: p[0]!.trim(), a: p.slice(1).join("|").trim() })),
     };
     const { data, error } = await supabase.from("cms_blog_posts").upsert(payload).select().single();
     if (error) { setMsg(error.message); return; }
@@ -165,6 +167,7 @@ function BlogEditor({ row, all, onDone }: { row: Row | null; all: Row[]; onDone:
           <label className="block text-xs font-semibold">Category<select value={f.category} onChange={(e) => set("category", e.target.value)} className={`${field} mt-1`}>{[...new Set([...cats, f.category])].map((c) => <option key={c}>{c}</option>)}</select></label>
           {inp("author", "Author")}
           {inp("tags", "Tags (comma separated)", { hint: "Tag pages are not indexed by default." })}
+          {inp("faqs", "FAQs (one per line: Question | Answer)", { area: true, hint: "Shown at the end of the post with FAQ schema." })}
           {inp("related", "Related product slugs (comma separated)")}
           <label className="block text-xs font-semibold">Publish date (future = scheduled)<input type="datetime-local" value={f.published_at} onChange={(e) => set("published_at", e.target.value)} className={`${field} mt-1`} /></label>
         </div>
