@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Activity, ArrowRight, Building2, Check, ClipboardCheck, Cross, Factory, GraduationCap, HeartPulse, Hospital, Layers, Microscope, Phone, ScanLine, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
-import hero from "@/assets/modular-ot.webp";
+import hero from "@/assets/modular-ot-room.png.asset.json";
 import { modularOtOptions, products } from "@/data/products";
 import gasImg from "@/assets/mgps-oxygen-outlet.png.asset.json";
 import { cities, cityPath } from "@/data/cities";
