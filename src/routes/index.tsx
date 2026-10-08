@@ -8,14 +8,11 @@ import { cities, cityPath } from "@/data/cities";
 import { pricing } from "@/data/pricing";
 import { compliance } from "@/data/resources";
 import { homeFaqs } from "@/data/faqs";
-import { blogs } from "@/data/blogs";
-import type { Blog } from "@/data/blogs";
 import { site, whatsappLink } from "@/data/site";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ProductCard, SectionHead, CtaBand, Faqs, faqSchema } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
-import { BlogCard } from "@/components/site/BlogCard";
 import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { seo } from "@/lib/seo";
 
@@ -66,9 +63,7 @@ const otherSolutions = products.filter((p) => ["ot-pendant", "led-surgical-light
 function Home() {
   const { open } = useEnquiry();
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [latestBlogs, setLatestBlogs] = useState<Blog[]>(blogs.slice(0, 3));
   useEffect(() => { supabase.from("cms_testimonials").select("id,client_name,designation,company,city,testimonial,rating").eq("published", true).order("sort_order").limit(6).then(({ data }) => setTestimonials(data ?? [])); }, []);
-  useEffect(() => { supabase.from("cms_blog_posts").select("slug,title,category,excerpt,published_at,featured_image_url,related_product_slugs").eq("status", "published").order("published_at", { ascending: false }).limit(6).then(({ data }) => { if (data?.length) setLatestBlogs(data.map((item) => ({ slug: item.slug, title: item.title, category: item.category, excerpt: item.excerpt, date: item.published_at ?? new Date().toISOString(), image: item.featured_image_url ?? blogs[0]?.image ?? "", relatedProducts: item.related_product_slugs, body: [] }))); }); }, []);
   return <>
     <section className="bg-navy text-navy-foreground">
       <div className="site-wrap grid min-h-[560px] items-stretch lg:grid-cols-2">
