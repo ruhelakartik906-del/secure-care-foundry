@@ -8,7 +8,7 @@ import biocladPhoto from "@/assets/bioclad-modular-ot.png.asset.json";
 import stainlessPhoto from "@/assets/stainless-steel-modular-ot.png.asset.json";
 import icuPhoto from "@/assets/modular-icu.png.asset.json";
 import bedHeadPhoto from "@/assets/bed-head-panel-upload.png.asset.json";
-import mgpsCopperPhoto from "@/assets/mgps-copper-pipeline.png.asset.json";
+import mgpsOutletPhoto from "@/assets/mgps-oxygen-outlet.png.asset.json";
 import laminar from "@/assets/laminar.webp";
 import cssd from "@/assets/cssd.webp";
 import scrubPhoto from "@/assets/surgical-scrub-sink-upload.png.asset.json";
@@ -108,7 +108,7 @@ export const products: Product[] = [
     name: "Medical Gas Pipeline System",
     shortName: "Medical Gas Pipeline",
     category: "Medical Gas Systems",
-    image: mgpsCopperPhoto.url,
+    image: mgpsOutletPhoto.url,
     keyword: "Medical Gas Pipeline",
     short: "Centralised oxygen, nitrous oxide, medical air and vacuum distribution with manifolds, alarms, valve boxes and outlets.",
     intro:
