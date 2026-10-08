@@ -8,13 +8,14 @@ import { Button } from "@/components/ui/button";
 import { BlogManager } from "@/components/admin/BlogEditor";
 import { field, MediaUpload, SerpPreview } from "@/components/admin/shared";
 import { slugify } from "@/lib/seo-score";
+import { homeDefaults, homeFields, type HomeKey } from "@/data/home-content";
 import { listStaff, grantStaffRole, claimInitialAdmin } from "@/lib/admin-users.functions";
 
 type Enquiry = Database["public"]["Tables"]["enquiries"]["Row"];
 type Status = Database["public"]["Enums"]["enquiry_status"];
 type Role = "admin" | "content_manager";
 type CmsTable = "cms_products" | "cms_testimonials" | "cms_locations";
-type Tab = "dashboard" | "enquiries" | "blogs" | CmsTable | "categories" | "tags" | "media" | "activity" | "redirects" | "settings" | "users";
+type Tab = "dashboard" | "enquiries" | "blogs" | CmsTable | "categories" | "tags" | "media" | "activity" | "homepage" | "redirects" | "settings" | "users";
 
 const STATUSES: { v: Status; l: string }[] = [
   { v: "new", l: "New" }, { v: "contacted", l: "Contacted" }, { v: "qualified", l: "Qualified" },
@@ -76,14 +77,14 @@ function Admin() {
 function AdminApp({ role }: { role: Role }) {
   const [tab, setTab] = useState<Tab>("dashboard");
   const tabs: { key: Tab; label: string; admin?: boolean }[] = [
-    { key: "dashboard", label: "Dashboard" }, { key: "enquiries", label: "Enquiries", admin: true }, { key: "blogs", label: "Blogs" }, { key: "cms_products", label: "Products" },
+    { key: "dashboard", label: "Dashboard" }, { key: "homepage", label: "Homepage" }, { key: "enquiries", label: "Enquiries", admin: true }, { key: "blogs", label: "Blogs" }, { key: "cms_products", label: "Products" },
     { key: "cms_locations", label: "Locations" }, { key: "cms_testimonials", label: "Testimonials" }, { key: "categories", label: "Categories" }, { key: "tags", label: "Tags" }, { key: "media", label: "Media Library" },
     { key: "redirects", label: "Redirects", admin: true }, { key: "settings", label: "Site & SEO Settings", admin: true }, { key: "users", label: "Users", admin: true }, { key: "activity", label: "Activity Log", admin: true },
   ];
   const visible = tabs.filter((t) => !t.admin || role === "admin");
   return <div>
     <nav className="mb-7 flex gap-1 overflow-x-auto border-b border-border" aria-label="Admin sections">{visible.map((t) => <Button key={t.key} variant={tab === t.key ? "default" : "ghost"} className="shrink-0 rounded-none" onClick={() => setTab(t.key)}>{t.label}</Button>)}</nav>
-    {tab === "dashboard" ? <Dashboard role={role} go={setTab} /> : tab === "enquiries" ? <Enquiries /> : tab === "blogs" ? <BlogManager /> : tab === "categories" ? <Categories /> : tab === "tags" ? <Tags /> : tab === "media" ? <MediaLibrary /> : tab === "activity" ? <Activity /> : tab === "redirects" ? <Redirects /> : tab === "settings" ? <SiteSettings /> : tab === "users" ? <Users /> : <CmsManager table={tab} />}
+    {tab === "dashboard" ? <Dashboard role={role} go={setTab} /> : tab === "enquiries" ? <Enquiries /> : tab === "blogs" ? <BlogManager /> : tab === "categories" ? <Categories /> : tab === "tags" ? <Tags /> : tab === "homepage" ? <HomepageEditor /> : tab === "media" ? <MediaLibrary /> : tab === "activity" ? <Activity /> : tab === "redirects" ? <Redirects /> : tab === "settings" ? <SiteSettings /> : tab === "users" ? <Users /> : <CmsManager table={tab} />}
   </div>;
 }
 
@@ -507,5 +508,26 @@ function Activity() {
     <h1 className="text-2xl font-bold">Activity Log</h1>
     <p className="mt-1 text-sm text-muted-foreground">Last 200 content changes, recorded automatically.</p>
     <div className="mt-5 divide-y divide-border border border-border bg-background text-sm">{rows.length ? rows.map((r) => <div key={r.id} className="flex flex-wrap justify-between gap-2 p-3"><span><b className="capitalize">{r.action}</b> {names[r.entity] ?? r.entity}: {r.label ?? "—"}</span><span className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleString("en-IN")}</span></div>) : <p className="p-4 text-muted-foreground">No activity yet.</p>}</div>
+  </div>;
+}
+
+function HomepageEditor() {
+  const [f, setF] = useState<Record<string, string>>({});
+  const [msg, setMsg] = useState("");
+  useEffect(() => { supabase.from("cms_pages").select("content").eq("slug", "home").maybeSingle().then(({ data }) => setF((data?.content ?? {}) as Record<string, string>)); }, []);
+  const save = async () => { setMsg("Saving…"); const { error } = await supabase.from("cms_pages").upsert({ slug: "home", content: f }); setMsg(error ? error.message : "Saved. The homepage now shows these changes."); };
+  const groups = [...new Set(homeFields.map((x) => x.group))];
+  const val = (k: HomeKey) => f[k] ?? "";
+  return <div className="max-w-3xl">
+    <h1 className="text-2xl font-bold">Homepage</h1>
+    <p className="mt-1 text-sm text-muted-foreground">Leave a box empty to keep the current website text (shown in grey).</p>
+    {groups.map((g) => <fieldset key={g} className="mt-6 space-y-3 border border-border bg-background p-4"><legend className="px-1 font-bold">{g}</legend>
+      {homeFields.filter((x) => x.group === g).map((x) => <label key={x.key} className="block text-xs font-semibold">{x.label}
+        {x.kind === "area" ? <textarea rows={4} value={val(x.key)} placeholder={homeDefaults[x.key]} onChange={(e) => setF({ ...f, [x.key]: e.target.value })} className={`${field} mt-1`} />
+          : <input value={val(x.key)} placeholder={homeDefaults[x.key]} onChange={(e) => setF({ ...f, [x.key]: e.target.value })} className={`${field} mt-1`} />}
+        {x.kind === "image" && <><img src={val(x.key) || homeDefaults[x.key]} alt="" className="mt-2 max-h-32 border border-border" /><MediaUpload onUploaded={(u) => setF({ ...f, [x.key]: u })} /></>}
+      </label>)}
+    </fieldset>)}
+    <div className="sticky bottom-0 mt-6 flex items-center gap-3 border-t border-border bg-muted py-3"><Button onClick={save}>Save homepage</Button><a href="/" target="_blank" rel="noreferrer" className="text-sm underline">View homepage</a>{msg && <span className="text-sm text-muted-foreground">{msg}</span>}</div>
   </div>;
 }
