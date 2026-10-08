@@ -14,7 +14,7 @@ type Enquiry = Database["public"]["Tables"]["enquiries"]["Row"];
 type Status = Database["public"]["Enums"]["enquiry_status"];
 type Role = "admin" | "content_manager";
 type CmsTable = "cms_products" | "cms_testimonials" | "cms_locations";
-type Tab = "dashboard" | "enquiries" | "blogs" | CmsTable | "categories" | "redirects" | "settings" | "users";
+type Tab = "dashboard" | "enquiries" | "blogs" | CmsTable | "categories" | "tags" | "media" | "activity" | "redirects" | "settings" | "users";
 
 const STATUSES: { v: Status; l: string }[] = [
   { v: "new", l: "New" }, { v: "contacted", l: "Contacted" }, { v: "qualified", l: "Qualified" },
@@ -77,34 +77,39 @@ function AdminApp({ role }: { role: Role }) {
   const [tab, setTab] = useState<Tab>("dashboard");
   const tabs: { key: Tab; label: string; admin?: boolean }[] = [
     { key: "dashboard", label: "Dashboard" }, { key: "enquiries", label: "Enquiries", admin: true }, { key: "blogs", label: "Blogs" }, { key: "cms_products", label: "Products" },
-    { key: "cms_locations", label: "Locations" }, { key: "cms_testimonials", label: "Testimonials" }, { key: "categories", label: "Categories" },
-    { key: "redirects", label: "Redirects", admin: true }, { key: "settings", label: "Site & SEO Settings", admin: true }, { key: "users", label: "Users", admin: true },
+    { key: "cms_locations", label: "Locations" }, { key: "cms_testimonials", label: "Testimonials" }, { key: "categories", label: "Categories" }, { key: "tags", label: "Tags" }, { key: "media", label: "Media Library" },
+    { key: "redirects", label: "Redirects", admin: true }, { key: "settings", label: "Site & SEO Settings", admin: true }, { key: "users", label: "Users", admin: true }, { key: "activity", label: "Activity Log", admin: true },
   ];
   const visible = tabs.filter((t) => !t.admin || role === "admin");
   return <div>
     <nav className="mb-7 flex gap-1 overflow-x-auto border-b border-border" aria-label="Admin sections">{visible.map((t) => <Button key={t.key} variant={tab === t.key ? "default" : "ghost"} className="shrink-0 rounded-none" onClick={() => setTab(t.key)}>{t.label}</Button>)}</nav>
-    {tab === "dashboard" ? <Dashboard role={role} go={setTab} /> : tab === "enquiries" ? <Enquiries /> : tab === "blogs" ? <BlogManager /> : tab === "categories" ? <Categories /> : tab === "redirects" ? <Redirects /> : tab === "settings" ? <SiteSettings /> : tab === "users" ? <Users /> : <CmsManager table={tab} />}
+    {tab === "dashboard" ? <Dashboard role={role} go={setTab} /> : tab === "enquiries" ? <Enquiries /> : tab === "blogs" ? <BlogManager /> : tab === "categories" ? <Categories /> : tab === "tags" ? <Tags /> : tab === "media" ? <MediaLibrary /> : tab === "activity" ? <Activity /> : tab === "redirects" ? <Redirects /> : tab === "settings" ? <SiteSettings /> : tab === "users" ? <Users /> : <CmsManager table={tab} />}
   </div>;
 }
 
 function Dashboard({ role, go }: { role: Role; go: (t: Tab) => void }) {
   const [s, setS] = useState<Record<string, number>>({});
+  type Mini = { id: string; title: string; status: string; updated_at: string; created_at: string };
+  const [recent, setRecent] = useState<Mini[]>([]); const [updated, setUpdated] = useState<Mini[]>([]);
   useEffect(() => {
     const count = async (key: string, q: PromiseLike<{ count: number | null }>) => { const { count: n } = await q; setS((x) => ({ ...x, [key]: n ?? 0 })); };
     const c = (t: "cms_products" | "cms_blog_posts" | "cms_locations") => supabase.from(t).select("id", { count: "exact", head: true });
     count("products", c("cms_products")); count("productsPub", c("cms_products").eq("status", "published")); count("productsDraft", c("cms_products").eq("status", "draft"));
     count("blogs", c("cms_blog_posts")); count("blogsPub", c("cms_blog_posts").eq("status", "published")); count("blogsDraft", c("cms_blog_posts").eq("status", "draft"));
+    count("blogsSched", c("cms_blog_posts").eq("status", "published").gt("published_at", new Date().toISOString())); count("categories", supabase.from("blog_categories").select("id", { count: "exact", head: true }));
+    supabase.from("cms_blog_posts").select("id,title,status,updated_at,created_at,tags").then(({ data }) => { const d = data ?? []; setS((x) => ({ ...x, tags: new Set(d.flatMap((r) => r.tags)).size })); setRecent([...d].sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, 5)); setUpdated([...d].sort((a, b) => b.updated_at.localeCompare(a.updated_at)).slice(0, 5)); });
     count("locations", c("cms_locations")); count("locationsPub", c("cms_locations").eq("status", "published"));
     if (role === "admin") (["new", "contacted", "converted"] as const).forEach((st) => count(`enq_${st}`, supabase.from("enquiries").select("id", { count: "exact", head: true }).eq("status", st)));
   }, [role]);
-  const cards: [string, string][] = [["Total Products", "products"], ["Published Products", "productsPub"], ["Draft Products", "productsDraft"], ["Total Blogs", "blogs"], ["Published Blogs", "blogsPub"], ["Draft Blogs", "blogsDraft"], ["Location Pages", "locations"], ["Published Locations", "locationsPub"], ...(role === "admin" ? [["New Enquiries", "enq_new"], ["Contacted Enquiries", "enq_contacted"], ["Converted Enquiries", "enq_converted"]] as [string, string][] : [])];
-  const actions: [string, Tab, boolean?][] = [["+ Create Blog", "blogs"], ["+ Add Product", "cms_products"], ["+ Add Location Page", "cms_locations"], ["View Enquiries", "enquiries", true], ["Manage SEO", "settings", true], ["Site Settings", "settings", true]];
+  const cards: [string, string][] = [["Total Products", "products"], ["Published Products", "productsPub"], ["Draft Products", "productsDraft"], ["Total Blogs", "blogs"], ["Published Blogs", "blogsPub"], ["Draft Blogs", "blogsDraft"], ["Scheduled Blogs", "blogsSched"], ["Blog Categories", "categories"], ["Blog Tags", "tags"], ["Location Pages", "locations"], ["Published Locations", "locationsPub"], ...(role === "admin" ? [["New Enquiries", "enq_new"], ["Contacted Enquiries", "enq_contacted"], ["Converted Enquiries", "enq_converted"]] as [string, string][] : [])];
+  const actions: [string, Tab, boolean?][] = [["+ Create Blog", "blogs"], ["+ Upload Media", "media"], ["Manage Categories", "categories"], ["+ Add Product", "cms_products"], ["+ Add Location Page", "cms_locations"], ["View Enquiries", "enquiries", true], ["Manage SEO", "settings", true], ["Site Settings", "settings", true]];
   return <div>
     <h1 className="text-2xl font-bold">Dashboard</h1>
     <p className="mt-1 text-sm text-muted-foreground">Counts cover content added in the CMS. Built-in pages remain live alongside it.</p>
     <div className="mt-5 grid grid-cols-2 gap-px border border-border bg-border md:grid-cols-4 xl:grid-cols-6">{cards.map(([l, k]) => <div key={k} className="bg-background p-4"><p className="text-xs text-muted-foreground">{l}</p><p className="mt-1 text-2xl font-bold">{s[k] ?? "–"}</p></div>)}</div>
     <h2 className="mt-8 font-bold">Quick actions</h2>
     <div className="mt-3 flex flex-wrap gap-2">{actions.filter((a) => !a[2] || role === "admin").map(([l, t]) => <Button key={l} variant="outline" onClick={() => go(t)}>{l}</Button>)}</div>
+    <div className="mt-8 grid gap-6 md:grid-cols-2">{([["Recent blogs", recent, "created_at"], ["Recently updated", updated, "updated_at"]] as const).map(([h, list, k]) => <div key={h} className="border border-border bg-background p-4"><h2 className="font-bold">{h}</h2><ul className="mt-2 divide-y divide-border text-sm">{list.length ? list.map((r) => <li key={r.id} className="flex justify-between gap-3 py-2"><span className="truncate">{r.title}</span><span className="shrink-0 text-xs text-muted-foreground">{r.status} · {new Date(r[k]).toLocaleDateString("en-IN")}</span></li>) : <li className="py-2 text-muted-foreground">No blogs yet.</li>}</ul></div>)}</div>
   </div>;
 }
 
@@ -453,4 +458,44 @@ function Enquiries() {
       )}
     </div>
   );
+}
+
+function Tags() {
+  const [rows, setRows] = useState<{ id: string; tags: string[] }[]>([]);
+  const load = () => supabase.from("cms_blog_posts").select("id,tags").then(({ data }) => setRows(data ?? []));
+  useEffect(() => { load(); }, []);
+  const counts = useMemo(() => { const m = new Map<string, number>(); rows.forEach((r) => r.tags.forEach((t) => m.set(t, (m.get(t) ?? 0) + 1))); return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0])); }, [rows]);
+  const apply = async (from: string, to: string | null) => {
+    for (const r of rows.filter((x) => x.tags.includes(from))) {
+      const next = Array.from(new Set(r.tags.flatMap((t) => t === from ? (to ? [to] : []) : [t])));
+      const { error } = await supabase.from("cms_blog_posts").update({ tags: next }).eq("id", r.id);
+      if (error) { alert(error.message); return; }
+    }
+    load();
+  };
+  return <div>
+    <h1 className="text-2xl font-bold">Tags</h1>
+    <p className="mt-1 text-sm text-muted-foreground">Tags are added inside each blog. Rename or remove a tag here to update every blog that uses it. Tag archive pages stay noindex.</p>
+    <div className="mt-5 divide-y divide-border border border-border bg-background">{counts.length ? counts.map(([t, n]) => <div key={t} className="flex flex-wrap items-center justify-between gap-2 p-3 text-sm"><span><b>{t}</b> <span className="text-muted-foreground">· {n} blog{n > 1 ? "s" : ""} · /blog/tag/{slugify(t)}</span></span><span className="flex gap-2"><Button size="sm" variant="outline" onClick={() => { const v = prompt("Rename tag", t)?.trim(); if (v && v !== t) apply(t, v); }}>Rename</Button><Button size="sm" variant="ghost" onClick={() => { if (confirm(`Remove "${t}" from ${n} blog(s)?`)) apply(t, null); }}>Remove</Button></span></div>) : <p className="p-4 text-sm text-muted-foreground">No tags yet.</p>}</div>
+  </div>;
+}
+
+function MediaLibrary() {
+  const [url, setUrl] = useState("");
+  return <div>
+    <h1 className="text-2xl font-bold">Media Library</h1>
+    <p className="mt-1 text-sm text-muted-foreground">Upload an image to get a link you can use in blogs, products and settings. Images are also uploadable directly inside each editor.</p>
+    <div className="mt-5 max-w-xl border border-border bg-background p-4"><MediaUpload value={url} onChange={setUrl} /></div>
+  </div>;
+}
+
+function Activity() {
+  const [rows, setRows] = useState<Database["public"]["Tables"]["admin_activity"]["Row"][]>([]);
+  useEffect(() => { supabase.from("admin_activity").select("*").order("created_at", { ascending: false }).limit(200).then(({ data }) => setRows(data ?? [])); }, []);
+  const names: Record<string, string> = { cms_blog_posts: "Blog", cms_products: "Product", cms_locations: "Location", cms_testimonials: "Testimonial" };
+  return <div>
+    <h1 className="text-2xl font-bold">Activity Log</h1>
+    <p className="mt-1 text-sm text-muted-foreground">Last 200 content changes, recorded automatically.</p>
+    <div className="mt-5 divide-y divide-border border border-border bg-background text-sm">{rows.length ? rows.map((r) => <div key={r.id} className="flex flex-wrap justify-between gap-2 p-3"><span><b className="capitalize">{r.action}</b> {names[r.entity] ?? r.entity}: {r.label ?? "—"}</span><span className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleString("en-IN")}</span></div>) : <p className="p-4 text-muted-foreground">No activity yet.</p>}</div>
+  </div>;
 }

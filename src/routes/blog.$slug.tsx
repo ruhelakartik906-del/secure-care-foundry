@@ -15,7 +15,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const fallback = getBlog(params.slug);
     const { data } = await supabase.from("cms_blog_posts").select("*").eq("slug", params.slug).eq("status", "published").maybeSingle();
     if (!data && !fallback) throw notFound();
-    const blog: Blog = data ? { slug: data.slug, title: data.title, category: data.category, excerpt: data.excerpt, date: data.published_at ?? data.created_at, image: data.featured_image_url ?? blogs[0]?.image ?? "", relatedProducts: data.related_product_slugs, body: Array.isArray(data.content) ? data.content.map((part, index) => typeof part === "object" && part && "text" in part ? { h: "heading" in part && typeof part["heading"] === "string" && part["heading"] ? part["heading"] : `Section ${index + 1}`, p: [String(part["text"])] } : { h: `Section ${index + 1}`, p: [String(part)] }) : [] } : fallback as Blog;
+    const blog: Blog = data ? { slug: data.slug, title: data.title, category: data.category, excerpt: data.excerpt, date: data.published_at ?? data.created_at, image: data.featured_image_url ?? blogs[0]?.image ?? "", relatedProducts: data.related_product_slugs, faqs: Array.isArray(data.faqs) && data.faqs.length ? (data.faqs as { q: string; a: string }[]) : undefined, body: Array.isArray(data.content) ? data.content.map((part, index) => typeof part === "object" && part && "text" in part ? { h: "heading" in part && typeof part["heading"] === "string" && part["heading"] ? part["heading"] : `Section ${index + 1}`, p: [String(part["text"])] } : { h: `Section ${index + 1}`, p: [String(part)] }) : [] } : fallback as Blog;
     return {
       blog,
       html: data?.content_html ? cleanHtml(data.content_html) : null,
