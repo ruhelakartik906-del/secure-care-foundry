@@ -9,7 +9,6 @@ import stainlessPhoto from "@/assets/stainless-steel-modular-ot.png.asset.json";
 import icuPhoto from "@/assets/modular-icu.png.asset.json";
 import bedHeadPhoto from "@/assets/bed-head-panel-upload.png.asset.json";
 import mgpsCopperPhoto from "@/assets/mgps-copper-pipeline.png.asset.json";
-import mgpsPlantPhoto from "@/assets/mgps-plant-room.png.asset.json";
 import laminar from "@/assets/laminar.webp";
 import cssd from "@/assets/cssd.webp";
 import scrubPhoto from "@/assets/surgical-scrub-sink-upload.png.asset.json";

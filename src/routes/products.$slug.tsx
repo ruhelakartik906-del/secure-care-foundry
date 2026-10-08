@@ -11,6 +11,7 @@ import { Phone } from "lucide-react";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { BlogCard } from "@/components/site/BlogCard";
 import { absUrl } from "@/lib/site-url";
+import mgpsPlantPhoto from "@/assets/mgps-plant-room.png.asset.json";
 import { cities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
 
@@ -183,6 +184,7 @@ function MgpsLongForm() {
       <h2>MGPS Overview</h2>
       <p>A medical gas pipeline system replaces bedside cylinders with a central supply. Gases are generated or stored at a plant room, distributed through cleaned medical-grade copper pipework and delivered at gas-specific terminal outlets in OTs, ICUs, wards and emergency areas. We plan the system around your bed count, departments and the standard specified in your tender.</p>
       <h2>Gas Sources and Manifolds</h2>
+      <img src={mgpsPlantPhoto.url} alt="Medical gas plant room with medical air compressors, vacuum plant and cylinder manifold pipework" loading="lazy" width={1128} height={716} className="mb-4 aspect-[1128/716] w-full object-cover" />
       <p>Typical sources include oxygen cylinder manifolds, liquid oxygen tanks or PSA oxygen plants, medical air compressors, vacuum pumps and nitrous oxide manifolds. Manifolds are normally duplex (duty and standby) so supply continues during cylinder changeover.</p>
       <h2>Pipeline, Zone Valve Boxes and Alarms</h2>
       <ul>
