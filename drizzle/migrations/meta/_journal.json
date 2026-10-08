@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791442748767,
+      "tag": "0000_swap_primary_phone",
+      "breakpoints": true
+    }
+  ]
+}
