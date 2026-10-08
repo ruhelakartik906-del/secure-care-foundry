@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_activity: {
+        Row: {
+          action: string
+          created_at: string
+          entity: string
+          entity_id: string | null
+          id: string
+          label: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          entity: string
+          entity_id?: string | null
+          id?: string
+          label?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          entity?: string
+          entity_id?: string | null
+          id?: string
+          label?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       blog_categories: {
         Row: {
           created_at: string
@@ -62,6 +92,7 @@ export type Database = {
           content_html: string | null
           created_at: string
           excerpt: string
+          faqs: Json
           featured_image_alt: string | null
           featured_image_caption: string | null
           featured_image_description: string | null
@@ -98,6 +129,7 @@ export type Database = {
           content_html?: string | null
           created_at?: string
           excerpt?: string
+          faqs?: Json
           featured_image_alt?: string | null
           featured_image_caption?: string | null
           featured_image_description?: string | null
@@ -134,6 +166,7 @@ export type Database = {
           content_html?: string | null
           created_at?: string
           excerpt?: string
+          faqs?: Json
           featured_image_alt?: string | null
           featured_image_caption?: string | null
           featured_image_description?: string | null

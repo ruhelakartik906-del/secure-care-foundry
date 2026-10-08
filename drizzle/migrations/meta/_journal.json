@@ -8,6 +8,13 @@
       "when": 1791442748767,
       "tag": "0000_swap_primary_phone",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791456576266,
+      "tag": "0001_blog_faqs_and_activity_log",
+      "breakpoints": true
     }
   ]
 }
