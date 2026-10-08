@@ -485,7 +485,7 @@ function MediaLibrary() {
   return <div>
     <h1 className="text-2xl font-bold">Media Library</h1>
     <p className="mt-1 text-sm text-muted-foreground">Upload an image to get a link you can use in blogs, products and settings. Images are also uploadable directly inside each editor.</p>
-    <div className="mt-5 max-w-xl border border-border bg-background p-4"><MediaUpload value={url} onChange={setUrl} /></div>
+    <div className="mt-5 max-w-xl border border-border bg-background p-4"><MediaUpload onUploaded={setUrl} />{url && <div className="mt-3 space-y-2"><img src={url} alt="" className="max-h-48 border border-border" /><input readOnly value={url} className={field} onFocus={(e) => e.currentTarget.select()} /><Button size="sm" variant="outline" onClick={() => navigator.clipboard.writeText(url)}>Copy link</Button></div>}</div>
   </div>;
 }
 
