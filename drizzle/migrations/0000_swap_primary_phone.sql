@@ -1,0 +1,1 @@
+UPDATE public.cms_site_settings SET phone = '+91-7678443838', secondary_phone = '+91-7736077740', whatsapp = '917678443838' WHERE id = 'main';

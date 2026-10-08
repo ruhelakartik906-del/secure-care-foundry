@@ -103,6 +103,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
             </optgroup>
             <optgroup label="Other hospital infrastructure">
               {products.filter((p) => p.slug !== "modular-operation-theatre").map((p) => <option key={p.slug} value={p.name}>{p.name}</option>)}
+              <option value="Complete Hospital Infrastructure">Complete Hospital Infrastructure</option>
               <option value="Other">Other</option>
             </optgroup>
           </select>
@@ -115,6 +116,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
             <option value="">Select a product</option>
             {modularOtOptions.map((option) => <option key={option.slug} value={option.name}>{option.menuName}</option>)}
             {products.map((p) => <option key={p.slug} value={p.name}>{p.name}</option>)}
+            <option value="Complete Hospital Infrastructure">Complete Hospital Infrastructure</option>
             <option value="Other">Other</option>
           </select>
         </div>

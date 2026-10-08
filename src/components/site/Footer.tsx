@@ -46,7 +46,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-navy-foreground/75">
             <li className="flex gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /><span><strong className="text-navy-foreground">Office:</strong> {site.officeAddress}</span></li>
             <li className="flex gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /><span><strong className="text-navy-foreground">Works:</strong> {site.worksAddress}</span></li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0" /><span><a href={site.phoneHref} className="hover:text-navy-foreground">{site.phone}</a><br /><a href={site.secondaryPhoneHref} className="hover:text-navy-foreground">{site.secondaryPhone}</a></span></li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0" /><span><strong className="text-navy-foreground">Primary:</strong> <a href={site.phoneHref} className="font-semibold text-navy-foreground hover:underline">{site.phone}</a><br /><span className="text-xs">Alternate:</span> <a href={site.secondaryPhoneHref} className="text-xs hover:text-navy-foreground">{site.secondaryPhone}</a></span></li>
             <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0" /><a href={`mailto:${site.email}`} className="break-all hover:text-navy-foreground">{site.email}</a></li>
             <li><strong className="text-navy-foreground">Hours:</strong> {site.hours}</li>
           </ul>

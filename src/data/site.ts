@@ -2,10 +2,10 @@ export const site = {
   name: "Unicare Medical Solutions",
   legalName: "Unicare Medical Solution",
   tagline: "Hospital Infrastructure & Medical Equipment",
-  phone: "+91-7736077740",
-  phoneHref: "tel:+917736077740",
-  secondaryPhone: "+91-7678443838",
-  secondaryPhoneHref: "tel:+917678443838",
+  phone: "+91-7678443838",
+  phoneHref: "tel:+917678443838",
+  secondaryPhone: "+91-7736077740",
+  secondaryPhoneHref: "tel:+917736077740",
   whatsapp: "917678443838",
   email: "unicaremedical2023@gmail.com",
   officeAddress: "357, Malkhan Singh Complex, Opp. Ambedkar Bhawan, Dasna Road, Ghaziabad – 201001, U.P., India",
@@ -13,5 +13,5 @@ export const site = {
   hours: "Mon – Sat, 9:30 AM – 6:30 PM",
 };
 
-export const whatsappLink = (text = "Hello Unicare Medical Solutions, I am interested in your Modular Operation Theatre solutions. Please share more details.") =>
+export const whatsappLink = (text = "Hello Unicare Medical Solutions, I would like to enquire about your modular OT and hospital infrastructure solutions.") =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
