@@ -11,8 +11,8 @@ import bedHeadPhoto from "@/assets/bed-head-panel-upload.png.asset.json";
 import gas from "@/assets/gas-pipeline.webp";
 import laminar from "@/assets/laminar.webp";
 import cssd from "@/assets/cssd.webp";
-import scrub from "@/assets/scrub-sink.webp";
-import curtain from "@/assets/curtain.webp";
+import scrubPhoto from "@/assets/surgical-scrub-sink-upload.png.asset.json";
+import curtainPhoto from "@/assets/cubicle-curtain-tracks-upload.png.asset.json";
 import furniture from "@/assets/furniture.webp";
 import agss from "@/assets/agss.webp";
 import otPendant from "@/assets/ot-pendant.jpg";
@@ -138,10 +138,10 @@ export const products: Product[] = [
   },
   {
     slug: "cubicle-curtain-system",
-    name: "Cubicle Curtain System / ICU Track & Curtain",
-    shortName: "Cubicle Curtain System",
+    name: "Cubicle Curtain Tracks",
+    shortName: "Cubicle Curtain Tracks",
     category: "Critical Care",
-    image: curtain,
+    image: curtainPhoto.url,
     keyword: "ICU Curtain Track",
     short: "Ceiling-mounted aluminium curtain tracks and hospital curtains for patient privacy in ICUs and wards.",
     intro: "Cubicle curtain systems provide patient privacy and separation in ICUs, wards and emergency areas using ceiling-mounted aluminium tracks and washable hospital-grade curtains.",
@@ -170,10 +170,10 @@ export const products: Product[] = [
   },
   {
     slug: "surgical-scrub-sink-station",
-    name: "Surgical Scrub Sink Station",
-    shortName: "Scrub Sink Station",
+    name: "Surgical Scrub Sink",
+    shortName: "Surgical Scrub Sink",
     category: "Operation Theatre",
-    image: scrub,
+    image: scrubPhoto.url,
     keyword: "Surgical Scrub Sink",
     short: "Stainless steel scrub stations with sensor, elbow or knee-operated taps for pre-surgery hand washing.",
     intro: "Surgical scrub sink stations allow surgical teams to scrub hands-free before procedures. Available in single, double and triple-bay stainless steel configurations.",
