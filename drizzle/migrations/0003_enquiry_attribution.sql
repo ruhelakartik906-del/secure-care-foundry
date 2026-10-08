@@ -1,0 +1,4 @@
+ALTER TABLE public.enquiries
+  ADD COLUMN IF NOT EXISTS gclid text, ADD COLUMN IF NOT EXISTS gbraid text, ADD COLUMN IF NOT EXISTS wbraid text,
+  ADD COLUMN IF NOT EXISTS fbclid text, ADD COLUMN IF NOT EXISTS fbp text, ADD COLUMN IF NOT EXISTS fbc text,
+  ADD COLUMN IF NOT EXISTS landing_page text, ADD COLUMN IF NOT EXISTS referrer text;
