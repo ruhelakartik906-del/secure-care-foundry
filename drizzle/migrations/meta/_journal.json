@@ -15,6 +15,13 @@
       "when": 1791456576266,
       "tag": "0001_blog_faqs_and_activity_log",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791457842464,
+      "tag": "0002_cms_pages",
+      "breakpoints": true
     }
   ]
 }
