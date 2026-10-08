@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { getModularOtOption, modularOtOptions } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import { CtaBand, Faqs, PageHero } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -44,7 +45,7 @@ function ModularOtVariantPage() {
           <h2>Applications</h2><ul><li>New hospital operation theatres</li><li>Existing OT renovation and upgrades</li><li>Multispecialty and specialist surgical facilities</li></ul>
           <h2>Installation approach</h2><p>Installation begins after a review of room dimensions, drawings and site readiness. The final technical scope and schedule are confirmed before manufacturing and on-site execution.</p>
           <h2>Frequently Asked Questions</h2><Faqs faqs={faqs} />
-          <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${option.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button></div>
+          <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${option.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button></div>
           <h2>Other Modular OT Types</h2><div className="not-prose grid gap-2 sm:grid-cols-2">{modularOtOptions.filter((item) => item.slug !== option.slug).map((item) => <Link key={item.slug} to="/products/modular-operation-theatre/$variant" params={{ variant: item.slug }} className="border border-border p-3 text-sm font-semibold hover:border-brand-blue hover:text-brand-blue">{item.menuName}</Link>)}</div>
         </article>
         <aside className="lg:col-span-4"><div className="sticky top-28 border border-border p-6"><h2 className="text-xl font-bold">Request Pricing</h2><p className="mb-5 mt-2 text-sm text-muted-foreground">Tell us about your OT project for a tailored quotation.</p><EnquiryForm source={`variant-${option.slug}`} variant="contact" defaultProduct={option.name} submitLabel="Send Enquiry" /></div></aside>

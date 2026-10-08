@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Check, MessageCircle, Phone } from "lucide-react";
+import { Check, Phone } from "lucide-react";
 import { cities, cityPath, type City } from "@/data/cities";
 import { priceFactors } from "@/data/pricing";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { PageHero, Faqs, faqSchema, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
 import { seo, breadcrumbSchema } from "@/lib/seo";
@@ -55,7 +56,7 @@ export function CityPage({ c }: { c: City }) {
         <div className="mt-4"><Faqs faqs={c.faqs} /></div>
         <div className="mt-8 flex flex-wrap gap-3">
           <a href={site.phoneHref} className="inline-flex items-center gap-2 bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"><Phone className="h-4 w-4" />Call {site.phone}</a>
-          <a href={whatsappLink(`Hello Unicare, I need a modular OT in ${c.name}.`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-border px-5 py-3 text-sm font-semibold"><MessageCircle className="h-4 w-4" />WhatsApp</a>
+          <a href={whatsappLink(`Hello Unicare, I need a modular OT in ${c.name}.`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-border px-5 py-3 text-sm font-semibold"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a>
           <Link to="/contact" className="inline-flex items-center border border-border px-5 py-3 text-sm font-semibold">Contact</Link>
         </div>
         <p className="mt-8 text-sm">Other cities: {cities.filter((x) => x.slug !== c.slug).map((x, i) => <span key={x.slug}>{i ? " · " : ""}<a href={cityPath(x)} className="text-brand-blue hover:underline">{x.name}</a></span>)}</p>

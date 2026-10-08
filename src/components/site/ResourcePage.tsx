@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import type { Resource } from "@/data/resources";
 import { getProduct } from "@/data/products";
 import { cities, cityPath } from "@/data/cities";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { PageHero, Faqs, ProductCard, CtaBand, SectionHead } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { Button } from "@/components/ui/button";
@@ -44,7 +45,7 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
         </ul>
         <div className="not-prose mt-8 flex flex-wrap gap-3">
           <Button asChild variant="outline"><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button>
-          <Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I read "${r.title}" and would like to discuss my project.`)} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button>
+          <Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I read "${r.title}" and would like to discuss my project.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button>
         </div>
       </article>
       <aside className="lg:col-span-4">

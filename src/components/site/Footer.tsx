@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/unicare-logo.webp";
 import { priorityCityPaths } from "@/lib/routes";
 import { products } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 
 export function Footer() {
   const footerProducts = products.filter((p) => ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow", "ot-pendant", "led-surgical-light", "modular-icu-nicu"].includes(p.slug));
@@ -50,7 +51,7 @@ export function Footer() {
             <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0" /><a href={`mailto:${site.email}`} className="break-all hover:text-navy-foreground">{site.email}</a></li>
             <li><strong className="text-navy-foreground">Hours:</strong> {site.hours}</li>
           </ul>
-          <div className="mt-4 flex gap-4 text-sm font-semibold"><a href={site.phoneHref} className="hover:underline">Call Us</a><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline"><MessageCircle className="h-4 w-4" />WhatsApp Us</a></div>
+          <div className="mt-4 flex gap-4 text-sm font-semibold"><a href={site.phoneHref} className="hover:underline">Call Us</a><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline"><WhatsAppIcon className="h-4 w-4" />WhatsApp Us</a></div>
         </div>
       </div>
       <div className="border-t border-navy-foreground/15">

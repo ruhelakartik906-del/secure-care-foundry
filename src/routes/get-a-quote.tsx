@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -27,7 +28,7 @@ function Quote() {
           </ul>
           <div className="flex flex-wrap gap-3">
             <Button asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call</a></Button>
-            <Button asChild variant="outline"><a href={whatsappLink("Hello Unicare Medical Solutions, I would like a quotation for my project.")} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button>
+            <Button asChild variant="outline"><a href={whatsappLink("Hello Unicare Medical Solutions, I would like a quotation for my project.")} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button>
           </div>
         </aside>
       </section>

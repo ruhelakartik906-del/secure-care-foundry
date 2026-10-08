@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { systemPages, type SystemPage } from "@/data/systems";
 import { Button } from "@/components/ui/button";
 import { CtaBand, Faqs, PageHero, faqSchema } from "@/components/site/common";
@@ -36,7 +37,7 @@ export function SystemPageView({ page }: { page: SystemPage }) {
           <Faqs faqs={page.faqs} />
           <div className="not-prose mt-8 flex flex-wrap gap-3">
             <Button asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button>
-            <Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${page.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button>
+            <Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${page.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button>
           </div>
           <h2>Related OT Systems</h2>
           <div className="not-prose grid gap-2 sm:grid-cols-2">
