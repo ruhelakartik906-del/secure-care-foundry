@@ -14,7 +14,7 @@ import cssd from "@/assets/cssd.webp";
 import scrubPhoto from "@/assets/surgical-scrub-sink-upload.png.asset.json";
 import curtainPhoto from "@/assets/cubicle-curtain-tracks-upload.png.asset.json";
 import furniture from "@/assets/furniture.webp";
-import agss from "@/assets/agss.webp";
+import agssPhoto from "@/assets/agss-system.png.asset.json";
 import otPendantPhoto from "@/assets/ot-pendant-real.png.asset.json";
 import ledLight from "@/assets/led-surgical-light.jpg";
 import hermeticDoor from "@/assets/hermetic-door.jpg";
