@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Activity, ArrowRight, Building2, Check, ClipboardCheck, Cross, Factory, GraduationCap, HeartPulse, Hospital, Layers, Microscope, Phone, ScanLine, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
 import hero from "@/assets/modular-ot.webp";
 import { modularOtOptions, products } from "@/data/products";
-import gasImg from "@/assets/mgps-copper-pipeline.png.asset.json";
+import gasImg from "@/assets/mgps-oxygen-outlet.png.asset.json";
 import { cities, cityPath } from "@/data/cities";
 import { pricing } from "@/data/pricing";
 import { compliance } from "@/data/resources";
