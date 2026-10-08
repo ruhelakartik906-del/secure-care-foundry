@@ -25,7 +25,7 @@ export function Footer() {
         <div className="lg:col-span-3">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Service Locations</h3>
           <ul className="space-y-2 text-sm text-navy-foreground/75">
-            {shown.map((l) => <li key={l.slug}><Link to="/modular-operation-theatre-manufacturer/$state" params={{ state: l.slug }} className="hover:text-navy-foreground">Modular OT in {l.name}</Link></li>)}
+            {shown.map((l) => <li key={l.slug}><Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }} className="hover:text-navy-foreground">Modular OT in {l.name}</Link></li>)}
           </ul>
           <Link to="/locations" className="mt-4 inline-block text-xs font-semibold uppercase tracking-wider underline-offset-4 hover:underline">View All Locations →</Link>
         </div>

@@ -16,7 +16,7 @@ function LocationsDirectory() {
       <section className="site-wrap py-14">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {locations.map((location) => (
-            <Link key={location.slug} to="/modular-operation-theatre-manufacturer/$state" params={{ state: location.slug }} className="group flex gap-4 border border-border p-5 hover:border-brand-blue">
+            <Link key={location.slug} to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: location.slug }} className="group flex gap-4 border border-border p-5 hover:border-brand-blue">
               <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" />
               <div><h2 className="text-base font-bold group-hover:text-brand-blue">Modular Operation Theatre Manufacturer in {location.name}</h2><p className="mt-2 text-sm text-muted-foreground">Serving {location.cities.slice(0, 4).join(", ")} and other project locations.</p></div>
             </Link>
