@@ -2,13 +2,15 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
 import logo from "@/assets/unicare-logo.webp";
-import { site } from "@/data/site";
+import { site, whatsappLink } from "@/data/site";
+import { cities, cityPath } from "@/data/cities";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "./EnquiryDialog";
 import { isActiveItem, isSolutionPath, solutionGroups, type SolutionItem } from "./nav-data";
 
 const after = [
-  { to: "/blog", label: "Blog" },
+  { to: "/modular-ot-cost-india", label: "Pricing Guide" },
+  { to: "/blog", label: "Resources" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -69,7 +71,6 @@ export function Header() {
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
           <Link to="/" onMouseEnter={() => setMega(false)} className={linkCls} activeOptions={{ exact: true }} activeProps={{ className: activeCls }}>Home</Link>
-          <Link to="/about" onMouseEnter={() => setMega(false)} className={linkCls} activeProps={{ className: activeCls }}>About</Link>
           <div ref={megaRef} onMouseEnter={show} onMouseLeave={hide} className="static">
             <button type="button" aria-expanded={mega} aria-haspopup="true" onClick={() => setMega((v) => !v)} className={`flex items-center gap-1 ${linkCls} ${solActive ? activeCls : ""}`}>
               Products <ChevronDown className={`h-3.5 w-3.5 transition ${mega ? "rotate-180" : ""}`} />
@@ -101,6 +102,13 @@ export function Header() {
               </div>
             )}
           </div>
+          <div className="group relative" onMouseEnter={() => setMega(false)}>
+            <button type="button" aria-haspopup="true" className={`flex items-center gap-1 ${linkCls} ${pathname.startsWith("/modular-ot-manufacturer-") ? activeCls : ""}`}>Modular OT Cities <ChevronDown className="h-3.5 w-3.5" /></button>
+            <div className="invisible absolute left-0 top-full z-50 w-56 border border-border bg-popover py-2 shadow-lg opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              {cities.map((c) => <a key={c.slug} href={cityPath(c)} className="block px-4 py-2 text-sm hover:bg-muted hover:text-brand-blue">{c.name}</a>)}
+              <Link to="/locations" className="mt-1 block border-t border-border px-4 pt-2 text-sm font-semibold text-brand-blue">All locations →</Link>
+            </div>
+          </div>
           {after.map((n) => (
             <Link key={n.to} to={n.to} onMouseEnter={() => setMega(false)} className={linkCls} activeProps={{ className: activeCls }}>{n.label}</Link>
           ))}
@@ -108,6 +116,8 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Link to="/search" aria-label="Search" className="p-2 text-foreground hover:text-brand-blue"><Search className="h-5 w-5" /></Link>
+          <a href={site.phoneHref} className="hidden items-center gap-1.5 text-sm font-semibold text-brand-blue xl:flex"><Phone className="h-4 w-4" />Call Now</a>
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hidden border border-border px-3 py-2 text-sm font-semibold xl:inline-flex">WhatsApp</a>
           <Button onClick={() => open("Modular Operation Theatre")} className="hidden rounded-sm sm:inline-flex">Get a Quote</Button>
           <button className="p-2 lg:hidden" aria-label="Open menu" aria-expanded={mobile} onClick={() => setMobile(true)}><Menu className="h-6 w-6" /></button>
         </div>
@@ -123,7 +133,6 @@ export function Header() {
             </div>
             <nav className="flex flex-col px-4 py-3" aria-label="Mobile">
               <Link to="/" onClick={closeAll} activeOptions={{ exact: true }} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">Home</Link>
-              <Link to="/about" onClick={closeAll} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">About</Link>
               <button onClick={() => setMSol((v) => !v)} aria-expanded={mSol} className={`flex min-h-12 items-center justify-between border-b border-border text-left font-medium ${solActive ? "text-brand-blue" : ""}`}>
                 Products <ChevronDown className={`h-5 w-5 transition ${mSol ? "rotate-180" : ""}`} />
               </button>
@@ -136,6 +145,8 @@ export function Header() {
                   <Link to="/products" onClick={closeAll} className="mt-1 flex min-h-11 items-center px-3 text-sm font-semibold text-brand-blue">View All Products →</Link>
                 </div>
               )}
+              <p className="px-0 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Modular OT Cities</p>
+              <div className="grid grid-cols-2 border-b border-border pb-2">{cities.map((c) => <a key={c.slug} href={cityPath(c)} onClick={closeAll} className="flex min-h-10 items-center text-sm">{c.name}</a>)}</div>
               {after.map((n) => (
                 <Link key={n.to} to={n.to} onClick={closeAll} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">{n.label}</Link>
               ))}

@@ -19,6 +19,7 @@ import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
 import { Route as HepaFiltrationSystemForOperationTheatreRouteImport } from './routes/hepa-filtration-system-for-operation-theatre'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ModularOtCeilingRouteImport } from './routes/modular-ot-ceiling'
+import { Route as ModularOtCostIndiaRouteImport } from './routes/modular-ot-cost-india'
 import { Route as ModularOtDoorsRouteImport } from './routes/modular-ot-doors'
 import { Route as ModularOtManufacturerAgraRouteImport } from './routes/modular-ot-manufacturer-agra'
 import { Route as ModularOtManufacturerDehradunRouteImport } from './routes/modular-ot-manufacturer-dehradun'
@@ -98,6 +99,11 @@ const LocationsRoute = LocationsRouteImport.update({
 const ModularOtCeilingRoute = ModularOtCeilingRouteImport.update({
   id: '/modular-ot-ceiling',
   path: '/modular-ot-ceiling',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModularOtCostIndiaRoute = ModularOtCostIndiaRouteImport.update({
+  id: '/modular-ot-cost-india',
+  path: '/modular-ot-cost-india',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModularOtDoorsRoute = ModularOtDoorsRouteImport.update({
@@ -271,6 +277,7 @@ export interface FileRoutesByFullPath {
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
+  '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
@@ -312,6 +319,7 @@ export interface FileRoutesByTo {
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
+  '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
@@ -354,6 +362,7 @@ export interface FileRoutesById {
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
+  '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
@@ -397,6 +406,7 @@ export interface FileRouteTypes {
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
     | '/modular-ot-ceiling'
+    | '/modular-ot-cost-india'
     | '/modular-ot-doors'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
@@ -438,6 +448,7 @@ export interface FileRouteTypes {
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
     | '/modular-ot-ceiling'
+    | '/modular-ot-cost-india'
     | '/modular-ot-doors'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
@@ -479,6 +490,7 @@ export interface FileRouteTypes {
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
     | '/modular-ot-ceiling'
+    | '/modular-ot-cost-india'
     | '/modular-ot-doors'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
@@ -521,6 +533,7 @@ export interface RootRouteChildren {
   HepaFiltrationSystemForOperationTheatreRoute: typeof HepaFiltrationSystemForOperationTheatreRoute
   LocationsRoute: typeof LocationsRoute
   ModularOtCeilingRoute: typeof ModularOtCeilingRoute
+  ModularOtCostIndiaRoute: typeof ModularOtCostIndiaRoute
   ModularOtDoorsRoute: typeof ModularOtDoorsRoute
   ModularOtManufacturerAgraRoute: typeof ModularOtManufacturerAgraRoute
   ModularOtManufacturerDehradunRoute: typeof ModularOtManufacturerDehradunRoute
@@ -622,6 +635,13 @@ declare module '@tanstack/react-router' {
       path: '/modular-ot-ceiling'
       fullPath: '/modular-ot-ceiling'
       preLoaderRoute: typeof ModularOtCeilingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-cost-india': {
+      id: '/modular-ot-cost-india'
+      path: '/modular-ot-cost-india'
+      fullPath: '/modular-ot-cost-india'
+      preLoaderRoute: typeof ModularOtCostIndiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/modular-ot-doors': {
@@ -842,6 +862,7 @@ const rootRouteChildren: RootRouteChildren = {
     HepaFiltrationSystemForOperationTheatreRoute,
   LocationsRoute: LocationsRoute,
   ModularOtCeilingRoute: ModularOtCeilingRoute,
+  ModularOtCostIndiaRoute: ModularOtCostIndiaRoute,
   ModularOtDoorsRoute: ModularOtDoorsRoute,
   ModularOtManufacturerAgraRoute: ModularOtManufacturerAgraRoute,
   ModularOtManufacturerDehradunRoute: ModularOtManufacturerDehradunRoute,
