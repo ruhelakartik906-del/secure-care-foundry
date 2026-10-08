@@ -281,6 +281,24 @@ export type Database = {
         }
         Relationships: []
       }
+      cms_pages: {
+        Row: {
+          content: Json
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       cms_products: {
         Row: {
           applications: Json
