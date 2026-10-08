@@ -9,7 +9,8 @@ import stainlessPhoto from "@/assets/stainless-steel-modular-ot.png.asset.json";
 import icuPhoto from "@/assets/modular-icu.png.asset.json";
 import bedHeadPhoto from "@/assets/bed-head-panel-upload.png.asset.json";
 import mgpsOutletPhoto from "@/assets/mgps-oxygen-outlet.png.asset.json";
-import laminar from "@/assets/laminar.webp";
+import laminarPhoto from "@/assets/laminar-air-flow.png.asset.json";
+import modularOtRoomPhoto from "@/assets/modular-ot-room.png.asset.json";
 import cssd from "@/assets/cssd.webp";
 import scrubPhoto from "@/assets/surgical-scrub-sink-upload.png.asset.json";
 import curtainPhoto from "@/assets/cubicle-curtain-tracks-upload.png.asset.json";
@@ -68,7 +69,7 @@ export const products: Product[] = [
     name: "Modular Operation Theatre",
     shortName: "Modular OT",
     category: "Operation Theatre",
-    image: jointLessPhoto.url,
+    image: modularOtRoomPhoto.url,
     keyword: "Modular Operation Theatre",
     short: "Complete modular OT design, manufacturing and installation with wall and ceiling panels, laminar airflow, pendants and control systems.",
     intro:
@@ -157,7 +158,7 @@ export const products: Product[] = [
     name: "Laminar Air Flow",
     shortName: "Laminar Air Flow",
     category: "Operation Theatre",
-    image: laminar,
+    image: laminarPhoto.url,
     keyword: "Laminar Air Flow",
     short: "Laminar air flow ceiling systems with HEPA filtration for operation theatres and clean areas.",
     intro: "Laminar air flow systems deliver a unidirectional flow of HEPA-filtered air over the operating zone, helping maintain a clean field during surgery.",
