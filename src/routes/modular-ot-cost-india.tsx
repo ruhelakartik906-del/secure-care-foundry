@@ -23,7 +23,7 @@ function Pricing() {
     <PageHero title="Modular OT Cost in India – 2026 Price Guide" intro="A complete modular operation theatre in India typically costs ₹8.5 Lakh to ₹35 Lakh. Below are indicative ranges for the main systems and the factors that decide your final price." crumbs={[{ label: "Pricing Guide" }]} />
     <section className="site-wrap grid gap-10 py-12 lg:grid-cols-[1fr_380px]">
       <div className="max-w-3xl">
-        <h2 className="text-2xl font-bold">Indicative Price Table</h2>
+        <h2 className="text-2xl font-bold">Indicative Pricing</h2>
         <div className="mt-4 overflow-x-auto border border-border">
           <table className="w-full text-left text-sm">
             <thead className="bg-muted"><tr><th className="p-3">System</th><th className="p-3">Indicative range</th><th className="p-3">Basis</th></tr></thead>
@@ -40,7 +40,7 @@ function Pricing() {
         <h2 className="mt-10 text-2xl font-bold">FAQs</h2>
         <div className="mt-4"><Faqs faqs={faqs} /></div>
       </div>
-      <aside className="lg:sticky lg:top-28 lg:self-start"><div className="border border-border p-5"><p className="mb-4 font-bold">Request Detailed Quote</p><EnquiryForm source="pricing-guide" defaultProduct="Modular Operation Theatre" submitLabel="Request Detailed Quote" /></div></aside>
+      <aside className="lg:sticky lg:top-28 lg:self-start"><div className="border border-border p-5"><p className="mb-4 font-bold">Request Detailed Project Quote</p><EnquiryForm source="pricing-guide" defaultProduct="Modular Operation Theatre" submitLabel="Request Detailed Quote" /></div></aside>
     </section>
     <CtaBand />
   </>;
