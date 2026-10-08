@@ -93,6 +93,7 @@ function ProductPage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 {modularOtOptions.map((option) => (
                   <article key={option.slug} id={option.slug} className="scroll-mt-28 border border-border p-4">
+                    <img src={option.image} alt={option.name} loading="lazy" width={640} height={480} className="!mb-4 !mt-0 aspect-[4/3] w-full object-cover" />
                     <h3 className="!mt-0">{option.name}</h3>
                     <p className="!mb-0">{option.description}</p>
                     <Link to="/products/modular-operation-theatre/$variant" params={{ variant: option.slug }} className="mt-3 inline-block text-sm font-semibold text-brand-blue">View Details →</Link>

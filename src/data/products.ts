@@ -1,17 +1,24 @@
-import modularOt from "@/assets/modular-ot.webp";
+import jointLessPhoto from "@/assets/joint-less-modular-ot.webp.asset.json";
+import hplPhoto from "@/assets/hpl-modular-ot.png.asset.json";
+import ppgiPhoto from "@/assets/ppgi-modular-ot.png.asset.json";
+import glassPhoto from "@/assets/glass-modular-ot.png.asset.json";
+import semiPhoto from "@/assets/semi-modular-ot.png.asset.json";
+import manifoldPhoto from "@/assets/manifold-room-system.png.asset.json";
+import biocladPhoto from "@/assets/bioclad-modular-ot.png.asset.json";
+import stainlessPhoto from "@/assets/stainless-steel-modular-ot.png.asset.json";
+import icuPhoto from "@/assets/modular-icu.png.asset.json";
+import bedHeadPhoto from "@/assets/bed-head-panel-upload.png.asset.json";
 import gas from "@/assets/gas-pipeline.webp";
 import laminar from "@/assets/laminar.webp";
 import cssd from "@/assets/cssd.webp";
 import scrub from "@/assets/scrub-sink.webp";
 import curtain from "@/assets/curtain.webp";
 import furniture from "@/assets/furniture.webp";
-import bhp from "@/assets/bed-head-panel.webp";
 import agss from "@/assets/agss.webp";
 import otPendant from "@/assets/ot-pendant.jpg";
 import ledLight from "@/assets/led-surgical-light.jpg";
 import hermeticDoor from "@/assets/hermetic-door.jpg";
 import passBox from "@/assets/pass-box.jpg";
-import icuNicu from "@/assets/icu-nicu.jpg";
 
 export type Category =
   | "Operation Theatre"
@@ -61,7 +68,7 @@ export const products: Product[] = [
     name: "Modular Operation Theatre",
     shortName: "Modular OT",
     category: "Operation Theatre",
-    image: modularOt,
+    image: jointLessPhoto.url,
     keyword: "Modular Operation Theatre",
     short: "Complete modular OT design, manufacturing and installation with wall and ceiling panels, laminar airflow, pendants and control systems.",
     intro:
@@ -214,7 +221,7 @@ export const products: Product[] = [
     name: "Bed Head Panel",
     shortName: "Bed Head Panel",
     category: "Critical Care",
-    image: bhp,
+    image: bedHeadPhoto.url,
     keyword: "Bed Head Panel",
     short: "Aluminium bed head panels with integrated gas outlets, power sockets, nurse call and lighting.",
     intro: "Bed head panels bring medical gas outlets, electrical sockets, nurse call and lighting together in one wall-mounted unit above each bed.",
@@ -309,10 +316,10 @@ export const products: Product[] = [
   },
   {
     slug: "modular-icu-nicu",
-    name: "Modular ICU / NICU Solutions",
-    shortName: "ICU / NICU",
+    name: "Modular ICU",
+    shortName: "Modular ICU",
     category: "Critical Care",
-    image: icuNicu,
+    image: icuPhoto.url,
     keyword: "Modular ICU",
     short: "Planning and fit-out of ICU and NICU areas with bed head panels, medical gases, pendants, curtain tracks and cleanable wall finishes.",
     intro: "A modular ICU or NICU fit-out brings together the infrastructure a critical-care bed needs — medical gas outlets, power, bed head panels or pendants, curtain tracks, lighting and cleanable wall and ceiling finishes — in a coordinated layout. Unicare plans and installs this infrastructure for new ICUs, NICUs and upgrades. Medical equipment such as ventilators and monitors is outside this scope unless agreed.",
@@ -327,6 +334,22 @@ export const products: Product[] = [
       { q: "How is a NICU different from an adult ICU?", a: "NICU layouts are planned around incubators, warmers and phototherapy units, with attention to space per cot, gas outlets and parent access. Your clinical team's requirements guide the layout." },
     ],
   },
+  {
+    slug: "manifold-room-system",
+    name: "Manifold Room System",
+    shortName: "Manifold Room System",
+    category: "Medical Gas Systems",
+    image: manifoldPhoto.url,
+    keyword: "Manifold Room System",
+    short: "Medical gas cylinder manifold systems for centralised hospital gas supply.",
+    intro: "A manifold room system connects medical gas cylinders to a hospital's central gas distribution system. The gas type, cylinder capacity, changeover arrangement and installation scope are confirmed for each project.",
+    price: onRequest,
+    features: ["Cylinder manifold arrangement selected for the project", "Integration with the hospital medical gas pipeline", "Project-specific pressure regulation and monitoring"],
+    specs: [["Configuration", "Confirmed against the hospital gas requirements"], ["Capacity", "Selected per project"]],
+    applications: ["Hospital medical gas supply rooms", "Medical gas pipeline projects"],
+    benefits: ["Centralised cylinder connections", "Organised gas supply infrastructure"],
+    faqs: [{ q: "How is a manifold room system selected?", a: "Selection depends on the medical gas, hospital demand, cylinder arrangement and site requirements. Share your requirements for a project-specific proposal." }],
+  },
 ];
 
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug);
@@ -340,12 +363,14 @@ export type ModularOtOption = {
 };
 
 export const modularOtOptions: ModularOtOption[] = [
-  { slug: "stainless-steel-modular-ot", name: "Stainless Steel Modular Operation Theatre", menuName: "Stainless Steel Modular OT", description: "A modular OT option with stainless-steel internal surfaces selected around project and cleaning requirements.", image: modularOt },
-  { slug: "ppgi-modular-ot", name: "PPGI Modular Operation Theatre", menuName: "PPGI Modular OT", description: "A practical panel-based theatre option configured to the room layout and hospital project scope.", image: modularOt },
-  { slug: "hospital-modular-ot", name: "Hospital Modular Operation Theatre", menuName: "Hospital Modular OT", description: "A coordinated operation theatre solution for new hospitals, extensions and theatre upgrades.", image: modularOt },
-  { slug: "glass-modular-ot", name: "Glass Modular Operation Theatre", menuName: "Glass Modular OT", description: "A modular theatre option using suitable glass surfaces where specified in the project design.", image: modularOt },
-  { slug: "bioclad-modular-ot", name: "Bioclad Modular Operation Theatre", menuName: "Bioclad Modular OT", description: "A wall-cladding based modular OT option planned to suit the clinical environment and project brief.", image: modularOt },
-  { slug: "semi-modular-ot", name: "Semi Modular Operation Theatre", menuName: "Semi Modular OT", description: "A selective modular upgrade for hospitals adapting an existing operation theatre within a defined scope.", image: modularOt },
+  { slug: "joint-less-modular-ot", name: "Joint Less Modular Operation Theatre", menuName: "Joint Less Modular OT", description: "A joint-less modular operation theatre finish planned around the room layout and approved project requirements.", image: jointLessPhoto.url },
+  { slug: "hpl-modular-ot", name: "HPL Modular Operation Theatre", menuName: "HPL Modular OT", description: "A modular operation theatre with HPL panel finishes selected to suit the hospital's project requirements.", image: hplPhoto.url },
+  { slug: "stainless-steel-modular-ot", name: "Stainless Steel Modular Operation Theatre", menuName: "Stainless Steel Modular OT", description: "A modular OT option with stainless-steel internal surfaces selected around project and cleaning requirements.", image: stainlessPhoto.url },
+  { slug: "ppgi-modular-ot", name: "PPGI Modular Operation Theatre", menuName: "PPGI Modular OT", description: "A practical panel-based theatre option configured to the room layout and hospital project scope.", image: ppgiPhoto.url },
+  { slug: "hospital-modular-ot", name: "Hospital Modular Operation Theatre", menuName: "Hospital Modular OT", description: "A coordinated operation theatre solution for new hospitals, extensions and theatre upgrades.", image: jointLessPhoto.url },
+  { slug: "glass-modular-ot", name: "Glass Modular Operation Theatre", menuName: "Glass Modular OT", description: "A modular theatre option using suitable glass surfaces where specified in the project design.", image: glassPhoto.url },
+  { slug: "bioclad-modular-ot", name: "Bioclad Modular Operation Theatre", menuName: "Bioclad Modular OT", description: "A wall-cladding based modular OT option planned to suit the clinical environment and project brief.", image: biocladPhoto.url },
+  { slug: "semi-modular-ot", name: "Semi Modular Operation Theatre", menuName: "Semi Modular OT", description: "A selective modular upgrade for hospitals adapting an existing operation theatre within a defined scope.", image: semiPhoto.url },
 ];
 
 export const getModularOtOption = (slug: string) => modularOtOptions.find((option) => option.slug === slug);
