@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
 import logo from "@/assets/unicare-logo.webp";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { cities, cityPath } from "@/data/cities";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "./EnquiryDialog";

@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { getModularOtOption, modularOtOptions } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import { CtaBand, Faqs, PageHero } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";

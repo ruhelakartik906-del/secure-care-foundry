@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { systemPages, type SystemPage } from "@/data/systems";
 import { Button } from "@/components/ui/button";
 import { CtaBand, Faqs, PageHero, faqSchema } from "@/components/site/common";

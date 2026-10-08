@@ -4,6 +4,7 @@ import logo from "@/assets/unicare-logo.webp";
 import { priorityCityPaths } from "@/lib/routes";
 import { products } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 
 export function Footer() {
   const footerProducts = products.filter((p) => ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow", "ot-pendant", "led-surgical-light", "modular-icu-nicu"].includes(p.slug));

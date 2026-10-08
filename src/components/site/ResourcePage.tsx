@@ -4,6 +4,7 @@ import type { Resource } from "@/data/resources";
 import { getProduct } from "@/data/products";
 import { cities, cityPath } from "@/data/cities";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { PageHero, Faqs, ProductCard, CtaBand, SectionHead } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { Button } from "@/components/ui/button";

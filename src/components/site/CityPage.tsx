@@ -3,6 +3,7 @@ import { Check, Phone } from "lucide-react";
 import { cities, cityPath, type City } from "@/data/cities";
 import { priceFactors } from "@/data/pricing";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { PageHero, Faqs, faqSchema, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
 import { seo, breadcrumbSchema } from "@/lib/seo";

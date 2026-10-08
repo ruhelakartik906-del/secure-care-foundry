@@ -9,6 +9,7 @@ import { pricing } from "@/data/pricing";
 import { compliance } from "@/data/resources";
 import { homeFaqs } from "@/data/faqs";
 import { site, whatsappLink } from "@/data/site";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ProductCard, SectionHead, CtaBand, Faqs, faqSchema } from "@/components/site/common";
