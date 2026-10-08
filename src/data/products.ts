@@ -8,14 +8,15 @@ import biocladPhoto from "@/assets/bioclad-modular-ot.png.asset.json";
 import stainlessPhoto from "@/assets/stainless-steel-modular-ot.png.asset.json";
 import icuPhoto from "@/assets/modular-icu.png.asset.json";
 import bedHeadPhoto from "@/assets/bed-head-panel-upload.png.asset.json";
-import gas from "@/assets/gas-pipeline.webp";
+import mgpsCopperPhoto from "@/assets/mgps-copper-pipeline.png.asset.json";
+import mgpsPlantPhoto from "@/assets/mgps-plant-room.png.asset.json";
 import laminar from "@/assets/laminar.webp";
 import cssd from "@/assets/cssd.webp";
 import scrubPhoto from "@/assets/surgical-scrub-sink-upload.png.asset.json";
 import curtainPhoto from "@/assets/cubicle-curtain-tracks-upload.png.asset.json";
 import furniture from "@/assets/furniture.webp";
 import agss from "@/assets/agss.webp";
-import otPendant from "@/assets/ot-pendant.jpg";
+import otPendantPhoto from "@/assets/ot-pendant-real.png.asset.json";
 import ledLight from "@/assets/led-surgical-light.jpg";
 import hermeticDoor from "@/assets/hermetic-door.jpg";
 import passBox from "@/assets/pass-box.jpg";
@@ -108,7 +109,7 @@ export const products: Product[] = [
     name: "Medical Gas Pipeline System",
     shortName: "Medical Gas Pipeline",
     category: "Medical Gas Systems",
-    image: gas,
+    image: mgpsCopperPhoto.url,
     keyword: "Medical Gas Pipeline",
     short: "Centralised oxygen, nitrous oxide, medical air and vacuum distribution with manifolds, alarms, valve boxes and outlets.",
     intro:
@@ -237,7 +238,7 @@ export const products: Product[] = [
     name: "OT Pendant",
     shortName: "OT Pendant",
     category: "Operation Theatre",
-    image: otPendant,
+    image: otPendantPhoto.url,
     keyword: "OT Pendant",
     short: "Ceiling-mounted surgical and anaesthesia pendants that bring medical gases, power and equipment shelves to the operating table.",
     intro: "An OT pendant is a ceiling-mounted supply unit that carries medical gas outlets, electrical sockets, data points and equipment shelves close to the surgical team. It keeps cables and hoses off the floor and positions equipment where the anaesthetist and surgeon need it. Unicare supplies and installs OT pendants as part of modular OT and theatre-upgrade projects.",
