@@ -65,6 +65,34 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
       setServerError("Something went wrong while sending. Please try again or call us directly.");
       return;
     }
+    // Email notification via FormSubmit (fire-and-forget; never blocks the user)
+    try {
+      const utm = utmParams();
+      await fetch("https://formsubmit.co/ajax/unicaremedical2023@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `New Enquiry: ${d.product || "General"} — ${d.name}`,
+          _template: "table",
+          _captcha: "false",
+          Name: d.name,
+          Phone: d.phone,
+          Email: d.email || "-",
+          "Hospital / Company": d.company || "-",
+          "City / Location": d.city || "-",
+          "Product / Requirement": d.product || "-",
+          "Project Type": d.requirement || "-",
+          Message: d.message || "-",
+          "Preferred Contact": d.contact_method || "-",
+          "Source Page": window.location.pathname,
+          "UTM Source": utm.utm_source || "-",
+          "UTM Medium": utm.utm_medium || "-",
+          "UTM Campaign": utm.utm_campaign || "-",
+        }),
+      });
+    } catch {
+      // Email alert failure must not affect the enquiry — it is already saved.
+    }
     setStatus("done");
   }
 
