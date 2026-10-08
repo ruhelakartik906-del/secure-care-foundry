@@ -9,3 +9,5 @@
 - [x] Improve Contact page and add map.
 - [x] Add floating Call and WhatsApp actions.
 - [x] Validate routes, responsive layouts, links, and preview health.
+- [ ] Apply the eleven supplied photos to their named products, including both Semi Modular OT photos.
+- [ ] Verify updated product cards and pages.
