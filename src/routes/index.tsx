@@ -15,7 +15,7 @@ import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => seo("Modular Operation Theatre Manufacturers | Unicare Medical Solutions", "Modular operation theatre manufacturers providing design, manufacturing, installation, medical gas pipeline systems and hospital infrastructure solutions across India.", "/"),
+  head: () => seo("Modular OT & MGPS Manufacturer in India | Unicare Medical Solutions", "Unicare Medical Solutions provides modular operation theatres, MGPS, laminar air flow, OT pendants, surgical lighting and hospital infrastructure across India.", "/"),
   component: Home,
 });
 
@@ -60,7 +60,7 @@ function Home() {
       <div className="site-wrap grid min-h-[560px] items-stretch lg:grid-cols-2">
         <div className="flex flex-col justify-center py-16 lg:pr-12">
           <p className="eyebrow text-navy-foreground/75">Medical Engineering · Manufacturing · Installation</p>
-          <h1 className="mt-4 text-4xl font-extrabold leading-[1.08] md:text-5xl">Modular Operation Theatre Manufacturers &amp; Hospital Infrastructure Solutions</h1>
+          <h1 className="mt-4 text-4xl font-extrabold leading-[1.08] md:text-5xl">Modular OT &amp; MGPS Manufacturer in India</h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-foreground/80">Design, manufacturing and installation of modular operation theatres, medical gas pipeline systems and critical hospital infrastructure for hospitals, healthcare facilities and medical projects across India.</p>
           <div className="mt-8 flex flex-wrap gap-3"><Button size="lg" className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => open("Modular Operation Theatre")}>Request a Quote</Button><Button size="lg" variant="outline" className="rounded-sm border-navy-foreground/40 bg-transparent text-navy-foreground hover:bg-navy-foreground/10 hover:text-navy-foreground" asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button></div>
           <div className="mt-8 grid gap-2 text-sm sm:grid-cols-2">{trust.map((item) => <span key={item.title} className="flex items-center gap-2 text-navy-foreground/85"><Check className="h-4 w-4 text-accent" />{item.title}</span>)}</div>

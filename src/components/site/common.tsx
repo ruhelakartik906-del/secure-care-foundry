@@ -89,7 +89,7 @@ export function CtaBand({ title = "Discuss Your Hospital Project", text = "Tell 
 export function FloatingActions() {
   return (
     <>
-      <Button size="icon" className="fixed bottom-[86px] right-[18px] z-50 h-12 w-12 rounded-full shadow-lg md:bottom-[90px] md:right-[26px] md:h-11 md:w-11" asChild>
+      <Button size="icon" className="fixed bottom-[86px] right-[18px] z-50 hidden h-12 w-12 md:inline-flex rounded-full shadow-lg md:bottom-[90px] md:right-[26px] md:h-11 md:w-11" asChild>
         <a href={site.phoneHref} aria-label={`Call Unicare at ${site.phone}`} title="Call Unicare"><Phone className="h-5 w-5" /></a>
       </Button>
       <a
@@ -97,7 +97,7 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="whatsapp-fab group fixed bottom-5 right-4 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] py-3.5 pl-3.5 pr-3.5 text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl md:bottom-6 md:right-6"
+        className="whatsapp-fab group fixed bottom-5 right-4 z-50 hidden md:flex items-center gap-2.5 rounded-full bg-[#25D366] py-3.5 pl-3.5 pr-3.5 text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl md:bottom-6 md:right-6"
       >
         <span className="whatsapp-fab-ring" aria-hidden="true" />
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 shrink-0" aria-hidden="true">
@@ -105,6 +105,11 @@ export function FloatingActions() {
         </svg>
         <span className="hidden text-sm font-semibold leading-none lg:inline">Chat on WhatsApp</span>
       </a>
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-border bg-background text-sm font-semibold md:hidden">
+        <a href={site.phoneHref} className="flex min-h-12 items-center justify-center gap-1.5"><Phone className="h-4 w-4" />Call</a>
+        <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-center border-x border-border">WhatsApp</a>
+        <a href="/get-a-quote" className="flex min-h-12 items-center justify-center bg-primary text-primary-foreground">Get Quote</a>
+      </div>
     </>
   );
 }

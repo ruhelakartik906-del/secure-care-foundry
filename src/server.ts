@@ -72,7 +72,7 @@ async function sitemapXml(origin: string) {
   ]);
   const entries = new Map<string, string | undefined>();
   const add = (path: string, lastmod?: string) => { if (!entries.has(path) || lastmod) entries.set(path, lastmod); };
-  ["/", "/products", "/about", "/blog", "/contact", "/locations", "/privacy-policy", "/disclaimer", "/terms-and-conditions", "/sitemap", "/solutions", "/get-a-quote", "/modular-ot-wall-panels", "/modular-ot-ceiling", "/operation-theatre-hvac-system", "/hepa-filtration-system-for-operation-theatre", "/modular-ot-doors", "/operation-theatre-electrical-system"].forEach((p) => add(p));
+  ["/", "/products", "/about", "/blog", "/contact", "/locations", "/privacy-policy", "/disclaimer", "/terms-and-conditions", "/sitemap", "/solutions", "/get-a-quote", "/modular-ot-wall-panels", "/modular-ot-ceiling", "/operation-theatre-hvac-system", "/hepa-filtration-system-for-operation-theatre", "/modular-ot-doors", "/operation-theatre-electrical-system", "/modular-ot-cost-india", "/modular-ot-manufacturer-ghaziabad", "/modular-ot-manufacturer-kanpur", "/modular-ot-manufacturer-varanasi", "/modular-ot-manufacturer-prayagraj", "/modular-ot-manufacturer-gorakhpur", "/modular-ot-manufacturer-agra", "/modular-ot-manufacturer-dehradun"].forEach((p) => add(p));
   products.forEach((p) => add(`/products/${p.slug}`));
   modularOtOptions.forEach((p) => add(`/products/modular-operation-theatre/${p.slug}`));
   blogs.forEach((b) => add(`/blog/${b.slug}`, b.date));
