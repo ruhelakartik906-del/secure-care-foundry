@@ -1,6 +1,6 @@
-import modularOt from "@/assets/modular-ot.webp";
+import modularOtRoom from "@/assets/modular-ot-room.png.asset.json";
 import gas from "@/assets/mgps-copper-pipeline.png.asset.json";
-import laminar from "@/assets/laminar.webp";
+import laminarPhoto from "@/assets/laminar-air-flow.png.asset.json";
 
 export type Blog = {
   slug: string;
@@ -21,7 +21,7 @@ export const blogs: Blog[] = [
     category: "Modular OT",
     excerpt: "How modular OTs differ from conventional theatres, what they are made of, and when hospitals choose them.",
     date: "2026-09-20",
-    image: modularOt,
+    image: modularOtRoom.url,
     relatedProducts: ["modular-operation-theatre", "laminar-air-flow"],
     body: [
       { h: "Definition", p: ["A modular operation theatre is a surgical room built using pre-engineered wall and ceiling panels manufactured off-site and assembled at the hospital. Services such as HVAC, laminar air flow, medical gases, lighting and controls are integrated into the panel system."] },
@@ -36,7 +36,7 @@ export const blogs: Blog[] = [
     category: "Modular OT",
     excerpt: "The main factors that decide the cost of a modular OT project, and how to get an accurate quotation.",
     date: "2026-09-12",
-    image: modularOt,
+    image: modularOtRoom.url,
     relatedProducts: ["modular-operation-theatre"],
     body: [
       { h: "Why there is no single price", p: ["Modular OT cost varies from project to project. Room size, panel material, laminar air flow specification, door type, control systems, pendants, lights and HVAC scope all change the final figure."] },
@@ -64,7 +64,7 @@ export const blogs: Blog[] = [
     category: "Laminar Air Flow",
     excerpt: "What laminar air flow is, how it works with OT HVAC, and what to consider when specifying it.",
     date: "2026-08-25",
-    image: laminar,
+    image: laminarPhoto.url,
     relatedProducts: ["laminar-air-flow", "modular-operation-theatre"],
     body: [
       { h: "How it works", p: ["A laminar air flow unit above the operating table delivers HEPA-filtered air downward in a steady, low-turbulence stream over the surgical zone."] },
