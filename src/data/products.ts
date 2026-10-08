@@ -125,7 +125,7 @@ export const products: Product[] = [
     name: "AGSS (Anaesthetic Gas Scavenging System)",
     shortName: "AGSS",
     category: "Operation Theatre",
-    image: agss,
+    image: agssPhoto.url,
     keyword: "AGSS",
     short: "Safe removal of waste anaesthetic gases from operation theatres to protect surgical staff.",
     intro: "An Anaesthetic Gas Scavenging System (AGSS) collects waste anaesthetic gases from the breathing circuit and safely exhausts them outside the operation theatre, reducing exposure for clinical staff.",
