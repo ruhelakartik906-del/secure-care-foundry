@@ -1,3 +1,4 @@
+import { compliance, comparisons } from "@/data/resources";
 import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
@@ -72,9 +73,11 @@ async function sitemapXml(origin: string) {
   ]);
   const entries = new Map<string, string | undefined>();
   const add = (path: string, lastmod?: string) => { if (!entries.has(path) || lastmod) entries.set(path, lastmod); };
-  ["/", "/products", "/about", "/blog", "/contact", "/locations", "/privacy-policy", "/disclaimer", "/terms-and-conditions", "/sitemap", "/solutions", "/get-a-quote", "/modular-ot-wall-panels", "/modular-ot-ceiling", "/operation-theatre-hvac-system", "/hepa-filtration-system-for-operation-theatre", "/modular-ot-doors", "/operation-theatre-electrical-system", "/modular-ot-cost-india", "/modular-ot-manufacturer-ghaziabad", "/modular-ot-manufacturer-kanpur", "/modular-ot-manufacturer-varanasi", "/modular-ot-manufacturer-prayagraj", "/modular-ot-manufacturer-gorakhpur", "/modular-ot-manufacturer-agra", "/modular-ot-manufacturer-dehradun"].forEach((p) => add(p));
+  ["/", "/products", "/about", "/blog", "/contact", "/locations", "/privacy-policy", "/disclaimer", "/terms-and-conditions", "/sitemap", "/solutions", "/get-a-quote", "/modular-ot-wall-panels", "/modular-ot-ceiling", "/operation-theatre-hvac-system", "/hepa-filtration-system-for-operation-theatre", "/modular-ot-doors", "/operation-theatre-electrical-system", "/modular-ot-cost-india", "/modular-ot-manufacturer-ghaziabad", "/modular-ot-manufacturer-kanpur", "/modular-ot-manufacturer-varanasi", "/modular-ot-manufacturer-prayagraj", "/modular-ot-manufacturer-gorakhpur", "/modular-ot-manufacturer-agra", "/modular-ot-manufacturer-dehradun", "/resources", "/resources/compliance", "/resources/comparisons", "/faqs"].forEach((p) => add(p));
   products.forEach((p) => add(`/products/${p.slug}`));
   modularOtOptions.forEach((p) => add(`/products/modular-operation-theatre/${p.slug}`));
+  compliance.forEach((r) => add(`/resources/compliance/${r.slug}`));
+  comparisons.forEach((r) => add(`/resources/comparisons/${r.slug}`));
   blogs.forEach((b) => add(`/blog/${b.slug}`, b.date));
   locations.forEach((l) => { add(`/modular-operation-theatre-manufacturers-in/${l.slug}`); add(`/medical-gas-pipeline-manufacturers-in/${l.slug}`); });
   (cmsProducts ?? []).filter((p) => p.robots_index).forEach((p) => add(p.parent_slug ? `/products/${p.parent_slug}/${p.slug}` : `/products/${p.slug}`, p.updated_at));
