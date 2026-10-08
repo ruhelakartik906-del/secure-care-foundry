@@ -10,7 +10,7 @@ import { isActiveItem, isSolutionPath, solutionGroups, type SolutionItem } from 
 
 const after = [
   { to: "/modular-ot-cost-india", label: "Pricing Guide" },
-  { to: "/blog", label: "Resources" },
+  { to: "/resources", label: "Resources" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
