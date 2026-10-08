@@ -51,7 +51,7 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
         <div className="sticky top-28 border border-border p-6">
           <h2 className="text-lg font-bold">Get a Quote</h2>
           <p className="mb-4 mt-1 text-sm text-muted-foreground">Tell us about your project.</p>
-          <EnquiryForm source={`resource-${r.slug}`} variant="contact" defaultProduct={related[0]?.name} submitLabel="Send Enquiry" />
+          <EnquiryForm source={`resource-${r.slug}`} variant="contact" defaultProduct={related[0]?.name ?? ""} submitLabel="Send Enquiry" />
         </div>
       </aside>
     </section>
