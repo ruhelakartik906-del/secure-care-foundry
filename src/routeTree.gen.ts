@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
 import { Route as HepaFiltrationSystemForOperationTheatreRouteImport } from './routes/hepa-filtration-system-for-operation-theatre'
 import { Route as LocationsRouteImport } from './routes/locations'
@@ -47,8 +48,13 @@ import { Route as ModularOperationTheatreManufacturerStateRouteImport } from './
 import { Route as ModularOperationTheatreManufacturersInStateRouteImport } from './routes/modular-operation-theatre-manufacturers-in.$state'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as BlogCategoryCategoryRouteImport } from './routes/blog.category.$category'
 import { Route as ProductsModularOperationTheatreVariantRouteImport } from './routes/products.modular-operation-theatre.$variant'
+import { Route as ResourcesComparisonsIndexRouteImport } from './routes/resources.comparisons.index'
+import { Route as ResourcesComparisonsSlugRouteImport } from './routes/resources.comparisons.$slug'
+import { Route as ResourcesComplianceIndexRouteImport } from './routes/resources.compliance.index'
+import { Route as ResourcesComplianceSlugRouteImport } from './routes/resources.compliance.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -78,6 +84,11 @@ const ContactRoute = ContactRouteImport.update({
 const DisclaimerRoute = DisclaimerRouteImport.update({
   id: '/disclaimer',
   path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GetAQuoteRoute = GetAQuoteRouteImport.update({
@@ -254,6 +265,11 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogCategoryCategoryRoute = BlogCategoryCategoryRouteImport.update({
   id: '/blog/category/$category',
   path: '/blog/category/$category',
@@ -265,6 +281,29 @@ const ProductsModularOperationTheatreVariantRoute =
     path: '/products/modular-operation-theatre/$variant',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ResourcesComparisonsIndexRoute =
+  ResourcesComparisonsIndexRouteImport.update({
+    id: '/resources/comparisons/',
+    path: '/resources/comparisons/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ResourcesComparisonsSlugRoute =
+  ResourcesComparisonsSlugRouteImport.update({
+    id: '/resources/comparisons/$slug',
+    path: '/resources/comparisons/$slug',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ResourcesComplianceIndexRoute =
+  ResourcesComplianceIndexRouteImport.update({
+    id: '/resources/compliance/',
+    path: '/resources/compliance/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ResourcesComplianceSlugRoute = ResourcesComplianceSlugRouteImport.update({
+  id: '/resources/compliance/$slug',
+  path: '/resources/compliance/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -273,6 +312,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/faqs': typeof FaqsRoute
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
@@ -305,8 +345,13 @@ export interface FileRoutesByFullPath {
   '/products/$slug': typeof ProductsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
+  '/resources/comparisons/$slug': typeof ResourcesComparisonsSlugRoute
+  '/resources/compliance/$slug': typeof ResourcesComplianceSlugRoute
+  '/resources/comparisons/': typeof ResourcesComparisonsIndexRoute
+  '/resources/compliance/': typeof ResourcesComplianceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -315,6 +360,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/faqs': typeof FaqsRoute
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
@@ -347,8 +393,13 @@ export interface FileRoutesByTo {
   '/products/$slug': typeof ProductsSlugRoute
   '/blog': typeof BlogIndexRoute
   '/products': typeof ProductsIndexRoute
+  '/resources': typeof ResourcesIndexRoute
   '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
+  '/resources/comparisons/$slug': typeof ResourcesComparisonsSlugRoute
+  '/resources/compliance/$slug': typeof ResourcesComplianceSlugRoute
+  '/resources/comparisons': typeof ResourcesComparisonsIndexRoute
+  '/resources/compliance': typeof ResourcesComplianceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -358,6 +409,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/faqs': typeof FaqsRoute
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
@@ -390,8 +442,13 @@ export interface FileRoutesById {
   '/products/$slug': typeof ProductsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
+  '/resources/comparisons/$slug': typeof ResourcesComparisonsSlugRoute
+  '/resources/compliance/$slug': typeof ResourcesComplianceSlugRoute
+  '/resources/comparisons/': typeof ResourcesComparisonsIndexRoute
+  '/resources/compliance/': typeof ResourcesComplianceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -402,6 +459,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/disclaimer'
+    | '/faqs'
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
@@ -434,8 +492,13 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/blog/'
     | '/products/'
+    | '/resources/'
     | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
+    | '/resources/comparisons/$slug'
+    | '/resources/compliance/$slug'
+    | '/resources/comparisons/'
+    | '/resources/compliance/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -444,6 +507,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/disclaimer'
+    | '/faqs'
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
@@ -476,8 +540,13 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/blog'
     | '/products'
+    | '/resources'
     | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
+    | '/resources/comparisons/$slug'
+    | '/resources/compliance/$slug'
+    | '/resources/comparisons'
+    | '/resources/compliance'
   id:
     | '__root__'
     | '/'
@@ -486,6 +555,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/disclaimer'
+    | '/faqs'
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
@@ -518,8 +588,13 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/blog/'
     | '/products/'
+    | '/resources/'
     | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
+    | '/resources/comparisons/$slug'
+    | '/resources/compliance/$slug'
+    | '/resources/comparisons/'
+    | '/resources/compliance/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -529,6 +604,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  FaqsRoute: typeof FaqsRoute
   GetAQuoteRoute: typeof GetAQuoteRoute
   HepaFiltrationSystemForOperationTheatreRoute: typeof HepaFiltrationSystemForOperationTheatreRoute
   LocationsRoute: typeof LocationsRoute
@@ -561,8 +637,13 @@ export interface RootRouteChildren {
   ProductsSlugRoute: typeof ProductsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
   BlogCategoryCategoryRoute: typeof BlogCategoryCategoryRoute
   ProductsModularOperationTheatreVariantRoute: typeof ProductsModularOperationTheatreVariantRoute
+  ResourcesComparisonsSlugRoute: typeof ResourcesComparisonsSlugRoute
+  ResourcesComplianceSlugRoute: typeof ResourcesComplianceSlugRoute
+  ResourcesComparisonsIndexRoute: typeof ResourcesComparisonsIndexRoute
+  ResourcesComplianceIndexRoute: typeof ResourcesComplianceIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -607,6 +688,13 @@ declare module '@tanstack/react-router' {
       path: '/disclaimer'
       fullPath: '/disclaimer'
       preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/get-a-quote': {
@@ -833,6 +921,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/category/$category': {
       id: '/blog/category/$category'
       path: '/blog/category/$category'
@@ -847,6 +942,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsModularOperationTheatreVariantRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/comparisons/': {
+      id: '/resources/comparisons/'
+      path: '/resources/comparisons'
+      fullPath: '/resources/comparisons/'
+      preLoaderRoute: typeof ResourcesComparisonsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/comparisons/$slug': {
+      id: '/resources/comparisons/$slug'
+      path: '/resources/comparisons/$slug'
+      fullPath: '/resources/comparisons/$slug'
+      preLoaderRoute: typeof ResourcesComparisonsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/compliance/': {
+      id: '/resources/compliance/'
+      path: '/resources/compliance'
+      fullPath: '/resources/compliance/'
+      preLoaderRoute: typeof ResourcesComplianceIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/compliance/$slug': {
+      id: '/resources/compliance/$slug'
+      path: '/resources/compliance/$slug'
+      fullPath: '/resources/compliance/$slug'
+      preLoaderRoute: typeof ResourcesComplianceSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -857,6 +980,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   DisclaimerRoute: DisclaimerRoute,
+  FaqsRoute: FaqsRoute,
   GetAQuoteRoute: GetAQuoteRoute,
   HepaFiltrationSystemForOperationTheatreRoute:
     HepaFiltrationSystemForOperationTheatreRoute,
@@ -894,9 +1018,14 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsSlugRoute: ProductsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
   BlogCategoryCategoryRoute: BlogCategoryCategoryRoute,
   ProductsModularOperationTheatreVariantRoute:
     ProductsModularOperationTheatreVariantRoute,
+  ResourcesComparisonsSlugRoute: ResourcesComparisonsSlugRoute,
+  ResourcesComplianceSlugRoute: ResourcesComplianceSlugRoute,
+  ResourcesComparisonsIndexRoute: ResourcesComparisonsIndexRoute,
+  ResourcesComplianceIndexRoute: ResourcesComplianceIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

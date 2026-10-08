@@ -7,6 +7,11 @@ import curtain from "@/assets/curtain.webp";
 import furniture from "@/assets/furniture.webp";
 import bhp from "@/assets/bed-head-panel.webp";
 import agss from "@/assets/agss.webp";
+import otPendant from "@/assets/ot-pendant.jpg";
+import ledLight from "@/assets/led-surgical-light.jpg";
+import hermeticDoor from "@/assets/hermetic-door.jpg";
+import passBox from "@/assets/pass-box.jpg";
+import icuNicu from "@/assets/icu-nicu.jpg";
 
 export type Category =
   | "Operation Theatre"
@@ -44,6 +49,7 @@ export type Product = {
   applications: string[];
   benefits: string[];
   faqs: { q: string; a: string }[];
+  installation?: string[];
   keyword: string; // used for location pages: "{keyword} Manufacturers in {State}"
 };
 
@@ -218,6 +224,108 @@ export const products: Product[] = [
     applications: ["ICU", "HDU", "Wards", "Recovery"],
     benefits: ["Neat, organised bedside services", "Easy cleaning"],
     faqs: [{ q: "Can bed head panels be customised?", a: "Yes — number of outlets, sockets and accessories are configured per project." }],
+  },
+  {
+    slug: "ot-pendant",
+    name: "OT Pendant",
+    shortName: "OT Pendant",
+    category: "Operation Theatre",
+    image: otPendant,
+    keyword: "OT Pendant",
+    short: "Ceiling-mounted surgical and anaesthesia pendants that bring medical gases, power and equipment shelves to the operating table.",
+    intro: "An OT pendant is a ceiling-mounted supply unit that carries medical gas outlets, electrical sockets, data points and equipment shelves close to the surgical team. It keeps cables and hoses off the floor and positions equipment where the anaesthetist and surgeon need it. Unicare supplies and installs OT pendants as part of modular OT and theatre-upgrade projects.",
+    price: { type: "range", from: "₹30,000", to: "₹1 Lakh" },
+    features: ["Single-arm, double-arm and fixed-column configurations", "Medical gas outlets as per the hospital gas list", "Electrical sockets and data points", "Equipment shelves, drawers and accessory rails", "Rotation with arm brakes for positioning", "Coordination with ceiling, laminar air flow and surgical light positions"],
+    specs: [["Mounting", "Ceiling mounted on a structural support plate"], ["Configuration", "Single arm, double arm or fixed, as specified"], ["Gas outlets", "Number and type selected per project"], ["Electrical", "Sockets and data points selected per project"], ["Accessories", "Shelves, drawers, IV pole, rails as required"]],
+    applications: ["Operation theatres (surgical and anaesthesia pendants)", "ICU and critical care beds", "Recovery and pre-operative areas", "Endoscopy and procedure rooms"],
+    benefits: ["Clear floor space around the operating table", "Reduced trip hazards from cables and hoses", "Faster equipment positioning between cases", "Easier cleaning of the theatre floor"],
+    installation: ["Ceiling structure and support plate are checked before installation", "Pendant position is coordinated with the laminar air flow ceiling and surgical light", "Medical gas and electrical services are routed to the pendant head", "Outlets are tested and the pendant is handed over with user guidance"],
+    faqs: [
+      { q: "What is the price of an OT pendant in India?", a: "An OT pendant is indicatively ₹30,000 to ₹1 Lakh per unit. The final price depends on single or double arm configuration, the number of gas outlets, sockets and the accessories selected." },
+      { q: "What is the difference between a single-arm and a double-arm OT pendant?", a: "A single-arm pendant rotates around one joint and suits smaller theatres or fixed workflows. A double-arm pendant has two articulated arms, giving a wider reach and more positioning flexibility." },
+      { q: "Can an OT pendant be installed in an existing theatre?", a: "Usually yes, after checking the ceiling structure, ceiling height and the routing of gas and electrical services." },
+    ],
+  },
+  {
+    slug: "led-surgical-light",
+    name: "LED Surgical Light",
+    shortName: "LED Surgical Light",
+    category: "Operation Theatre",
+    image: ledLight,
+    keyword: "LED Surgical Light",
+    short: "Ceiling-mounted LED operating lights in single and double dome options for clear, shadow-reduced illumination of the surgical field.",
+    intro: "An LED surgical light (OT light) illuminates the surgical field with bright, low-heat light while reducing shadows from the surgical team. Unicare supplies and installs single-dome and double-dome LED surgical lights for new modular OTs and for upgrades of existing theatres.",
+    price: onRequest,
+    features: ["Single dome and double dome (main and satellite) options", "LED light source with low radiant heat compared with halogen", "Intensity adjustment from the control panel", "Sterilisable handle for positioning by the surgical team", "Ceiling mounting coordinated with pendants and laminar air flow", "Optional camera or monitor arm where specified"],
+    specs: [["Configuration", "Single dome or double dome"], ["Light source", "LED"], ["Mounting", "Ceiling mounted"], ["Controls", "Intensity control on the light or wall panel"], ["Applicable standard", "Manufacturer conformity to IEC 60601-2-41 should be confirmed for the selected model"]],
+    applications: ["General and speciality operation theatres", "Day-care surgery", "Minor OT and procedure rooms", "Labour and delivery rooms"],
+    benefits: ["Clear visibility of the surgical field", "Less heat at the surgeon's head compared with halogen lights", "Long LED service life with low maintenance", "Easy positioning during surgery"],
+    installation: ["Ceiling support and height are verified", "Light position is coordinated with the OT table, pendants and laminar air flow", "Electrical connection, testing of intensity and movement", "User demonstration at handover"],
+    faqs: [
+      { q: "Single dome or double dome — which surgical light do I need?", a: "Major and speciality theatres commonly use a double-dome light so a second head is available. Minor OTs and procedure rooms often use a single dome. We recommend after reviewing the theatre use." },
+      { q: "What standard applies to surgical lights?", a: "IEC 60601-2-41 is the international particular standard for surgical and diagnostic luminaires. Ask for the manufacturer's conformity documentation for the model being supplied." },
+      { q: "What is the price of an LED surgical light?", a: "Price depends on dome configuration, light output and features such as camera arms. Share your requirement and we will quote for suitable models." },
+    ],
+  },
+  {
+    slug: "hermetic-ot-door",
+    name: "Hermetic OT Door",
+    shortName: "Hermetic OT Door",
+    category: "Operation Theatre",
+    image: hermeticDoor,
+    keyword: "Hermetic OT Door",
+    short: "Hermetically sealed sliding doors for operation theatres that help maintain room pressure and clean conditions.",
+    intro: "A hermetic OT door is a sliding door designed to seal against the frame when closed, helping the operation theatre hold its positive pressure and limit air leakage. Unicare supplies and installs manual and automatic hermetic sliding doors as part of modular OT projects.",
+    price: onRequest,
+    features: ["Sliding operation that saves space and reduces air turbulence", "Perimeter gaskets that press the leaf against the frame when closed", "Manual or automatic (sensor or foot/elbow switch) operation", "Vision panel options", "Finish coordinated with the OT wall panels", "Hands-free opening options for infection control"],
+    specs: [["Type", "Single or double leaf sliding"], ["Operation", "Manual or automatic"], ["Seal", "Perimeter gasket seal"], ["Vision panel", "Optional"], ["Size", "Made to the clear opening required"]],
+    applications: ["Operation theatres", "Clean rooms and CSSD sterile zones", "ICU and isolation rooms", "Cath labs and procedure rooms"],
+    benefits: ["Supports room pressure control", "Hands-free entry for scrubbed staff (automatic option)", "Smooth, cleanable surfaces", "Matches modular OT wall panels"],
+    installation: ["Opening size and wall build-up are verified", "Frame and track are fixed and aligned with the wall panels", "Gaskets and closing action are adjusted for sealing", "Automatic operators are wired and tested"],
+    faqs: [
+      { q: "Why are hermetic doors used in an operation theatre?", a: "They seal against the frame when closed, which helps the theatre hold its pressure difference against corridors and reduces uncontrolled air movement." },
+      { q: "Manual or automatic hermetic door?", a: "Automatic doors allow hands-free entry for scrubbed staff. Manual doors cost less and suit lower-traffic rooms. The choice depends on workflow and budget." },
+    ],
+  },
+  {
+    slug: "pass-box",
+    name: "Pass Box",
+    shortName: "Pass Box",
+    category: "Hospital Infrastructure",
+    image: passBox,
+    keyword: "Pass Box",
+    short: "Stainless steel pass boxes with interlocked doors for transferring materials between clean and less-clean zones.",
+    intro: "A pass box is a wall-mounted transfer chamber with two doors that are interlocked so both cannot be open at the same time. It lets instruments, linen and samples move between an operation theatre, CSSD or lab and the adjoining area without staff walking through. Unicare supplies and installs static and dynamic pass boxes.",
+    price: onRequest,
+    features: ["Stainless steel construction", "Mechanical or electromagnetic door interlock", "Static (no airflow) and dynamic (with filtered airflow) types", "Optional UV lamp where specified", "Glass vision panels on doors", "Flush fitting with modular OT wall panels"],
+    specs: [["Body", "Stainless steel"], ["Type", "Static or dynamic"], ["Interlock", "Mechanical or electromagnetic"], ["Size", "As per material to be transferred"], ["Mounting", "Through-wall"]],
+    applications: ["Operation theatre to sterile corridor", "CSSD sterile and non-sterile zones", "Laboratories", "Pharmacy and clean rooms"],
+    benefits: ["Reduces movement of staff between zones", "Interlock prevents both doors opening together", "Easy to clean stainless steel surfaces"],
+    installation: ["Wall opening is prepared to the pass box size", "Unit is fixed, levelled and sealed to the wall panels", "Interlock (and UV/airflow if fitted) is wired and tested"],
+    faqs: [
+      { q: "What is the difference between a static and a dynamic pass box?", a: "A static pass box is a sealed chamber without airflow. A dynamic pass box has a fan and filter to supply filtered air inside the chamber and is used where higher cleanliness is needed." },
+      { q: "Where is a pass box installed in a hospital?", a: "Typically between the operation theatre and the sterile or dirty corridor, between CSSD zones, and in laboratories and pharmacies." },
+    ],
+  },
+  {
+    slug: "modular-icu-nicu",
+    name: "Modular ICU / NICU Solutions",
+    shortName: "ICU / NICU",
+    category: "Critical Care",
+    image: icuNicu,
+    keyword: "Modular ICU",
+    short: "Planning and fit-out of ICU and NICU areas with bed head panels, medical gases, pendants, curtain tracks and cleanable wall finishes.",
+    intro: "A modular ICU or NICU fit-out brings together the infrastructure a critical-care bed needs — medical gas outlets, power, bed head panels or pendants, curtain tracks, lighting and cleanable wall and ceiling finishes — in a coordinated layout. Unicare plans and installs this infrastructure for new ICUs, NICUs and upgrades. Medical equipment such as ventilators and monitors is outside this scope unless agreed.",
+    price: onRequest,
+    features: ["Bed layout and clearance planning", "Bed head panels or ICU pendants", "Medical gas outlets connected to the hospital MGPS", "Ceiling curtain tracks for privacy", "Cleanable wall and ceiling finishes", "Isolation room planning where required", "NICU layouts for incubators and warmers"],
+    specs: [["Scope", "Infrastructure fit-out per bed and per area"], ["Gas outlets", "As per hospital gas schedule per bed"], ["Bed services", "Bed head panel or pendant"], ["Finishes", "Selected per project"], ["Bed count", "Planned to your drawings"]],
+    applications: ["Medical and surgical ICU", "NICU and PICU", "Cardiac care units", "High dependency units", "Isolation rooms"],
+    benefits: ["Coordinated services at every bed", "Layouts planned for staff access and visibility", "Infection-control friendly finishes", "One team for gases, panels and fit-out"],
+    installation: ["Review of drawings, bed count and services", "Layout and services coordination with MGPS and electrical", "Installation of panels, pendants, tracks and finishes", "Testing of outlets and handover"],
+    faqs: [
+      { q: "What does a modular ICU include?", a: "Typically bed head panels or pendants, medical gas outlets, electrical points, curtain tracks and cleanable finishes. The exact scope is agreed per project." },
+      { q: "How is a NICU different from an adult ICU?", a: "NICU layouts are planned around incubators, warmers and phototherapy units, with attention to space per cot, gas outlets and parent access. Your clinical team's requirements guide the layout." },
+    ],
   },
 ];
 
