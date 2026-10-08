@@ -20,6 +20,13 @@ import { Route as HepaFiltrationSystemForOperationTheatreRouteImport } from './r
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ModularOtCeilingRouteImport } from './routes/modular-ot-ceiling'
 import { Route as ModularOtDoorsRouteImport } from './routes/modular-ot-doors'
+import { Route as ModularOtManufacturerAgraRouteImport } from './routes/modular-ot-manufacturer-agra'
+import { Route as ModularOtManufacturerDehradunRouteImport } from './routes/modular-ot-manufacturer-dehradun'
+import { Route as ModularOtManufacturerGhaziabadRouteImport } from './routes/modular-ot-manufacturer-ghaziabad'
+import { Route as ModularOtManufacturerGorakhpurRouteImport } from './routes/modular-ot-manufacturer-gorakhpur'
+import { Route as ModularOtManufacturerKanpurRouteImport } from './routes/modular-ot-manufacturer-kanpur'
+import { Route as ModularOtManufacturerPrayagrajRouteImport } from './routes/modular-ot-manufacturer-prayagraj'
+import { Route as ModularOtManufacturerVaranasiRouteImport } from './routes/modular-ot-manufacturer-varanasi'
 import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wall-panels'
 import { Route as OperationTheatreElectricalSystemRouteImport } from './routes/operation-theatre-electrical-system'
 import { Route as OperationTheatreHvacSystemRouteImport } from './routes/operation-theatre-hvac-system'
@@ -98,6 +105,48 @@ const ModularOtDoorsRoute = ModularOtDoorsRouteImport.update({
   path: '/modular-ot-doors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModularOtManufacturerAgraRoute =
+  ModularOtManufacturerAgraRouteImport.update({
+    id: '/modular-ot-manufacturer-agra',
+    path: '/modular-ot-manufacturer-agra',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerDehradunRoute =
+  ModularOtManufacturerDehradunRouteImport.update({
+    id: '/modular-ot-manufacturer-dehradun',
+    path: '/modular-ot-manufacturer-dehradun',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerGhaziabadRoute =
+  ModularOtManufacturerGhaziabadRouteImport.update({
+    id: '/modular-ot-manufacturer-ghaziabad',
+    path: '/modular-ot-manufacturer-ghaziabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerGorakhpurRoute =
+  ModularOtManufacturerGorakhpurRouteImport.update({
+    id: '/modular-ot-manufacturer-gorakhpur',
+    path: '/modular-ot-manufacturer-gorakhpur',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerKanpurRoute =
+  ModularOtManufacturerKanpurRouteImport.update({
+    id: '/modular-ot-manufacturer-kanpur',
+    path: '/modular-ot-manufacturer-kanpur',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerPrayagrajRoute =
+  ModularOtManufacturerPrayagrajRouteImport.update({
+    id: '/modular-ot-manufacturer-prayagraj',
+    path: '/modular-ot-manufacturer-prayagraj',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerVaranasiRoute =
+  ModularOtManufacturerVaranasiRouteImport.update({
+    id: '/modular-ot-manufacturer-varanasi',
+    path: '/modular-ot-manufacturer-varanasi',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ModularOtWallPanelsRoute = ModularOtWallPanelsRouteImport.update({
   id: '/modular-ot-wall-panels',
   path: '/modular-ot-wall-panels',
@@ -223,6 +272,13 @@ export interface FileRoutesByFullPath {
   '/locations': typeof LocationsRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
+  '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
+  '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
+  '/modular-ot-manufacturer-gorakhpur': typeof ModularOtManufacturerGorakhpurRoute
+  '/modular-ot-manufacturer-kanpur': typeof ModularOtManufacturerKanpurRoute
+  '/modular-ot-manufacturer-prayagraj': typeof ModularOtManufacturerPrayagrajRoute
+  '/modular-ot-manufacturer-varanasi': typeof ModularOtManufacturerVaranasiRoute
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
@@ -257,6 +313,13 @@ export interface FileRoutesByTo {
   '/locations': typeof LocationsRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
+  '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
+  '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
+  '/modular-ot-manufacturer-gorakhpur': typeof ModularOtManufacturerGorakhpurRoute
+  '/modular-ot-manufacturer-kanpur': typeof ModularOtManufacturerKanpurRoute
+  '/modular-ot-manufacturer-prayagraj': typeof ModularOtManufacturerPrayagrajRoute
+  '/modular-ot-manufacturer-varanasi': typeof ModularOtManufacturerVaranasiRoute
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
@@ -292,6 +355,13 @@ export interface FileRoutesById {
   '/locations': typeof LocationsRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
+  '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
+  '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
+  '/modular-ot-manufacturer-gorakhpur': typeof ModularOtManufacturerGorakhpurRoute
+  '/modular-ot-manufacturer-kanpur': typeof ModularOtManufacturerKanpurRoute
+  '/modular-ot-manufacturer-prayagraj': typeof ModularOtManufacturerPrayagrajRoute
+  '/modular-ot-manufacturer-varanasi': typeof ModularOtManufacturerVaranasiRoute
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
@@ -328,6 +398,13 @@ export interface FileRouteTypes {
     | '/locations'
     | '/modular-ot-ceiling'
     | '/modular-ot-doors'
+    | '/modular-ot-manufacturer-agra'
+    | '/modular-ot-manufacturer-dehradun'
+    | '/modular-ot-manufacturer-ghaziabad'
+    | '/modular-ot-manufacturer-gorakhpur'
+    | '/modular-ot-manufacturer-kanpur'
+    | '/modular-ot-manufacturer-prayagraj'
+    | '/modular-ot-manufacturer-varanasi'
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
@@ -362,6 +439,13 @@ export interface FileRouteTypes {
     | '/locations'
     | '/modular-ot-ceiling'
     | '/modular-ot-doors'
+    | '/modular-ot-manufacturer-agra'
+    | '/modular-ot-manufacturer-dehradun'
+    | '/modular-ot-manufacturer-ghaziabad'
+    | '/modular-ot-manufacturer-gorakhpur'
+    | '/modular-ot-manufacturer-kanpur'
+    | '/modular-ot-manufacturer-prayagraj'
+    | '/modular-ot-manufacturer-varanasi'
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
@@ -396,6 +480,13 @@ export interface FileRouteTypes {
     | '/locations'
     | '/modular-ot-ceiling'
     | '/modular-ot-doors'
+    | '/modular-ot-manufacturer-agra'
+    | '/modular-ot-manufacturer-dehradun'
+    | '/modular-ot-manufacturer-ghaziabad'
+    | '/modular-ot-manufacturer-gorakhpur'
+    | '/modular-ot-manufacturer-kanpur'
+    | '/modular-ot-manufacturer-prayagraj'
+    | '/modular-ot-manufacturer-varanasi'
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
@@ -431,6 +522,13 @@ export interface RootRouteChildren {
   LocationsRoute: typeof LocationsRoute
   ModularOtCeilingRoute: typeof ModularOtCeilingRoute
   ModularOtDoorsRoute: typeof ModularOtDoorsRoute
+  ModularOtManufacturerAgraRoute: typeof ModularOtManufacturerAgraRoute
+  ModularOtManufacturerDehradunRoute: typeof ModularOtManufacturerDehradunRoute
+  ModularOtManufacturerGhaziabadRoute: typeof ModularOtManufacturerGhaziabadRoute
+  ModularOtManufacturerGorakhpurRoute: typeof ModularOtManufacturerGorakhpurRoute
+  ModularOtManufacturerKanpurRoute: typeof ModularOtManufacturerKanpurRoute
+  ModularOtManufacturerPrayagrajRoute: typeof ModularOtManufacturerPrayagrajRoute
+  ModularOtManufacturerVaranasiRoute: typeof ModularOtManufacturerVaranasiRoute
   ModularOtWallPanelsRoute: typeof ModularOtWallPanelsRoute
   OperationTheatreElectricalSystemRoute: typeof OperationTheatreElectricalSystemRoute
   OperationTheatreHvacSystemRoute: typeof OperationTheatreHvacSystemRoute
@@ -531,6 +629,55 @@ declare module '@tanstack/react-router' {
       path: '/modular-ot-doors'
       fullPath: '/modular-ot-doors'
       preLoaderRoute: typeof ModularOtDoorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-agra': {
+      id: '/modular-ot-manufacturer-agra'
+      path: '/modular-ot-manufacturer-agra'
+      fullPath: '/modular-ot-manufacturer-agra'
+      preLoaderRoute: typeof ModularOtManufacturerAgraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-dehradun': {
+      id: '/modular-ot-manufacturer-dehradun'
+      path: '/modular-ot-manufacturer-dehradun'
+      fullPath: '/modular-ot-manufacturer-dehradun'
+      preLoaderRoute: typeof ModularOtManufacturerDehradunRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-ghaziabad': {
+      id: '/modular-ot-manufacturer-ghaziabad'
+      path: '/modular-ot-manufacturer-ghaziabad'
+      fullPath: '/modular-ot-manufacturer-ghaziabad'
+      preLoaderRoute: typeof ModularOtManufacturerGhaziabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-gorakhpur': {
+      id: '/modular-ot-manufacturer-gorakhpur'
+      path: '/modular-ot-manufacturer-gorakhpur'
+      fullPath: '/modular-ot-manufacturer-gorakhpur'
+      preLoaderRoute: typeof ModularOtManufacturerGorakhpurRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-kanpur': {
+      id: '/modular-ot-manufacturer-kanpur'
+      path: '/modular-ot-manufacturer-kanpur'
+      fullPath: '/modular-ot-manufacturer-kanpur'
+      preLoaderRoute: typeof ModularOtManufacturerKanpurRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-prayagraj': {
+      id: '/modular-ot-manufacturer-prayagraj'
+      path: '/modular-ot-manufacturer-prayagraj'
+      fullPath: '/modular-ot-manufacturer-prayagraj'
+      preLoaderRoute: typeof ModularOtManufacturerPrayagrajRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-varanasi': {
+      id: '/modular-ot-manufacturer-varanasi'
+      path: '/modular-ot-manufacturer-varanasi'
+      fullPath: '/modular-ot-manufacturer-varanasi'
+      preLoaderRoute: typeof ModularOtManufacturerVaranasiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/modular-ot-wall-panels': {
@@ -696,6 +843,13 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsRoute: LocationsRoute,
   ModularOtCeilingRoute: ModularOtCeilingRoute,
   ModularOtDoorsRoute: ModularOtDoorsRoute,
+  ModularOtManufacturerAgraRoute: ModularOtManufacturerAgraRoute,
+  ModularOtManufacturerDehradunRoute: ModularOtManufacturerDehradunRoute,
+  ModularOtManufacturerGhaziabadRoute: ModularOtManufacturerGhaziabadRoute,
+  ModularOtManufacturerGorakhpurRoute: ModularOtManufacturerGorakhpurRoute,
+  ModularOtManufacturerKanpurRoute: ModularOtManufacturerKanpurRoute,
+  ModularOtManufacturerPrayagrajRoute: ModularOtManufacturerPrayagrajRoute,
+  ModularOtManufacturerVaranasiRoute: ModularOtManufacturerVaranasiRoute,
   ModularOtWallPanelsRoute: ModularOtWallPanelsRoute,
   OperationTheatreElectricalSystemRoute: OperationTheatreElectricalSystemRoute,
   OperationTheatreHvacSystemRoute: OperationTheatreHvacSystemRoute,
