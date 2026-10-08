@@ -561,8 +561,14 @@ export type Database = {
           contact_method: string | null
           created_at: string
           email: string | null
+          fbc: string | null
+          fbclid: string | null
+          fbp: string | null
+          gbraid: string | null
+          gclid: string | null
           id: string
           internal_notes: string | null
+          landing_page: string | null
           message: string | null
           name: string
           page_url: string | null
@@ -570,6 +576,7 @@ export type Database = {
           product: string | null
           project_type: string | null
           quantity: string | null
+          referrer: string | null
           requirement: string | null
           source: string
           state: string | null
@@ -579,6 +586,7 @@ export type Database = {
           utm_medium: string | null
           utm_source: string | null
           utm_term: string | null
+          wbraid: string | null
         }
         Insert: {
           city?: string | null
@@ -586,8 +594,14 @@ export type Database = {
           contact_method?: string | null
           created_at?: string
           email?: string | null
+          fbc?: string | null
+          fbclid?: string | null
+          fbp?: string | null
+          gbraid?: string | null
+          gclid?: string | null
           id?: string
           internal_notes?: string | null
+          landing_page?: string | null
           message?: string | null
           name: string
           page_url?: string | null
@@ -595,6 +609,7 @@ export type Database = {
           product?: string | null
           project_type?: string | null
           quantity?: string | null
+          referrer?: string | null
           requirement?: string | null
           source?: string
           state?: string | null
@@ -604,6 +619,7 @@ export type Database = {
           utm_medium?: string | null
           utm_source?: string | null
           utm_term?: string | null
+          wbraid?: string | null
         }
         Update: {
           city?: string | null
@@ -611,8 +627,14 @@ export type Database = {
           contact_method?: string | null
           created_at?: string
           email?: string | null
+          fbc?: string | null
+          fbclid?: string | null
+          fbp?: string | null
+          gbraid?: string | null
+          gclid?: string | null
           id?: string
           internal_notes?: string | null
+          landing_page?: string | null
           message?: string | null
           name?: string
           page_url?: string | null
@@ -620,6 +642,7 @@ export type Database = {
           product?: string | null
           project_type?: string | null
           quantity?: string | null
+          referrer?: string | null
           requirement?: string | null
           source?: string
           state?: string | null
@@ -629,6 +652,7 @@ export type Database = {
           utm_medium?: string | null
           utm_source?: string | null
           utm_term?: string | null
+          wbraid?: string | null
         }
         Relationships: []
       }
