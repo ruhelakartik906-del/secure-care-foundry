@@ -69,7 +69,7 @@ export const products: Product[] = [
     name: "Modular Operation Theatre",
     shortName: "Modular OT",
     category: "Operation Theatre",
-    image: jointLessPhoto.url,
+    image: modularOtRoomPhoto.url,
     keyword: "Modular Operation Theatre",
     short: "Complete modular OT design, manufacturing and installation with wall and ceiling panels, laminar airflow, pendants and control systems.",
     intro:
@@ -158,7 +158,7 @@ export const products: Product[] = [
     name: "Laminar Air Flow",
     shortName: "Laminar Air Flow",
     category: "Operation Theatre",
-    image: laminar,
+    image: laminarPhoto.url,
     keyword: "Laminar Air Flow",
     short: "Laminar air flow ceiling systems with HEPA filtration for operation theatres and clean areas.",
     intro: "Laminar air flow systems deliver a unidirectional flow of HEPA-filtered air over the operating zone, helping maintain a clean field during surgery.",
