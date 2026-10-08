@@ -117,7 +117,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link to="/search" aria-label="Search" className="p-2 text-foreground hover:text-brand-blue"><Search className="h-5 w-5" /></Link>
           <a href={site.phoneHref} className="hidden items-center gap-1.5 text-sm font-semibold text-brand-blue xl:flex"><Phone className="h-4 w-4" />Call Now</a>
-          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hidden border border-border px-3 py-2 text-sm font-semibold xl:inline-flex">WhatsApp</a>
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hidden items-center gap-1.5 border border-border px-3 py-2 text-sm font-semibold xl:inline-flex"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a>
           <Button onClick={() => open("Modular Operation Theatre")} className="hidden rounded-sm sm:inline-flex">Get a Quote</Button>
           <button className="p-2 lg:hidden" aria-label="Open menu" aria-expanded={mobile} onClick={() => setMobile(true)}><Menu className="h-6 w-6" /></button>
         </div>
