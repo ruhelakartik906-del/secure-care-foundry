@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Factory, Mail, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
+import { Clock, Factory, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import { site, whatsappLink } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/common";
@@ -32,7 +32,7 @@ function Contact() {
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
             <Button className="rounded-sm" asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button>
-            <Button variant="outline" className="rounded-sm" asChild><a href={whatsappLink()} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button>
+            <Button variant="outline" className="rounded-sm" asChild><a href={whatsappLink()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button>
             <Button variant="outline" className="rounded-sm" asChild><a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener noreferrer"><Navigation className="h-4 w-4" />Directions</a></Button>
           </div>
           <iframe title="Unicare Medical Solutions office map" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="aspect-[4/3] w-full border border-border" />

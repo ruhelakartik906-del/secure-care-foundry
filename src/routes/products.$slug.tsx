@@ -6,7 +6,7 @@ import { PageHero, ProductCard, Faqs, faqSchema, CtaBand, SectionHead } from "@/
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { site, whatsappLink } from "@/data/site";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { BlogCard } from "@/components/site/BlogCard";
 import { absUrl } from "@/lib/site-url";
@@ -121,7 +121,7 @@ function ProductPage() {
           {comparisons.filter((c) => c.products.includes(p.slug)).length > 0 && <p>Comparing options? Read {comparisons.filter((c) => c.products.includes(p.slug)).map((c, i) => <span key={c.slug}>{i ? ", " : ""}<Link to="/resources/comparisons/$slug" params={{ slug: c.slug }}>{c.title}</Link></span>)}.</p>}
           <h2>Pricing & Service Areas</h2>
           <p>See indicative ranges in our <Link to="/modular-ot-cost-india">Modular OT cost guide</Link>, read <Link to="/resources">planning resources</Link> or browse <Link to="/faqs">all FAQs</Link>. We serve hospital projects in {cities.map((c, i) => <span key={c.slug}>{i ? ", " : ""}<a href={cityPath(c)}>{c.name}</a></span>)} and other locations.</p>
-          <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild variant="outline"><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${p.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button></div>
+          <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild variant="outline"><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${p.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button></div>
         </div>
         <aside className="lg:col-span-4">
           <div className="sticky top-28 border border-border p-6">

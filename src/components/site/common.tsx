@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { priceLabel, type Product } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
 import { Button } from "@/components/ui/button";
@@ -78,7 +78,7 @@ export function CtaBand({ title = "Discuss Your Hospital Project", text = "Tell 
         <div className="flex flex-wrap gap-3">
           <Button size="lg" className="rounded-sm" onClick={() => open()}>Get a Quote</Button>
           <Button size="lg" variant="outline" className="rounded-sm" asChild>
-            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a>
+            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a>
           </Button>
         </div>
       </div>
