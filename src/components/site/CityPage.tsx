@@ -20,7 +20,7 @@ export const cityHead = (c: City) => {
 
 const productLinks = [
   ["Modular Operation Theatre", "modular-operation-theatre"], ["Medical Gas Pipeline System", "medical-gas-pipeline-system"], ["Laminar Air Flow", "laminar-air-flow"],
-  ["Surgical Scrub Sink", "surgical-scrub-sink-station"], ["Bed Head Panel", "bed-head-panel"], ["AGSS", "agss"],
+  ["OT Pendant", "ot-pendant"], ["LED Surgical Light", "led-surgical-light"], ["Hermetic OT Door", "hermetic-ot-door"], ["AGSS", "agss"],
 ] as const;
 
 export function CityPage({ c }: { c: City }) {
