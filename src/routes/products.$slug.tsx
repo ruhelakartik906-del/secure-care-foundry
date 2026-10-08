@@ -9,6 +9,8 @@ import { site, whatsappLink } from "@/data/site";
 import { MessageCircle, Phone } from "lucide-react";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { BlogCard } from "@/components/site/BlogCard";
+import { absUrl } from "@/lib/site-url";
+import { cities, cityPath } from "@/data/cities";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -21,7 +23,8 @@ export const Route = createFileRoute("/products/$slug")({
     if (!p) return { meta: [{ title: "Product not found" }, { name: "robots", content: "noindex" }] };
     const path = `/products/${p.slug}`;
     const s = seo(`${p.name} Manufacturer & Installation | Unicare`, p.short, path, "product");
-    return { ...s, scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: p.name, path }]), faqSchema(p.faqs)] };
+    const productLd = { type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Product", name: p.name, description: p.short, category: p.category, url: absUrl(path), image: absUrl(p.image), brand: { "@type": "Brand", name: "Unicare Medical Solutions" } }) };
+    return { ...s, scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: p.name, path }]), productLd, faqSchema(p.faqs)] };
   },
   component: ProductPage,
 });
@@ -84,14 +87,16 @@ function ProductPage() {
           <p className="text-xs">Final specifications are confirmed per project after technical planning.</p>
           <h2>Applications</h2>
           <ul>{p.applications.map((a) => <li key={a}>{a}</li>)}</ul>
-          <h2>Installation Process</h2>
-          <ol className="mb-6 grid gap-2 sm:grid-cols-2">{installSteps.map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol>
+          <h2>{p.installation ? "Installation & Use" : "Installation Process"}</h2>
+          <ol className="mb-6 grid gap-2 sm:grid-cols-2">{(p.installation ?? installSteps).map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol>
           <h2>Benefits</h2>
           <ul>{p.benefits.map((b) => <li key={b}>{b}</li>)}</ul>
           <h2>Why Choose Unicare</h2>
           <p>We handle design, manufacturing, installation and support as one coordinated project, so hospitals and contractors have a single point of responsibility.</p>
           <h2>Frequently Asked Questions</h2>
           <Faqs faqs={p.faqs} />
+          <h2>Pricing & Service Areas</h2>
+          <p>See indicative ranges in our <Link to="/modular-ot-cost-india">Modular OT cost guide</Link>, read <Link to="/resources">planning resources</Link> or browse <Link to="/faqs">all FAQs</Link>. We serve hospital projects in {cities.map((c, i) => <span key={c.slug}>{i ? ", " : ""}<a href={cityPath(c)}>{c.name}</a></span>)} and other locations.</p>
           <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild variant="outline"><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${p.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp</a></Button></div>
         </div>
         <aside className="lg:col-span-4">
