@@ -15,7 +15,7 @@ function Contact() {
   const mapQuery = encodeURIComponent("357 Malkhan Singh Complex Opp Ambedkar Bhawan Dasna Road Ghaziabad 201001 Uttar Pradesh India");
   return (
     <>
-      <PageHero title="Contact Us" intro="Tell us about your project. Our team will respond with the right next step." crumbs={[{ label: "Contact Us" }]} />
+      <PageHero title="Contact Unicare Medical Solutions" intro="Tell us about your hospital, OT or medical infrastructure requirement. Our team can discuss the project scope, technical requirements, product options and estimated project requirements." crumbs={[{ label: "Contact Us" }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="border border-border p-6 md:p-8 lg:col-span-7">
           <p className="eyebrow">Project Enquiry</p><h2 className="mb-2 mt-2 text-3xl font-bold">Get In Touch</h2><p className="mb-6 text-muted-foreground">Share your hospital, Modular OT or medical infrastructure requirement.</p>
