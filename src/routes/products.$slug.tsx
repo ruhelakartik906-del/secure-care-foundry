@@ -11,7 +11,8 @@ import { Phone } from "lucide-react";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { BlogCard } from "@/components/site/BlogCard";
 import { absUrl } from "@/lib/site-url";
-import mgpsPlantPhoto from "@/assets/mgps-plant-room.png.asset.json";
+import mgpsPlantPhotoSrc from "@/assets/mgps-plant-room.webp";
+const mgpsPlantPhoto = { url: mgpsPlantPhotoSrc };
 import { cities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
 

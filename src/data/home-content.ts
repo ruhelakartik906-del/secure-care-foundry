@@ -1,6 +1,9 @@
-import hero from "@/assets/modular-ot-surgical-theatre.png.asset.json";
-import otRoom from "@/assets/modular-ot-room.png.asset.json";
-import gasImg from "@/assets/mgps-oxygen-outlet.png.asset.json";
+import heroSrc from "@/assets/modular-ot-surgical-theatre.webp";
+const hero = { url: heroSrc };
+import otRoomSrc from "@/assets/modular-ot-room.webp";
+const otRoom = { url: otRoomSrc };
+import gasImgSrc from "@/assets/mgps-oxygen-outlet.webp";
+const gasImg = { url: gasImgSrc };
 
 /** Built-in homepage copy. Admin edits in `cms_pages` (slug "home") override individual fields; blank fields fall back here. */
 export const homeDefaults = {
