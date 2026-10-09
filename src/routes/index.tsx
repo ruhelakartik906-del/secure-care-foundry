@@ -17,7 +17,7 @@ import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ ...seo("Modular OT Manufacturer in India | Unicare Medical Solutions", "Modular OT manufacturer in India: design, manufacturing and installation of modular operation theatres, medical gas pipeline systems, laminar air flow and hospital infrastructure.", "/"), scripts: [faqSchema(homeFaqs)] }),
+  head: () => ({ ...seo("Modular Operation Theatre Manufacturers - Unicare Medical Solutions", "Modular OT manufacturer in India: design, manufacturing and installation of modular operation theatres, medical gas pipeline systems, laminar air flow and hospital infrastructure.", "/"), scripts: [faqSchema(homeFaqs)] }),
   loader: async () => {
     try { const { data } = await supabase.from("cms_pages").select("content").eq("slug", "home").maybeSingle(); return { home: mergeHome(data?.content) }; }
     catch { return { home: homeDefaults }; }
