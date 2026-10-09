@@ -37,7 +37,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const image = c?.ogImage || b.image;
     const s = seo(c?.ogTitle || title, c?.ogDescription || description, path, "article", image, { canonical: c?.canonical, index: c?.index ?? true, follow: c?.follow ?? true, twitterTitle: c?.twitterTitle, twitterDescription: c?.twitterDescription, twitterImage: c?.twitterImage });
     s.meta[0] = { title };
-    s.meta[1] = { name: "description", content: description };
+    s.meta[1] = { name: "description", content: fitDesc(description) };
     const scripts = [
       { type: "application/ld+json", children: JSON.stringify({
         "@context": "https://schema.org", "@type": c?.schemaType ?? "BlogPosting", headline: b.title, description,
