@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { blogs, getBlog } from "@/data/blogs";
 import { getProduct } from "@/data/products";
 import { PageHero, ProductCard, Faqs, faqSchema, CtaBand } from "@/components/site/common";
-import { seo, breadcrumbSchema } from "@/lib/seo";
+import { seo, breadcrumbSchema, fitDesc } from "@/lib/seo";
 import { absUrl } from "@/lib/site-url";
 import { cleanHtml } from "@/lib/html";
 import { supabase } from "@/integrations/supabase/client";
