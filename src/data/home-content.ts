@@ -1,4 +1,5 @@
-import hero from "@/assets/modular-ot-room.png.asset.json";
+import hero from "@/assets/modular-ot-surgical-theatre.png.asset.json";
+import otRoom from "@/assets/modular-ot-room.png.asset.json";
 import gasImg from "@/assets/mgps-oxygen-outlet.png.asset.json";
 
 /** Built-in homepage copy. Admin edits in `cms_pages` (slug "home") override individual fields; blank fields fall back here. */
