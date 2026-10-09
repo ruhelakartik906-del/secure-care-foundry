@@ -90,8 +90,8 @@ export function CtaBand({ title = "Discuss Your Hospital Project", text = "Tell 
 export function FloatingActions() {
   return (
     <>
-      <Button size="icon" className="fixed bottom-[86px] right-[18px] z-50 hidden h-12 w-12 md:inline-flex rounded-full shadow-lg md:bottom-[90px] md:right-[26px] md:h-11 md:w-11" asChild>
-        <a href={site.phoneHref} aria-label={`Call Unicare at ${site.phone}`} title="Call Unicare"><Phone className="h-5 w-5" /></a>
+      <Button size="icon" className="fixed bottom-[92px] right-6 z-50 hidden h-14 w-14 md:inline-flex rounded-full shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl" asChild>
+        <a href={site.phoneHref} aria-label={`Call Unicare at ${site.phone}`} title="Call Unicare"><Phone className="h-7 w-7" /></a>
       </Button>
       <a
         href={whatsappLink()}
