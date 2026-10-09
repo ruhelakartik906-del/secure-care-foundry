@@ -1,6 +1,9 @@
-import modularOtRoom from "@/assets/modular-ot-room.png.asset.json";
-import gas from "@/assets/mgps-copper-pipeline.png.asset.json";
-import laminarPhoto from "@/assets/laminar-air-flow.png.asset.json";
+import modularOtRoomSrc from "@/assets/modular-ot-room.webp";
+const modularOtRoom = { url: modularOtRoomSrc };
+import gasSrc from "@/assets/mgps-copper-pipeline.webp";
+const gas = { url: gasSrc };
+import laminarPhotoSrc from "@/assets/laminar-air-flow.webp";
+const laminarPhoto = { url: laminarPhotoSrc };
 
 export type Blog = {
   slug: string;
