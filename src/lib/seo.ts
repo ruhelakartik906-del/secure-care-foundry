@@ -26,8 +26,11 @@ const DESC_CTA = " Contact Unicare Medical Solutions for design, installation an
 /** Keep descriptions in the ~120–160 char range at word boundaries. */
 export const fitDesc = (d: string) => {
   let s = (d || "").replace(/\s+/g, " ").trim();
-  if (s.length < 120 && !/Unicare/.test(s)) s += DESC_CTA;
-  else if (s.length < 110) s += " Request a project-specific quote today.";
+  if (s.length < 120) {
+    const ctas = [DESC_CTA, " Get design, installation and a quote from Unicare.", " Request a project quote today."];
+    const fit = ctas.find((c) => (s + c).length <= 160);
+    if (fit) s += fit;
+  }
   if (s.length > 160) {
     const cut = s.slice(0, 158);
     const dot = cut.lastIndexOf(". ");
