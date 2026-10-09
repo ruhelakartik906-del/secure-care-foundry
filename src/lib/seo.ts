@@ -14,7 +14,36 @@ export type SeoOptions = {
 export const robotsContent = (index = true, follow = true) =>
   `${index ? "index" : "noindex"}, ${follow ? "follow" : "nofollow"}${index ? ", max-image-preview:large" : ""}`;
 
-export const seo = (title: string, description: string, path: string, type = "website", image = defaultImage, opts: SeoOptions = {}) => {
+/** Keep titles near 60 chars by shortening the brand suffix / filler words. */
+export const fitTitle = (t: string) => {
+  let s = t.trim();
+  if (s.endsWith(" - Unicare Medical Solutions")) return s; // user-chosen homepage title
+  if (s.length > 60) s = s.replace(/ \| Unicare Medical Solutions$/, " | Unicare");
+  if (s.length > 60) s = s.replace(" Manufacturer & Installation", " Manufacturer");
+  if (s.length > 60) s = s.replace("Modular Operation Theatre", "Modular OT");
+  if (s.length > 60) s = s.replace(/ \| Unicare$/, "");
+  return s;
+};
+const DESC_CTA = " Contact Unicare Medical Solutions for design, installation and a project quote.";
+/** Keep descriptions in the ~120–160 char range at word boundaries. */
+export const fitDesc = (d: string) => {
+  let s = (d || "").replace(/\s+/g, " ").trim();
+  if (s.length < 120) {
+    const ctas = [DESC_CTA, " Get design, installation and a quote from Unicare.", " Request a project quote today."];
+    const fit = ctas.find((c) => (s + c).length <= 160);
+    if (fit) s += fit;
+  }
+  if (s.length > 160) {
+    const cut = s.slice(0, 158);
+    const dot = cut.lastIndexOf(". ");
+    s = dot > 110 ? cut.slice(0, dot + 1) : cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:]$/, "") + ".";
+  }
+  return s;
+};
+
+export const seo = (rawTitle: string, rawDescription: string, path: string, type = "website", image = defaultImage, opts: SeoOptions = {}) => {
+  const title = fitTitle(rawTitle);
+  const description = fitDesc(rawDescription);
   const canonical = absUrl(opts.canonical || path);
   const img = absUrl(image || defaultImage);
   const tImg = absUrl(opts.twitterImage || image || defaultImage);
