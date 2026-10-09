@@ -17,9 +17,10 @@ export const robotsContent = (index = true, follow = true) =>
 /** Keep titles near 60 chars by shortening the brand suffix / filler words. */
 export const fitTitle = (t: string) => {
   let s = t.trim();
-  if (s.length > 60) s = s.replace(/ [|-] Unicare Medical Solutions$/, " | Unicare");
+  if (s.length > 60) s = s.replace(/ \| Unicare Medical Solutions$/, " | Unicare");
   if (s.length > 60) s = s.replace(" Manufacturer & Installation", " Manufacturer");
   if (s.length > 60) s = s.replace("Modular Operation Theatre", "Modular OT");
+  if (s.length > 60) s = s.replace(/ \| Unicare$/, "");
   return s;
 };
 const DESC_CTA = " Contact Unicare Medical Solutions for design, installation and a project quote.";
