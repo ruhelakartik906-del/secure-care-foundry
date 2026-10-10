@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PageSlugRouteImport } from './routes/$pageSlug'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as FaqsRouteImport } from './routes/faqs'
@@ -33,15 +32,10 @@ import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wal
 import { Route as OperationTheatreElectricalSystemRouteImport } from './routes/operation-theatre-electrical-system'
 import { Route as OperationTheatreHvacSystemRouteImport } from './routes/operation-theatre-hvac-system'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
-import { Route as AdminDashboardRouteImport } from './routes/admin_.dashboard'
-import { Route as AdminLoginRouteImport } from './routes/admin_.login'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as MedicalGasPipelineManufacturerStateRouteImport } from './routes/medical-gas-pipeline-manufacturer.$state'
 import { Route as MedicalGasPipelineManufacturersInStateRouteImport } from './routes/medical-gas-pipeline-manufacturers-in.$state'
 import { Route as ModularOperationTheatreManufacturerStateRouteImport } from './routes/modular-operation-theatre-manufacturer.$state'
@@ -49,7 +43,6 @@ import { Route as ModularOperationTheatreManufacturersInStateRouteImport } from 
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
-import { Route as BlogCategoryCategoryRouteImport } from './routes/blog.category.$category'
 import { Route as ProductsModularOperationTheatreVariantRouteImport } from './routes/products.modular-operation-theatre.$variant'
 import { Route as ResourcesComparisonsIndexRouteImport } from './routes/resources.comparisons.index'
 import { Route as ResourcesComparisonsSlugRouteImport } from './routes/resources.comparisons.$slug'
@@ -69,11 +62,6 @@ const PageSlugRoute = PageSlugRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -186,11 +174,6 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
@@ -209,26 +192,6 @@ const SolutionsRoute = SolutionsRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminDashboardRoute = AdminDashboardRouteImport.update({
-  id: '/admin_/dashboard',
-  path: '/admin/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin_/login',
-  path: '/admin/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogIndexRoute = BlogIndexRouteImport.update({
-  id: '/blog/',
-  path: '/blog/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MedicalGasPipelineManufacturerStateRoute =
@@ -270,11 +233,6 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogCategoryCategoryRoute = BlogCategoryCategoryRouteImport.update({
-  id: '/blog/category/$category',
-  path: '/blog/category/$category',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProductsModularOperationTheatreVariantRoute =
   ProductsModularOperationTheatreVariantRouteImport.update({
     id: '/products/modular-operation-theatre/$variant',
@@ -309,7 +267,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
@@ -330,23 +287,17 @@ export interface FileRoutesByFullPath {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
-  '/blog/': typeof BlogIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/resources/': typeof ResourcesIndexRoute
-  '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
   '/resources/comparisons/$slug': typeof ResourcesComparisonsSlugRoute
   '/resources/compliance/$slug': typeof ResourcesComplianceSlugRoute
@@ -357,7 +308,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
@@ -378,23 +328,17 @@ export interface FileRoutesByTo {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
-  '/blog': typeof BlogIndexRoute
   '/products': typeof ProductsIndexRoute
   '/resources': typeof ResourcesIndexRoute
-  '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
   '/resources/comparisons/$slug': typeof ResourcesComparisonsSlugRoute
   '/resources/compliance/$slug': typeof ResourcesComplianceSlugRoute
@@ -406,7 +350,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
@@ -427,23 +370,17 @@ export interface FileRoutesById {
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
-  '/admin_/dashboard': typeof AdminDashboardRoute
-  '/admin_/login': typeof AdminLoginRoute
-  '/blog/$slug': typeof BlogSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
-  '/blog/': typeof BlogIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/resources/': typeof ResourcesIndexRoute
-  '/blog/category/$category': typeof BlogCategoryCategoryRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
   '/resources/comparisons/$slug': typeof ResourcesComparisonsSlugRoute
   '/resources/compliance/$slug': typeof ResourcesComplianceSlugRoute
@@ -456,7 +393,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$pageSlug'
     | '/about'
-    | '/admin'
     | '/contact'
     | '/disclaimer'
     | '/faqs'
@@ -477,23 +413,17 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
-    | '/reset-password'
     | '/search'
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
-    | '/admin/dashboard'
-    | '/admin/login'
-    | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
-    | '/blog/'
     | '/products/'
     | '/resources/'
-    | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
     | '/resources/comparisons/$slug'
     | '/resources/compliance/$slug'
@@ -504,7 +434,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$pageSlug'
     | '/about'
-    | '/admin'
     | '/contact'
     | '/disclaimer'
     | '/faqs'
@@ -525,23 +454,17 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
-    | '/reset-password'
     | '/search'
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
-    | '/admin/dashboard'
-    | '/admin/login'
-    | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
-    | '/blog'
     | '/products'
     | '/resources'
-    | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
     | '/resources/comparisons/$slug'
     | '/resources/compliance/$slug'
@@ -552,7 +475,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$pageSlug'
     | '/about'
-    | '/admin'
     | '/contact'
     | '/disclaimer'
     | '/faqs'
@@ -573,23 +495,17 @@ export interface FileRouteTypes {
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
     | '/privacy-policy'
-    | '/reset-password'
     | '/search'
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
-    | '/admin_/dashboard'
-    | '/admin_/login'
-    | '/blog/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
-    | '/blog/'
     | '/products/'
     | '/resources/'
-    | '/blog/category/$category'
     | '/products/modular-operation-theatre/$variant'
     | '/resources/comparisons/$slug'
     | '/resources/compliance/$slug'
@@ -601,7 +517,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PageSlugRoute: typeof PageSlugRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqsRoute: typeof FaqsRoute
@@ -622,23 +537,17 @@ export interface RootRouteChildren {
   OperationTheatreElectricalSystemRoute: typeof OperationTheatreElectricalSystemRoute
   OperationTheatreHvacSystemRoute: typeof OperationTheatreHvacSystemRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
   SearchRoute: typeof SearchRoute
   SitemapRoute: typeof SitemapRoute
   SolutionsRoute: typeof SolutionsRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
-  AdminDashboardRoute: typeof AdminDashboardRoute
-  AdminLoginRoute: typeof AdminLoginRoute
-  BlogSlugRoute: typeof BlogSlugRoute
   MedicalGasPipelineManufacturerStateRoute: typeof MedicalGasPipelineManufacturerStateRoute
   MedicalGasPipelineManufacturersInStateRoute: typeof MedicalGasPipelineManufacturersInStateRoute
   ModularOperationTheatreManufacturerStateRoute: typeof ModularOperationTheatreManufacturerStateRoute
   ModularOperationTheatreManufacturersInStateRoute: typeof ModularOperationTheatreManufacturersInStateRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
-  BlogIndexRoute: typeof BlogIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
-  BlogCategoryCategoryRoute: typeof BlogCategoryCategoryRoute
   ProductsModularOperationTheatreVariantRoute: typeof ProductsModularOperationTheatreVariantRoute
   ResourcesComparisonsSlugRoute: typeof ResourcesComparisonsSlugRoute
   ResourcesComplianceSlugRoute: typeof ResourcesComplianceSlugRoute
@@ -667,13 +576,6 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -816,13 +718,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -849,34 +744,6 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin_/dashboard': {
-      id: '/admin_/dashboard'
-      path: '/admin/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin_/login': {
-      id: '/admin_/login'
-      path: '/admin/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/': {
-      id: '/blog/'
-      path: '/blog'
-      fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/medical-gas-pipeline-manufacturer/$state': {
@@ -928,13 +795,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/category/$category': {
-      id: '/blog/category/$category'
-      path: '/blog/category/$category'
-      fullPath: '/blog/category/$category'
-      preLoaderRoute: typeof BlogCategoryCategoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/products/modular-operation-theatre/$variant': {
       id: '/products/modular-operation-theatre/$variant'
       path: '/products/modular-operation-theatre/$variant'
@@ -977,7 +837,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PageSlugRoute: PageSlugRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqsRoute: FaqsRoute,
@@ -999,14 +858,10 @@ const rootRouteChildren: RootRouteChildren = {
   OperationTheatreElectricalSystemRoute: OperationTheatreElectricalSystemRoute,
   OperationTheatreHvacSystemRoute: OperationTheatreHvacSystemRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
   SearchRoute: SearchRoute,
   SitemapRoute: SitemapRoute,
   SolutionsRoute: SolutionsRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
-  AdminDashboardRoute: AdminDashboardRoute,
-  AdminLoginRoute: AdminLoginRoute,
-  BlogSlugRoute: BlogSlugRoute,
   MedicalGasPipelineManufacturerStateRoute:
     MedicalGasPipelineManufacturerStateRoute,
   MedicalGasPipelineManufacturersInStateRoute:
@@ -1016,10 +871,8 @@ const rootRouteChildren: RootRouteChildren = {
   ModularOperationTheatreManufacturersInStateRoute:
     ModularOperationTheatreManufacturersInStateRoute,
   ProductsSlugRoute: ProductsSlugRoute,
-  BlogIndexRoute: BlogIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
-  BlogCategoryCategoryRoute: BlogCategoryCategoryRoute,
   ProductsModularOperationTheatreVariantRoute:
     ProductsModularOperationTheatreVariantRoute,
   ResourcesComparisonsSlugRoute: ResourcesComparisonsSlugRoute,
