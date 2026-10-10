@@ -29,7 +29,7 @@ function Search() {
             <Group title="Products">{ps.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="block border-b border-border py-3 hover:text-brand-blue">{p.name}</Link>)}</Group>
             <Group title="Modular OT Types">{variants.map((p) => <Link key={p.slug} to="/products/modular-operation-theatre/$variant" params={{ variant: p.slug }} className="block border-b border-border py-3 hover:text-brand-blue">{p.name}</Link>)}</Group>
             <Group title="Locations">{ls.slice(0, 12).map((l) => <Link key={l.slug} to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }} className="block border-b border-border py-3 hover:text-brand-blue">Modular OT Manufacturers in {l.name}</Link>)}</Group>
-            {!ps.length && !variants.length && !bs.length && !ls.length && <p className="text-muted-foreground">No results. Try a different word, or contact us directly.</p>}
+            {!ps.length && !variants.length && !ls.length && <p className="text-muted-foreground">No results. Try a different word, or contact us directly.</p>}
           </div>
         )}
       </section>
