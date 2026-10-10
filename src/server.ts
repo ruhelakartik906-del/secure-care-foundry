@@ -1,3 +1,4 @@
+import { staticPaths } from "./lib/static-pages";
 import { cities, cityPath } from "@/data/cities";
 import { compliance, comparisons } from "@/data/resources";
 import "./lib/error-capture";
@@ -58,13 +59,7 @@ const xmlEsc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").rep
 async function sitemapXml(origin: string) {
   const entries = new Map<string, string | undefined>();
   const add = (path: string, lastmod?: string) => { if (!entries.has(path) || lastmod) entries.set(path, lastmod); };
-  ["/", "/products", "/about", "/contact", "/locations", "/privacy-policy", "/disclaimer", "/terms-and-conditions", "/sitemap", "/solutions", "/get-a-quote", "/modular-ot-wall-panels", "/modular-ot-ceiling", "/operation-theatre-hvac-system", "/hepa-filtration-system-for-operation-theatre", "/modular-ot-doors", "/operation-theatre-electrical-system", "/modular-ot-cost-india", "/resources", "/resources/compliance", "/resources/comparisons", "/faqs"].forEach((p) => add(p));
-  products.forEach((p) => add(`/products/${p.slug}`));
-  modularOtOptions.forEach((p) => add(`/products/modular-operation-theatre/${p.slug}`));
-  cities.forEach((c) => add(cityPath(c)));
-  compliance.forEach((r) => add(`/resources/compliance/${r.slug}`));
-  comparisons.forEach((r) => add(`/resources/comparisons/${r.slug}`));
-  locations.forEach((l) => { add(`/modular-operation-theatre-manufacturers-in/${l.slug}`); add(`/medical-gas-pipeline-manufacturers-in/${l.slug}`); });
+  staticPaths().forEach((p) => add(p));
   const body = [...entries].map(([p, lm]) => `\n  <url><loc>${xmlEsc(origin + (p === "/" ? "/" : p))}</loc>${lm ? `<lastmod>${new Date(lm).toISOString().slice(0, 10)}</lastmod>` : ""}</url>`).join("");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${body}\n</urlset>`;
 }
