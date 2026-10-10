@@ -20,7 +20,7 @@ import { captureUtm } from "@/lib/utm";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
-function NotFoundComponent() {
+export function NotFoundComponent() {
   return (
     <div className="site-wrap flex min-h-[60vh] flex-col items-start justify-center py-20">
       <p className="eyebrow">Error 404</p>
