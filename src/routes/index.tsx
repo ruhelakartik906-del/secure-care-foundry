@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { Activity, ArrowRight, Building2, Check, ClipboardCheck, Cross, Factory, GraduationCap, HeartPulse, Hospital, Layers, Microscope, Phone, ScanLine, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
-import { mergeHome, homeDefaults } from "@/data/home-content";
+import { homeDefaults } from "@/data/home-content";
 import { modularOtOptions, products } from "@/data/products";
 import { cities, cityPath } from "@/data/cities";
 import { pricing } from "@/data/pricing";

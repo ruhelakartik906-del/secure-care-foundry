@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BookOpen, FileCheck2, HelpCircle, Scale } from "lucide-react";
+import { FileCheck2, HelpCircle, Scale } from "lucide-react";
 import { PageHero, CtaBand, SectionHead } from "@/components/site/common";
 import { ResourceList } from "@/components/site/ResourcePage";
 import { compliance, comparisons } from "@/data/resources";
