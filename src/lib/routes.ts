@@ -21,7 +21,6 @@ export const routes = {
   compliance: "/resources/compliance",
   comparisons: "/resources/comparisons",
   faqs: "/faqs",
-  blog: "/blog",
   contact: "/contact",
   quote: "/get-a-quote",
 } as const;

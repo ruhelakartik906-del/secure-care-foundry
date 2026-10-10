@@ -17,7 +17,6 @@ const hubs = [
   { icon: FileCheck2, title: "Compliance", text: "General overviews of standards and regulations referenced in OT and MGPS projects.", to: "/resources/compliance" as const },
   { icon: Scale, title: "Comparisons", text: "Side-by-side comparisons to help you choose the right system.", to: "/resources/comparisons" as const },
   { icon: HelpCircle, title: "FAQs", text: "Answers to common questions on products, pricing and projects.", to: "/faqs" as const },
-  { icon: BookOpen, title: "Blog", text: "Articles on modular OT planning, costs and hospital infrastructure.", to: "/blog" as const },
 ];
 
 function Resources() {

@@ -16,7 +16,6 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/common";
 import { site } from "@/data/site";
-import { supabase } from "@/integrations/supabase/client";
 import { SITE_URL } from "@/lib/site-url";
 import { captureUtm } from "@/lib/utm";
 import appCss from "../styles.css?url";
@@ -31,7 +30,6 @@ function NotFoundComponent() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link to="/" className="bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">Go Home</Link>
         <Link to="/products" className="border border-border px-5 py-3 text-sm font-semibold">View Products</Link>
-        <Link to="/blog" className="border border-border px-5 py-3 text-sm font-semibold">Read Blog</Link>
         <Link to="/contact" className="border border-border px-5 py-3 text-sm font-semibold">Contact Us</Link>
       </div>
     </div>
@@ -80,14 +78,8 @@ type Tracking = { gsc_verification: string | null; bing_verification: string | n
 const safeId = (v: string | null | undefined, re: RegExp) => (v && re.test(v.trim()) ? v.trim() : null);
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  loader: async (): Promise<{ tracking: Tracking | null }> => {
-    try {
-      const { data } = await supabase.from("cms_site_settings").select("gsc_verification,bing_verification,ga4_id,gtm_id,meta_pixel_id,latitude,longitude,google_maps_url").eq("id", "main").maybeSingle();
-      return { tracking: (data as Tracking | null) ?? null };
-    } catch { return { tracking: null }; }
-  },
-  head: ({ loaderData }) => {
-    const t = loaderData?.tracking;
+  head: () => {
+    const t = null as Tracking | null;
     const ga = safeId(t?.ga4_id, /^G-[A-Z0-9]{4,20}$/);
     const gtm = safeId(t?.gtm_id, /^GTM-[A-Z0-9]{4,12}$/);
     const pixel = safeId(t?.meta_pixel_id, /^\d{8,20}$/);
@@ -166,7 +158,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const isAdmin = useRouterState({ select: (r) => r.location.pathname.startsWith("/admin") });
+  const isAdmin = false;
   useEffect(() => { captureUtm(); }, []);
 
   return (

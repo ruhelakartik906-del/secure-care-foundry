@@ -38,7 +38,6 @@ export function Footer() {
             <li><Link to="/resources/compliance" className="hover:text-navy-foreground">Compliance</Link></li>
             <li><Link to="/resources/comparisons" className="hover:text-navy-foreground">Comparisons</Link></li>
             <li><Link to="/faqs" className="hover:text-navy-foreground">FAQs</Link></li>
-            <li><Link to="/blog" className="hover:text-navy-foreground">Blog</Link></li>
             <li><Link to="/about" className="hover:text-navy-foreground">About Us</Link></li>
           </ul>
         </div>
