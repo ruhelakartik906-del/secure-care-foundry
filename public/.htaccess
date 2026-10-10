@@ -1,4 +1,5 @@
 Options -MultiViews
+DirectorySlash Off
 RewriteEngine On
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
