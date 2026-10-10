@@ -86,7 +86,7 @@ export default {
 
       if (url.pathname === "/projects" || url.pathname === "/projects/") return permanent("/products");
 
-      const prerendering = typeof process !== "undefined" && process.env.TSS_PRERENDERING === "true";
+      const prerendering = typeof process !== "undefined" && process.env["TSS_PRERENDERING"] === "true";
       const isPage = !prerendering && request.method === "GET" && !/\.[a-z0-9]{2,5}$/i.test(url.pathname) && !url.pathname.startsWith("/_") && !url.pathname.startsWith("/api/") && !url.pathname.startsWith("/assets/");
       if (isPage) {
         // one URL convention: no trailing slash

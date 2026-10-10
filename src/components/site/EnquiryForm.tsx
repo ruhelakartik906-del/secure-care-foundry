@@ -52,7 +52,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
           _subject: `New Enquiry: ${d.product || "General"} — ${d.name}`,
           _template: "table",
           _captcha: "false",
-          _honey: raw._honey || "",
+          _honey: raw["_honey"] || "",
           "Form Name": source,
           "Page URL": window.location.href,
           "Submitted At": new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
