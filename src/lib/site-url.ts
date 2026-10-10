@@ -1,6 +1,6 @@
 // Canonical production origin: https, apex domain, no trailing slash.
 // Override per environment with VITE_SITE_URL.
-const fromEnv = (import.meta.env["VITE_SITE_URL"] as string | undefined)?.replace(/\/+$/, "");
+const fromEnv = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/+$/, "");
 export const SITE_URL = fromEnv || "https://unicaremedicalsolutions.com";
 
 /** Absolute, query-free, no-trailing-slash URL for a site path. */
