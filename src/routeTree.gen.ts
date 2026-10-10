@@ -30,6 +30,7 @@ import { Route as ModularOtManufacturerVaranasiRouteImport } from './routes/modu
 import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wall-panels'
 import { Route as OperationTheatreElectricalSystemRouteImport } from './routes/operation-theatre-electrical-system'
 import { Route as OperationTheatreHvacSystemRouteImport } from './routes/operation-theatre-hvac-system'
+import { Route as PageNotFoundRouteImport } from './routes/page-not-found'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapRouteImport } from './routes/sitemap'
@@ -163,6 +164,11 @@ const OperationTheatreHvacSystemRoute =
     path: '/operation-theatre-hvac-system',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PageNotFoundRoute = PageNotFoundRouteImport.update({
+  id: '/page-not-found',
+  path: '/page-not-found',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
@@ -279,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
+  '/page-not-found': typeof PageNotFoundRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
@@ -319,6 +326,7 @@ export interface FileRoutesByTo {
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
+  '/page-not-found': typeof PageNotFoundRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
@@ -360,6 +368,7 @@ export interface FileRoutesById {
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
+  '/page-not-found': typeof PageNotFoundRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
   '/sitemap': typeof SitemapRoute
@@ -402,6 +411,7 @@ export interface FileRouteTypes {
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
+    | '/page-not-found'
     | '/privacy-policy'
     | '/search'
     | '/sitemap'
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
+    | '/page-not-found'
     | '/privacy-policy'
     | '/search'
     | '/sitemap'
@@ -482,6 +493,7 @@ export interface FileRouteTypes {
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
+    | '/page-not-found'
     | '/privacy-policy'
     | '/search'
     | '/sitemap'
@@ -523,6 +535,7 @@ export interface RootRouteChildren {
   ModularOtWallPanelsRoute: typeof ModularOtWallPanelsRoute
   OperationTheatreElectricalSystemRoute: typeof OperationTheatreElectricalSystemRoute
   OperationTheatreHvacSystemRoute: typeof OperationTheatreHvacSystemRoute
+  PageNotFoundRoute: typeof PageNotFoundRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SearchRoute: typeof SearchRoute
   SitemapRoute: typeof SitemapRoute
@@ -691,6 +704,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OperationTheatreHvacSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/page-not-found': {
+      id: '/page-not-found'
+      path: '/page-not-found'
+      fullPath: '/page-not-found'
+      preLoaderRoute: typeof PageNotFoundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy-policy': {
       id: '/privacy-policy'
       path: '/privacy-policy'
@@ -836,6 +856,7 @@ const rootRouteChildren: RootRouteChildren = {
   ModularOtWallPanelsRoute: ModularOtWallPanelsRoute,
   OperationTheatreElectricalSystemRoute: OperationTheatreElectricalSystemRoute,
   OperationTheatreHvacSystemRoute: OperationTheatreHvacSystemRoute,
+  PageNotFoundRoute: PageNotFoundRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SearchRoute: SearchRoute,
   SitemapRoute: SitemapRoute,
