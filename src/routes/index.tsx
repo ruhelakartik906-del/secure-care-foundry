@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { Activity, ArrowRight, Building2, Check, ClipboardCheck, Cross, Factory, GraduationCap, HeartPulse, Hospital, Layers, Microscope, Phone, ScanLine, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
-import { mergeHome, homeDefaults } from "@/data/home-content";
+import { homeDefaults } from "@/data/home-content";
 import { modularOtOptions, products } from "@/data/products";
 import { cities, cityPath } from "@/data/cities";
 import { pricing } from "@/data/pricing";
@@ -9,7 +8,7 @@ import { compliance } from "@/data/resources";
 import { homeFaqs } from "@/data/faqs";
 import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
-import { supabase } from "@/integrations/supabase/client";
+import { testimonials } from "@/data/testimonials";
 import { Button } from "@/components/ui/button";
 import { ProductCard, SectionHead, CtaBand, Faqs, faqSchema } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -18,10 +17,6 @@ import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({ ...seo("Modular Operation Theatre Manufacturers - Unicare Medical Solutions", "Modular OT manufacturer in India: design, manufacturing and installation of modular operation theatres, medical gas pipeline systems, laminar air flow and hospital infrastructure.", "/"), scripts: [faqSchema(homeFaqs)] }),
-  loader: async () => {
-    try { const { data } = await supabase.from("cms_pages").select("content").eq("slug", "home").maybeSingle(); return { home: mergeHome(data?.content) }; }
-    catch { return { home: homeDefaults }; }
-  },
   component: Home,
 });
 
@@ -53,7 +48,6 @@ const facilities = [
   { icon: Microscope, title: "CSSD Facilities", text: "Sterile-services planning and equipment support." },
 ];
 
-type Testimonial = { id: string; client_name: string; designation: string | null; company: string | null; city: string | null; testimonial: string; rating: number };
 
 const applications: [string, string][] = [
   ["General & Speciality OTs", "Modular theatres for general surgery, orthopaedics, cardiac, neuro and gynaecology."],
@@ -66,9 +60,7 @@ const otherSolutions = products.filter((p) => ["ot-pendant", "led-surgical-light
 
 function Home() {
   const { open } = useEnquiry();
-  const h = Route.useLoaderData()?.home ?? homeDefaults;
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  useEffect(() => { supabase.from("cms_testimonials").select("id,client_name,designation,company,city,testimonial,rating").eq("published", true).order("sort_order").limit(6).then(({ data }) => setTestimonials(data ?? [])); }, []);
+  const h = homeDefaults;
   return <>
     <section className="bg-navy text-navy-foreground">
       <div className="site-wrap grid min-h-[560px] items-stretch lg:grid-cols-2">

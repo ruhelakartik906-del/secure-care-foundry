@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { modularOtOptions, products } from "@/data/products";
-import { blogs } from "@/data/blogs";
 import { locations } from "@/data/locations";
 import { PageHero } from "@/components/site/common";
 import { seo } from "@/lib/seo";
@@ -19,7 +18,6 @@ function Search() {
   const hit = (txt: string) => terms.length > 0 && terms.every((t) => norm(txt).includes(t) || (t === "price" || t === "cost"));
   const ps = products.filter((p) => hit(`${p.name} ${p.shortName} ${p.short} ${p.category} price cost`));
   const variants = modularOtOptions.filter((p) => hit(`${p.name} ${p.description} modular operation theatre price cost`));
-  const bs = blogs.filter((b) => hit(`${b.title} ${b.excerpt} ${b.category}`));
   const ls = terms.length ? locations.filter((l) => hit(`${l.name} ${l.cities.join(" ")} modular operation theatre manufacturer`)) : [];
   return (
     <>
@@ -30,9 +28,8 @@ function Search() {
           <div className="mt-8 space-y-8">
             <Group title="Products">{ps.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="block border-b border-border py-3 hover:text-brand-blue">{p.name}</Link>)}</Group>
             <Group title="Modular OT Types">{variants.map((p) => <Link key={p.slug} to="/products/modular-operation-theatre/$variant" params={{ variant: p.slug }} className="block border-b border-border py-3 hover:text-brand-blue">{p.name}</Link>)}</Group>
-            <Group title="Articles">{bs.map((b) => <Link key={b.slug} to="/blog/$slug" params={{ slug: b.slug }} className="block border-b border-border py-3 hover:text-brand-blue">{b.title}</Link>)}</Group>
             <Group title="Locations">{ls.slice(0, 12).map((l) => <Link key={l.slug} to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }} className="block border-b border-border py-3 hover:text-brand-blue">Modular OT Manufacturers in {l.name}</Link>)}</Group>
-            {!ps.length && !variants.length && !bs.length && !ls.length && <p className="text-muted-foreground">No results. Try a different word, or contact us directly.</p>}
+            {!ps.length && !variants.length && !ls.length && <p className="text-muted-foreground">No results. Try a different word, or contact us directly.</p>}
           </div>
         )}
       </section>

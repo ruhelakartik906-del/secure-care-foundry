@@ -1,6 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProduct, modularOtOptions, priceLabel, products } from "@/data/products";
-import { blogs } from "@/data/blogs";
 import { Button } from "@/components/ui/button";
 import { PageHero, ProductCard, Faqs, faqSchema, CtaBand, SectionHead } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -9,7 +8,6 @@ import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Phone } from "lucide-react";
 import { seo, breadcrumbSchema } from "@/lib/seo";
-import { BlogCard } from "@/components/site/BlogCard";
 import { absUrl } from "@/lib/site-url";
 import mgpsPlantPhotoSrc from "@/assets/mgps-plant-room.webp";
 const mgpsPlantPhoto = { url: mgpsPlantPhotoSrc };
@@ -60,7 +58,6 @@ function ProductPage() {
   const { open } = useEnquiry();
   const isOt = p.slug === "modular-operation-theatre";
   const related = products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
-  const relBlogs = blogs.filter((b) => b.relatedProducts.includes(p.slug)).slice(0, 3);
 
   return (
     <>
@@ -136,14 +133,6 @@ function ProductPage() {
         </aside>
       </section>
 
-      {relBlogs.length > 0 && (
-        <section className="border-t border-border py-16">
-          <div className="site-wrap">
-            <SectionHead title="Related Articles" />
-            <div className="grid gap-6 md:grid-cols-3">{relBlogs.map((b) => <BlogCard key={b.slug} b={b} />)}</div>
-          </div>
-        </section>
-      )}
       <section className="border-t border-border bg-muted py-16">
         <div className="site-wrap">
           <SectionHead title="Related Products" />

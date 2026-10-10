@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { utmParams } from "@/lib/utm";
 import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { modularOtOptions, products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 
@@ -31,6 +30,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (status === "sending") return;
     const raw = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     const parsed = schema.safeParse(raw);
     if (!parsed.success) {
@@ -43,38 +43,21 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
     setStatus("sending");
     setServerError("");
     const d = parsed.data;
-    const { error } = await supabase.from("enquiries").insert({
-      source,
-      name: d.name,
-      company: d.company || null,
-      phone: d.phone,
-      email: d.email || null,
-      city: d.city || null,
-      state: d.state || null,
-      product: d.product || null,
-      quantity: d.quantity || null,
-      requirement: d.requirement || null,
-      message: d.message || null,
-      contact_method: d.contact_method || null,
-      project_type: d.requirement || null,
-      ...utmParams(),
-      page_url: typeof window !== "undefined" ? window.location.pathname.slice(0, 500) : null,
-    });
-    if (error) {
-      setStatus("idle");
-      setServerError("Something went wrong while sending. Please try again or call us directly.");
-      return;
-    }
-    // Email notification via FormSubmit (fire-and-forget; never blocks the user)
+    const utm = utmParams();
     try {
-      const utm = utmParams();
-      await fetch("https://formsubmit.co/ajax/unicaremedical2023@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/unicaremedical2023@gmail.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           _subject: `New Enquiry: ${d.product || "General"} — ${d.name}`,
           _template: "table",
           _captcha: "false",
+          _honey: raw["_honey"] || "",
+          "Form Name": source,
+          "Page URL": window.location.href,
+          "Submitted At": new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+          "State": d.state || "-",
+          "Quantity": d.quantity || "-",
           Name: d.name,
           Phone: d.phone,
           Email: d.email || "-",
@@ -90,8 +73,12 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
           "UTM Campaign": utm.utm_campaign || "-",
         }),
       });
+      const out = await res.json().catch(() => null);
+      if (!res.ok || !out || (out.success !== true && out.success !== "true")) throw new Error("send failed");
     } catch {
-      // Email alert failure must not affect the enquiry — it is already saved.
+      setStatus("idle");
+      setServerError("Something went wrong while sending. Please try again or call us directly.");
+      return;
     }
     setStatus("done");
   }
@@ -109,6 +96,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       <div><label className={label} htmlFor={`${source}-name`}>Name *</label><input id={`${source}-name`} name="name" className={field} autoComplete="name" /><Err n="name" /></div>
       <div><label className={label} htmlFor={`${source}-company`}>{variant === "contact" ? "Company" : "Hospital / Company"}</label><input id={`${source}-company`} name="company" className={field} autoComplete="organization" /></div>
       <div><label className={label} htmlFor={`${source}-phone`}>Phone *</label><input id={`${source}-phone`} name="phone" type="tel" className={field} autoComplete="tel" /><Err n="phone" /></div>

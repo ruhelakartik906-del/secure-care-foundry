@@ -1,0 +1,10 @@
+export type Testimonial = { id: string; client_name: string; designation: string | null; company: string | null; city: string | null; testimonial: string; rating: number };
+const rows: [string, string, string][] = [
+  ["Dr. Rajiv Sharma", "Medical Director, Multispecialty Hospital", "Unicare Medical Solutions handled our modular operation theatre project with excellent technical planning and execution. The team understood our clinical requirements and delivered a clean, professional and highly functional OT environment."],
+  ["Dr. Ankit Verma", "Hospital Administrator", "We were looking for a reliable modular OT manufacturer who could manage both manufacturing and installation. Unicare provided a practical solution, maintained good coordination throughout the project and delivered the installation professionally."],
+  ["Dr. Neha Kapoor", "Consultant Surgeon", "The modular operation theatre was designed keeping workflow, hygiene and clinical requirements in mind. The finishing quality and overall execution by the Unicare team were impressive."],
+  ["Dr. Amit Malhotra", "Director, Healthcare Facility", "From initial discussion to final installation, the Unicare team remained responsive and technically supportive. Their understanding of hospital infrastructure made the entire project much easier to manage."],
+  ["Dr. Sandeep Gupta", "Hospital Project Consultant", "Unicare provided a well-planned solution for our operation theatre requirements. Their team was professional, technically knowledgeable and focused on delivering the project according to the site requirements."],
+  ["Dr. Priya Mehta", "Hospital Operations Manager", "We appreciated Unicare's approach toward understanding our exact requirements before starting the work. The installation team was coordinated and the final result was well suited to our hospital's operational needs."],
+];
+export const testimonials: Testimonial[] = rows.map(([client_name, designation, testimonial], i) => ({ id: String(i + 1), client_name, designation, company: null, city: null, testimonial, rating: 5 }));

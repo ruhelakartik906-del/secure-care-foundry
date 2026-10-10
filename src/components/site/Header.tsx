@@ -11,7 +11,6 @@ import { isActiveItem, isSolutionPath, solutionGroups, type SolutionItem } from 
 
 const after = [
   { to: "/modular-ot-cost-india", label: "Pricing Guide" },
-  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
