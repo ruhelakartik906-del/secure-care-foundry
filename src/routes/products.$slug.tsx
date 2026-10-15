@@ -37,7 +37,7 @@ const titleOverrides: Record<string, string> = {
   "laminar-air-flow": "Laminar Air Flow System for Operation Theatre | Unicare",
 };
 const descOverrides: Record<string, string> = {
-  "modular-operation-theatre": "Modular operation theatre manufacturer: wall and ceiling panels, hermetic doors, laminar air flow, HEPA, pendants, lights, MGPS and installation for hospitals in India.",
+  "modular-operation-theatre": "Modular operation theatre manufacturer for hospitals in India: OT panels, hermetic doors, laminar air flow and MGPS with installation. Get a quote.",
   "medical-gas-pipeline-system": "Medical gas pipeline system manufacturer and installer: oxygen, medical air, vacuum and N2O with manifolds, valve boxes, alarms, outlets, testing and commissioning.",
   "laminar-air-flow": "Laminar air flow system for operation theatres with HEPA filtration, coordinated with OT HVAC. Components, installation, maintenance, cost factors and FAQs.",
 };
