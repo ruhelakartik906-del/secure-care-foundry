@@ -19,7 +19,7 @@ function Contact() {
       <PageHero title="Contact Unicare Medical Solutions" intro="Tell us about your hospital, OT or medical infrastructure requirement. Our team can discuss the project scope, technical requirements, product options and estimated project requirements." crumbs={[{ label: "Contact Us" }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="border border-border p-6 md:p-8 lg:col-span-7">
-          <p className="eyebrow">Project Enquiry</p><h2 className="mb-2 mt-2 text-3xl font-bold">Get In Touch</h2><p className="mb-6 text-muted-foreground">Share your hospital, Modular OT or medical infrastructure requirement.</p>
+          <p className="eyebrow">Project Enquiry</p><h2 className="mb-2 mt-2 text-3xl font-bold">Send Your Enquiry</h2><p className="mb-6 text-muted-foreground">Share your hospital, Modular OT or medical infrastructure requirement.</p>
           <EnquiryForm source="contact" variant="contact" submitLabel="Send Enquiry" />
         </div>
         <div className="space-y-6 lg:col-span-5">

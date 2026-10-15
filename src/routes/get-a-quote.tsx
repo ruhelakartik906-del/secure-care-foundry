@@ -18,7 +18,7 @@ function Quote() {
       <PageHero title="Get a Quote" intro="Share your project requirement. We review it and respond with the next step, a site visit or a quotation." crumbs={[{ label: "Get a Quote" }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="border border-border p-6 md:p-8 lg:col-span-8">
-          <h2 className="mb-6 text-2xl font-bold">Project Requirement</h2>
+          <h2 className="mb-6 text-2xl font-bold">Send Your Enquiry</h2>
           <EnquiryForm source="get-a-quote" variant="full" submitLabel="Request Quote" />
         </div>
         <aside className="space-y-5 lg:col-span-4">
