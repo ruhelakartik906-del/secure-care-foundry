@@ -58,6 +58,7 @@ function ProductPage() {
   const p = getProduct(slug)!;
   const { open } = useEnquiry();
   const isOt = p.slug === "modular-operation-theatre";
+  const hasLongForm = ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow"].includes(p.slug);
   const related = products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
 
   return (
@@ -75,8 +76,8 @@ function ProductPage() {
             <p className="mt-1 text-xl font-bold">{priceLabel(p.price)}</p>
             <p className="mt-2 text-xs text-muted-foreground">Pricing depends on size, specification, materials, project scope, installation and location.</p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Button size="lg" className="rounded-sm" onClick={() => open(p.name)}>Get a Quote</Button>
-              <Button size="lg" variant="outline" className="rounded-sm" onClick={() => open(p.name)} aria-label={`Get a Quote for ${p.name}`}>Get a Quote</Button>
+              <Button size="lg" className="rounded-sm" onClick={() => open(p.name)} aria-label={`Get a Quote for ${p.name}`}>Get a Quote</Button>
+              <Button size="lg" variant="outline" className="rounded-sm" asChild><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${p.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button>
             </div>
           </div>
         </div>
@@ -111,19 +112,16 @@ function ProductPage() {
           <p className="text-xs">Final specifications are confirmed per project after technical planning.</p>
           <h2>Applications</h2>
           <ul>{p.applications.map((a) => <li key={a}>{a}</li>)}</ul>
-          <h2>{p.installation ? "Installation & Use" : "Installation Process"}</h2>
-          <ol className="mb-6 grid gap-2 sm:grid-cols-2">{(p.installation ?? installSteps).map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol>
+          {(p.installation || !hasLongForm) && <><h2>{p.installation ? "Installation & Use" : "Installation Process"}</h2>
+          <ol className="mb-6 grid gap-2 sm:grid-cols-2">{(p.installation ?? installSteps).map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol></>}
           <h2>Benefits</h2>
           <ul>{p.benefits.map((b) => <li key={b}>{b}</li>)}</ul>
-          <h2>Why Choose Unicare</h2>
-          <p>We handle design, manufacturing, installation and support as one coordinated project, so hospitals and contractors have a single point of responsibility.</p>
           <h2>Frequently Asked Questions</h2>
           <Faqs faqs={p.faqs} />
           {(complianceFor[p.slug] ?? []).length > 0 && <><h2>Compliance & Standards</h2><p>General overviews of standards referenced for this product (planning guidance only, not a certification claim):</p><ul>{complianceFor[p.slug]!.map((c) => { const r = getCompliance(c); return r ? <li key={c}><Link to="/resources/compliance/$slug" params={{ slug: c }}>{r.title.replace(/ – An Overview$/, "")}</Link></li> : null; })}</ul></>}
           {comparisons.filter((c) => c.products.includes(p.slug)).length > 0 && <p>Comparing options? Read {comparisons.filter((c) => c.products.includes(p.slug)).map((c, i) => <span key={c.slug}>{i ? ", " : ""}<Link to="/resources/comparisons/$slug" params={{ slug: c.slug }}>{c.title}</Link></span>)}.</p>}
           <h2>Pricing & Service Areas</h2>
           <p>See indicative ranges in our <Link to="/modular-ot-cost-india">Modular OT cost guide</Link>, read <Link to="/resources">planning resources</Link> or browse <Link to="/faqs">all FAQs</Link>. We serve hospital projects in {cities.map((c, i) => <span key={c.slug}>{i ? ", " : ""}<a href={cityPath(c)}>{c.name}</a></span>)} and other locations.</p>
-          <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild variant="outline"><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${p.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button></div>
         </div>
         <aside className="lg:col-span-4">
           <div className="sticky top-28 border border-border p-6">
