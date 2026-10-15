@@ -35,6 +35,7 @@ const titleOverrides: Record<string, string> = {
   "modular-operation-theatre": "Modular Operation Theatre Manufacturer in India | Unicare",
   "medical-gas-pipeline-system": "Medical Gas Pipeline System Manufacturer | MGPS | Unicare",
   "laminar-air-flow": "Laminar Air Flow System for Operation Theatre | Unicare",
+  "ot-pendant": "OT Pendant Supplier & Installation | Unicare",
 };
 const descOverrides: Record<string, string> = {
   "modular-operation-theatre": "Modular operation theatre manufacturer for hospitals in India: OT panels, hermetic doors, laminar air flow and MGPS with installation. Get a quote.",
