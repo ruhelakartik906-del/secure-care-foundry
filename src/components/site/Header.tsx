@@ -71,7 +71,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
           <Link to="/" onMouseEnter={() => setMega(false)} className={linkCls} activeOptions={{ exact: true }} activeProps={{ className: activeCls }}>Home</Link>
-          <div ref={megaRef} onMouseEnter={show} onMouseLeave={hide} className="static">
+          <div ref={megaRef} onMouseEnter={show} onMouseLeave={hide} className="static flex items-center">
             <Link to="/products" onClick={closeAll} className={`${linkCls} ${solActive ? activeCls : ""}`}>Products</Link>
             <button type="button" aria-label="Show product menu" aria-expanded={mega} aria-haspopup="true" onClick={() => setMega((v) => !v)} className={`-ml-1 flex items-center ${linkCls}`}>
               <ChevronDown className={`h-3.5 w-3.5 transition ${mega ? "rotate-180" : ""}`} />
