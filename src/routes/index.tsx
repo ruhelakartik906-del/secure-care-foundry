@@ -16,7 +16,7 @@ import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ ...seo("Modular Operation Theatre Manufacturers - Unicare Medical Solutions", "Modular OT manufacturer in India: design, manufacturing and installation of modular operation theatres, medical gas pipeline systems, laminar air flow and hospital infrastructure.", "/"), scripts: [faqSchema(homeFaqs)] }),
+  head: () => ({ ...seo("Modular OT & MGPS Manufacturer in Ghaziabad, UP | Unicare", "Modular operation theatre and MGPS manufacturer in Ghaziabad. NABH-aligned design, installation and AMC across North India. Get a quote.", "/"), scripts: [faqSchema(homeFaqs)] }),
   component: Home,
 });
 

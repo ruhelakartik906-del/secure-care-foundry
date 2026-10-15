@@ -394,4 +394,4 @@ export const modularOtOptions: ModularOtOption[] = [
 export const getModularOtOption = (slug: string) => modularOtOptions.find((option) => option.slug === slug);
 
 export const priceLabel = (p: PriceInfo) =>
-  p.type === "starting" ? `Starting from ₹${p.amount}` : p.type === "range" ? `₹${p.from} – ₹${p.to}` : "Price available on request";
+  p.type === "starting" ? `Starting from ₹${p.amount}` : p.type === "range" ? `${p.from} – ${p.to}`.replace(/₹₹/g, "₹") : "Price available on request";
