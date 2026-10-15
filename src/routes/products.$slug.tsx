@@ -76,7 +76,7 @@ function ProductPage() {
             <p className="mt-2 text-xs text-muted-foreground">Pricing depends on size, specification, materials, project scope, installation and location.</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button size="lg" className="rounded-sm" onClick={() => open(p.name)}>Get a Quote</Button>
-              <Button size="lg" variant="outline" className="rounded-sm" onClick={() => open(p.name)}>Get Latest Price</Button>
+              <Button size="lg" variant="outline" className="rounded-sm" onClick={() => open(p.name)} aria-label={`Get a Quote for ${p.name}`}>Get a Quote</Button>
             </div>
           </div>
         </div>

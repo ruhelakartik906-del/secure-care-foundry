@@ -381,7 +381,7 @@ export type ModularOtOption = {
 };
 
 export const modularOtOptions: ModularOtOption[] = [
-  { slug: "joint-less-modular-ot", name: "Joint Less Modular Operation Theatre", menuName: "Joint Less Modular OT", description: "A joint-less modular operation theatre finish planned around the room layout and approved project requirements.", image: jointLessPhoto.url },
+  { slug: "joint-less-modular-ot", name: "Jointless Modular Operation Theatre", menuName: "Jointless Modular OT", description: "A jointless modular operation theatre finish planned around the room layout and approved project requirements.", image: jointLessPhoto.url },
   { slug: "hpl-modular-ot", name: "HPL Modular Operation Theatre", menuName: "HPL Modular OT", description: "A modular operation theatre with HPL panel finishes selected to suit the hospital's project requirements.", image: hplPhoto.url },
   { slug: "stainless-steel-modular-ot", name: "Stainless Steel Modular Operation Theatre", menuName: "Stainless Steel Modular OT", description: "A modular OT option with stainless-steel internal surfaces selected around project and cleaning requirements.", image: stainlessPhoto.url },
   { slug: "ppgi-modular-ot", name: "PPGI Modular Operation Theatre", menuName: "PPGI Modular OT", description: "A practical panel-based theatre option configured to the room layout and hospital project scope.", image: ppgiPhoto.url },
