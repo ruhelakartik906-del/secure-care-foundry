@@ -123,6 +123,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
               <option value="Other">Other</option>
             </optgroup>
           </select>
+          <Err n="product" />
         </div>
       )}
       {variant === "contact" && (
@@ -135,6 +136,7 @@ export function EnquiryForm({ source = "enquiry", defaultProduct = "", variant =
             <option value="Complete Hospital Infrastructure">Complete Hospital Infrastructure</option>
             <option value="Other">Other</option>
           </select>
+          <Err n="product" />
         </div>
       )}
       {variant !== "contact" && <div className="sm:col-span-2"><label className={label} htmlFor={`${source}-req`}>Project Type</label><select id={`${source}-req`} name="requirement" className={field}><option value="">Select project type</option><option>New Hospital</option><option>Hospital Expansion</option><option>OT Upgrade</option><option>Replacement / Renovation</option><option>Government / Institutional Project</option><option>Other</option></select></div>}
