@@ -1,6 +1,6 @@
-import heroSrc from "@/assets/modular-ot-surgical-theatre.webp";
+import heroSrc from "@/assets/1-modularot-hero.webp";
 const hero = { url: heroSrc };
-import otRoomSrc from "@/assets/modular-ot-room.webp";
+import otRoomSrc from "@/assets/2-modularor-card.webp";
 const otRoom = { url: otRoomSrc };
 import gasImgSrc from "@/assets/mgps-oxygen-outlet.webp";
 const gasImg = { url: gasImgSrc };
