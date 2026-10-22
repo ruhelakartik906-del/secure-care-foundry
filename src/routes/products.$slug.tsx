@@ -13,6 +13,14 @@ import mgpsPlantPhotoSrc from "@/assets/mgps-plant-room.webp";
 const mgpsPlantPhoto = { url: mgpsPlantPhotoSrc };
 import { cities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
+import otHeroSrc from "@/assets/1-modularot-hero.webp";
+import otSupportSrc from "@/assets/2-modularor-card.webp";
+import lafDiffuserSrc from "@/assets/perforated-cleanroom-ceiling-air-diffuser.webp";
+
+const heroImages: Record<string, { src: string; alt: string; w: number; h: number }> = {
+  "modular-operation-theatre": { src: otHeroSrc, alt: "Modern modular operation theatre with surgical lights, ceiling-mounted pendants and medical equipment.", w: 1600, h: 900 },
+  "laminar-air-flow": { src: lafDiffuserSrc, alt: "Perforated ceiling-mounted laminar air-flow diffuser panel for operating theatre ventilation.", w: 1536, h: 1024 },
+};
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -66,7 +74,11 @@ function ProductPage() {
       <PageHero title={p.name} crumbs={[{ label: "Products", to: "/products" }, { label: p.name }]} />
       <section className="site-wrap grid gap-10 py-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <img src={p.image} alt={p.name} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
+          {heroImages[p.slug] ? (
+            <img src={heroImages[p.slug].src} alt={heroImages[p.slug].alt} width={heroImages[p.slug].w} height={heroImages[p.slug].h} fetchPriority="high" className="h-auto w-full" />
+          ) : (
+            <img src={p.image} alt={p.name} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
+          )}
         </div>
         <div className="lg:col-span-5">
           <p className="eyebrow">{p.category}</p>
