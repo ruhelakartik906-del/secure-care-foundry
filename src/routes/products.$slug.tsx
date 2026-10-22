@@ -75,7 +75,7 @@ function ProductPage() {
       <section className="site-wrap grid gap-10 py-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           {heroImages[p.slug] ? (
-            <img src={heroImages[p.slug].src} alt={heroImages[p.slug].alt} width={heroImages[p.slug].w} height={heroImages[p.slug].h} fetchPriority="high" className="h-auto w-full" />
+            <img src={heroImages[p.slug]!.src} alt={heroImages[p.slug]!.alt} width={heroImages[p.slug]!.w} height={heroImages[p.slug]!.h} fetchPriority="high" className="h-auto w-full" />
           ) : (
             <img src={p.image} alt={p.name} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
           )}
