@@ -1,6 +1,6 @@
-import heroSrc from "@/assets/modular-ot-surgical-theatre.webp";
+import heroSrc from "@/assets/1-modularot-hero.webp";
 const hero = { url: heroSrc };
-import otRoomSrc from "@/assets/modular-ot-room.webp";
+import otRoomSrc from "@/assets/2-modularor-card.webp";
 const otRoom = { url: otRoomSrc };
 import gasImgSrc from "@/assets/mgps-oxygen-outlet.webp";
 const gasImg = { url: gasImgSrc };
@@ -11,14 +11,14 @@ export const homeDefaults = {
   heroTitle: "Modular OT & Hospital Infrastructure Solutions in India",
   heroText: "Unicare Medical Solutions designs, manufactures and installs modular operation theatres, medical gas pipeline systems and critical hospital infrastructure for hospitals and healthcare projects across India, with offices in Ghaziabad and works in Faridabad.",
   heroImage: hero.url,
-  heroImageAlt: "Surgeons operating in a blue modular operation theatre with laminar air flow ceiling, OT pendant and surgical lights",
+  heroImageAlt: "Three surgeons standing in a blue modular operation theatre with LED surgical lights, ceiling pendants and laminar air flow ceiling",
   heroButton: "Get a Quote",
   productsTitle: "Complete Hospital Infrastructure & Medical Engineering Solutions",
   productsIntro: "Project-ready systems for operation theatres, medical gases, critical care, sterilisation and hospital wards.",
   otTitle: "Modular Operation Theatre Solutions",
   otText: "Unicare provides coordinated Modular OT design, manufacturing and installation for new hospitals and theatre upgrades. Every proposal is prepared around room size, selected materials, airflow requirements and site scope.",
   otImage: otRoom.url,
-  otImageAlt: "Modular operation theatre design and installation",
+  otImageAlt: "Empty blue modular operation theatre with surgical table, LED surgical lights and ceiling-mounted pendants",
   mgpsTitle: "Medical Gas Pipeline System (MGPS)",
   mgpsText: "Centralised oxygen, nitrous oxide, medical air and vacuum from source equipment to terminal outlets in wards, ICUs and operation theatres — including manifolds, area valve service units, alarm panels, AGSS and testing.",
   mgpsImage: gasImg.url,

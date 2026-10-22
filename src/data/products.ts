@@ -22,7 +22,7 @@ import mgpsOutletPhotoSrc from "@/assets/mgps-oxygen-outlet.webp";
 const mgpsOutletPhoto = { url: mgpsOutletPhotoSrc };
 import laminarPhotoSrc from "@/assets/laminar-air-flow.webp";
 const laminarPhoto = { url: laminarPhotoSrc };
-import modularOtRoomPhotoSrc from "@/assets/modular-ot-room.webp";
+import modularOtRoomPhotoSrc from "@/assets/1-modularot-hero.webp";
 const modularOtRoomPhoto = { url: modularOtRoomPhotoSrc };
 import cssd from "@/assets/cssd.webp";
 import scrubPhotoSrc from "@/assets/surgical-scrub-sink-upload.webp";
