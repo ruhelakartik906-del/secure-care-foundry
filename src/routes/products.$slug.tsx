@@ -160,6 +160,7 @@ function OtLongForm() {
     <>
       <h2>What is a Modular Operation Theatre?</h2>
       <p>A modular operation theatre is a surgical room assembled from factory-manufactured wall and ceiling panels with integrated services. Instead of plastered brick walls, the OT uses smooth, joint-sealed panels that are easier to clean and maintain, and that allow HVAC, laminar air flow, gases, lighting and controls to be built in neatly.</p>
+      <img src={otSupportSrc} alt="Modular operating theatre showing integrated medical infrastructure and surgical equipment." loading="lazy" width={1600} height={900} className="mb-4 h-auto w-full" />
       <h2>Modular OT Design</h2>
       <p>Design starts with the room dimensions, surgical specialities, equipment list and workflow (clean and dirty corridors, scrub area, pre-op and recovery). We prepare layouts showing panel arrangement, laminar air flow position, pendants, lights, doors, storage and control panels.</p>
       <h2>Modular OT Components</h2>
@@ -208,14 +209,18 @@ function MgpsLongForm() {
 function LafLongForm() {
   return (
     <>
-      <h2>What is a Laminar Air Flow System?</h2>
-      <p>A laminar air flow (LAF) system is a ceiling-mounted plenum that supplies HEPA-filtered air downward over the operating table in a uniform, low-turbulence flow. It helps keep the surgical zone supplied with filtered air and pushes airborne particles away from the wound area.</p>
-      <h2>How It Works</h2>
-      <p>Conditioned air from the theatre air handling unit enters the LAF plenum, passes through terminal HEPA filters and leaves through a diffuser screen at low velocity. Return air grilles are placed low on the walls so the air moves from the clean zone outward. The LAF is therefore part of the <Link to="/operation-theatre-hvac-system">OT HVAC system</Link>, not a replacement for it.</p>
-      <h2>Components</h2>
-      <ul><li>Stainless steel or powder-coated plenum box</li><li>Terminal <Link to="/hepa-filtration-system-for-operation-theatre">HEPA filters</Link></li><li>Perforated diffuser screen</li><li>Ducting connection to the AHU</li><li>Integration with the <Link to="/modular-ot-ceiling">OT ceiling</Link>, surgical lights and pendants</li></ul>
+      <h2>Laminar Air-Flow System for Operating Theatres</h2>
+      <p>The ceiling-mounted laminar air-flow system is one of the most central parts of the operating room. It not only receives the fresh supply air, but also filters it through a HEPA filter to remove bacteria, and diffuses the air as per OR (OT) requirements.</p>
+      <h3>System Design and Construction</h3>
+      <p>The unidirectional air-flow system, made of aluminium or SS 304-grade sheets, is designed to receive and pressurise supply air through connected aluminium ducts.</p>
+      <h3>HEPA Filtration and Diffuser</h3>
+      <p>The system is fitted with a quality <Link to="/hepa-filtration-system-for-operation-theatre">HEPA filter</Link> through which the pressurised air flows through a unidirectional diffuser made of SS 304 grade steel sheets or monofilament fabric made from nylon/polyethene yarn.</p>
+      <h3>HVAC Sizing, Insulation and Leak Testing</h3>
+      <p>The plenum is properly leak-tested, thermally insulated, and adequately sized according to <Link to="/operation-theatre-hvac-system">HVAC</Link> air-flow requirements calculated from room air volume.</p>
+      <h3>Why Correct Plenum Sizing and Air Quality Matter</h3>
+      <p>Proper sizing of the laminar air-flow plenum system, high-quality HEPA filters (with a dust-spot efficiency of 99.97% at 0.3 micron), diffuser quality, and leak-proofing are all very important to maintain a proper, aseptic air quality inside the OR (OT).</p>
       <h2>Installation and Maintenance</h2>
-      <p>The LAF position is fixed during OT layout so it sits above the operating table, clear of the <Link to="/products/$slug" params={{ slug: "led-surgical-light" }}>surgical light</Link> and <Link to="/products/$slug" params={{ slug: "ot-pendant" }}>pendant</Link> mounts. Maintenance includes periodic filter integrity checks, differential pressure monitoring and filter replacement as per the hospital's validation schedule.</p>
+      <p>The LAF position is fixed during OT layout so it sits above the operating table, clear of the <Link to="/products/$slug" params={{ slug: "led-surgical-light" }}>surgical light</Link> and <Link to="/products/$slug" params={{ slug: "ot-pendant" }}>pendant</Link> mounts, and integrated with the <Link to="/modular-ot-ceiling">OT ceiling</Link>. Maintenance includes periodic filter integrity checks, differential pressure monitoring and filter replacement as per the hospital's validation schedule.</p>
       <h2>LAF Cost Factors</h2>
       <p>Price depends on plenum size, filter grade and quantity, material and the HVAC scope. Indicatively ₹85,000 – ₹2.5 Lakh per unit — see the <Link to="/modular-ot-cost-india">pricing guide</Link>. For a comparison with mixed-flow systems read <Link to="/resources/comparisons/$slug" params={{ slug: "laf-vs-conventional-hvac" }}>LAF vs conventional HVAC</Link>.</p>
     </>
