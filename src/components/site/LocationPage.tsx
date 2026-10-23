@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { getProduct, products } from "@/data/products";
+import { getProduct, products, modularOtOptions } from "@/data/products";
 import { locations, type Location } from "@/data/locations";
 import { Button } from "@/components/ui/button";
 import { PageHero, Faqs, CtaBand } from "./common";
@@ -39,8 +39,14 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           <ul>{p.applications.map((a) => <li key={a}>{a}</li>)}</ul>
           <h2>Frequently asked questions</h2>
           <Faqs faqs={locationFaqs(productSlug, l)} />
-          <h3>Related products</h3>
-          <p>{products.filter((x) => x.slug !== p.slug).slice(0, 5).map((x, i) => <span key={x.slug}>{i > 0 && " · "}<Link to="/products/$slug" params={{ slug: x.slug }}>{x.shortName}</Link></span>)}</p>
+          <h3>Modular Operation Theatre</h3>
+          <ul>
+            <li><Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>Modular Operation Theatre</Link></li>
+            <li><Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular Operation Theatre Manufacturer in {l.name}</Link></li>
+            {modularOtOptions.map((o) => <li key={o.slug}><Link to="/products/modular-operation-theatre/$variant" params={{ variant: o.slug }}>{o.name}</Link></li>)}
+          </ul>
+          <h3>Our main products</h3>
+          <ul className="!list-none !pl-0 grid grid-cols-1 gap-2 sm:grid-cols-2">{products.map((x) => <li key={x.slug}><Link to="/products/$slug" params={{ slug: x.slug }}>{x.name}</Link></li>)}</ul>
           <h3>Other locations</h3>
           <p>{locations.filter((x) => x.slug !== l.slug).slice(0, 10).map((x, i) => <span key={x.slug}>{i > 0 && " · "}<Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: x.slug }}>{x.name}</Link></span>)}</p>
         </div>
