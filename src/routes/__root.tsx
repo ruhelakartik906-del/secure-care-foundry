@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     const ga = safeId(t?.ga4_id, /^G-[A-Z0-9]{4,20}$/);
     const gtm = safeId(t?.gtm_id, /^GTM-[A-Z0-9]{4,12}$/);
     const pixel = safeId(t?.meta_pixel_id, /^\d{8,20}$/);
-    const gsc = safeId(t?.gsc_verification, /^[A-Za-z0-9_-]{10,100}$/);
+    const gsc = safeId(site.googleSiteVerification, /^[A-Za-z0-9_-]{10,100}$/);
     const bing = safeId(t?.bing_verification, /^[A-Za-z0-9]{10,100}$/);
     return {
     meta: [
