@@ -14,9 +14,15 @@ import { ProductCard, SectionHead, CtaBand, Faqs, faqSchema } from "@/components
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { seo } from "@/lib/seo";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
+import { responsiveImage, sectionImageSizes } from "@/lib/responsive-images";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ ...seo("Modular OT & MGPS Manufacturer in Ghaziabad, UP | Unicare", "Modular operation theatre and MGPS manufacturer in Ghaziabad. NABH-aligned design, installation and AMC across North India. Get a quote.", "/"), scripts: [faqSchema(homeFaqs)] }),
+  head: () => {
+    const metadata = seo("Modular OT & MGPS Manufacturer in Ghaziabad, UP | Unicare", "Modular operation theatre and MGPS manufacturer in Ghaziabad. NABH-aligned design, installation and AMC across North India. Get a quote.", "/");
+    const hero = responsiveImage(homeDefaults.heroImage);
+    return { ...metadata, links: [...metadata.links, { rel: "preload", as: "image", href: hero.src, imageSrcSet: hero.srcSet, imageSizes: sectionImageSizes, fetchPriority: "high" }], scripts: [faqSchema(homeFaqs)] };
+  },
   component: Home,
 });
 
@@ -71,7 +77,7 @@ function Home() {
           <div className="mt-8 flex flex-wrap gap-3"><Button size="lg" className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => open("Modular Operation Theatre")}>{h.heroButton}</Button><Button size="lg" variant="outline" className="rounded-sm border-navy-foreground/40 bg-transparent text-navy-foreground hover:bg-navy-foreground/10 hover:text-navy-foreground" asChild><a href={whatsappLink("Hello, I would like to know more about your Modular Operation Theatre solutions.")} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp Us</a></Button><a href={site.phoneHref} className="inline-flex items-center gap-2 px-2 text-sm font-semibold text-navy-foreground/90 hover:underline"><Phone className="h-4 w-4" />{site.phone}</a></div>
           <div className="mt-8 grid gap-2 text-sm sm:grid-cols-2">{trust.map((item) => <span key={item.title} className="flex items-center gap-2 text-navy-foreground/85"><Check className="h-4 w-4 text-accent" />{item.title}</span>)}</div>
         </div>
-        <div className="relative min-h-[320px] lg:min-h-full"><img src={h.heroImage} alt={h.heroImageAlt} width={1400} height={882} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-y-0 left-0 hidden w-16 bg-gradient-to-r from-navy to-transparent lg:block" /></div>
+        <div className="relative min-h-[320px] lg:min-h-full"><ResponsiveImage src={h.heroImage} alt={h.heroImageAlt} width={1600} height={900} fetchPriority="high" loading="eager" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-y-0 left-0 hidden w-16 bg-gradient-to-r from-navy to-transparent lg:block" /></div>
       </div>
     </section>
     <section className="border-b border-border bg-background"><div className="site-wrap grid gap-px bg-border md:grid-cols-2 lg:grid-cols-4">{trust.map(({ icon: Icon, title, text }) => <div key={title} className="flex gap-4 bg-background px-5 py-6"><div className="flex h-10 w-10 shrink-0 items-center justify-center border border-accent/30 bg-accent/5"><Icon className="h-5 w-5 text-accent" /></div><div><p className="text-sm font-bold uppercase">{title}</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p></div></div>)}</div></section>
