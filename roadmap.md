@@ -15,4 +15,4 @@
 - [x] Verify Blogs navigation, empty state and tests without adding invented articles.
 - [x] Fix mobile menu layering and verify interaction over page text.
 - [x] Optimize image delivery and verify homepage/product loading without changing photo assignments.
-- [ ] Stabilize repeated mobile menu opening, closing and reopening after navigation; verify touch and focus restoration.
+- [x] Stabilize repeated mobile menu opening, closing and reopening after navigation; verify touch and focus restoration.
