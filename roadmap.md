@@ -17,4 +17,5 @@
 - [x] Optimize image delivery and verify homepage/product loading without changing photo assignments.
 - [x] Stabilize repeated mobile menu opening, closing and reopening after navigation; verify touch and focus restoration.
 - [x] Add the company-supplied Google Search Console verification meta tag to every page head; verify in preview and built HTML.
+- [x] Publish the company-supplied Laminar Air-Flow System wording verbatim on the Laminar Air Flow product page; verify exact text renders.
 - [ ] Deploy the verification tag to the live origin, then complete verification in Search Console.
