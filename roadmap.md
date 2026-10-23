@@ -16,3 +16,5 @@
 - [x] Fix mobile menu layering and verify interaction over page text.
 - [x] Optimize image delivery and verify homepage/product loading without changing photo assignments.
 - [x] Stabilize repeated mobile menu opening, closing and reopening after navigation; verify touch and focus restoration.
+- [x] Add the company-supplied Google Search Console verification meta tag to every page head; verify in preview and built HTML.
+- [ ] Deploy the verification tag to the live origin, then complete verification in Search Console.
