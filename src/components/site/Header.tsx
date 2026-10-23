@@ -34,13 +34,18 @@ export function Header() {
   const [mSol, setMSol] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const megaRef = useRef<HTMLDivElement>(null);
+  const previousPath = useRef(pathname);
 
   const show = () => { if (timer.current) clearTimeout(timer.current); setMega(true); };
   const hide = () => { if (timer.current) clearTimeout(timer.current); timer.current = setTimeout(() => setMega(false), 150); };
   const closeAll = () => { if (timer.current) clearTimeout(timer.current); setMega(false); setMobile(false); setMSol(false); };
 
-  // reset every menu state on navigation
-  useEffect(() => { closeAll(); }, [pathname]);
+  // Close on an actual navigation, not the first hydration effect after a tap.
+  useEffect(() => {
+    if (previousPath.current === pathname) return;
+    previousPath.current = pathname;
+    closeAll();
+  }, [pathname]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setMega(false); setMobile(false); } };
@@ -50,16 +55,10 @@ export function Header() {
     return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("mousedown", onDown); };
   }, []);
 
-  useEffect(() => {
-    if (!mobile) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [mobile]);
-
   const solActive = isSolutionPath(pathname);
 
   return (
+    <Dialog.Root open={mobile} onOpenChange={(next) => { setMobile(next); if (!next) setMSol(false); }}>
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <div className="hidden bg-navy text-navy-foreground md:block">
         <div className="site-wrap flex h-9 items-center justify-between text-xs">
@@ -123,18 +122,22 @@ export function Header() {
           <a href={site.phoneHref} className="hidden items-center gap-1.5 text-sm font-semibold text-brand-blue xl:flex"><Phone className="h-4 w-4" />Call Now</a>
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hidden items-center gap-1.5 border border-border px-3 py-2 text-sm font-semibold xl:inline-flex"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a>
           <Button onClick={() => open("Modular Operation Theatre")} className="hidden rounded-sm sm:inline-flex">Get a Quote</Button>
-          <button className="p-2 lg:hidden" aria-label="Open menu" aria-expanded={mobile} onClick={() => setMobile(true)}><Menu className="h-6 w-6" /></button>
+          <Dialog.Trigger asChild>
+            <Button type="button" variant="ghost" size="icon" className="h-11 w-11 shrink-0 touch-manipulation lg:hidden" aria-label="Open menu"><Menu className="h-6 w-6" /></Button>
+          </Dialog.Trigger>
         </div>
       </div>
 
-      <Dialog.Root open={mobile} onOpenChange={setMobile}>
+    </header>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 z-[60] bg-navy/50 lg:hidden" />
           <Dialog.Content aria-describedby={undefined} className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-sm flex-col overflow-y-auto overscroll-contain bg-background shadow-xl lg:hidden">
             <Dialog.Title className="sr-only">Menu</Dialog.Title>
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4">
               <img src={logo} alt="Unicare Medical Solutions" className="h-10 w-auto" />
-              <Button variant="ghost" size="icon" aria-label="Close menu" onClick={() => setMobile(false)} className="h-11 w-11"><X className="h-6 w-6" /></Button>
+              <Dialog.Close asChild>
+                <Button type="button" variant="ghost" size="icon" aria-label="Close menu" className="h-11 w-11 touch-manipulation"><X className="h-6 w-6" /></Button>
+              </Dialog.Close>
             </div>
             <nav className="flex flex-col px-4 py-3" aria-label="Mobile">
               <Link to="/" onClick={closeAll} activeOptions={{ exact: true }} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">Home</Link>
@@ -160,7 +163,6 @@ export function Header() {
             </nav>
           </Dialog.Content>
         </Dialog.Portal>
-      </Dialog.Root>
-    </header>
+    </Dialog.Root>
   );
 }
