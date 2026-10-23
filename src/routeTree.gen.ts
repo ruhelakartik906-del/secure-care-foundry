@@ -36,6 +36,8 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as BlogsIndexRouteImport } from './routes/blogs.index'
+import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
 import { Route as MedicalGasPipelineManufacturerStateRouteImport } from './routes/medical-gas-pipeline-manufacturer.$state'
 import { Route as MedicalGasPipelineManufacturersInStateRouteImport } from './routes/medical-gas-pipeline-manufacturers-in.$state'
 import { Route as ModularOperationTheatreManufacturerStateRouteImport } from './routes/modular-operation-theatre-manufacturer.$state'
@@ -194,6 +196,16 @@ const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   path: '/terms-and-conditions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsIndexRoute = BlogsIndexRouteImport.update({
+  id: '/blogs/',
+  path: '/blogs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsSlugRoute = BlogsSlugRouteImport.update({
+  id: '/blogs/$slug',
+  path: '/blogs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MedicalGasPipelineManufacturerStateRoute =
   MedicalGasPipelineManufacturerStateRouteImport.update({
     id: '/medical-gas-pipeline-manufacturer/$state',
@@ -291,11 +303,13 @@ export interface FileRoutesByFullPath {
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/blogs/': typeof BlogsIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
@@ -332,11 +346,13 @@ export interface FileRoutesByTo {
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/blogs': typeof BlogsIndexRoute
   '/products': typeof ProductsIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
@@ -374,11 +390,13 @@ export interface FileRoutesById {
   '/sitemap': typeof SitemapRoute
   '/solutions': typeof SolutionsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/medical-gas-pipeline-manufacturer/$state': typeof MedicalGasPipelineManufacturerStateRoute
   '/medical-gas-pipeline-manufacturers-in/$state': typeof MedicalGasPipelineManufacturersInStateRoute
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/blogs/': typeof BlogsIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/products/modular-operation-theatre/$variant': typeof ProductsModularOperationTheatreVariantRoute
@@ -417,11 +435,13 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
+    | '/blogs/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
+    | '/blogs/'
     | '/products/'
     | '/resources/'
     | '/products/modular-operation-theatre/$variant'
@@ -458,11 +478,13 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
+    | '/blogs/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
+    | '/blogs'
     | '/products'
     | '/resources'
     | '/products/modular-operation-theatre/$variant'
@@ -499,11 +521,13 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/solutions'
     | '/terms-and-conditions'
+    | '/blogs/$slug'
     | '/medical-gas-pipeline-manufacturer/$state'
     | '/medical-gas-pipeline-manufacturers-in/$state'
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
+    | '/blogs/'
     | '/products/'
     | '/resources/'
     | '/products/modular-operation-theatre/$variant'
@@ -541,11 +565,13 @@ export interface RootRouteChildren {
   SitemapRoute: typeof SitemapRoute
   SolutionsRoute: typeof SolutionsRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
+  BlogsSlugRoute: typeof BlogsSlugRoute
   MedicalGasPipelineManufacturerStateRoute: typeof MedicalGasPipelineManufacturerStateRoute
   MedicalGasPipelineManufacturersInStateRoute: typeof MedicalGasPipelineManufacturersInStateRoute
   ModularOperationTheatreManufacturerStateRoute: typeof ModularOperationTheatreManufacturerStateRoute
   ModularOperationTheatreManufacturersInStateRoute: typeof ModularOperationTheatreManufacturersInStateRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  BlogsIndexRoute: typeof BlogsIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
   ProductsModularOperationTheatreVariantRoute: typeof ProductsModularOperationTheatreVariantRoute
@@ -746,6 +772,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsAndConditionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/': {
+      id: '/blogs/'
+      path: '/blogs'
+      fullPath: '/blogs/'
+      preLoaderRoute: typeof BlogsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/$slug': {
+      id: '/blogs/$slug'
+      path: '/blogs/$slug'
+      fullPath: '/blogs/$slug'
+      preLoaderRoute: typeof BlogsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/medical-gas-pipeline-manufacturer/$state': {
       id: '/medical-gas-pipeline-manufacturer/$state'
       path: '/medical-gas-pipeline-manufacturer/$state'
@@ -862,6 +902,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapRoute: SitemapRoute,
   SolutionsRoute: SolutionsRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
+  BlogsSlugRoute: BlogsSlugRoute,
   MedicalGasPipelineManufacturerStateRoute:
     MedicalGasPipelineManufacturerStateRoute,
   MedicalGasPipelineManufacturersInStateRoute:
@@ -871,6 +912,7 @@ const rootRouteChildren: RootRouteChildren = {
   ModularOperationTheatreManufacturersInStateRoute:
     ModularOperationTheatreManufacturersInStateRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  BlogsIndexRoute: BlogsIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
   ProductsModularOperationTheatreVariantRoute:

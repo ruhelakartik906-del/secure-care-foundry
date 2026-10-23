@@ -11,7 +11,7 @@ export const Route = createFileRoute("/sitemap")({
       <PageHero title="Sitemap" crumbs={[{ label: "Sitemap" }]} />
       <section className="site-wrap grid gap-10 py-14 text-sm md:grid-cols-2 lg:grid-cols-4">
         <div><h2 className="mb-3 font-bold">Pages</h2><ul className="space-y-2">
-          {([["/", "Home"], ["/products", "Products"], ["/about", "About Us"], ["/contact", "Contact Us"], ["/locations", "Service Locations"], ["/privacy-policy", "Privacy Policy"], ["/disclaimer", "Disclaimer"], ["/terms-and-conditions", "Terms & Conditions"]] as const).map(([to, l]) => <li key={to}><Link to={to} className="hover:text-brand-blue">{l}</Link></li>)}
+          {([["/", "Home"], ["/products", "Products"], ["/blogs", "Blogs"], ["/about", "About Us"], ["/contact", "Contact Us"], ["/locations", "Service Locations"], ["/privacy-policy", "Privacy Policy"], ["/disclaimer", "Disclaimer"], ["/terms-and-conditions", "Terms & Conditions"]] as const).map(([to, l]) => <li key={to}><Link to={to} className="hover:text-brand-blue">{l}</Link></li>)}
         </ul></div>
         <div><h2 className="mb-3 font-bold">Products</h2><ul className="space-y-2">{products.map((p) => <li key={p.slug}><Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-brand-blue">{p.name}</Link></li>)}{modularOtOptions.map((p) => <li key={p.slug}><Link to="/products/modular-operation-theatre/$variant" params={{ variant: p.slug }} className="hover:text-brand-blue">{p.name}</Link></li>)}</ul></div>
         <div><h2 className="mb-3 font-bold">Locations</h2><ul className="space-y-2">

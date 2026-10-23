@@ -6,11 +6,12 @@ import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { cities, cityPath } from "@/data/cities";
 import { Button } from "@/components/ui/button";
+import { routes } from "@/lib/routes";
 import { useEnquiry } from "./EnquiryDialog";
 import { isActiveItem, isSolutionPath, solutionGroups, type SolutionItem } from "./nav-data";
 
 const after = [
-  { to: "/resources", label: "Blogs" },
+  { to: routes.blogs, label: "Blogs" },
   { to: "/modular-ot-cost-india", label: "Pricing Guide" },
   { to: "/contact", label: "Contact" },
 ] as const;

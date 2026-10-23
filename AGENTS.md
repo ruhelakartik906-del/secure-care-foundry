@@ -24,5 +24,5 @@
 - Every public page is prerendered from `prerender-pages.json`; run `bun scripts/gen-static.ts` after adding pages to refresh it plus `public/sitemap.xml` and `public/robots.txt`, because the static host cannot generate them.
 - Enquiry forms post only to FormSubmit (AJAX) and show success only when it confirms, because there is no backend to store leads.
 - Hostinger URL rules (HTTPS, apex host, clean URLs, 404, old blog/admin 301s) live in `public/.htaccess`; `src/server.ts` mirrors them for Lovable hosting.
-- Blogs are intentionally not part of this site (planned on a separate subdomain).
+- Blog articles live in the static data module and render through `/blogs` and `/blogs/$slug`; static path generation includes every article, so publishing company-supplied content needs no backend or admin.
 - `scripts/post-build.mjs` copies `.vercel/output/static` into `dist/client` (and fails if no `index.html`), because on Vercel the build auto-switches to Vercel's output format and every host must serve the same `dist/client` folder.

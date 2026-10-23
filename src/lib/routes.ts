@@ -11,6 +11,7 @@ export const otStatePath = (state: string) => `/modular-operation-theatre-manufa
 export const mgpsStatePath = (state: string) => `/medical-gas-pipeline-manufacturers-in/${state}`;
 export const compliancePath = (slug: string) => `/resources/compliance/${slug}`;
 export const comparisonPath = (slug: string) => `/resources/comparisons/${slug}`;
+export const blogPath = (slug: string) => `/blogs/${slug}`;
 
 export const routes = {
   home: "/",
@@ -18,6 +19,7 @@ export const routes = {
   pricing: "/modular-ot-cost-india",
   locations: "/locations",
   resources: "/resources",
+  blogs: "/blogs",
   compliance: "/resources/compliance",
   comparisons: "/resources/comparisons",
   faqs: "/faqs",

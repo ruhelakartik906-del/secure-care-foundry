@@ -11,3 +11,5 @@
 - [x] Validate routes, responsive layouts, links, and preview health.
 - [x] Apply the ten supplied photos to their named products; avoid duplicating Semi Modular OT.
 - [x] Verify updated product cards and pages.
+- [ ] Create static Blogs listing and article pages, connect header and static sitemap.
+- [ ] Verify Blogs navigation, empty state and tests without adding invented articles.
