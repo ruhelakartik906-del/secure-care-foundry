@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
 import logo from "@/assets/unicare-logo.webp";
 import { site, whatsappLink } from "@/data/site";
@@ -126,19 +127,20 @@ export function Header() {
         </div>
       </div>
 
-      {mobile && (
-        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
-          <div className="absolute inset-0 bg-navy/50" onClick={() => setMobile(false)} />
-          <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-background shadow-xl">
+      <Dialog.Root open={mobile} onOpenChange={setMobile}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-[60] bg-navy/50 lg:hidden" />
+          <Dialog.Content aria-describedby={undefined} className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-sm flex-col overflow-y-auto overscroll-contain bg-background shadow-xl lg:hidden">
+            <Dialog.Title className="sr-only">Menu</Dialog.Title>
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4">
               <img src={logo} alt="Unicare Medical Solutions" className="h-10 w-auto" />
-              <button aria-label="Close menu" onClick={() => setMobile(false)} className="grid h-11 w-11 place-items-center"><X className="h-6 w-6" /></button>
+              <Button variant="ghost" size="icon" aria-label="Close menu" onClick={() => setMobile(false)} className="h-11 w-11"><X className="h-6 w-6" /></Button>
             </div>
             <nav className="flex flex-col px-4 py-3" aria-label="Mobile">
               <Link to="/" onClick={closeAll} activeOptions={{ exact: true }} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">Home</Link>
-              <button onClick={() => setMSol((v) => !v)} aria-expanded={mSol} className={`flex min-h-12 items-center justify-between border-b border-border text-left font-medium ${solActive ? "text-brand-blue" : ""}`}>
+              <Button variant="ghost" onClick={() => setMSol((v) => !v)} aria-expanded={mSol} className={`flex min-h-12 items-center justify-between rounded-none border-b border-border px-0 text-left font-medium ${solActive ? "text-brand-blue" : ""}`}>
                 Products <ChevronDown className={`h-5 w-5 transition ${mSol ? "rotate-180" : ""}`} />
-              </button>
+              </Button>
               {mSol && (
                 <div className="border-b border-border bg-muted py-1">
                   {solutionGroups.map((g) => <div key={g.title}>
@@ -156,9 +158,9 @@ export function Header() {
               <Button className="mt-6 rounded-sm" size="lg" onClick={() => { closeAll(); open(); }}>Get a Quote</Button>
               <a href={site.phoneHref} className="mt-3 border border-border py-3 text-center text-sm font-medium">Call {site.phone}</a>
             </nav>
-          </div>
-        </div>
-      )}
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </header>
   );
 }
