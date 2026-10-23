@@ -10,6 +10,7 @@ import { useEnquiry } from "./EnquiryDialog";
 import { isActiveItem, isSolutionPath, solutionGroups, type SolutionItem } from "./nav-data";
 
 const after = [
+  { to: "/resources", label: "Blogs" },
   { to: "/modular-ot-cost-india", label: "Pricing Guide" },
   { to: "/contact", label: "Contact" },
 ] as const;
