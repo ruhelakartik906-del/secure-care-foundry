@@ -7,6 +7,7 @@ import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Phone } from "lucide-react";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { absUrl } from "@/lib/site-url";
 import mgpsPlantPhotoSrc from "@/assets/mgps-plant-room.webp";
@@ -63,8 +64,10 @@ const installSteps = ["Requirement discussion", "Site assessment", "Technical dr
 
 function ProductPage() {
   const { slug } = Route.useLoaderData();
-  const p = getProduct(slug)!;
+  const p = getProduct(slug);
   const { open } = useEnquiry();
+  if (!p) return null;
+  const hero = heroImages[p.slug];
   const isOt = p.slug === "modular-operation-theatre";
   const hasLongForm = ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow"].includes(p.slug);
   const related = products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
@@ -74,10 +77,10 @@ function ProductPage() {
       <PageHero title={p.name} crumbs={[{ label: "Products", to: "/products" }, { label: p.name }]} />
       <section className="site-wrap grid gap-10 py-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          {heroImages[p.slug] ? (
-            <img src={heroImages[p.slug]!.src} alt={heroImages[p.slug]!.alt} width={heroImages[p.slug]!.w} height={heroImages[p.slug]!.h} fetchPriority="high" className="h-auto w-full" />
+          {hero ? (
+            <ResponsiveImage src={hero.src} alt={hero.alt} width={hero.w} height={hero.h} fetchPriority="high" className="h-auto w-full" />
           ) : (
-            <img src={p.image} alt={p.name} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
+            <ResponsiveImage decoding="async" fetchPriority="high" src={p.image} alt={p.name} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
           )}
         </div>
         <div className="lg:col-span-5">
@@ -106,7 +109,7 @@ function ProductPage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 {modularOtOptions.map((option) => (
                   <article key={option.slug} id={option.slug} className="scroll-mt-28 border border-border p-4">
-                    <img src={option.image} alt={option.name} loading="lazy" width={640} height={480} className="!mb-4 !mt-0 aspect-[4/3] w-full object-cover" />
+                    <ResponsiveImage src={option.image} alt={option.name} loading="lazy" width={640} height={480} className="!mb-4 !mt-0 aspect-[4/3] w-full object-cover" />
                     <h3 className="!mt-0">{option.name}</h3>
                     <p className="!mb-0">{option.description}</p>
                     <Link to="/products/modular-operation-theatre/$variant" params={{ variant: option.slug }} className="mt-3 inline-block text-sm font-semibold text-brand-blue">View Details →</Link>
@@ -160,7 +163,7 @@ function OtLongForm() {
     <>
       <h2>What is a Modular Operation Theatre?</h2>
       <p>A modular operation theatre is a surgical room assembled from factory-manufactured wall and ceiling panels with integrated services. Instead of plastered brick walls, the OT uses smooth, joint-sealed panels that are easier to clean and maintain, and that allow HVAC, laminar air flow, gases, lighting and controls to be built in neatly.</p>
-      <img src={otSupportSrc} alt="Modular operating theatre showing integrated medical infrastructure and surgical equipment." loading="lazy" width={1600} height={900} className="mb-4 h-auto w-full" />
+      <ResponsiveImage src={otSupportSrc} alt="Modular operating theatre showing integrated medical infrastructure and surgical equipment." loading="lazy" width={1600} height={900} className="mb-4 h-auto w-full" />
       <h2>Modular OT Design</h2>
       <p>Design starts with the room dimensions, surgical specialities, equipment list and workflow (clean and dirty corridors, scrub area, pre-op and recovery). We prepare layouts showing panel arrangement, laminar air flow position, pendants, lights, doors, storage and control panels.</p>
       <h2>Modular OT Components</h2>
@@ -186,7 +189,7 @@ function MgpsLongForm() {
       <h2>MGPS Overview</h2>
       <p>A medical gas pipeline system replaces bedside cylinders with a central supply. Gases are generated or stored at a plant room, distributed through cleaned medical-grade copper pipework and delivered at gas-specific terminal outlets in OTs, ICUs, wards and emergency areas. We plan the system around your bed count, departments and the standard specified in your tender.</p>
       <h2>Gas Sources and Manifolds</h2>
-      <img src={mgpsPlantPhoto.url} alt="Medical gas plant room with medical air compressors, vacuum plant and cylinder manifold pipework" loading="lazy" width={1128} height={716} className="mb-4 aspect-[1128/716] w-full object-cover" />
+      <ResponsiveImage src={mgpsPlantPhoto.url} alt="Medical gas plant room with medical air compressors, vacuum plant and cylinder manifold pipework" loading="lazy" width={1128} height={716} className="mb-4 aspect-[1128/716] w-full object-cover" />
       <p>Typical sources include oxygen cylinder manifolds, liquid oxygen tanks or PSA oxygen plants, medical air compressors, vacuum pumps and nitrous oxide manifolds. Manifolds are normally duplex (duty and standby) so supply continues during cylinder changeover.</p>
       <h2>Pipeline, Zone Valve Boxes and Alarms</h2>
       <ul>

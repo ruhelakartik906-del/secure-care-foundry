@@ -13,3 +13,5 @@
 - [x] Verify updated product cards and pages.
 - [x] Create static Blogs listing and article pages, connect header and static sitemap.
 - [x] Verify Blogs navigation, empty state and tests without adding invented articles.
+- [x] Fix mobile menu layering and verify interaction over page text.
+- [x] Optimize image delivery and verify homepage/product loading without changing photo assignments.

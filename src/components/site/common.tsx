@@ -5,13 +5,15 @@ import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "./EnquiryDialog";
+import { ResponsiveImage } from "./ResponsiveImage";
+import { cardImageSizes } from "@/lib/responsive-images";
 
 export function ProductCard({ p }: { p: Product }) {
   const { open } = useEnquiry();
   return (
     <article className={`group flex flex-col border bg-card ${p.slug === "modular-operation-theatre" ? "border-brand-blue shadow-sm" : "border-border"}`}>
       <Link to="/products/$slug" params={{ slug: p.slug }} className="block aspect-[4/3] overflow-hidden bg-muted">
-        <img src={p.image} alt={p.name} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+        <ResponsiveImage src={p.image} sizes={cardImageSizes} alt={p.name} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
       </Link>
       <div className="flex flex-1 flex-col p-5">
         <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{p.category}</p>
