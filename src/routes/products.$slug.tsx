@@ -213,14 +213,7 @@ function LafLongForm() {
   return (
     <>
       <h2>Laminar Air-Flow System for Operating Theatres</h2>
-      <p>The ceiling-mounted laminar air-flow system is one of the most central parts of the operating room. It not only receives the fresh supply air, but also filters it through a HEPA filter to remove bacteria, and diffuses the air as per OR (OT) requirements.</p>
-      <h3>System Design and Construction</h3>
-      <p>The unidirectional air-flow system, made of aluminium or SS 304-grade sheets, is designed to receive and pressurise supply air through connected aluminium ducts.</p>
-      <h3>HEPA Filtration and Diffuser</h3>
-      <p>The system is fitted with a quality <Link to="/hepa-filtration-system-for-operation-theatre">HEPA filter</Link> through which the pressurised air flows through a unidirectional diffuser made of SS 304 grade steel sheets or monofilament fabric made from nylon/polyethene yarn.</p>
-      <h3>HVAC Sizing, Insulation and Leak Testing</h3>
-      <p>The plenum is properly leak-tested, thermally insulated, and adequately sized according to <Link to="/operation-theatre-hvac-system">HVAC</Link> air-flow requirements calculated from room air volume.</p>
-      <h3>Why Correct Plenum Sizing and Air Quality Matter</h3>
+      <p>The ceiling-mounted laminar air-flow system is one of the most central parts of the operating room — it not only receives the fresh supply air, but also filters it through a <Link to="/hepa-filtration-system-for-operation-theatre">HEPA filter</Link> to remove bacteria, and diffuses the air as per OR (OT) requirements. The unidirectional air-flow system, made of aluminium or SS 304-grade sheets, is designed to receive and pressurise supply air through connected aluminium ducts. It is properly leak-tested, thermally insulated, and adequately sized according to <Link to="/operation-theatre-hvac-system">HVAC</Link> air-flow requirements calculated from room air volume, and fitted with a quality HEPA filter through which the pressurised air flows through a unidirectional diffuser made SS 304 grade steel sheets or monofilament fabric made from nylon/polyethene yarn.</p>
       <p>Proper sizing of the laminar air-flow plenum system, high-quality HEPA filters (with a dust-spot efficiency of 99.97% at 0.3 micron), diffuser quality, and leak-proofing are all very important to maintain a proper, aseptic air quality inside the OR (OT).</p>
       <h2>Installation and Maintenance</h2>
       <p>The LAF position is fixed during OT layout so it sits above the operating table, clear of the <Link to="/products/$slug" params={{ slug: "led-surgical-light" }}>surgical light</Link> and <Link to="/products/$slug" params={{ slug: "ot-pendant" }}>pendant</Link> mounts, and integrated with the <Link to="/modular-ot-ceiling">OT ceiling</Link>. Maintenance includes periodic filter integrity checks, differential pressure monitoring and filter replacement as per the hospital's validation schedule.</p>
