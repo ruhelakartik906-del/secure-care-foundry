@@ -36,7 +36,7 @@ const imageVariants: Record<string, ReturnType<typeof variants>> = {
   [passBox]: variants(boxSmall, boxLarge),
 };
 
-export function responsiveImage(src: string) {
+export function responsiveImage(src: string): { src: string; srcSet?: string } {
   return imageVariants[src] ?? { src };
 }
 
