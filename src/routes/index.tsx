@@ -16,12 +16,13 @@ import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { seo } from "@/lib/seo";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 import { responsiveImage, sectionImageSizes } from "@/lib/responsive-images";
+import { organizationSchema } from "@/lib/structured-data";
 
 export const Route = createFileRoute("/")({
   head: () => {
     const metadata = seo("Modular OT & MGPS Manufacturer in Ghaziabad, UP | Unicare", "Modular operation theatre and MGPS manufacturer in Ghaziabad. NABH-aligned design, installation and AMC across North India. Get a quote.", "/");
     const hero = responsiveImage(homeDefaults.heroImage);
-    return { ...metadata, links: [...metadata.links, { rel: "preload", as: "image", href: hero.src, imageSrcSet: hero.srcSet, imageSizes: sectionImageSizes, fetchPriority: "high" }], scripts: [faqSchema(homeFaqs)] };
+    return { ...metadata, links: [...metadata.links, { rel: "preload", as: "image", href: hero.src, imageSrcSet: hero.srcSet, imageSizes: sectionImageSizes, fetchPriority: "high" }], scripts: [{ type: "application/ld+json", children: JSON.stringify(organizationSchema()) }, faqSchema(homeFaqs)] };
   },
   component: Home,
 });

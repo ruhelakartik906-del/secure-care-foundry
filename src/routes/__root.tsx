@@ -110,24 +110,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "@id": `${SITE_URL}/#organization`,
-          name: site.name,
-          legalName: site.legalName,
-          url: `${SITE_URL}/`,
-          logo: `${SITE_URL}/favicon.png`,
-          email: site.email,
-          telephone: site.phone,
-          address: [
-            { "@type": "PostalAddress", streetAddress: "357, Malkhan Singh Complex, Opp. Ambedkar Bhawan, Dasna Road", addressLocality: "Ghaziabad", postalCode: "201001", addressRegion: "Uttar Pradesh", addressCountry: "IN" },
-            { "@type": "PostalAddress", streetAddress: "Plot No. B/260, Adarsh Nagar, Subedar Colony", addressLocality: "Ballabhgarh", postalCode: "121004", addressRegion: "Haryana", addressCountry: "IN" },
-          ],
-        }),
-      },
-      {
-        type: "application/ld+json",
         children: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: site.name, url: `${SITE_URL}/`, publisher: { "@id": `${SITE_URL}/#organization` } }),
       },
       ...(ga ? [{ src: `https://www.googletagmanager.com/gtag/js?id=${ga}`, async: true }, { children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga}');` }] : []),

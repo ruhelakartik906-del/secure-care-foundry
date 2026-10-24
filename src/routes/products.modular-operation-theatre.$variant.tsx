@@ -4,9 +4,10 @@ import { getModularOtOption, modularOtOptions } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
-import { CtaBand, Faqs, PageHero } from "@/components/site/common";
+import { CtaBand, Faqs, PageHero, faqSchema } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { breadcrumbSchema, seo } from "@/lib/seo";
+import { serviceSchema, variantFaqs } from "@/lib/structured-data";
 
 export const Route = createFileRoute("/products/modular-operation-theatre/$variant")({
   loader: ({ params }) => {
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/products/modular-operation-theatre/$varia
     const path = `/products/modular-operation-theatre/${option.slug}`;
     return {
       ...seo(`${option.name} Manufacturer & Installation | Unicare`, `${option.description} Request project-specific design, installation and pricing from Unicare Medical Solutions.`, path, "product"),
-      scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: "Modular Operation Theatre", path: "/products/modular-operation-theatre" }, { name: option.name, path }])],
+      scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: "Modular Operation Theatre", path: "/products/modular-operation-theatre" }, { name: option.name, path }]), { type: "application/ld+json", children: JSON.stringify(serviceSchema(option.name, option.description, path, option.image)) }, faqSchema(variantFaqs(option))],
     };
   },
   component: ModularOtVariantPage,
@@ -30,10 +31,7 @@ function ModularOtVariantPage() {
   const { variant } = Route.useLoaderData();
   const option = getModularOtOption(variant);
   if (!option) return null;
-  const faqs = [
-    { q: `What does a ${option.menuName} project include?`, a: "The final scope is prepared around room dimensions, selected panel system, airflow, doors, controls, medical gases and installation requirements." },
-    { q: `How is ${option.menuName} pricing calculated?`, a: "Pricing depends on room size, material selection, equipment integration and site scope. We provide a project-specific quotation after reviewing your requirement." },
-  ];
+  const faqs = variantFaqs(option);
   return (
     <>
       <PageHero title={option.name} intro={option.description} crumbs={[{ label: "Products", to: "/products" }, { label: "Modular Operation Theatre", to: "/products/modular-operation-theatre" }, { label: option.menuName }]} />
