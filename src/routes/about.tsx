@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 const cssd = "/images/cssd-systems.webp";
 import { PageHero, CtaBand } from "@/components/site/common";
 import { seo } from "@/lib/seo";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 
 export const Route = createFileRoute("/about")({
   head: () => seo("About Us | Unicare Medical Solutions", "Unicare Medical Solutions designs, manufactures and installs hospital infrastructure including modular OTs and medical gas pipeline systems.", "/about"),
@@ -23,7 +24,7 @@ function About() {
     <>
       <PageHero title="About Unicare Medical Solutions" intro="Hospital infrastructure, planned and delivered as one project." crumbs={[{ label: "About Us" }]} />
       <section className="site-wrap grid gap-12 py-16 lg:grid-cols-2">
-        <img src={cssd} alt="Hospital sterile services department" loading="lazy" width={1024} height={1024} className="aspect-[4/3] w-full object-cover" />
+        <ResponsiveImage src={cssd} alt="Hospital sterile services department" width={1024} height={768} className="aspect-[4/3] w-full object-cover" />
         <div className="grid gap-px self-start border border-border bg-border sm:grid-cols-2">
           {blocks.map(([t, d]) => (
             <div key={t} className="bg-background p-6"><h2 className="text-lg font-bold">{t}</h2><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p></div>

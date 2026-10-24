@@ -6,7 +6,13 @@
   "outputDirectory": "dist/client",
   "cleanUrls": true,
   "trailingSlash": false,
+  "headers": [{ "source": "/(.*)", "headers": [
+    { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
+    { "key": "X-Content-Type-Options", "value": "nosniff" },
+    { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+  ] }],
   "redirects": [
+    { "source": "/products/modular-operation-theatre/hospital-modular-ot", "destination": "/products/modular-operation-theatre", "statusCode": 301 },
     { "source": "/projects", "destination": "/products", "permanent": true },
     { "source": "/(blog|admin|reset-password)/:path*", "destination": "/", "permanent": true },
     { "source": "/(blog|admin|reset-password)", "destination": "/", "permanent": true }

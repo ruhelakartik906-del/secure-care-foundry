@@ -7,6 +7,7 @@ import { blogSeo } from "@/lib/blog-seo";
 import { blogPath, routes } from "@/lib/routes";
 import { breadcrumbSchema } from "@/lib/seo";
 import { absUrl } from "@/lib/site-url";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 
 export const Route = createFileRoute("/blogs/$slug")({
   loader: ({ params }) => {
@@ -40,7 +41,7 @@ function BlogArticle() {
     <article className="site-wrap py-12 md:py-16">
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-wrap gap-3 text-sm text-muted-foreground"><time dateTime={blog.publishedAt}>{new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(blog.publishedAt))}</time>{blog.author && <span>{blog.author}</span>}</div>
-        {blog.image && <img src={blog.image} alt={blog.imageAlt || blog.title} width={1200} height={800} className="mt-8 aspect-[3/2] w-full object-cover" />}
+        {blog.image && <ResponsiveImage src={blog.image} alt={blog.imageAlt || blog.title} width={1200} height={800} className="mt-8 aspect-[3/2] w-full object-cover" />}
         {blog.sections.map((section, index) => <section key={index} className="mt-8">
           {section.heading && <h2 className="mb-4 text-2xl font-bold text-foreground">{section.heading}</h2>}
           {section.paragraphs.map((paragraph, i) => <p key={i} className="mb-4 leading-relaxed text-foreground">{paragraph}</p>)}

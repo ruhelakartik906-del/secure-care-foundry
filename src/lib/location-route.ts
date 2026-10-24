@@ -18,5 +18,5 @@ export const makeLocationHead = (productSlug: string, base: string) => ({ loader
   if (!product) return { meta: [{ title: "Product not found" }, { name: "robots", content: "noindex" }] };
   const path = `/${base}/${l.slug}`;
   const s = seo(`${title} | Unicare`, `${product.name} design, manufacturing and installation in ${l.name} — serving ${l.cities.slice(0, 4).join(", ")} and more.`, path);
-  return { ...s, scripts: [breadcrumbSchema([{ name: title, path }]), faqSchema(locationFaqs(productSlug, l))] };
+  return { ...s, scripts: [breadcrumbSchema([{ name: "Locations", path: "/locations" }, { name: l.name, path }]), faqSchema(locationFaqs(productSlug, l))] };
 };

@@ -1,12 +1,25 @@
 import { staticPaths } from "./static-pages";
 import { absUrl } from "./site-url";
+import { hospitalOtPath } from "./retired-pages";
 
-// TODO: Supply company-confirmed, page-specific significant content-change dates.
+// Production page indexing policy; preview-host noindex must not empty this sitemap.
+export const sitemapExcludedPaths: readonly string[] = ["/blogs", "/search", "/page-not-found", hospitalOtPath];
+
+// TODO: Supply company-confirmed, page-specific significant content-change dates for remaining pages.
 // Never infer lastmod from generation/build time or filesystem modification times.
-export const pageLastModified: Readonly<Record<string, string>> = {};
+// These pages gained new internal navigation content in the October 24 technical SEO revision.
+export const pageLastModified: Readonly<Record<string, string>> = {
+  "/products/modular-operation-theatre": "2026-10-24",
+  "/modular-ot-wall-panels": "2026-10-24",
+  "/modular-ot-ceiling": "2026-10-24",
+  "/operation-theatre-hvac-system": "2026-10-24",
+  "/hepa-filtration-system-for-operation-theatre": "2026-10-24",
+  "/modular-ot-doors": "2026-10-24",
+  "/operation-theatre-electrical-system": "2026-10-24",
+};
 
 export function sitemapEntries() {
-  return staticPaths().filter((path) => path !== "/blogs").map((path) => ({
+  return staticPaths().filter((path) => !sitemapExcludedPaths.includes(path)).map((path) => ({
     path,
     lastmod: pageLastModified[path],
   }));

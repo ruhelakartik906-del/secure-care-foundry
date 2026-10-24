@@ -16,7 +16,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
             <DialogTitle className="font-display text-xl">Request a Quote</DialogTitle>
             <DialogDescription>Share your requirement and our project team will get back to you.</DialogDescription>
           </DialogHeader>
-          <EnquiryForm key={state.key} source="quote" defaultProduct={state.product} />
+          {state.open && <EnquiryForm key={state.key} source="quote" defaultProduct={state.product} />}
         </DialogContent>
       </Dialog>
     </Ctx.Provider>

@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { getModularOtOption, modularOtOptions } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
@@ -8,9 +8,12 @@ import { CtaBand, Faqs, PageHero, faqSchema } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { breadcrumbSchema, seo } from "@/lib/seo";
 import { serviceSchema, variantFaqs } from "@/lib/structured-data";
+import { hospitalOtDestination } from "@/lib/retired-pages";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 
 export const Route = createFileRoute("/products/modular-operation-theatre/$variant")({
   loader: ({ params }) => {
+    if (params.variant === "hospital-modular-ot") throw redirect({ href: hospitalOtDestination, statusCode: 301 });
     const option = getModularOtOption(params.variant);
     if (!option) throw notFound();
     return { variant: option.slug };
@@ -34,10 +37,10 @@ function ModularOtVariantPage() {
   const faqs = variantFaqs(option);
   return (
     <>
-      <PageHero title={option.name} intro={option.description} crumbs={[{ label: "Products", to: "/products" }, { label: "Modular Operation Theatre", to: "/products/modular-operation-theatre" }, { label: option.menuName }]} />
+      <PageHero title={option.name} intro={option.description} crumbs={[{ label: "Products", to: "/products" }, { label: "Modular Operation Theatre", to: "/products/modular-operation-theatre" }, { label: option.name }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <article className="prose-unicare lg:col-span-8">
-          <img src={option.image} alt={`${option.name} installation solution`} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
+          <ResponsiveImage src={option.image} alt={`${option.name} installation solution`} width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
           <h2>Overview</h2><p>{option.description} Unicare coordinates planning, manufacturing and installation as one project for hospitals, architects and healthcare contractors.</p>
           <h2>Project features</h2><ul><li>Room-specific planning and panel layout</li><li>Integration with laminar air flow, medical gases, electrical and control systems</li><li>Coordinated installation, testing and handover</li><li>Material and finish selection based on the approved project brief</li></ul>
           <h2>Applications</h2><ul><li>New hospital operation theatres</li><li>Existing OT renovation and upgrades</li><li>Multispecialty and specialist surgical facilities</li></ul>

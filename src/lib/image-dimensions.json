@@ -1,0 +1,270 @@
+{
+  "/images/laminar-air-flow.webp": {
+    "width": 600,
+    "height": 400
+  },
+  "/images/mgps-copper-pipeline.webp": {
+    "width": 1119,
+    "height": 414
+  },
+  "/images/modular-ot-room.webp": {
+    "width": 1600,
+    "height": 900
+  },
+  "/images/modular-ot-hero.webp": {
+    "width": 1600,
+    "height": 900
+  },
+  "/images/mgps-oxygen-outlet.webp": {
+    "width": 875,
+    "height": 547
+  },
+  "/images/jointless-modular-ot.webp": {
+    "width": 1024,
+    "height": 768
+  },
+  "/images/hpl-modular-ot.webp": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/images/ppgi-modular-ot.webp": {
+    "width": 500,
+    "height": 333
+  },
+  "/images/glass-modular-ot.webp": {
+    "width": 1599,
+    "height": 899
+  },
+  "/images/semi-modular-ot.webp": {
+    "width": 780,
+    "height": 1040
+  },
+  "/images/manifold-room-system.webp": {
+    "width": 300,
+    "height": 296
+  },
+  "/images/bioclad-modular-ot.webp": {
+    "width": 275,
+    "height": 224
+  },
+  "/images/stainless-steel-modular-ot.webp": {
+    "width": 1280,
+    "height": 576
+  },
+  "/images/modular-icu.webp": {
+    "width": 787,
+    "height": 443
+  },
+  "/images/bed-head-panel.webp": {
+    "width": 1080,
+    "height": 1080
+  },
+  "/images/perforated-cleanroom-ceiling-air-diffuser.webp": {
+    "width": 1536,
+    "height": 1024
+  },
+  "/images/cssd-systems.webp": {
+    "width": 800,
+    "height": 800
+  },
+  "/images/surgical-scrub-sink.webp": {
+    "width": 537,
+    "height": 728
+  },
+  "/images/cubicle-curtain-tracks.webp": {
+    "width": 500,
+    "height": 500
+  },
+  "/images/hospital-furniture.webp": {
+    "width": 800,
+    "height": 800
+  },
+  "/images/agss-system.webp": {
+    "width": 1080,
+    "height": 716
+  },
+  "/images/ot-pendant.webp": {
+    "width": 275,
+    "height": 224
+  },
+  "/images/led-surgical-light.webp": {
+    "width": 1200,
+    "height": 912
+  },
+  "/images/hermetic-ot-door.webp": {
+    "width": 1200,
+    "height": 912
+  },
+  "/images/pass-box.webp": {
+    "width": 1200,
+    "height": 912
+  },
+  "/images/mgps-plant-room.webp": {
+    "width": 1127,
+    "height": 725
+  },
+  "/images/unicare-logo.webp": {
+    "width": 540,
+    "height": 186
+  },
+  "/images/optimized/modular-ot-hero-640.webp": {
+    "width": 640,
+    "height": 360
+  },
+  "/images/optimized/modular-ot-hero-1200.webp": {
+    "width": 1200,
+    "height": 675
+  },
+  "/images/optimized/modular-ot-room-640.webp": {
+    "width": 640,
+    "height": 360
+  },
+  "/images/optimized/modular-ot-room-1200.webp": {
+    "width": 1200,
+    "height": 675
+  },
+  "/images/optimized/perforated-cleanroom-ceiling-air-diffuser-640.webp": {
+    "width": 640,
+    "height": 427
+  },
+  "/images/optimized/perforated-cleanroom-ceiling-air-diffuser-1200.webp": {
+    "width": 1200,
+    "height": 800
+  },
+  "/images/optimized/hpl-modular-ot-640.webp": {
+    "width": 640,
+    "height": 426
+  },
+  "/images/optimized/hpl-modular-ot-1200.webp": {
+    "width": 1200,
+    "height": 800
+  },
+  "/images/optimized/led-surgical-light-640.webp": {
+    "width": 640,
+    "height": 486
+  },
+  "/images/optimized/led-surgical-light-1200.webp": {
+    "width": 1200,
+    "height": 912
+  },
+  "/images/optimized/hermetic-ot-door-640.webp": {
+    "width": 640,
+    "height": 486
+  },
+  "/images/optimized/hermetic-ot-door-1200.webp": {
+    "width": 1200,
+    "height": 912
+  },
+  "/images/optimized/pass-box-640.webp": {
+    "width": 640,
+    "height": 486
+  },
+  "/images/optimized/pass-box-1200.webp": {
+    "width": 1200,
+    "height": 912
+  },
+  "/images/optimized/laminar-air-flow-768.webp": {
+    "width": 768,
+    "height": 512
+  },
+  "/images/optimized/mgps-copper-pipeline-768.webp": {
+    "width": 768,
+    "height": 284
+  },
+  "/images/optimized/modular-ot-room-768.webp": {
+    "width": 768,
+    "height": 432
+  },
+  "/images/optimized/modular-ot-hero-768.webp": {
+    "width": 768,
+    "height": 432
+  },
+  "/images/optimized/mgps-oxygen-outlet-768.webp": {
+    "width": 768,
+    "height": 480
+  },
+  "/images/optimized/jointless-modular-ot-768.webp": {
+    "width": 768,
+    "height": 576
+  },
+  "/images/optimized/hpl-modular-ot-768.webp": {
+    "width": 768,
+    "height": 512
+  },
+  "/images/optimized/ppgi-modular-ot-768.webp": {
+    "width": 768,
+    "height": 511
+  },
+  "/images/optimized/glass-modular-ot-768.webp": {
+    "width": 768,
+    "height": 432
+  },
+  "/images/optimized/semi-modular-ot-768.webp": {
+    "width": 768,
+    "height": 1024
+  },
+  "/images/optimized/manifold-room-system-768.webp": {
+    "width": 768,
+    "height": 758
+  },
+  "/images/optimized/bioclad-modular-ot-768.webp": {
+    "width": 768,
+    "height": 626
+  },
+  "/images/optimized/stainless-steel-modular-ot-768.webp": {
+    "width": 768,
+    "height": 346
+  },
+  "/images/optimized/modular-icu-768.webp": {
+    "width": 768,
+    "height": 432
+  },
+  "/images/optimized/bed-head-panel-768.webp": {
+    "width": 768,
+    "height": 768
+  },
+  "/images/optimized/perforated-cleanroom-ceiling-air-diffuser-768.webp": {
+    "width": 768,
+    "height": 512
+  },
+  "/images/optimized/cssd-systems-768.webp": {
+    "width": 768,
+    "height": 768
+  },
+  "/images/optimized/surgical-scrub-sink-768.webp": {
+    "width": 768,
+    "height": 1041
+  },
+  "/images/optimized/cubicle-curtain-tracks-768.webp": {
+    "width": 768,
+    "height": 768
+  },
+  "/images/optimized/hospital-furniture-768.webp": {
+    "width": 768,
+    "height": 768
+  },
+  "/images/optimized/agss-system-768.webp": {
+    "width": 768,
+    "height": 509
+  },
+  "/images/optimized/ot-pendant-768.webp": {
+    "width": 768,
+    "height": 626
+  },
+  "/images/optimized/led-surgical-light-768.webp": {
+    "width": 768,
+    "height": 584
+  },
+  "/images/optimized/hermetic-ot-door-768.webp": {
+    "width": 768,
+    "height": 584
+  },
+  "/images/optimized/pass-box-768.webp": {
+    "width": 768,
+    "height": 584
+  },
+  "/images/optimized/mgps-plant-room-768.webp": {
+    "width": 768,
+    "height": 494
+  }
+}

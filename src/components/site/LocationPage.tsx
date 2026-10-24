@@ -6,10 +6,11 @@ import { PageHero, Faqs, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
 import { useEnquiry } from "./EnquiryDialog";
 
-export const locationTitle = (productSlug: string, l: Location) => `${getProduct(productSlug)!.keyword} Manufacturers in ${l.name}`;
+export const locationTitle = (productSlug: string, l: Location) => `${getProduct(productSlug)?.keyword ?? "Hospital Infrastructure"} Manufacturers in ${l.name}`;
 
 export const locationFaqs = (productSlug: string, l: Location) => {
-  const p = getProduct(productSlug)!;
+  const p = getProduct(productSlug);
+  if (!p) return [];
   return [
     { q: `Do you install ${p.shortName} in ${l.name}?`, a: `Yes. We take up ${p.shortName.toLowerCase()} projects in ${l.name}, including ${l.cities.slice(0, 3).join(", ")}. Share your project location and requirement for a site assessment.` },
     { q: `What is the ${p.shortName} price in ${l.name}?`, a: `Pricing depends on specification, size, materials and installation scope. We provide a project-specific quotation after understanding your requirement.` },
@@ -17,12 +18,13 @@ export const locationFaqs = (productSlug: string, l: Location) => {
 };
 
 export function LocationPage({ productSlug, location: l }: { productSlug: string; location: Location }) {
-  const p = getProduct(productSlug)!;
+  const p = getProduct(productSlug);
   const { open } = useEnquiry();
+  if (!p) return null;
   const title = locationTitle(productSlug, l);
   return (
     <>
-      <PageHero title={title} intro={`Design, manufacturing and installation of ${p.name.toLowerCase()} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: p.name, to: `/products/${p.slug}` }, { label: l.name }]} />
+      <PageHero title={title} intro={`Design, manufacturing and installation of ${p.name.toLowerCase()} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: "Locations", to: "/locations" }, { label: l.name }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
           <h2>{p.shortName} solutions in {l.name}</h2>

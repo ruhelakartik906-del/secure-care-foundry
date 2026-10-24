@@ -9,6 +9,8 @@ import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
 import { products, modularOtOptions } from "./data/products";
 import { locations } from "./data/locations";
+import { hospitalOtPath, hospitalOtDestination } from "./lib/retired-pages";
+import { withSecurityHeaders } from "./lib/security-headers";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -58,10 +60,11 @@ const CANONICAL_HOST = "www.unicaremedicalsolutions.com";
 const permanent = (to: string, code = 301) => new Response(null, { status: code, headers: { location: to, "cache-control": "public, max-age=3600" } });
 
 
-export default {
+const siteServer = {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const url = new URL(request.url);
+      if (url.pathname.replace(/\/+$/, "") === hospitalOtPath) return permanent(`${hospitalOtDestination}${url.search}`);
       const isProdHost = [CANONICAL_HOST, "unicaremedicalsolutions.com"].includes(url.hostname);
       // apex → www, http → https (production domain only, never preview/localhost)
       if (isProdHost && (url.hostname !== CANONICAL_HOST || url.protocol === "http:")) {
@@ -110,5 +113,11 @@ export default {
         headers: { "content-type": "text/html; charset=utf-8" },
       });
     }
+  },
+};
+
+export default {
+  async fetch(request: Request, env: unknown, ctx: unknown) {
+    return withSecurityHeaders(await siteServer.fetch(request, env, ctx));
   },
 };
