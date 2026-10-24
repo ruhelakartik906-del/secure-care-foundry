@@ -1,5 +1,7 @@
 # Revision roadmap
 
+- [x] Task 3: updated organization/product/service schemas, generated 23 same-domain social crops and logo, preserved FAQ appearance with H3 questions; verified 114 SSR pages, synced FAQs, one H1 per page, desktop/mobile FAQ interactions and 47 passing tests.
+
 - [x] Protect non-production hosts with noindex/nofollow in server HTML and an early-head fallback; verified 113 SSR pages and client navigation.
 - [x] Localize 53 image source references (39 originals + 14 optimized variants), retain photos/alt text and hero priority, add Hospital photo TODO; verified all 365 rendered image instances across 113 pages use local paths.
 

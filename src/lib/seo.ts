@@ -1,6 +1,5 @@
 import { absUrl } from "./site-url";
-
-const defaultImage = "/favicon.png";
+import { socialImagePath } from "./social-images";
 
 export type SeoOptions = {
   index?: boolean;
@@ -41,12 +40,11 @@ export const fitDesc = (d: string) => {
   return s;
 };
 
-export const seo = (rawTitle: string, rawDescription: string, path: string, type = "website", image = defaultImage, opts: SeoOptions = {}) => {
+export const seo = (rawTitle: string, rawDescription: string, path: string, type = "website", _image?: string, opts: SeoOptions = {}) => {
   const title = fitTitle(rawTitle);
   const description = fitDesc(rawDescription);
   const canonical = absUrl(opts.canonical || path);
-  const img = absUrl(image || defaultImage);
-  const tImg = absUrl(opts.twitterImage || image || defaultImage);
+  const img = absUrl(socialImagePath(path));
   return {
     meta: [
       { title },
@@ -57,10 +55,12 @@ export const seo = (rawTitle: string, rawDescription: string, path: string, type
       { property: "og:type", content: type },
       { property: "og:url", content: canonical },
       { property: "og:image", content: img },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: opts.twitterTitle || title },
       { name: "twitter:description", content: opts.twitterDescription || description },
-      { name: "twitter:image", content: tImg },
+      { name: "twitter:image", content: img },
     ],
     links: [{ rel: "canonical", href: canonical }],
   };

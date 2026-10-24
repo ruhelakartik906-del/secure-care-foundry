@@ -1,7 +1,8 @@
 import { absUrl } from "./site-url";
+import { socialImagePath } from "./social-images";
 
 export function blogSeo(title: string, description: string, path: string, image?: string, article = false) {
-  const socialImage = image?.startsWith("https://") ? image : undefined;
+  const socialImage = absUrl(socialImagePath(path));
   return {
     meta: [
       { title },
@@ -13,6 +14,8 @@ export function blogSeo(title: string, description: string, path: string, image?
       { name: "twitter:card", content: socialImage ? "summary_large_image" : "summary" },
       ...(socialImage ? [
         { property: "og:image", content: socialImage },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
         { name: "twitter:image", content: socialImage },
       ] : []),
     ],

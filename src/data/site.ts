@@ -1,6 +1,6 @@
 export const site = {
   name: "Unicare Medical Solutions",
-  legalName: "Unicare Medical Solution",
+  legalName: "Unicare Medical Solutions",
   tagline: "Hospital Infrastructure & Medical Equipment",
   phone: "+91-7678443838",
   phoneHref: "tel:+917678443838",

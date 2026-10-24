@@ -120,7 +120,7 @@ export function Faqs({ faqs }: { faqs: { q: string; a: string }[] }) {
       {faqs.map((f) => (
         <details key={f.q} className="group py-4">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-foreground">
-            {f.q}<Plus aria-hidden="true" className="h-5 w-5 shrink-0 text-brand-blue transition group-open:rotate-45" />
+            <h3 className="!m-0 !text-base !font-semibold !leading-normal">{f.q}</h3><Plus aria-hidden="true" className="h-5 w-5 shrink-0 text-brand-blue transition group-open:rotate-45" />
           </summary>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
         </details>

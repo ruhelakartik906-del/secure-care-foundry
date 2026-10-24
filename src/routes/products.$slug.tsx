@@ -9,7 +9,7 @@ import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Phone } from "lucide-react";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 import { seo, breadcrumbSchema } from "@/lib/seo";
-import { absUrl } from "@/lib/site-url";
+import { productSchema } from "@/lib/structured-data";
 const mgpsPlantPhotoSrc = "/images/mgps-plant-room.webp";
 const mgpsPlantPhoto = { url: mgpsPlantPhotoSrc };
 import { cities, cityPath } from "@/data/cities";
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/products/$slug")({
     if (!p) return { meta: [{ title: "Product not found" }, { name: "robots", content: "noindex" }] };
     const path = `/products/${p.slug}`;
     const s = seo(titleOverrides[p.slug] ?? `${p.name} Manufacturer & Installation | Unicare`, descOverrides[p.slug] ?? p.short, path, "product");
-    const productLd = { type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Product", name: p.name, description: p.short, category: p.category, url: absUrl(path), image: absUrl(p.image), brand: { "@type": "Brand", name: "Unicare Medical Solutions" } }) };
+    const productLd = { type: "application/ld+json", children: JSON.stringify(productSchema(p, path)) };
     return { ...s, scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: p.name, path }]), productLd, faqSchema(p.faqs)] };
   },
   component: ProductPage,
