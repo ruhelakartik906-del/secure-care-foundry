@@ -1,7 +1,7 @@
 # Revision roadmap
 
-- [ ] Protect non-production hosts with noindex/nofollow in server HTML and an early-head fallback.
-- [ ] Localize website image references, retain photos/alt text and hero priority, add Hospital photo TODO, and verify/count the moved references.
+- [x] Protect non-production hosts with noindex/nofollow in server HTML and an early-head fallback; verified 113 SSR pages and client navigation.
+- [x] Localize 53 image source references (39 originals + 14 optimized variants), retain photos/alt text and hero priority, add Hospital photo TODO; verified all 365 rendered image instances across 113 pages use local paths.
 
 - [x] Use www throughout SEO metadata, schemas, sitemap and robots without changing design/forms or page paths; verified server-rendered output on all 113 public pages and route/host tests.
 - [ ] Add sitemap lastmod values when authoritative page-specific content-change dates are supplied; code-only TODO retained, no invented dates.
