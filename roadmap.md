@@ -1,5 +1,7 @@
 # Revision roadmap
 
+- [ ] Task 4: update only named page titles/H1s/descriptions, enforce requested lengths and social consistency, verify SSR and provide URL/title/H1 table.
+
 - [x] Task 3: updated organization/product/service schemas, generated 23 same-domain social crops and logo, preserved FAQ appearance with H3 questions; verified 114 SSR pages, synced FAQs, one H1 per page, desktop/mobile FAQ interactions and 47 passing tests.
 
 - [x] Protect non-production hosts with noindex/nofollow in server HTML and an early-head fallback; verified 113 SSR pages and client navigation.
