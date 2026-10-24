@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /search
 
-Sitemap: https://unicaremedicalsolutions.com/sitemap.xml
+Sitemap: https://www.unicaremedicalsolutions.com/sitemap.xml
