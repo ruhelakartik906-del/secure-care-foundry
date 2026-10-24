@@ -5,6 +5,7 @@ import { locations } from "@/data/locations";
 import { blogs } from "@/data/blogs";
 import { blogPath, routes } from "@/lib/routes";
 import { publicRoutePaths } from "./public-route-paths";
+import { hospitalOtPath } from "./retired-pages";
 
 /** Every public page of the static site — drives prerendering and sitemap.xml. */
 export function staticPaths(routePaths: readonly string[] = publicRoutePaths): string[] {
@@ -19,5 +20,5 @@ export function staticPaths(routePaths: readonly string[] = publicRoutePaths): s
   compliance.forEach((r) => add(`/resources/compliance/${r.slug}`));
   comparisons.forEach((r) => add(`/resources/comparisons/${r.slug}`));
   locations.forEach((l) => { add(`/modular-operation-theatre-manufacturers-in/${l.slug}`); add(`/medical-gas-pipeline-manufacturers-in/${l.slug}`); });
-  return [...entries.keys()];
+  return [...entries.keys()].filter((path) => path !== hospitalOtPath);
 }

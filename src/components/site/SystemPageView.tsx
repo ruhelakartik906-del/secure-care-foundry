@@ -33,6 +33,7 @@ export function SystemPageView({ page }: { page: SystemPage }) {
           <ul>{page.considerations.map((s) => <li key={s}>{s}</li>)}</ul>
           <h2>Part of a complete modular OT</h2>
           <p>This system is usually delivered as part of a full <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre</Link> project, alongside <Link to="/products/$slug" params={{ slug: "laminar-air-flow" }}>laminar air flow</Link> and the <Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }}>medical gas pipeline system</Link>. Pricing is shared after we review your drawings and site.</p>
+          <p>See the <Link to="/modular-ot-cost-india">Modular OT Pricing Guide</Link> for indicative project costs.</p>
           <h2>Frequently Asked Questions</h2>
           <Faqs faqs={page.faqs} />
           <div className="not-prose mt-8 flex flex-wrap gap-3">

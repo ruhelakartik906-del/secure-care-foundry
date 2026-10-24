@@ -30,6 +30,8 @@ export function NotFoundComponent() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link to="/" className="bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">Go Home</Link>
         <Link to="/products" className="border border-border px-5 py-3 text-sm font-semibold">View Products</Link>
+        <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }} className="border border-border px-5 py-3 text-sm font-semibold">Modular OT</Link>
+        <Link to="/modular-ot-cost-india" className="border border-border px-5 py-3 text-sm font-semibold">Pricing Guide</Link>
         <Link to="/contact" className="border border-border px-5 py-3 text-sm font-semibold">Contact Us</Link>
       </div>
     </div>
@@ -103,9 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" },
+      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-800.woff2", crossOrigin: "anonymous" },
     ],
     scripts: [
       {
