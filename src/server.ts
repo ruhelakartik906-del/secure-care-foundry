@@ -1,5 +1,6 @@
 import { sitemapXml } from "./lib/sitemap";
 import { SITE_URL } from "./lib/site-url";
+import { canIndexHost, guardIndexingHtml } from "./lib/indexing-guard";
 import { cities, cityPath } from "@/data/cities";
 import { compliance, comparisons } from "@/data/resources";
 import "./lib/error-capture";
@@ -91,7 +92,17 @@ export default {
       }
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const normalized = await normalizeCatastrophicSsrResponse(response);
+      if (!prerendering && !canIndexHost(url.hostname)) {
+        const headers = new Headers(normalized.headers);
+        headers.set("X-Robots-Tag", "noindex, nofollow");
+        if (headers.get("content-type")?.includes("text/html")) {
+          headers.delete("content-length");
+          return new Response(guardIndexingHtml(await normalized.text(), url.hostname), { status: normalized.status, statusText: normalized.statusText, headers });
+        }
+        return new Response(normalized.body, { status: normalized.status, statusText: normalized.statusText, headers });
+      }
+      return normalized;
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
