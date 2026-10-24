@@ -8,7 +8,7 @@ const gasImg = { url: gasImgSrc };
 /** Built-in homepage copy. Admin edits in `cms_pages` (slug "home") override individual fields; blank fields fall back here. */
 export const homeDefaults = {
   heroEyebrow: "Medical Engineering · Manufacturing · Installation",
-  heroTitle: "Modular OT & Hospital Infrastructure Solutions in India",
+  heroTitle: "Modular Operation Theatre & MGPS Manufacturer in India",
   heroText: "Unicare Medical Solutions designs, manufactures and installs modular operation theatres, medical gas pipeline systems and critical hospital infrastructure for hospitals and healthcare projects across India, with offices in Ghaziabad and works in Faridabad.",
   heroImage: hero.url,
   heroImageAlt: "Three surgeons standing in a blue modular operation theatre with LED surgical lights, ceiling pendants and laminar air flow ceiling",

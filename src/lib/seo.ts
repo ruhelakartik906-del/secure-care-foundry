@@ -1,5 +1,6 @@
 import { absUrl } from "./site-url";
 import { socialImagePath } from "./social-images";
+import { pageSeo } from "@/data/page-seo";
 
 export type SeoOptions = {
   index?: boolean;
@@ -41,8 +42,9 @@ export const fitDesc = (d: string) => {
 };
 
 export const seo = (rawTitle: string, rawDescription: string, path: string, type = "website", _image?: string, opts: SeoOptions = {}) => {
-  const title = fitTitle(rawTitle);
-  const description = fitDesc(rawDescription);
+  const copy = pageSeo[path];
+  const title = copy?.title ?? fitTitle(rawTitle);
+  const description = copy?.description ?? fitDesc(rawDescription);
   const canonical = absUrl(opts.canonical || path);
   const img = absUrl(socialImagePath(path));
   return {
@@ -58,8 +60,8 @@ export const seo = (rawTitle: string, rawDescription: string, path: string, type
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: opts.twitterTitle || title },
-      { name: "twitter:description", content: opts.twitterDescription || description },
+      { name: "twitter:title", content: copy ? title : opts.twitterTitle || title },
+      { name: "twitter:description", content: copy ? description : opts.twitterDescription || description },
       { name: "twitter:image", content: img },
     ],
     links: [{ rel: "canonical", href: canonical }],

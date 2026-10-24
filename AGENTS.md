@@ -29,5 +29,6 @@
 - Mobile navigation uses a portalled Radix modal with its registered Trigger and Close controls; Radix alone owns scroll locking and focus restoration, preventing conflicting body locks and lost focus across repeated openings.
 - Website image paths use same-origin WebP files in `public/images`; `ResponsiveImage` selects local optimized widths, so third-party static hosting needs no Lovable asset service.
 - Social metadata uses `social-images.ts` to select same-domain crops in `public/og`; schema rules and variant FAQs share `structured-data.ts` so page markup and visible content stay synchronized.
+- Requested per-page title, description and H1 overrides live in `src/data/page-seo.ts`, consumed by `seo` and `PageHero`; exact-path lookup preserves metadata and headings on unlisted pages and avoids changing product names in cards/forms.
 - Non-production indexing is blocked in completed SSR responses and Apache response headers; an early-head observer preserves noindex across static copies and client navigation, while production prerendered HTML retains its route-specific indexing directives.
 - `scripts/post-build.mjs` copies `.vercel/output/static` into `dist/client` (and fails if no `index.html`), because on Vercel the build auto-switches to Vercel's output format and every host must serve the same `dist/client` folder.
