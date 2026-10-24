@@ -134,7 +134,7 @@ export function Header() {
           <Dialog.Content aria-describedby={undefined} className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-sm flex-col overflow-y-auto overscroll-contain bg-background shadow-xl lg:hidden">
             <Dialog.Title className="sr-only">Menu</Dialog.Title>
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4">
-              <img src={logo} alt="Unicare Medical Solutions" className="h-10 w-auto" />
+              <img src={logo} alt="Unicare Medical Solutions" width={180} height={60} className="h-10 w-auto" />
               <Dialog.Close asChild>
                 <Button type="button" variant="ghost" size="icon" aria-label="Close menu" className="h-11 w-11 touch-manipulation"><X className="h-6 w-6" /></Button>
               </Dialog.Close>

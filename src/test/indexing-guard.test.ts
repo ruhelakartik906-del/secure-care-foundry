@@ -32,10 +32,7 @@ describe("Company-hosted image delivery", () => {
       expect(existsSync(`public${responsiveImage(image).src}`)).toBe(true);
     }
   });
-  it("keeps the Hospital photo unchanged until a replacement is supplied", () => {
-    const hospital = modularOtOptions.find((p) => p.slug === "hospital-modular-ot");
-    const jointless = modularOtOptions.find((p) => p.slug === "joint-less-modular-ot");
-    expect(hospital?.image).toBe("/images/jointless-modular-ot.webp");
-    expect(hospital?.image).toBe(jointless?.image);
+  it("removes the retired Hospital OT from shared card and enquiry options", () => {
+    expect(modularOtOptions.map((p) => p.slug)).not.toContain("hospital-modular-ot");
   });
 });

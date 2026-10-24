@@ -21,7 +21,11 @@ const imageVariants: Record<string, ReturnType<typeof variants>> = {
 };
 
 export function responsiveImage(src: string): { src: string; srcSet?: string } {
-  return imageVariants[src] ?? { src };
+  if (!src.startsWith("/images/") || src.includes("/optimized/") || src.includes("unicare-logo")) return { src };
+  const name = src.slice("/images/".length).replace(/\.webp$/, "");
+  const desktop = imageVariants[src] ?? { src };
+  const mobile = `/images/optimized/${name}-768.webp`;
+  return { src: desktop.src, srcSet: `${mobile} 768w, ${desktop.src} ${imageVariants[src] ? 1200 : (imageDimensions[src as keyof typeof imageDimensions]?.width ?? 1200)}w` };
 }
 
 export const cardImageSizes = "(min-width: 1240px) 384px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, calc(100vw - 40px)";
