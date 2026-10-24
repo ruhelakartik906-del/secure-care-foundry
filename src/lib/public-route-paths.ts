@@ -1,0 +1,2 @@
+// Generated from src/routes by scripts/gen-static.ts; do not edit manually.
+export const publicRoutePaths: string[] = ["/", "/products", "/about", "/contact", "/locations", "/privacy-policy", "/disclaimer", "/terms-and-conditions", "/sitemap", "/solutions", "/get-a-quote", "/modular-ot-wall-panels", "/modular-ot-ceiling", "/operation-theatre-hvac-system", "/hepa-filtration-system-for-operation-theatre", "/modular-ot-doors", "/operation-theatre-electrical-system", "/modular-ot-cost-india", "/resources", "/resources/compliance", "/resources/comparisons", "/faqs", "/blogs"];
