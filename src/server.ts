@@ -1,4 +1,5 @@
-import { staticPaths } from "./lib/static-pages";
+import { sitemapXml } from "./lib/sitemap";
+import { SITE_URL } from "./lib/site-url";
 import { cities, cityPath } from "@/data/cities";
 import { compliance, comparisons } from "@/data/resources";
 import "./lib/error-capture";
@@ -49,39 +50,29 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
-const SITE_ORIGIN = "https://unicaremedicalsolutions.com";
-const CANONICAL_HOST = "unicaremedicalsolutions.com";
+const SITE_ORIGIN = SITE_URL;
+const CANONICAL_HOST = "www.unicaremedicalsolutions.com";
 
 
 const permanent = (to: string, code = 301) => new Response(null, { status: code, headers: { location: to, "cache-control": "public, max-age=3600" } });
-const xmlEsc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-async function sitemapXml(origin: string) {
-  const entries = new Map<string, string | undefined>();
-  const add = (path: string, lastmod?: string) => { if (!entries.has(path) || lastmod) entries.set(path, lastmod); };
-  staticPaths().forEach((p) => add(p));
-  const body = [...entries].map(([p, lm]) => `\n  <url><loc>${xmlEsc(origin + (p === "/" ? "/" : p))}</loc>${lm ? `<lastmod>${new Date(lm).toISOString().slice(0, 10)}</lastmod>` : ""}</url>`).join("");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${body}\n</urlset>`;
-}
 
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const url = new URL(request.url);
-      const isProdHost = url.hostname.endsWith(CANONICAL_HOST);
-      // www → apex, http → https (production domain only, never preview/localhost)
+      const isProdHost = [CANONICAL_HOST, "unicaremedicalsolutions.com"].includes(url.hostname);
+      // apex → www, http → https (production domain only, never preview/localhost)
       if (isProdHost && (url.hostname !== CANONICAL_HOST || url.protocol === "http:")) {
         return permanent(`${SITE_ORIGIN}${url.pathname}${url.search}`);
       }
-      const origin = SITE_ORIGIN; // sitemap always lists production URLs
 
       if (url.pathname === "/robots.txt") {
         const txt = `User-agent: *\nAllow: /\nDisallow: /search\nDisallow: /private/\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`;
         return new Response(txt, { headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "public, max-age=3600" } });
       }
       if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap-index.xml") {
-        return new Response(await sitemapXml(origin), { headers: { "content-type": "application/xml; charset=utf-8", "cache-control": "public, max-age=900" } });
+        return new Response(sitemapXml(), { headers: { "content-type": "application/xml; charset=utf-8", "cache-control": "public, max-age=900" } });
       }
 
       if (url.pathname === "/projects" || url.pathname === "/projects/") return permanent("/products");

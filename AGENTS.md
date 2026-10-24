@@ -16,14 +16,15 @@
 - Modular Operation Theatre child options live in the product helper, have dedicated detailed routes, and retain parent-page anchors for old links.
 - Uploaded product photos use Lovable Asset pointers in the shared product helper so catalogue cards and detail pages retain one photo assignment without duplicating binaries.
 - The public `/locations` directory is the only full locality index; product browsing remains separate and footer locality links stay intentionally limited.
-- Canonical URLs are absolute on the production origin from `src/lib/site-url.ts` (no trailing slash), so previews never leak into canonicals or the sitemap.
+- Canonical URLs use the fixed company-confirmed production origin from `src/lib/site-url.ts`, so preview/environment overrides cannot leak into metadata or the sitemap; retain existing path/slash conventions.
 - Header menu groups live in `src/components/site/nav-data.ts` (shared by desktop and mobile); catalogue products not listed there are appended automatically.
 - Public URLs are built from helpers in `src/lib/routes.ts` (and `cityPath`), so header, footer, homepage, related links and the sitemap never diverge for the same page.
 
 - The public site is fully static: all content lives in `src/data/*.ts` and the site never queries the backend, so it runs on Hostinger static hosting.
 - Every public page is prerendered from `prerender-pages.json`; run `bun scripts/gen-static.ts` after adding pages to refresh it plus `public/sitemap.xml` and `public/robots.txt`, because the static host cannot generate them.
 - Enquiry forms post only to FormSubmit (AJAX) and show success only when it confirms, because there is no backend to store leads.
-- Hostinger URL rules (HTTPS, apex host, clean URLs, 404, old blog/admin 301s) live in `public/.htaccess`; `src/server.ts` mirrors them for Lovable hosting.
+- Hostinger URL rules (HTTPS, canonical host, clean URLs, 404, old blog/admin 301s) live in `public/.htaccess`; `src/server.ts` mirrors them for Lovable hosting.
+- `scripts/gen-static.ts` derives static public paths from route files into `public-route-paths.ts`; dynamic data paths remain in `staticPaths`, and shared `sitemap.ts` applies exclusions and only authoritative page-change dates so static and server sitemaps agree.
 - Blog articles live in the static data module and render through `/blogs` and `/blogs/$slug`; static path generation includes every article, so publishing company-supplied content needs no backend or admin.
 - Mobile navigation uses a portalled Radix modal with its registered Trigger and Close controls; Radix alone owns scroll locking and focus restoration, preventing conflicting body locks and lost focus across repeated openings.
 - Large shared images use `ResponsiveImage` with optimized asset pointers and responsive widths; absolute asset URLs keep them available on third-party static hosting without an image server.

@@ -4,12 +4,13 @@ import { products, modularOtOptions } from "@/data/products";
 import { locations } from "@/data/locations";
 import { blogs } from "@/data/blogs";
 import { blogPath, routes } from "@/lib/routes";
+import { publicRoutePaths } from "./public-route-paths";
 
 /** Every public page of the static site — drives prerendering and sitemap.xml. */
-export function staticPaths(): string[] {
+export function staticPaths(routePaths: readonly string[] = publicRoutePaths): string[] {
   const entries = new Map<string, string | undefined>();
   const add = (path: string) => { entries.set(path, undefined); };
-  ["/", "/products", "/about", "/contact", "/locations", "/privacy-policy", "/disclaimer", "/terms-and-conditions", "/sitemap", "/solutions", "/get-a-quote", "/modular-ot-wall-panels", "/modular-ot-ceiling", "/operation-theatre-hvac-system", "/hepa-filtration-system-for-operation-theatre", "/modular-ot-doors", "/operation-theatre-electrical-system", "/modular-ot-cost-india", "/resources", "/resources/compliance", "/resources/comparisons", "/faqs"].forEach((p) => add(p));
+  routePaths.forEach((p) => add(p));
   products.forEach((p) => add(`/products/${p.slug}`));
   add(routes.blogs);
   blogs.forEach((blog) => add(blogPath(blog.slug)));
