@@ -1,6 +1,7 @@
 # Revision roadmap
 
-- [ ] Use www throughout SEO metadata, schemas, sitemap and robots without changing design/forms or page paths; verify server-rendered output and list changed files.
+- [x] Use www throughout SEO metadata, schemas, sitemap and robots without changing design/forms or page paths; verified server-rendered output on all 113 public pages and route/host tests.
+- [ ] Add sitemap lastmod values when authoritative page-specific content-change dates are supplied; code-only TODO retained, no invented dates.
 
 - [x] Replace placeholder company details everywhere.
 - [x] Upgrade header Products menu and mobile hierarchy.
