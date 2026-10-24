@@ -5,6 +5,7 @@ import { blogs } from "@/data/blogs";
 import { blogSeo } from "@/lib/blog-seo";
 import { routes } from "@/lib/routes";
 import { breadcrumbSchema } from "@/lib/seo";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 
 export const Route = createFileRoute("/blogs/")({
   head: () => ({
@@ -27,7 +28,7 @@ function Blogs() {
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => <article key={blog.slug} className="flex flex-col border border-border bg-card">
-            {blog.image && <Link to="/blogs/$slug" params={{ slug: blog.slug }} className="block aspect-[4/3] overflow-hidden bg-muted"><img src={blog.image} alt={blog.imageAlt || blog.title} loading="lazy" width={800} height={600} className="h-full w-full object-cover" /></Link>}
+            {blog.image && <Link to="/blogs/$slug" params={{ slug: blog.slug }} className="block aspect-[4/3] overflow-hidden bg-muted"><ResponsiveImage src={blog.image} alt={blog.imageAlt || blog.title} loading="lazy" width={800} height={600} className="h-full w-full object-cover" /></Link>}
             <div className="flex flex-1 flex-col p-6">
               <time dateTime={blog.publishedAt} className="text-xs text-muted-foreground">{formatDate(blog.publishedAt)}</time>
               <h2 className="mt-3 text-xl font-bold leading-snug"><Link to="/blogs/$slug" params={{ slug: blog.slug }} className="hover:text-brand-blue">{blog.title}</Link></h2>
