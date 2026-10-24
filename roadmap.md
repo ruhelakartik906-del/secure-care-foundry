@@ -1,5 +1,7 @@
 # Revision roadmap
 
+- [ ] Use www throughout SEO metadata, schemas, sitemap and robots without changing design/forms or page paths; verify server-rendered output and list changed files.
+
 - [x] Replace placeholder company details everywhere.
 - [x] Upgrade header Products menu and mobile hierarchy.
 - [x] Rebuild footer columns and locality links.
