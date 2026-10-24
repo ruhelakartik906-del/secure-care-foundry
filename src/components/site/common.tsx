@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { pageSeo } from "@/data/page-seo";
 import { ChevronRight, Phone, Plus } from "lucide-react";
 import { priceLabel, type Product } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
@@ -58,11 +59,13 @@ export function Crumbs({ items }: { items: { label: string; to?: string }[] }) {
 }
 
 export function PageHero({ title, intro, crumbs }: { title: string; intro?: string; crumbs: { label: string; to?: string }[] }) {
+  const path = useRouterState({ select: (state) => state.location.pathname });
+  const heading = pageSeo[path]?.h1 ?? title;
   return (
     <section className="bg-navy text-navy-foreground">
       <div className="site-wrap py-12 md:py-16">
         <Crumbs items={crumbs} />
-        <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">{title}</h1>
+        <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">{heading}</h1>
         {intro && <p className="mt-4 max-w-2xl text-base leading-relaxed text-navy-foreground/80">{intro}</p>}
       </div>
     </section>
