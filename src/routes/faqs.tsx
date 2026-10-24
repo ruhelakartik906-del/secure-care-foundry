@@ -7,7 +7,7 @@ import { seo, breadcrumbSchema } from "@/lib/seo";
 export const Route = createFileRoute("/faqs")({
   head: () => {
     const s = seo("Modular OT, MGPS & Hospital Infrastructure FAQs | Unicare", "Answers to common questions about modular operation theatres, medical gas pipelines, OT pendants, surgical lights, pricing and compliance planning.", "/faqs");
-    return { ...s, scripts: [breadcrumbSchema([{ name: "Resources", path: "/resources" }, { name: "FAQs", path: "/faqs" }]), faqSchema(generalFaqs)] };
+    return { ...s, scripts: [breadcrumbSchema([{ name: "Resources", path: "/resources" }, { name: "FAQs", path: "/faqs" }]), faqSchema([...generalFaqs, ...productFaqGroups.flatMap((group) => group.faqs)])] };
   },
   component: FaqPage,
 });

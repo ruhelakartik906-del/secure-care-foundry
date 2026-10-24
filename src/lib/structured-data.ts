@@ -3,7 +3,7 @@ import type { Product, ModularOtOption } from "@/data/products";
 import { absUrl } from "./site-url";
 import { homepageHero } from "./social-images";
 
-export const organizationId = absUrl("/#organization");
+export const organizationId = `${absUrl("/")}#organization`;
 
 export const indicativeOffers: Record<string, { lowPrice: number; highPrice: number }> = {
   "modular-operation-theatre": { lowPrice: 850000, highPrice: 3500000 },
