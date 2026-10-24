@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { absUrl, SITE_URL } from "@/lib/site-url";
 import { staticPaths } from "@/lib/static-pages";
-import { sitemapEntries, sitemapXml } from "@/lib/sitemap";
+import { sitemapEntries, sitemapXml, sitemapExcludedPaths } from "@/lib/sitemap";
 import server from "@/server";
 
 describe("Company-confirmed SEO host and sitemap policy", () => {
@@ -10,10 +10,10 @@ describe("Company-confirmed SEO host and sitemap policy", () => {
     expect(absUrl("/")).toBe("https://www.unicaremedicalsolutions.com/");
     expect(absUrl("/products/laminar-air-flow")).toBe("https://www.unicaremedicalsolutions.com/products/laminar-air-flow");
   });
-  it("excludes only the Blogs listing from the sitemap, not static hosting", () => {
+  it("excludes noindex and retired pages while keeping the Blogs listing hosted", () => {
     expect(staticPaths()).toContain("/blogs");
     expect(sitemapEntries().map((entry) => entry.path)).not.toContain("/blogs");
-    expect(sitemapEntries().map((entry) => entry.path)).toEqual(staticPaths().filter((path) => path !== "/blogs"));
+    expect(sitemapEntries().map((entry) => entry.path)).toEqual(staticPaths().filter((path) => !sitemapExcludedPaths.includes(path)));
   });
   it("does not fabricate page last-change dates", () => {
     expect(sitemapXml()).not.toContain("<lastmod>");

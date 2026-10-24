@@ -1,3 +1,4 @@
+import imageDimensions from "./image-dimensions.json";
 const otHero = "/images/modular-ot-hero.webp";
 const otRoom = "/images/modular-ot-room.webp";
 const diffuser = "/images/perforated-cleanroom-ceiling-air-diffuser.webp";
