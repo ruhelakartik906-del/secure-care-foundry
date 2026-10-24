@@ -21,6 +21,8 @@ ExpiresByType text/css "access plus 1 year"
 ExpiresByType application/javascript "access plus 1 year"
 </IfModule>
 <IfModule mod_headers.c>
+SetEnvIfNoCase Host "^www\.unicaremedicalsolutions\.com(?::[0-9]+)?$" indexable_host
+Header always set X-Robots-Tag "noindex, nofollow" env=!indexable_host
 Header set X-Content-Type-Options "nosniff"
 Header set X-Frame-Options "SAMEORIGIN"
 Header set Referrer-Policy "strict-origin-when-cross-origin"

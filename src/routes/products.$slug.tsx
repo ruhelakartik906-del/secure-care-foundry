@@ -10,13 +10,13 @@ import { Phone } from "lucide-react";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { absUrl } from "@/lib/site-url";
-import mgpsPlantPhotoSrc from "@/assets/mgps-plant-room.webp";
+const mgpsPlantPhotoSrc = "/images/mgps-plant-room.webp";
 const mgpsPlantPhoto = { url: mgpsPlantPhotoSrc };
 import { cities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
-import otHeroSrc from "@/assets/1-modularot-hero.webp";
-import otSupportSrc from "@/assets/2-modularor-card.webp";
-import lafDiffuserSrc from "@/assets/perforated-cleanroom-ceiling-air-diffuser.webp";
+const otHeroSrc = "/images/modular-ot-hero.webp";
+const otSupportSrc = "/images/modular-ot-room.webp";
+const lafDiffuserSrc = "/images/perforated-cleanroom-ceiling-air-diffuser.webp";
 
 const heroImages: Record<string, { src: string; alt: string; w: number; h: number }> = {
   "modular-operation-theatre": { src: otHeroSrc, alt: "Modern modular operation theatre with surgical lights, ceiling-mounted pendants and medical equipment.", w: 1600, h: 900 },

@@ -16,6 +16,7 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/common";
 import { site } from "@/data/site";
 import { SITE_URL } from "@/lib/site-url";
+import { indexingFallback } from "@/lib/indexing-guard";
 import { captureUtm } from "@/lib/utm";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -145,6 +146,7 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: indexingFallback }} />
         <HeadContent />
       </head>
       <body className="pb-12 md:pb-0">

@@ -1,42 +1,42 @@
-import jointLessPhotoSrc from "@/assets/joint-less-modular-ot.webp";
+const jointLessPhotoSrc = "/images/jointless-modular-ot.webp";
 const jointLessPhoto = { url: jointLessPhotoSrc };
-import hplPhotoSrc from "@/assets/hpl-modular-ot.webp";
+const hplPhotoSrc = "/images/hpl-modular-ot.webp";
 const hplPhoto = { url: hplPhotoSrc };
-import ppgiPhotoSrc from "@/assets/ppgi-modular-ot.webp";
+const ppgiPhotoSrc = "/images/ppgi-modular-ot.webp";
 const ppgiPhoto = { url: ppgiPhotoSrc };
-import glassPhotoSrc from "@/assets/glass-modular-ot.webp";
+const glassPhotoSrc = "/images/glass-modular-ot.webp";
 const glassPhoto = { url: glassPhotoSrc };
-import semiPhotoSrc from "@/assets/semi-modular-ot.webp";
+const semiPhotoSrc = "/images/semi-modular-ot.webp";
 const semiPhoto = { url: semiPhotoSrc };
-import manifoldPhotoSrc from "@/assets/manifold-room-system.webp";
+const manifoldPhotoSrc = "/images/manifold-room-system.webp";
 const manifoldPhoto = { url: manifoldPhotoSrc };
-import biocladPhotoSrc from "@/assets/bioclad-modular-ot.webp";
+const biocladPhotoSrc = "/images/bioclad-modular-ot.webp";
 const biocladPhoto = { url: biocladPhotoSrc };
-import stainlessPhotoSrc from "@/assets/stainless-steel-modular-ot.webp";
+const stainlessPhotoSrc = "/images/stainless-steel-modular-ot.webp";
 const stainlessPhoto = { url: stainlessPhotoSrc };
-import icuPhotoSrc from "@/assets/modular-icu.webp";
+const icuPhotoSrc = "/images/modular-icu.webp";
 const icuPhoto = { url: icuPhotoSrc };
-import bedHeadPhotoSrc from "@/assets/bed-head-panel-upload.webp";
+const bedHeadPhotoSrc = "/images/bed-head-panel.webp";
 const bedHeadPhoto = { url: bedHeadPhotoSrc };
-import mgpsOutletPhotoSrc from "@/assets/mgps-oxygen-outlet.webp";
+const mgpsOutletPhotoSrc = "/images/mgps-oxygen-outlet.webp";
 const mgpsOutletPhoto = { url: mgpsOutletPhotoSrc };
-import laminarPhotoSrc from "@/assets/perforated-cleanroom-ceiling-air-diffuser.webp";
+const laminarPhotoSrc = "/images/perforated-cleanroom-ceiling-air-diffuser.webp";
 const laminarPhoto = { url: laminarPhotoSrc };
-import modularOtRoomPhotoSrc from "@/assets/2-modularor-card.webp";
+const modularOtRoomPhotoSrc = "/images/modular-ot-room.webp";
 const modularOtRoomPhoto = { url: modularOtRoomPhotoSrc };
-import cssd from "@/assets/cssd.webp";
-import scrubPhotoSrc from "@/assets/surgical-scrub-sink-upload.webp";
+const cssd = "/images/cssd-systems.webp";
+const scrubPhotoSrc = "/images/surgical-scrub-sink.webp";
 const scrubPhoto = { url: scrubPhotoSrc };
-import curtainPhotoSrc from "@/assets/cubicle-curtain-tracks-upload.webp";
+const curtainPhotoSrc = "/images/cubicle-curtain-tracks.webp";
 const curtainPhoto = { url: curtainPhotoSrc };
-import furniture from "@/assets/furniture.webp";
-import agssPhotoSrc from "@/assets/agss-system.webp";
+const furniture = "/images/hospital-furniture.webp";
+const agssPhotoSrc = "/images/agss-system.webp";
 const agssPhoto = { url: agssPhotoSrc };
-import otPendantPhotoSrc from "@/assets/ot-pendant-real.webp";
+const otPendantPhotoSrc = "/images/ot-pendant.webp";
 const otPendantPhoto = { url: otPendantPhotoSrc };
-import ledLight from "@/assets/led-surgical-light.jpg";
-import hermeticDoor from "@/assets/hermetic-door.jpg";
-import passBox from "@/assets/pass-box.jpg";
+const ledLight = "/images/led-surgical-light.webp";
+const hermeticDoor = "/images/hermetic-ot-door.webp";
+const passBox = "/images/pass-box.webp";
 
 export type Category =
   | "Operation Theatre"
@@ -385,6 +385,7 @@ export const modularOtOptions: ModularOtOption[] = [
   { slug: "hpl-modular-ot", name: "HPL Modular Operation Theatre", menuName: "HPL Modular OT", description: "A modular operation theatre with HPL panel finishes selected to suit the hospital's project requirements.", image: hplPhoto.url },
   { slug: "stainless-steel-modular-ot", name: "Stainless Steel Modular Operation Theatre", menuName: "Stainless Steel Modular OT", description: "A modular OT option with stainless-steel internal surfaces selected around project and cleaning requirements.", image: stainlessPhoto.url },
   { slug: "ppgi-modular-ot", name: "PPGI Modular Operation Theatre", menuName: "PPGI Modular OT", description: "A practical panel-based theatre option configured to the room layout and hospital project scope.", image: ppgiPhoto.url },
+  // TODO: Replace the Hospital Modular OT photo when the company uploads its dedicated image; retain the Jointless photo meanwhile.
   { slug: "hospital-modular-ot", name: "Hospital Modular Operation Theatre", menuName: "Hospital Modular OT", description: "A coordinated operation theatre solution for new hospitals, extensions and theatre upgrades.", image: jointLessPhoto.url },
   { slug: "glass-modular-ot", name: "Glass Modular Operation Theatre", menuName: "Glass Modular OT", description: "A modular theatre option using suitable glass surfaces where specified in the project design.", image: glassPhoto.url },
   { slug: "bioclad-modular-ot", name: "Bioclad Modular Operation Theatre", menuName: "Bioclad Modular OT", description: "A wall-cladding based modular OT option planned to suit the clinical environment and project brief.", image: biocladPhoto.url },

@@ -27,5 +27,6 @@
 - `scripts/gen-static.ts` derives static public paths from route files into `public-route-paths.ts`; dynamic data paths remain in `staticPaths`, and shared `sitemap.ts` applies exclusions and only authoritative page-change dates so static and server sitemaps agree.
 - Blog articles live in the static data module and render through `/blogs` and `/blogs/$slug`; static path generation includes every article, so publishing company-supplied content needs no backend or admin.
 - Mobile navigation uses a portalled Radix modal with its registered Trigger and Close controls; Radix alone owns scroll locking and focus restoration, preventing conflicting body locks and lost focus across repeated openings.
-- Large shared images use `ResponsiveImage` with optimized asset pointers and responsive widths; absolute asset URLs keep them available on third-party static hosting without an image server.
+- Website image paths use same-origin WebP files in `public/images`; `ResponsiveImage` selects local optimized widths, so third-party static hosting needs no Lovable asset service.
+- Non-production indexing is blocked in completed SSR responses and Apache response headers; an early-head observer preserves noindex across static copies and client navigation, while production prerendered HTML retains its route-specific indexing directives.
 - `scripts/post-build.mjs` copies `.vercel/output/static` into `dist/client` (and fails if no `index.html`), because on Vercel the build auto-switches to Vercel's output format and every host must serve the same `dist/client` folder.

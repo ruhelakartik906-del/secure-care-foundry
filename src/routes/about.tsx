@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import cssd from "@/assets/cssd.webp";
+const cssd = "/images/cssd-systems.webp";
 import { PageHero, CtaBand } from "@/components/site/common";
 import { seo } from "@/lib/seo";
 

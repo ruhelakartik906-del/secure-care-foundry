@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
-import logo from "@/assets/unicare-logo.webp";
+const logo = "/images/unicare-logo.webp";
 import { priorityCityPaths } from "@/lib/routes";
 import { products } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
