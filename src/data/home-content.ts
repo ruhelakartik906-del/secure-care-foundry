@@ -1,8 +1,8 @@
-import heroSrc from "@/assets/1-modularot-hero.webp";
+const heroSrc = "/images/modular-ot-hero.webp";
 const hero = { url: heroSrc };
-import otRoomSrc from "@/assets/2-modularor-card.webp";
+const otRoomSrc = "/images/modular-ot-room.webp";
 const otRoom = { url: otRoomSrc };
-import gasImgSrc from "@/assets/mgps-oxygen-outlet.webp";
+const gasImgSrc = "/images/mgps-oxygen-outlet.webp";
 const gasImg = { url: gasImgSrc };
 
 /** Built-in homepage copy. Admin edits in `cms_pages` (slug "home") override individual fields; blank fields fall back here. */

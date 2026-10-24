@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
-import logo from "@/assets/unicare-logo.webp";
+const logo = "/images/unicare-logo.webp";
 import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { cities, cityPath } from "@/data/cities";
