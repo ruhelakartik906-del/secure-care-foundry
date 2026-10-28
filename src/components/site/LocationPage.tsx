@@ -30,8 +30,15 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
       <PageHero title={title} intro={`Design, manufacturing and installation of ${lc(p.name)} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: "Locations", to: "/locations" }, { label: l.name }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
+          {/* TODO(company photo): add a unique, real project photo installed in this state, with alt text such as
+              "{p.name} installed in {l.name} – Unicare". Do not use stock or AI images. */}
           <h2>{p.shortName} solutions in {l.name}</h2>
           <p>{locationLead(l)} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {lc(p.name)} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
+          <p className="font-medium text-foreground">Also see:{" "}
+            {productSlug === "medical-gas-pipeline-system"
+              ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>
+              : <Link to="/medical-gas-pipeline-manufacturers-in/$state" params={{ state: l.slug }}>Medical gas pipeline in {l.name}</Link>}
+          </p>
           <h2>Hospital infrastructure requirements</h2>
           <p>{p.intro}</p>
           <h2>Manufacturing &amp; installation</h2>
