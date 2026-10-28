@@ -490,43 +490,15 @@ export const productLongForm: Record<string, LongForm> = {
   },
 
   // TODO(image): confirm the AGSS photo shows a real Unicare installation; replace if not.
+  // Company-supplied replacement body (Oct 2026 brief); H1, FAQs, related products and enquiry form kept.
   agss: {
-    whatTitle: "What Is AGSS and Where Is It Used?",
-    what: [
-      "AGSS, the Anaesthetic Gas Scavenging System, collects waste anaesthetic gases from the anaesthesia breathing circuit and safely exhausts them outside the operation theatre. Without scavenging, exhaled anaesthetic gas can build up in the room, so AGSS reduces exposure for surgeons, anaesthetists and nurses. Unicare supplies and installs AGSS as part of OT and medical gas projects.",
-      "AGSS is used in operation theatres, anaesthesia induction rooms and recovery areas — wherever anaesthetic gases are delivered. Terminal units are mounted on the OT wall or on an OT pendant, and connect to a dedicated exhaust plant.",
-      "Because AGSS terminal units sit alongside medical gas outlets, it is usually planned together with the MGPS and the theatre layout.",
-      "Planning AGSS early in an OT project means the terminal units can be placed where the anaesthesia machine will stand, the pipe route to the exhaust plant can be kept short, and the plant can be located where its exhaust is safely discharged outside the building. In theatre upgrades, the existing ceiling, pendants and service routes are checked to find a practical way to add scavenging.",
-      "Regular checks of terminal units and the exhaust plant, at intervals set by the hospital's maintenance plan, help keep the system working as intended.",
+    body: [
+      { kind: "h2", text: "What an AGSS does" },
+      { kind: "p", text: ["During surgery, patients breathe out anaesthetic gases that should not be breathed in by the surgical team. An AGSS collects these exhaled gases, and any other gas or aerosolised medicine meant only for the patient, and carries them safely out of the theatre."] },
+      { kind: "p", text: ["Regular exposure to waste anaesthetic gas above safe limits is recognised as an occupational health hazard, so keeping staff exposure low is part of a safe OT."] },
+      { kind: "h2", text: "Active or passive AGSS?" },
+      { kind: "p", text: ["Both types are available. We recommend an active system: a specially designed outlet uses compressed air from the hospital's MGPS to create suction that draws waste gas into a pipeline and releases it outside, ideally above the roof line. Where the hospital has no MGPS air supply, simplex or duplex pumps can be used instead. We propose the right system for each hospital during project discussions."] },
     ],
-    typesTitle: "AGSS Components and Options",
-    types: [
-      { name: "Terminal units", text: "Wall or pendant mounted, where the anaesthesia machine connects." },
-      { name: "Receiver and transfer system", text: "Carries the waste gas from the terminal unit to the exhaust plant." },
-      { name: "Dedicated exhaust plant", text: "Sized per number of theatres." },
-      { name: "Integration with MGPS", text: "Planned with the medical gas pipeline and OT pendants." },
-      { name: "Coordination with the OT layout", text: "Terminal units are placed near the anaesthesia machine position and coordinated with pendants, wall panels and medical gas outlets." },
-    ],
-    specsTitle: "AGSS Specifications",
-    specs: [
-      ["Installation", "Wall or pendant mounted terminal units"],
-      ["Plant", "Sized per number of theatres"],
-      ["Integration", "With MGPS and OT pendants"],
-      // TODO(specs): add plant type, flow rates and terminal unit standard used by the company.
-      ["Plant type and flow rates", perProject],
-    ],
-    installTitle: "AGSS Installation and Timeline",
-    install: [
-      "We confirm the number of theatres and terminal positions, then install the terminal units, transfer pipework and exhaust plant. The system is tested for correct operation at every terminal before handover.",
-      "The timeline depends on the number of theatres and whether the work is part of a new modular OT or an upgrade, and is confirmed after the site assessment.",
-      "At handover, the anaesthesia and maintenance teams are shown how terminal units connect to the anaesthesia machine and how the exhaust plant is switched and monitored. Where AGSS is part of a modular OT, the terminal unit positions are coordinated with the OT pendant, wall panels and medical gas outlets so that the anaesthetist has every connection within easy reach.",
-    ],
-    // TODO(timeline): add typical AGSS installation duration.
-    steps: ["Theatre count and terminal positions", "Terminal units and pipework", "Exhaust plant installation", "Testing and handover"],
-    priceTitle: "AGSS Price: What Affects the Cost",
-    // TODO(price): add an indicative AGSS price range if the company approves one.
-    price: ["AGSS price is quoted per project and depends mainly on how many theatres and terminal units it serves."],
-    priceFactors: ["Number of theatres", "Number of terminal units", "Wall or pendant mounting", "Exhaust plant size", "Pipe route length"],
     faqs: [
       { q: "What is AGSS?", a: "AGSS stands for Anaesthetic Gas Scavenging System — a system that removes waste anaesthetic gases from the OT." },
       { q: "Why does an operation theatre need AGSS?", a: "It removes waste anaesthetic gas so it does not build up in the room, reducing exposure for clinical staff." },
