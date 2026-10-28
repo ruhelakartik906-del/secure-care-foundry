@@ -26,6 +26,8 @@ export const pageLastModified: Readonly<Record<string, string>> = {
   "/products/manifold-room-system": "2026-10-28",
   "/products/agss": "2026-10-28",
   "/products/cssd-systems": "2026-10-28",
+  "/products/oxygen-outlet": "2026-10-28",
+  "/mgps-cost-india": "2026-10-28",
 };
 
 export function sitemapEntries() {

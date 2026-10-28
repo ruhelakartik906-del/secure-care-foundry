@@ -9,6 +9,7 @@ export const publicRoutePaths: string[] = [
   "/get-a-quote",
   "/hepa-filtration-system-for-operation-theatre",
   "/locations",
+  "/mgps-cost-india",
   "/modular-ot-ceiling",
   "/modular-ot-cost-india",
   "/modular-ot-doors",

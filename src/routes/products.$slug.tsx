@@ -104,6 +104,8 @@ function ProductPage() {
         <div className="prose-unicare lg:col-span-8">
           {isOt && <OtLongForm />}
           {lf && <LongFormSections lf={lf} name={p.name} />}
+          {p.slug === "medical-gas-pipeline-system" && <p>Looking for the outlets themselves? See our <Link to="/products/$slug" params={{ slug: "oxygen-outlet" }}>medical gas and oxygen outlets</Link>, or read the <Link to="/mgps-cost-india">MGPS cost guide</Link> for indicative budgets.</p>}
+          {p.slug === "oxygen-outlet" && <p>Outlets are part of a complete <Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }}>medical gas pipeline system</Link>. For indicative pipeline budgets, see the <Link to="/mgps-cost-india">MGPS cost guide</Link>.</p>}
           {p.slug === "laminar-air-flow" && <LafLongForm />}
           {isOt && (
             <section aria-labelledby="modular-ot-options">

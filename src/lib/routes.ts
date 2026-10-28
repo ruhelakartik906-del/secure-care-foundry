@@ -17,6 +17,7 @@ export const routes = {
   home: "/",
   products: "/products",
   pricing: "/modular-ot-cost-india",
+  mgpsCost: "/mgps-cost-india",
   locations: "/locations",
   resources: "/resources",
   blogs: "/blogs",

@@ -17,6 +17,7 @@ import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
 import { Route as HepaFiltrationSystemForOperationTheatreRouteImport } from './routes/hepa-filtration-system-for-operation-theatre'
 import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as MgpsCostIndiaRouteImport } from './routes/mgps-cost-india'
 import { Route as ModularOtCeilingRouteImport } from './routes/modular-ot-ceiling'
 import { Route as ModularOtCostIndiaRouteImport } from './routes/modular-ot-cost-india'
 import { Route as ModularOtDoorsRouteImport } from './routes/modular-ot-doors'
@@ -90,6 +91,11 @@ const HepaFiltrationSystemForOperationTheatreRoute =
 const LocationsRoute = LocationsRouteImport.update({
   id: '/locations',
   path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MgpsCostIndiaRoute = MgpsCostIndiaRouteImport.update({
+  id: '/mgps-cost-india',
+  path: '/mgps-cost-india',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModularOtCeilingRoute = ModularOtCeilingRouteImport.update({
@@ -284,6 +290,7 @@ export interface FileRoutesByFullPath {
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/mgps-cost-india': typeof MgpsCostIndiaRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
@@ -327,6 +334,7 @@ export interface FileRoutesByTo {
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/mgps-cost-india': typeof MgpsCostIndiaRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
@@ -371,6 +379,7 @@ export interface FileRoutesById {
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/mgps-cost-india': typeof MgpsCostIndiaRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
@@ -416,6 +425,7 @@ export interface FileRouteTypes {
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/mgps-cost-india'
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
     | '/modular-ot-doors'
@@ -459,6 +469,7 @@ export interface FileRouteTypes {
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/mgps-cost-india'
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
     | '/modular-ot-doors'
@@ -502,6 +513,7 @@ export interface FileRouteTypes {
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/mgps-cost-india'
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
     | '/modular-ot-doors'
@@ -546,6 +558,7 @@ export interface RootRouteChildren {
   GetAQuoteRoute: typeof GetAQuoteRoute
   HepaFiltrationSystemForOperationTheatreRoute: typeof HepaFiltrationSystemForOperationTheatreRoute
   LocationsRoute: typeof LocationsRoute
+  MgpsCostIndiaRoute: typeof MgpsCostIndiaRoute
   ModularOtCeilingRoute: typeof ModularOtCeilingRoute
   ModularOtCostIndiaRoute: typeof ModularOtCostIndiaRoute
   ModularOtDoorsRoute: typeof ModularOtDoorsRoute
@@ -637,6 +650,13 @@ declare module '@tanstack/react-router' {
       path: '/locations'
       fullPath: '/locations'
       preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mgps-cost-india': {
+      id: '/mgps-cost-india'
+      path: '/mgps-cost-india'
+      fullPath: '/mgps-cost-india'
+      preLoaderRoute: typeof MgpsCostIndiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/modular-ot-ceiling': {
@@ -883,6 +903,7 @@ const rootRouteChildren: RootRouteChildren = {
   HepaFiltrationSystemForOperationTheatreRoute:
     HepaFiltrationSystemForOperationTheatreRoute,
   LocationsRoute: LocationsRoute,
+  MgpsCostIndiaRoute: MgpsCostIndiaRoute,
   ModularOtCeilingRoute: ModularOtCeilingRoute,
   ModularOtCostIndiaRoute: ModularOtCostIndiaRoute,
   ModularOtDoorsRoute: ModularOtDoorsRoute,

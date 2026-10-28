@@ -35,6 +35,7 @@ export function Footer() {
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Resources</h3>
           <ul className="space-y-2 text-sm text-navy-foreground/75">
             <li><Link to="/modular-ot-cost-india" className="hover:text-navy-foreground">Pricing Guide</Link></li>
+            <li><Link to="/mgps-cost-india" className="hover:text-navy-foreground">MGPS Cost Guide</Link></li>
             <li><Link to="/resources/compliance" className="hover:text-navy-foreground">Compliance</Link></li>
             <li><Link to="/resources/comparisons" className="hover:text-navy-foreground">Comparisons</Link></li>
             <li><Link to="/faqs" className="hover:text-navy-foreground">FAQs</Link></li>

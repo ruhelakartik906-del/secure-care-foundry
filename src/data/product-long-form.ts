@@ -237,7 +237,7 @@ export const productLongForm: Record<string, LongForm> = {
       { name: "Copper distribution pipeline", text: "Cleaned and jointed for medical gas service." },
       { name: "Zone (area) valve service units", text: "Isolate departments for maintenance or emergencies." },
       { name: "Area alarm panels", text: "Show high/low pressure for each gas in a department; a master alarm panel monitors the plant room sources." },
-      { name: "Terminal outlets", text: "On walls, bed head panels or OT pendants." },
+      { name: "Terminal outlets", text: "Gas-specific medical gas and oxygen outlets on walls, bed head panels or OT pendants." },
     ],
     specsTitle: "Medical Gas Pipeline System Specifications",
     specs: [
@@ -269,7 +269,7 @@ export const productLongForm: Record<string, LongForm> = {
       { q: "How is a medical gas pipeline tested before use?", a: "It is pressure tested for leaks, purged, checked for cross-connection and gas identity at every outlet, and the alarms are verified before handover." },
       { q: "Can MGPS be added to an existing hospital?", a: "Usually yes, after a site survey of pipe routes, the plant room location and the departments to be served." },
     ],
-    related: ["manifold-room-system", "bed-head-panel", "agss"],
+    related: ["oxygen-outlet", "manifold-room-system", "bed-head-panel"],
   },
 
   "bed-head-panel": {
@@ -509,6 +509,57 @@ export const productLongForm: Record<string, LongForm> = {
       { q: "How do I get a CSSD equipment quotation?", a: "Share the CSSD area drawing and an idea of your surgical workload. We prepare a zoning layout and equipment list and then send a quotation." },
     ],
     related: ["pass-box", "modular-operation-theatre", "surgical-scrub-sink-station"],
+  },
+  // TODO(image): no dedicated oxygen outlet photo yet; page shares the MGPS outlet photo.
+  "oxygen-outlet": {
+    whatTitle: "What Is an Oxygen Outlet and Where Is It Used?",
+    what: [
+      "An oxygen outlet is the point on a hospital wall, bed head panel or OT pendant where a flowmeter, humidifier or ventilator hose is plugged into the central oxygen pipeline. The same idea applies to every pipeline gas, so a hospital usually has a family of medical gas outlets: oxygen, medical air, vacuum (suction) and, in theatres, nitrous oxide. Each medical gas outlet accepts only the probe for its own gas, which prevents equipment from being connected to the wrong supply.",
+      "Oxygen wall outlets are found at almost every bed in an ICU, HDU, ward, emergency department and recovery area, and on the walls or pendants of operation theatres. The number of outlets per bed and the gases needed are set out in the hospital's gas schedule, which is prepared together with the medical gas pipeline design.",
+      "Because the outlet is the part of the MGPS that nurses and doctors use every day, it needs to be easy to identify, easy to connect and disconnect with one hand, and easy to clean.",
+    ],
+    typesTitle: "Types of Medical Gas Outlets",
+    typesIntro: "Outlets are chosen by gas and by where they will be mounted.",
+    types: [
+      { name: "Oxygen outlet", text: "Supplies oxygen for flowmeters, ventilators and anaesthesia machines." },
+      { name: "Medical air outlet", text: "Supplies medical air, often used with ventilators and nebulisers." },
+      { name: "Vacuum (suction) outlet", text: "Connects suction regulators and jars for clinical suction." },
+      { name: "Nitrous oxide outlet", text: "Used mainly in operation theatres for anaesthesia." },
+      { name: "Wall-mounted, panel-mounted or pendant-mounted", text: "Outlets can be fixed directly on the wall, built into a bed head panel, or fitted to an OT or ICU pendant." },
+      { name: "Outlet standard", text: "The probe and socket standard is selected to match the hospital's equipment and the specification in its tender." },
+    ],
+    specsTitle: "Oxygen Outlet Specifications",
+    specs: [
+      ["Gases", "Oxygen, medical air, vacuum, nitrous oxide as required"],
+      ["Mounting", "Wall, bed head panel or pendant"],
+      ["Gas identification", "Colour coding and labelling per gas"],
+      ["Connection", "Gas-specific, non-interchangeable"],
+      // TODO(specs): add outlet standard(s) supplied (e.g. BS / DIN / AFNOR), body material and model details from the supplier datasheet.
+      ["Outlet standard and body material", perProject],
+      ["Quantity per bed", "As per the hospital's gas schedule"],
+    ],
+    installTitle: "Oxygen Outlet Installation and Timeline",
+    install: [
+      "Outlet positions are agreed from the gas schedule and bed layout so they sit within reach of the bed without clashing with sockets, lights or curtain tracks. The pipeline is brought to each position, the outlet back box is fixed, and the outlet is connected and labelled for its gas.",
+      "Before handover every outlet is checked for gas identity and flow as part of MGPS testing and commissioning, so that the gas coming out of each outlet is the gas marked on it. Test records are shared with the hospital.",
+      "Outlets can also be added or replaced in an existing hospital after checking the pipeline routes and isolation valves for the area. The timeline depends on the number of outlets and site readiness and is confirmed after the site assessment.",
+    ],
+    // TODO(timeline): add typical installation duration per ward or per number of outlets.
+    steps: ["Gas schedule and outlet positions", "Pipeline brought to each point", "Outlet fixing, connection and labelling", "Gas identity and flow testing"],
+    priceTitle: "Oxygen Outlet Price: What Affects the Cost",
+    // TODO(price): add an indicative per-outlet price range if the company approves one.
+    price: [
+      "Outlet price is usually quoted as part of the medical gas pipeline project, because the pipework to each point is a large part of the cost. Share the number of beds and gases per bed for a quotation. For overall pipeline budgets, see the MGPS cost guide.",
+    ],
+    priceFactors: ["Number of outlets and gases", "Outlet standard selected", "Wall, panel or pendant mounting", "Pipeline length to each point", "New building or existing hospital", "Testing and commissioning scope"],
+    faqs: [
+      { q: "What is an oxygen outlet?", a: "It is the terminal point on the wall, panel or pendant where equipment connects to the hospital oxygen pipeline." },
+      { q: "Why can't an oxygen probe fit a vacuum or air outlet?", a: "Medical gas outlets are gas-specific and non-interchangeable, so equipment can only be connected to the gas it is meant for." },
+      { q: "How many oxygen outlets does an ICU bed need?", a: "It is set by the hospital's gas schedule and clinical team. ICU beds usually have more outlets than ward beds; we plan the number with you." },
+      { q: "Can oxygen wall outlets be added to an existing ward?", a: "Usually yes, after checking pipeline routes and isolation valves for that area." },
+      { q: "Are outlets tested before use?", a: "Yes. Every outlet is checked for gas identity and flow during MGPS testing and commissioning before handover." },
+    ],
+    related: ["medical-gas-pipeline-system", "bed-head-panel", "manifold-room-system"],
   },
 };
 
