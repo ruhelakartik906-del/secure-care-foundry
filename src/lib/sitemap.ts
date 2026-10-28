@@ -3,7 +3,7 @@ import { absUrl } from "./site-url";
 import { hospitalOtPath } from "./retired-pages";
 
 // Production page indexing policy; preview-host noindex must not empty this sitemap.
-export const sitemapExcludedPaths: readonly string[] = ["/blogs", "/search", "/page-not-found", hospitalOtPath];
+export const sitemapExcludedPaths: readonly string[] = ["/search", "/page-not-found", hospitalOtPath];
 
 // TODO: Supply company-confirmed, page-specific significant content-change dates for remaining pages.
 // Never infer lastmod from generation/build time or filesystem modification times.
@@ -28,6 +28,9 @@ export const pageLastModified: Readonly<Record<string, string>> = {
   "/products/cssd-systems": "2026-10-28",
   "/products/oxygen-outlet": "2026-10-28",
   "/mgps-cost-india": "2026-10-28",
+  "/blogs": "2026-10-28",
+  "/blogs/what-is-cssd-hospital-sterilisation-department-guide": "2026-10-28",
+  "/blogs/dynamic-vs-static-pass-box": "2026-10-28",
 };
 
 export function sitemapEntries() {
