@@ -5,6 +5,7 @@ import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { systemPages, type SystemPage } from "@/data/systems";
 import { Button } from "@/components/ui/button";
 import { CtaBand, Faqs, PageHero, faqSchema } from "@/components/site/common";
+import { ContentBlocks } from "@/components/site/ContentBlocks";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { breadcrumbSchema, seo } from "@/lib/seo";
 
@@ -14,7 +15,7 @@ export const systemHead = (page: SystemPage) => {
     ...base,
     scripts: [
       breadcrumbSchema([{ name: "Solutions", path: "/solutions" }, { name: page.name, path: page.path }]),
-      faqSchema(page.faqs),
+      ...(page.faqs.length ? [faqSchema(page.faqs)] : []),
     ],
   };
 };
@@ -25,17 +26,28 @@ export function SystemPageView({ page }: { page: SystemPage }) {
       <PageHero title={page.name} intro={page.intro} crumbs={[{ label: "Solutions", to: "/solutions" }, { label: page.name }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <article className="prose-unicare lg:col-span-8">
-          <h2>Overview</h2>
-          {page.overview.map((p) => <p key={p}>{p}</p>)}
-          <h2>What the scope can include</h2>
-          <ul>{page.scope.map((s) => <li key={s}>{s}</li>)}</ul>
-          <h2>What we review before design</h2>
-          <ul>{page.considerations.map((s) => <li key={s}>{s}</li>)}</ul>
+          {page.body ? (
+            <ContentBlocks blocks={page.body} />
+          ) : (
+            <>
+              <h2>Overview</h2>
+              {page.overview.map((p) => <p key={p}>{p}</p>)}
+              <h2>What the scope can include</h2>
+              <ul>{page.scope.map((s) => <li key={s}>{s}</li>)}</ul>
+              <h2>What we review before design</h2>
+              <ul>{page.considerations.map((s) => <li key={s}>{s}</li>)}</ul>
+            </>
+          )}
+          {page.append && <ContentBlocks blocks={page.append} />}
           <h2>Part of a complete modular OT</h2>
           <p>This system is usually delivered as part of a full <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre</Link> project, alongside <Link to="/products/$slug" params={{ slug: "laminar-air-flow" }}>laminar air flow</Link> and the <Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }}>medical gas pipeline system</Link>. Pricing is shared after we review your drawings and site.</p>
           <p>See the <Link to="/modular-ot-cost-india">Modular OT Pricing Guide</Link> for indicative project costs.</p>
-          <h2>Frequently Asked Questions</h2>
-          <Faqs faqs={page.faqs} />
+          {page.faqs.length > 0 && (
+            <>
+              <h2>Frequently Asked Questions</h2>
+              <Faqs faqs={page.faqs} />
+            </>
+          )}
           <div className="not-prose mt-8 flex flex-wrap gap-3">
             <Button asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button>
             <Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${page.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button>

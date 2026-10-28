@@ -3,21 +3,27 @@
  * Rules: no invented specs, prices or certifications. Unknown figures are
  * shown as "confirmed per project" and carry a TODO comment for the company.
  */
+import { ppgiPanelSection, stainlessPanelSection, type ContentBlock } from "./content-blocks";
+
 export type LongForm = {
-  whatTitle: string;
-  what: string[];
+  whatTitle?: string;
+  what?: string[];
   image?: { src: string; alt: string; w: number; h: number };
-  typesTitle: string;
+  typesTitle?: string;
   typesIntro?: string;
-  types: { name: string; text: string }[];
-  specsTitle: string;
-  specs: [string, string][];
-  installTitle: string;
-  install: string[];
-  steps: string[];
-  priceTitle: string;
-  price: string[];
-  priceFactors: string[];
+  types?: { name: string; text: string }[];
+  specsTitle?: string;
+  specs?: [string, string][];
+  installTitle?: string;
+  install?: string[];
+  steps?: string[];
+  priceTitle?: string;
+  price?: string[];
+  priceFactors?: string[];
+  /** Company-supplied verbatim body; replaces the standard sections when present. */
+  body?: ContentBlock[];
+  /** Company-supplied verbatim sections rendered after the standard sections, before FAQs. */
+  extra?: ContentBlock[];
   faqs: { q: string; a: string }[];
   related: string[];
 };
@@ -114,6 +120,23 @@ export const productLongForm: Record<string, LongForm> = {
       "OT light price depends on the dome configuration, light output and the features chosen. We quote for suitable models once we understand how the theatre will be used.",
     ],
     priceFactors: ["Single dome or double dome", "Light output and field size of the model", "Camera or monitor arm", "Control panel type", "Ceiling height and support work", "Number of theatres in the project"],
+    extra: [
+      { kind: "h2", text: "Choosing a surgical light" },
+      { kind: "p", text: ["For a major OT, if the budget allows, we recommend a premium double-dome LED surgical light. What to look for:"] },
+      {
+        kind: "ul",
+        items: [
+          ["Brightness: up to 160,000 lux from each dome"],
+          ["Colour temperature: 3,500 K to 4,200 K"],
+          ["Light field: 150 mm to 200 mm"],
+          ["Low heat at the surgeon's head and minimal shadows"],
+          ["Easy positioning of the light heads"],
+          ["Optional camera: built into the handle or mounted separately"],
+          ["Standards: CE, IEC and ISO"],
+        ],
+      },
+      { kind: "p", text: ["Premium lights cost more at the start, but over their life their total cost can be similar or even lower, thanks to reliability, warranty and service terms. For minor OTs, or where the budget is tight, we also supply economy LED lights with a similar configuration, warranty and AMC or CMC options. They are widely used across India and do the job well, even if they do not match every feature or standard of a premium light."] },
+    ],
     faqs: [
       { q: "Single dome or double dome — which surgical light do I need?", a: "Major and speciality theatres commonly use a double-dome light so a second head is available. Minor OTs and procedure rooms often use a single dome. We recommend after reviewing the theatre use." },
       { q: "What standard applies to surgical lights?", a: "IEC 60601-2-41 is the international particular standard for surgical and diagnostic luminaires. Ask for the manufacturer's conformity documentation for the model being supplied." },
@@ -213,6 +236,20 @@ export const productLongForm: Record<string, LongForm> = {
       "Pass box price depends mainly on the type and size. A dynamic pass box includes a fan and filter, so it is a higher-specification item than a static pass box of the same size.",
     ],
     priceFactors: ["Static or dynamic type", "Internal chamber size", "Mechanical or electromagnetic interlock", "UV lamp option", "Wall type and opening work", "Number of units"],
+    extra: [
+      { kind: "h2", text: "Why an OT complex needs a pass box" },
+      { kind: "p", text: ["An OT with HEPA-filtered air usually works as a Class 100 (ISO 5) clean room. In a complex with several theatres, the space is divided into protected, clean, aseptic (inside the OT) and disposal zones. A pass box (also called a hatch box) lets staff send used instruments, dirty linen and biomedical waste from the theatre to the disposal zone without walking through clean areas, so contamination does not cross over."] },
+      { kind: "h2", text: "Features" },
+      {
+        kind: "ul",
+        items: [
+          ["Magnetic door interlock: only one door opens at a time"],
+          ["Indicator lights for lock status and power"],
+          ["IR light inside the chamber"],
+          ["LED interior lighting"],
+        ],
+      },
+    ],
     faqs: [
       { q: "What is the difference between a static and a dynamic pass box?", a: "A static pass box is a sealed chamber without airflow. A dynamic pass box has a fan and filter to supply filtered air inside the chamber and is used where higher cleanliness is needed." },
       { q: "Where is a pass box installed in a hospital?", a: "Typically between the operation theatre and the sterile or dirty corridor, between CSSD zones, and in laboratories and pharmacies." },
@@ -262,6 +299,20 @@ export const productLongForm: Record<string, LongForm> = {
       "Cost depends on the number of beds and outlets, gases required, source equipment, pipeline length and building layout. Indicatively, MGPS inside one OT is ₹60,000 – ₹1 Lakh and a hospital MGPS project ₹5 Lakh – ₹30 Lakh. These are indicative ranges, not a quotation; we quote after reviewing your drawings.",
     ],
     priceFactors: ["Number of beds and outlets", "Gases required", "Source equipment (manifold, LOX or PSA, compressors, vacuum)", "Pipeline length and building layout", "Alarm and valve box quantities"],
+    extra: [
+      { kind: "h2", text: "Medical gas pipeline inside the operation theatre" },
+      { kind: "p", text: ["The part of the gas system that runs inside the OT, from the point where it enters through the wall, has to be built as part of the theatre itself. It can include:"] },
+      {
+        kind: "ul",
+        items: [
+          ["Zone valve box and control panels"],
+          ["Pressure regulators and pressure switches"],
+          ["Copper piping, connectors and hoses"],
+          ["Gas outlets at the pendants and walls"],
+        ],
+      },
+      { kind: "p", text: ["When the same team builds the OT and the gas system inside it, the two fit together properly and the theatre gets an uninterrupted supply of gases and medical air. These parts need after-sales service, spare parts and AMC or CMC cover over the years. We prepare a detailed offer for each site after studying your requirements."] },
+    ],
     faqs: [
       { q: "What is the cost of a medical gas pipeline?", a: "Cost depends on the number of outlets, gases, pipeline length, source equipment and building layout. Indicatively, MGPS inside one OT is ₹60,000 – ₹1 Lakh and a hospital project ₹5 Lakh – ₹30 Lakh. We quote after reviewing your drawings." },
       { q: "What is MGPS in a hospital?", a: "It is the central system that supplies oxygen, nitrous oxide, medical air and vacuum through pipelines to outlets in OTs, ICUs, wards and emergency areas." },
