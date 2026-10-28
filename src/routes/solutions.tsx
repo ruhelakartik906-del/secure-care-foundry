@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { products } from "@/data/products";
+import { pageSeo } from "@/data/page-seo";
 import { systemPages } from "@/data/systems";
 import { CtaBand, PageHero, SectionHead } from "@/components/site/common";
 import { breadcrumbSchema, seo } from "@/lib/seo";
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/solutions")({
 function Solutions() {
   return (
     <>
-      <PageHero title="Solutions" intro="Modular operation theatre systems and hospital infrastructure, planned and delivered as one coordinated project." crumbs={[{ label: "Solutions" }]} />
+      <PageHero title={pageSeo["/solutions"]?.h1 ?? "Solutions"} intro="Modular operation theatre systems and hospital infrastructure, planned and delivered as one coordinated project." crumbs={[{ label: "Solutions" }]} />
       <section className="site-wrap py-14">
         <SectionHead eyebrow="Modular OT Systems" title="Operation Theatre Building Blocks" intro="Each system is designed together with the rest of the theatre so walls, ceiling, air, power and gases fit as one room." />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

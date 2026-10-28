@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero, Faqs, faqSchema, CtaBand } from "@/components/site/common";
 import { generalFaqs, productFaqGroups } from "@/data/faqs";
+import { pageSeo } from "@/data/page-seo";
 import { compliance, comparisons } from "@/data/resources";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/faqs")({
 
 function FaqPage() {
   return <>
-    <PageHero title="Frequently Asked Questions" intro="Common questions about our products, pricing, compliance planning and how projects work." crumbs={[{ label: "Resources", to: "/resources" }, { label: "FAQs" }]} />
+    <PageHero title={pageSeo["/faqs"]?.h1 ?? "Frequently Asked Questions"} intro="Common questions about our products, pricing, compliance planning and how projects work." crumbs={[{ label: "Resources", to: "/resources" }, { label: "FAQs" }]} />
     <section className="site-wrap max-w-4xl py-12">
       <h2 className="text-2xl font-bold">General</h2>
       <div className="mt-4"><Faqs faqs={generalFaqs} /></div>

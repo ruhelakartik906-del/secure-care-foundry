@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { site, whatsappLink } from "@/data/site";
+import { pageSeo } from "@/data/page-seo";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/common";
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/get-a-quote")({
 function Quote() {
   return (
     <>
-      <PageHero title="Get a Quote" intro="Share your project requirement. We review it and respond with the next step, a site visit or a quotation." crumbs={[{ label: "Get a Quote" }]} />
+      <PageHero title={pageSeo["/get-a-quote"]?.h1 ?? "Get a Quote"} intro="Share your project requirement. We review it and respond with the next step, a site visit or a quotation." crumbs={[{ label: "Get a Quote" }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="border border-border p-6 md:p-8 lg:col-span-8">
           <h2 className="mb-6 text-2xl font-bold">Send Your Enquiry</h2>

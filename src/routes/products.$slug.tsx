@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProduct, modularOtOptions, priceLabel, products } from "@/data/products";
+import { pageSeo } from "@/data/page-seo";
 import { Button } from "@/components/ui/button";
 import { PageHero, ProductCard, Faqs, faqSchema, CtaBand, SectionHead } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -74,7 +75,7 @@ function ProductPage() {
 
   return (
     <>
-      <PageHero title={p.name} crumbs={[{ label: "Products", to: "/products" }, { label: p.name }]} />
+      <PageHero title={pageSeo[path]?.h1 ?? p.name} crumbs={[{ label: "Products", to: "/products" }, { label: p.name }]} />
       <section className="site-wrap grid gap-10 py-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           {hero ? (
