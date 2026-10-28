@@ -33,6 +33,7 @@
 - Enquiry validation/submission lives in a dynamically imported form module; FAQ uses native details/summary with no accordion script to defer, preserving server-rendered content and no-JavaScript FAQ operation.
 - TanStack automatic route splitting stays enabled; never export route component functions, and keep page-specific UI dependencies out of shared head/helper modules so route chunks stay independent.
 - Retired public pages have matching permanent redirects in Apache, Vercel and the SSR entry, plus client loader handling and sitemap exclusions, so every deployment host preserves old links.
+- The retired published Lovable hostname redirects in the server entry before any route, asset or sitemap handling; exact-host matching preserves previews and same-path/query redirects.
 - Social metadata uses `social-images.ts` to select same-domain crops in `public/og`; schema rules and variant FAQs share `structured-data.ts` so page markup and visible content stay synchronized.
 - Requested per-page title, description and H1 overrides live in `src/data/page-seo.ts`, consumed by `seo` and `PageHero`; exact-path lookup preserves metadata and headings on unlisted pages and avoids changing product names in cards/forms.
 - Non-production indexing is blocked in completed SSR responses and Apache response headers; an early-head observer preserves noindex across static copies and client navigation, while production prerendered HTML retains its route-specific indexing directives.

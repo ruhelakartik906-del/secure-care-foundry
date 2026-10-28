@@ -14,7 +14,8 @@ describe("Duplicate-host indexing safeguards", () => {
   });
   it("replaces SSR indexing directives on non-production hosts", () => {
     const html = '<html><head><meta content="index, follow" name="robots"></head><body></body></html>';
-    expect(guardIndexingHtml(html, "secure-care-foundry.lovable.app")).toContain('<meta name="robots" content="noindex, nofollow">');
+    expect(guardIndexingHtml(html, "secure-care-foundry.lovable.app")).toContain('<meta name="robots" content="noindex, follow">');
+    expect(guardIndexingHtml(html, "preview.lovable.app")).toContain('<meta name="robots" content="noindex, nofollow">');
     expect(guardIndexingHtml(html, "www.unicaremedicalsolutions.com")).toBe(html);
   });
   it("adds protection when a page has no robots tag", () => {
