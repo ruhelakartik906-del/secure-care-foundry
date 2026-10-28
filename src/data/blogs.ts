@@ -23,8 +23,8 @@ const AUTHOR = "Unicare Medical Solutions Team";
 export const blogs: Blog[] = [
   {
     slug: "what-is-cssd-hospital-sterilisation-department-guide",
-    title: "What is CSSD? A Complete Guide to Hospital Sterilisation Departments",
-    excerpt: "A practical guide to the Central Sterile Services Department: what it does, how instruments flow through it, the zones it needs and how to plan one for your hospital.",
+    title: "What is CSSD? Guide to Hospital Sterilisation Departments",
+    excerpt: "What is CSSD? A practical guide to the Central Sterile Services Department: how instruments flow through it, the zones it needs and how to plan one.",
     publishedAt: "2026-10-28",
     updatedAt: "2026-10-28",
     author: AUTHOR,
@@ -128,7 +128,7 @@ export const blogs: Blog[] = [
   },
   {
     slug: "dynamic-vs-static-pass-box",
-    title: "Dynamic vs Static Pass Box: Which One Does Your Hospital Need?",
+    title: "Dynamic vs Static Pass Box: Which Does Your Hospital Need?",
     excerpt: "How static and dynamic pass boxes work, where each one fits in a hospital, and the practical questions to ask before choosing one for your OT, CSSD or lab.",
     publishedAt: "2026-10-28",
     updatedAt: "2026-10-28",
