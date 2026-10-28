@@ -611,3 +611,68 @@ export const productLongForm: Record<string, LongForm> = {
 };
 
 export const getLongForm = (slug: string) => productLongForm[slug];
+
+/** Company-supplied verbatim sections for product pages without a long-form entry (Oct 2026 brief). */
+export const productExtraSections: Record<string, ContentBlock[]> = {
+  "hermetic-ot-door": [
+    { kind: "h2", text: "Why the OT door matters" },
+    { kind: "p", text: ["A hermetically sealed door does two jobs: it keeps the theatre aseptic, and it holds the positive pressure that stops outside air from drifting in. Both protect patients and staff from infection."] },
+    { kind: "p", text: ["Our doors come from an established, professionally managed manufacturer with a large installed base in India and overseas, so quality and after-sales support stay consistent, and spare parts remain available for years."] },
+    { kind: "h2", text: "Door options" },
+    {
+      kind: "ul",
+      items: [
+        ["Finish: HPL, stainless steel, or panel with aluminium frame"],
+        ["Opening: sliding (preferred by NABH), single-leaf hinged, or double-leaf hinged"],
+        ["Operation: automatic or manual"],
+        ["Lead-lined doors: required if the OT uses a C-arm or other X-ray equipment"],
+      ],
+    },
+    { kind: "h2", text: "Why sliding doors are preferred" },
+    { kind: "p", text: ["A hinged door swings air in and out every time it opens, which disturbs the theatre's controlled airflow. A sliding door moves along the wall and barely affects it, which is why NABH recommends sliding doors for operating rooms."] },
+  ],
+  "ot-pendant": [
+    { kind: "h2", text: "Ceiling pendants for modular OTs" },
+    { kind: "p", text: ["OT pendants are ceiling-mounted arms that bring medical gases, power, data and equipment shelves to the operating table. With cables and hoses off the floor, the area around the patient stays clean, uncluttered and easy to work in."] },
+    {
+      kind: "table",
+      head: ["", "Surgical pendant (foot or side end)", "Anaesthesia pendant (head end)"],
+      rows: [
+        ["Gases", "O₂, vacuum, compressed air (4/7 bar), CO₂ for laparoscopy", "O₂, N₂O, medical air (4 bar), vacuum, optional AGSS port"],
+        ["Equipment", "Heavy-duty shelves for camera stacks and electrocautery, optional suction carriers", "Monitor mounts and anaesthesia workstation docking frame"],
+      ],
+    },
+    { kind: "h2", text: "Options and compliance" },
+    {
+      kind: "ul",
+      items: [
+        ["Single-arm or double-arm models"],
+        ["Pneumatic or electromagnetic brakes, and motorised height adjustment (optional)"],
+        ["Colour-coded, self-sealing gas outlets to DIN or BS standards"],
+        ["Power and data sockets, storage trays and drawers"],
+        ["Compliant with NABH, BIS / IS 13350 and CDSCO norms"],
+      ],
+    },
+  ],
+  "ot-table": [
+    { kind: "h2", text: "Choosing an OT table" },
+    { kind: "p", text: ["For a major OT, we recommend a premium operating table with strong warranty, service and AMC or CMC terms. These tables meet CE, IEC and ISO standards, and their long-term cost often matches or beats cheaper alternatives. Economy tables with similar configurations are available for minor OTs or tighter budgets."] },
+    { kind: "h2", text: "The right table for each speciality" },
+    {
+      kind: "ul",
+      items: [
+        ["Orthopaedics: orthopaedic extension devices"],
+        ["Neurosurgery: Mayfield clamps and U-clamps with 3 to 6 pins"],
+        ["Cardiac, gastro and other specialities: speciality attachments"],
+        ["Imaging cases: C-arm compatible tables with X-ray-permeable tops and sliding tops"],
+      ],
+    },
+    { kind: "p", text: ["Ask us for our speciality-wise OT table catalogue."] },
+  ],
+};
+
+/** Company-supplied verbatim sections for modular OT variant pages (Oct 2026 brief). */
+export const variantSections: Record<string, ContentBlock[]> = {
+  "ppgi-modular-ot": ppgiPanelSection,
+  "stainless-steel-modular-ot": stainlessPanelSection,
+};
