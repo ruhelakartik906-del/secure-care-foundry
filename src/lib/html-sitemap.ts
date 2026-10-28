@@ -25,7 +25,7 @@ const companyLabels: Record<string, string> = {
   "/privacy-policy": "Privacy Policy", "/disclaimer": "Disclaimer", "/terms-and-conditions": "Terms & Conditions",
 };
 
-const humanize = (path: string) => path.split("/").filter(Boolean).pop()!.split("-").map((w) => (w.length <= 4 && /^(ot|mgps|hepa|hvac|india)$/.test(w) ? (w === "india" ? "India" : w.toUpperCase()) : w[0].toUpperCase() + w.slice(1))).join(" ");
+const humanize = (path: string) => path.split("/").filter(Boolean).pop()!.split("-").map((w) => (w.length <= 4 && /^(ot|mgps|hepa|hvac|india)$/.test(w) ? (w === "india" ? "India" : w.toUpperCase()) : (w[0] ?? "").toUpperCase() + w.slice(1))).join(" ");
 
 function classify(path: string): { group: HtmlSitemapGroup; label: string } {
   const seg = path.split("/").filter(Boolean);
@@ -34,8 +34,8 @@ function classify(path: string): { group: HtmlSitemapGroup; label: string } {
     if (seg[1] === "modular-operation-theatre" && seg[2]) return { group: "Modular OT services", label: getModularOtOption(seg[2])?.name ?? humanize(path) };
     return { group: "Products", label: getProduct(seg[1])?.name ?? humanize(path) };
   }
-  if (seg[0] === "modular-operation-theatre-manufacturers-in") return { group: "Locations – Modular OT", label: `Modular OT — ${getLocation(seg[1])?.name ?? humanize(path)}` };
-  if (seg[0] === "medical-gas-pipeline-manufacturers-in") return { group: "Locations – MGPS", label: `Medical Gas Pipeline — ${getLocation(seg[1])?.name ?? humanize(path)}` };
+  if (seg[0] === "modular-operation-theatre-manufacturers-in") return { group: "Locations – Modular OT", label: `Modular OT — ${getLocation(seg[1] ?? "")?.name ?? humanize(path)}` };
+  if (seg[0] === "medical-gas-pipeline-manufacturers-in") return { group: "Locations – MGPS", label: `Medical Gas Pipeline — ${getLocation(seg[1] ?? "")?.name ?? humanize(path)}` };
   const city = cities.find((c) => cityPath(c) === path);
   if (city) return { group: "Locations – Modular OT", label: `Modular OT — ${city.name} (city)` };
   if (path === "/locations") return { group: "Locations – Modular OT", label: "All Service Locations" };
