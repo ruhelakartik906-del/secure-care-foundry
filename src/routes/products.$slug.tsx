@@ -104,7 +104,7 @@ function ProductPage() {
       </section>
 
       <section className="site-wrap grid gap-12 pb-16 lg:grid-cols-12">
-        <div className="prose-unicare lg:col-span-8">
+        <div className="prose-unicare min-w-0 max-w-full lg:col-span-8">
           {isOt && <OtLongForm />}
           {lf && <LongFormSections lf={lf} name={p.name} />}
           {p.slug === "medical-gas-pipeline-system" && <p>Looking for the outlets themselves? See our <Link to="/products/$slug" params={{ slug: "oxygen-outlet" }}>medical gas and oxygen outlets</Link>, or read the <Link to="/mgps-cost-india">MGPS cost guide</Link> for indicative budgets.</p>}
@@ -129,9 +129,9 @@ function ProductPage() {
           <h2>Features</h2>
           <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
           <h2>Specifications</h2>
-          <table className="mb-6 w-full border border-border text-sm">
+          <div className="mb-6 w-full overflow-x-auto"><table className="min-w-full border border-border text-sm">
             <tbody>{p.specs.map(([k, v]) => <tr key={k} className="border-b border-border"><th className="w-1/3 bg-muted p-3 text-left font-semibold">{k}</th><td className="p-3 text-muted-foreground">{v}</td></tr>)}</tbody>
-          </table>
+          </table></div>
           <p className="text-xs">Final specifications are confirmed per project after technical planning.</p>
           <h2>Applications</h2>
           <ul>{p.applications.map((a) => <li key={a}>{a}</li>)}</ul>
@@ -248,9 +248,9 @@ function LongFormSections({ lf, name }: { lf: LongForm; name: string }) {
           {lf.typesIntro && <p>{lf.typesIntro}</p>}
           <ul>{lf.types?.map((t) => <li key={t.name}><strong>{t.name}:</strong> {t.text}</li>)}</ul>
           <h2>{lf.specsTitle}</h2>
-          <table className="mb-6 w-full border border-border text-sm">
+          <div className="mb-6 w-full overflow-x-auto"><table className="min-w-full border border-border text-sm">
             <tbody>{lf.specs?.map(([k, v]) => <tr key={k} className="border-b border-border"><th className="w-1/3 bg-muted p-3 text-left font-semibold">{k}</th><td className="p-3 text-muted-foreground">{v}</td></tr>)}</tbody>
-          </table>
+          </table></div>
           <p className="text-xs">Final specifications of the {name.toLowerCase()} are confirmed per project after technical planning.</p>
           <h2>{lf.installTitle}</h2>
           {lf.install?.map((t) => <p key={t}>{t}</p>)}

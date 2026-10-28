@@ -45,8 +45,8 @@ function MgpsCost() {
       <div className="prose-unicare max-w-3xl">
         <h2>Indicative MGPS Price Range for 2026</h2>
         <p>Hospitals planning oxygen, medical air, vacuum and nitrous oxide supply usually want a budget figure before drawings are final. The two ranges below are the figures Unicare publishes for medical gas pipeline work. They give a starting point for planning; they are not a quotation, and your final price is confirmed only after we review your project.</p>
-        <div className="not-prose mb-6 overflow-x-auto border border-border">
-          <table className="w-full text-left text-sm">
+        <div className="not-prose mb-6 w-full overflow-x-auto border border-border">
+          <table className="min-w-full text-left text-sm">
             <thead className="bg-muted"><tr><th className="p-3">Scope</th><th className="p-3">Indicative range</th><th className="p-3">Basis</th></tr></thead>
             <tbody>{ranges.map((r) => <tr key={r.item} className="border-t border-border"><td className="p-3 font-medium">{r.item}</td><td className="p-3 font-semibold text-brand-blue">{r.range}</td><td className="p-3 text-muted-foreground">{r.unit}</td></tr>)}</tbody>
           </table>

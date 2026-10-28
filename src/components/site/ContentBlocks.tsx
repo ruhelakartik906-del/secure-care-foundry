@@ -34,8 +34,8 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
             return <ol key={i}>{block.items.map((item, j) => <li key={j}><Rich parts={item} /></li>)}</ol>;
           case "table":
             return (
-              <div key={i} className="mb-6 overflow-x-auto">
-                <table className="w-full min-w-[560px] border border-border text-sm">
+              <div key={i} className="mb-6 w-full max-w-full overflow-x-auto">
+                <table className="min-w-full border border-border text-sm">
                   <thead>
                     <tr className="border-b border-border">
                       {block.head.map((cell, j) => <th key={j} className="bg-muted p-3 text-left font-semibold">{cell}</th>)}

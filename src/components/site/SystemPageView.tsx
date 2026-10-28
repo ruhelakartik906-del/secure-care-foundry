@@ -25,7 +25,7 @@ export function SystemPageView({ page }: { page: SystemPage }) {
     <>
       <PageHero title={page.name} intro={page.intro} crumbs={[{ label: "Solutions", to: "/solutions" }, { label: page.name }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
-        <article className="prose-unicare lg:col-span-8">
+        <article className="prose-unicare min-w-0 max-w-full lg:col-span-8">
           {page.body ? (
             <ContentBlocks blocks={page.body} />
           ) : (

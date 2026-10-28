@@ -27,8 +27,8 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
       <article className="prose-unicare lg:col-span-8">
         {r.table && <>
           <h2>Comparison at a Glance</h2>
-          <div className="not-prose mb-8 overflow-x-auto border border-border">
-            <table className="w-full text-left text-sm">
+          <div className="not-prose mb-8 w-full overflow-x-auto border border-border">
+            <table className="min-w-full text-left text-sm">
               <thead className="bg-muted"><tr>{r.table.head.map((h) => <th key={h} className="p-3 font-semibold">{h}</th>)}</tr></thead>
               <tbody>{r.table.rows.map((row) => <tr key={row[0]} className="border-t border-border">{row.map((c, i) => <td key={i} className={i === 0 ? "p-3 font-medium" : "p-3 text-muted-foreground"}>{c}</td>)}</tr>)}</tbody>
             </table>

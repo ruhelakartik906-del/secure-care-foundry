@@ -192,3 +192,6 @@
 @media (prefers-reduced-motion: reduce) {
   .whatsapp-fab-ring { animation: none; }
 }
+
+.prose-unicare { min-width: 0; max-width: 100%; }
+.prose-unicare table { min-width: 100%; }
