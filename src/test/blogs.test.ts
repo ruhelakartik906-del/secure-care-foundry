@@ -7,8 +7,14 @@ import { staticPaths } from "@/lib/static-pages";
 import { blogPath } from "@/lib/routes";
 
 describe("Static company-supplied blogs", () => {
-  it("does not publish invented articles before the user sends content", () => {
-    expect(blogs).toEqual([]);
+  it("publishes the two requested guides at 1,200+ words with related product links", () => {
+    expect(blogs.map((b) => b.slug)).toEqual(["what-is-cssd-hospital-sterilisation-department-guide", "dynamic-vs-static-pass-box"]);
+    for (const b of blogs) {
+      const words = b.sections.flatMap((s) => [s.heading ?? "", ...s.paragraphs, ...(s.bullets ?? [])]).join(" ").split(/\s+/).filter(Boolean).length;
+      expect(words).toBeGreaterThanOrEqual(1200);
+    }
+    expect(blogs[0]?.relatedProducts).toContain("cssd-systems");
+    expect(blogs[1]?.relatedProducts).toContain("pass-box");
   });
 
   it("includes the Blogs listing in static hosting paths", () => {

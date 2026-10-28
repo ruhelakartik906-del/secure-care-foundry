@@ -12,7 +12,7 @@ describe("Company-confirmed SEO host and sitemap policy", () => {
   });
   it("excludes noindex and retired pages while keeping the Blogs listing hosted", () => {
     expect(staticPaths()).toContain("/blogs");
-    expect(sitemapEntries().map((entry) => entry.path)).not.toContain("/blogs");
+    expect(sitemapEntries().map((entry) => entry.path)).toContain("/blogs");
     expect(sitemapEntries().map((entry) => entry.path)).toEqual(staticPaths().filter((path) => !sitemapExcludedPaths.includes(path)));
   });
   it("records this revision's content changes without inventing dates for unchanged pages", () => {
