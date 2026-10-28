@@ -1,5 +1,5 @@
 // OT component/system pages from the master brief. Content avoids invented specs, counts or certifications.
-import { paintingSection, type ContentBlock } from "./content-blocks";
+import { paintingSection, ppgiPanelSection, stainlessPanelSection, type ContentBlock } from "./content-blocks";
 
 export type SystemPage = {
   path: "/modular-ot-wall-panels" | "/modular-ot-ceiling" | "/operation-theatre-hvac-system" | "/hepa-filtration-system-for-operation-theatre" | "/modular-ot-doors" | "/operation-theatre-electrical-system" | "/modular-ot-flooring" | "/ot-accessories" | "/digital-operation-theatre";
@@ -51,8 +51,9 @@ export const systemPages: SystemPage[] = [
           ["Graphic-printed (PPGI, SS, HPL, glass)", "A calmer, branded look", "10–15 years", "Economical"],
         ],
       },
-      // PPGI / GI sandwich PUF panels + Specification (shared with the PPGI variant page)
-      ...[0].flatMap(() => ppgiSection()),
+      // PPGI and stainless steel panel sections are shared with the OT variant pages.
+      ...ppgiPanelSection,
+      ...stainlessPanelSection,
       { kind: "h2", text: "Gypsum-backed modular panels" },
       {
         kind: "p",
