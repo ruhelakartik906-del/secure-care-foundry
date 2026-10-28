@@ -379,12 +379,8 @@ export const productLongForm: Record<string, LongForm> = {
       "Planning the scrub area together with the operation theatre layout helps the surgical team move straight from scrubbing into the theatre without touching doors or surfaces. Space in front of each bay, splash control, drainage and the position of soap and brush dispensers are all considered so that several staff can scrub at once without crowding.",
       "For hospitals upgrading an existing theatre, a scrub station can usually be replaced or added within the existing scrub area after checking water supply, drainage and power for sensor taps.",
     ],
-    typesTitle: "Scrub Station Types and Tap Options",
+    typesTitle: "Scrub Station Mounting Options",
     types: [
-      { name: "Single, double or triple bay", text: "One, two or three scrubbing positions in one unit." },
-      { name: "Sensor-operated taps", text: "Most common in new OTs; water starts when hands are placed under the spout." },
-      { name: "Knee-operated taps", text: "A reliable non-electric option controlled with the knee." },
-      { name: "Elbow-operated taps", text: "A non-electric lever option operated with the elbow." },
       { name: "Wall-mounted or free-standing", text: "The mounting arrangement is chosen to suit the scrub area wall, plumbing points and the space available in front of each bay." },
     ],
     specsTitle: "Surgical Scrub Sink Specifications",
@@ -408,6 +404,34 @@ export const productLongForm: Record<string, LongForm> = {
     // TODO(price): add indicative scrub station price ranges by bay count if the company approves them.
     price: ["Scrub sink price depends mainly on the number of bays and tap operation. Share your requirement for a quotation."],
     priceFactors: ["Number of bays", "Sensor, knee or elbow operation", "Accessories required", "Plumbing and drainage work on site", "Number of units"],
+    extra: [
+      { kind: "h2", text: "Hands-free scrub stations for operation theatres" },
+      { kind: "p", text: ["Surgical hand scrubbing is the last line of defence before an incision, so the scrub station has to be completely hands-free and easy to keep clean. Our scrub sinks are made from heavy-gauge stainless steel with rounded (coved) inner corners, so there are no sharp joints where bacteria can form a film."] },
+      { kind: "h2", text: "Models" },
+      {
+        kind: "table",
+        head: ["Model", "Users at a time"],
+        rows: [
+          ["Single station (1 bay)", "1"],
+          ["Double station (2 bay)", "2"],
+          ["Triple station (3 bay)", "3"],
+        ],
+      },
+      { kind: "h2", text: "Features" },
+      {
+        kind: "ul",
+        items: [
+          ["Hands-free water control: infrared sensor, knee panel, foot pedal, or a combination with manual override"],
+          ["Deep anti-splash basin with sloping sides and rounded corners"],
+          ["Scrub timer: LED countdown display (3 to 5 minutes) that starts automatically"],
+          ["Thermostatic mixing valve (TMV) for a safe, steady water temperature"],
+          ["Optional water treatment: UV steriliser and 0.2-micron filter to remove waterborne germs"],
+          ["Accessories: touch-free soap and iodine dispensers, LED mirror canopy, tall side splash guards"],
+        ],
+      },
+      { kind: "h2", text: "Material and compliance" },
+      { kind: "p", text: ["1.5 mm AISI 304 stainless steel (AISI 316 on request) with a satin hairline finish. Compliant with NABH, BIS / IS, CDSCO and ISO 13485 requirements."] },
+    ],
     faqs: [
       { q: "Which tap operation is best?", a: "Sensor taps are most common in new OTs; knee and elbow operation are reliable non-electric options." },
       { q: "How many bays does a scrub station need?", a: "It depends on how many staff scrub at the same time and how many theatres share the area. Single, double and triple-bay units are available." },
