@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DigitalOperationTheatreRouteImport } from './routes/digital-operation-theatre'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
@@ -21,6 +22,7 @@ import { Route as MgpsCostIndiaRouteImport } from './routes/mgps-cost-india'
 import { Route as ModularOtCeilingRouteImport } from './routes/modular-ot-ceiling'
 import { Route as ModularOtCostIndiaRouteImport } from './routes/modular-ot-cost-india'
 import { Route as ModularOtDoorsRouteImport } from './routes/modular-ot-doors'
+import { Route as ModularOtFlooringRouteImport } from './routes/modular-ot-flooring'
 import { Route as ModularOtManufacturerAgraRouteImport } from './routes/modular-ot-manufacturer-agra'
 import { Route as ModularOtManufacturerDehradunRouteImport } from './routes/modular-ot-manufacturer-dehradun'
 import { Route as ModularOtManufacturerGhaziabadRouteImport } from './routes/modular-ot-manufacturer-ghaziabad'
@@ -31,6 +33,7 @@ import { Route as ModularOtManufacturerVaranasiRouteImport } from './routes/modu
 import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wall-panels'
 import { Route as OperationTheatreElectricalSystemRouteImport } from './routes/operation-theatre-electrical-system'
 import { Route as OperationTheatreHvacSystemRouteImport } from './routes/operation-theatre-hvac-system'
+import { Route as OtAccessoriesRouteImport } from './routes/ot-accessories'
 import { Route as PageNotFoundRouteImport } from './routes/page-not-found'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SearchRouteImport } from './routes/search'
@@ -65,6 +68,11 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigitalOperationTheatreRoute = DigitalOperationTheatreRouteImport.update({
+  id: '/digital-operation-theatre',
+  path: '/digital-operation-theatre',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
@@ -111,6 +119,11 @@ const ModularOtCostIndiaRoute = ModularOtCostIndiaRouteImport.update({
 const ModularOtDoorsRoute = ModularOtDoorsRouteImport.update({
   id: '/modular-ot-doors',
   path: '/modular-ot-doors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModularOtFlooringRoute = ModularOtFlooringRouteImport.update({
+  id: '/modular-ot-flooring',
+  path: '/modular-ot-flooring',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModularOtManufacturerAgraRoute =
@@ -172,6 +185,11 @@ const OperationTheatreHvacSystemRoute =
     path: '/operation-theatre-hvac-system',
     getParentRoute: () => rootRouteImport,
   } as any)
+const OtAccessoriesRoute = OtAccessoriesRouteImport.update({
+  id: '/ot-accessories',
+  path: '/ot-accessories',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PageNotFoundRoute = PageNotFoundRouteImport.update({
   id: '/page-not-found',
   path: '/page-not-found',
@@ -285,6 +303,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/digital-operation-theatre': typeof DigitalOperationTheatreRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
   '/get-a-quote': typeof GetAQuoteRoute
@@ -294,6 +313,7 @@ export interface FileRoutesByFullPath {
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-flooring': typeof ModularOtFlooringRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
   '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
@@ -304,6 +324,7 @@ export interface FileRoutesByFullPath {
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
+  '/ot-accessories': typeof OtAccessoriesRoute
   '/page-not-found': typeof PageNotFoundRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
@@ -329,6 +350,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/digital-operation-theatre': typeof DigitalOperationTheatreRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
   '/get-a-quote': typeof GetAQuoteRoute
@@ -338,6 +360,7 @@ export interface FileRoutesByTo {
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-flooring': typeof ModularOtFlooringRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
   '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
@@ -348,6 +371,7 @@ export interface FileRoutesByTo {
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
+  '/ot-accessories': typeof OtAccessoriesRoute
   '/page-not-found': typeof PageNotFoundRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
@@ -374,6 +398,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/digital-operation-theatre': typeof DigitalOperationTheatreRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
   '/get-a-quote': typeof GetAQuoteRoute
@@ -383,6 +408,7 @@ export interface FileRoutesById {
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
   '/modular-ot-doors': typeof ModularOtDoorsRoute
+  '/modular-ot-flooring': typeof ModularOtFlooringRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
   '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
@@ -393,6 +419,7 @@ export interface FileRoutesById {
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
   '/operation-theatre-electrical-system': typeof OperationTheatreElectricalSystemRoute
   '/operation-theatre-hvac-system': typeof OperationTheatreHvacSystemRoute
+  '/ot-accessories': typeof OtAccessoriesRoute
   '/page-not-found': typeof PageNotFoundRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/search': typeof SearchRoute
@@ -420,6 +447,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/digital-operation-theatre'
     | '/disclaimer'
     | '/faqs'
     | '/get-a-quote'
@@ -429,6 +457,7 @@ export interface FileRouteTypes {
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
     | '/modular-ot-doors'
+    | '/modular-ot-flooring'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
     | '/modular-ot-manufacturer-ghaziabad'
@@ -439,6 +468,7 @@ export interface FileRouteTypes {
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
+    | '/ot-accessories'
     | '/page-not-found'
     | '/privacy-policy'
     | '/search'
@@ -464,6 +494,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/digital-operation-theatre'
     | '/disclaimer'
     | '/faqs'
     | '/get-a-quote'
@@ -473,6 +504,7 @@ export interface FileRouteTypes {
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
     | '/modular-ot-doors'
+    | '/modular-ot-flooring'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
     | '/modular-ot-manufacturer-ghaziabad'
@@ -483,6 +515,7 @@ export interface FileRouteTypes {
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
+    | '/ot-accessories'
     | '/page-not-found'
     | '/privacy-policy'
     | '/search'
@@ -508,6 +541,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/digital-operation-theatre'
     | '/disclaimer'
     | '/faqs'
     | '/get-a-quote'
@@ -517,6 +551,7 @@ export interface FileRouteTypes {
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
     | '/modular-ot-doors'
+    | '/modular-ot-flooring'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
     | '/modular-ot-manufacturer-ghaziabad'
@@ -527,6 +562,7 @@ export interface FileRouteTypes {
     | '/modular-ot-wall-panels'
     | '/operation-theatre-electrical-system'
     | '/operation-theatre-hvac-system'
+    | '/ot-accessories'
     | '/page-not-found'
     | '/privacy-policy'
     | '/search'
@@ -553,6 +589,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  DigitalOperationTheatreRoute: typeof DigitalOperationTheatreRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqsRoute: typeof FaqsRoute
   GetAQuoteRoute: typeof GetAQuoteRoute
@@ -562,6 +599,7 @@ export interface RootRouteChildren {
   ModularOtCeilingRoute: typeof ModularOtCeilingRoute
   ModularOtCostIndiaRoute: typeof ModularOtCostIndiaRoute
   ModularOtDoorsRoute: typeof ModularOtDoorsRoute
+  ModularOtFlooringRoute: typeof ModularOtFlooringRoute
   ModularOtManufacturerAgraRoute: typeof ModularOtManufacturerAgraRoute
   ModularOtManufacturerDehradunRoute: typeof ModularOtManufacturerDehradunRoute
   ModularOtManufacturerGhaziabadRoute: typeof ModularOtManufacturerGhaziabadRoute
@@ -572,6 +610,7 @@ export interface RootRouteChildren {
   ModularOtWallPanelsRoute: typeof ModularOtWallPanelsRoute
   OperationTheatreElectricalSystemRoute: typeof OperationTheatreElectricalSystemRoute
   OperationTheatreHvacSystemRoute: typeof OperationTheatreHvacSystemRoute
+  OtAccessoriesRoute: typeof OtAccessoriesRoute
   PageNotFoundRoute: typeof PageNotFoundRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SearchRoute: typeof SearchRoute
@@ -615,6 +654,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digital-operation-theatre': {
+      id: '/digital-operation-theatre'
+      path: '/digital-operation-theatre'
+      fullPath: '/digital-operation-theatre'
+      preLoaderRoute: typeof DigitalOperationTheatreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/disclaimer': {
@@ -678,6 +724,13 @@ declare module '@tanstack/react-router' {
       path: '/modular-ot-doors'
       fullPath: '/modular-ot-doors'
       preLoaderRoute: typeof ModularOtDoorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-flooring': {
+      id: '/modular-ot-flooring'
+      path: '/modular-ot-flooring'
+      fullPath: '/modular-ot-flooring'
+      preLoaderRoute: typeof ModularOtFlooringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/modular-ot-manufacturer-agra': {
@@ -748,6 +801,13 @@ declare module '@tanstack/react-router' {
       path: '/operation-theatre-hvac-system'
       fullPath: '/operation-theatre-hvac-system'
       preLoaderRoute: typeof OperationTheatreHvacSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ot-accessories': {
+      id: '/ot-accessories'
+      path: '/ot-accessories'
+      fullPath: '/ot-accessories'
+      preLoaderRoute: typeof OtAccessoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/page-not-found': {
@@ -897,6 +957,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  DigitalOperationTheatreRoute: DigitalOperationTheatreRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqsRoute: FaqsRoute,
   GetAQuoteRoute: GetAQuoteRoute,
@@ -907,6 +968,7 @@ const rootRouteChildren: RootRouteChildren = {
   ModularOtCeilingRoute: ModularOtCeilingRoute,
   ModularOtCostIndiaRoute: ModularOtCostIndiaRoute,
   ModularOtDoorsRoute: ModularOtDoorsRoute,
+  ModularOtFlooringRoute: ModularOtFlooringRoute,
   ModularOtManufacturerAgraRoute: ModularOtManufacturerAgraRoute,
   ModularOtManufacturerDehradunRoute: ModularOtManufacturerDehradunRoute,
   ModularOtManufacturerGhaziabadRoute: ModularOtManufacturerGhaziabadRoute,
@@ -917,6 +979,7 @@ const rootRouteChildren: RootRouteChildren = {
   ModularOtWallPanelsRoute: ModularOtWallPanelsRoute,
   OperationTheatreElectricalSystemRoute: OperationTheatreElectricalSystemRoute,
   OperationTheatreHvacSystemRoute: OperationTheatreHvacSystemRoute,
+  OtAccessoriesRoute: OtAccessoriesRoute,
   PageNotFoundRoute: PageNotFoundRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SearchRoute: SearchRoute,
