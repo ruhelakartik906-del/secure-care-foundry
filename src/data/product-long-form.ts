@@ -153,6 +153,7 @@ export const productLongForm: Record<string, LongForm> = {
     install: [
       "We start with your bed count, departments and room drawings, prepare a furniture schedule for each area, and agree models and finishes with you. Furniture is then supplied, assembled on site where required, placed in each room and checked before handover.",
       "For full hospital projects, delivery can be phased to match the readiness of each floor or department. The supply timeline depends on quantities and the models chosen and is confirmed with the quotation.",
+      "After handover, our team can help with additional items or replacements as your wards expand, so new furniture stays consistent with what is already in use.",
     ],
     // TODO(timeline): add typical supply lead time for standard furniture packages.
     steps: ["Bed count and department review", "Furniture schedule and model selection", "Supply and on-site assembly", "Placement and handover"],
@@ -299,6 +300,7 @@ export const productLongForm: Record<string, LongForm> = {
     install: [
       "We review the ward drawings and the gas and electrical schedule for each bed, then fix the panels at the agreed height. Gas pipework from the MGPS and electrical wiring are brought into the panel, outlets and sockets are fitted, and every outlet is tested before handover.",
       "In existing wards, installation is planned around the existing services and can be phased. The timeline depends on the number of beds and site readiness and is confirmed after the site assessment.",
+      "After handover, the hospital's maintenance team is shown how outlets and sockets are arranged in the panel, so routine checks and later additions are straightforward.",
     ],
     // TODO(timeline): add typical installation duration per bed/ward.
     steps: ["Bed and services schedule", "Panel fixing at agreed height", "Gas and electrical connection", "Outlet testing and handover"],
@@ -346,6 +348,7 @@ export const productLongForm: Record<string, LongForm> = {
     install: [
       "We confirm the scrub area layout, number of bays, water supply and drainage points, and power for sensor taps. The station is fixed and levelled, water and drainage are connected, sensor taps are wired, and flow and drainage are tested before handover.",
       "The timeline depends on whether services are already in place and is confirmed after the site assessment.",
+      "At handover, staff are shown how the taps operate and how to clean the stainless surfaces. For sensor taps, the power supply and sensor response are checked so water flows reliably when hands are placed under the spout. Where several theatres share one scrub area, the bays are positioned so staff can enter each theatre directly after scrubbing.",
     ],
     // TODO(timeline): add typical installation duration for one scrub station.
     steps: ["Scrub area layout and services check", "Station fixed and levelled", "Water, drain and sensor connection", "Flow and drainage testing"],
@@ -391,6 +394,7 @@ export const productLongForm: Record<string, LongForm> = {
     install: [
       "We review the gas demand, room location and pipeline connection, then install the manifold, cylinder connections, regulation and monitoring, and connect the manifold to the pipeline. The system is tested for leaks and correct operation, and staff are shown the changeover procedure at handover.",
       "The timeline depends on the room's readiness and the wider MGPS project and is confirmed after the site assessment.",
+      "At handover, the hospital team is shown how to change cylinders on each bank, read the pressure monitoring and respond to alarms. Routine checks of the manifold, regulators and connections are then carried out at intervals set by the hospital's maintenance plan, so the gas supply stays dependable.",
     ],
     // TODO(timeline): add typical manifold room installation duration.
     steps: ["Gas demand and room review", "Manifold and cylinder connection", "Pipeline connection and monitoring", "Testing and handover"],
@@ -437,6 +441,7 @@ export const productLongForm: Record<string, LongForm> = {
     install: [
       "We confirm the number of theatres and terminal positions, then install the terminal units, transfer pipework and exhaust plant. The system is tested for correct operation at every terminal before handover.",
       "The timeline depends on the number of theatres and whether the work is part of a new modular OT or an upgrade, and is confirmed after the site assessment.",
+      "At handover, the anaesthesia and maintenance teams are shown how terminal units connect to the anaesthesia machine and how the exhaust plant is switched and monitored. Where AGSS is part of a modular OT, the terminal unit positions are coordinated with the OT pendant, wall panels and medical gas outlets so that the anaesthetist has every connection within easy reach.",
     ],
     // TODO(timeline): add typical AGSS installation duration.
     steps: ["Theatre count and terminal positions", "Terminal units and pipework", "Exhaust plant installation", "Testing and handover"],
@@ -484,6 +489,7 @@ export const productLongForm: Record<string, LongForm> = {
     install: [
       "We review the CSSD area, surgical workload and drawings, prepare a zoning layout with one-way workflow, and agree the equipment list. Equipment is then supplied, installed and connected to the required services, and tested before handover.",
       "The timeline depends on the size of the department, the equipment chosen and site readiness, and is confirmed after the site assessment.",
+      "At handover, the CSSD team is shown the workflow through each zone, how equipment is operated according to the manufacturer's instructions, and how instruments move between zones and pass boxes. Routine servicing and validation of sterilisers and washers are then carried out at intervals set by the hospital's quality and maintenance plan, using the manufacturer's documentation.",
     ],
     // TODO(timeline): add typical CSSD project duration.
     steps: ["Workload and area review", "Zoning layout and equipment list", "Equipment supply and installation", "Testing and handover"],
