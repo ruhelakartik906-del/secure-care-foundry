@@ -64,6 +64,11 @@ export function Footer() {
             <Link to="/sitemap" className="hover:text-navy-foreground">Sitemap</Link>
           </div>
         </div>
+        <div className="border-t border-navy-foreground/15">
+          <div className="site-wrap py-4 text-center text-xs text-navy-foreground/70">
+            <p>Designed by <a href="https://unknownhat.com" className="font-semibold text-navy-foreground hover:underline">unknownhat.com</a></p>
+          </div>
+        </div>
       </div>
     </footer>
   );
