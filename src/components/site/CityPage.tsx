@@ -30,6 +30,8 @@ export function CityPage({ c }: { c: City }) {
     <PageHero title={`Modular OT Manufacturer in ${c.name}`} intro={c.intro} crumbs={[{ label: "Modular OT Cities", to: "/locations" }, { label: c.name }]} />
     <section className="site-wrap grid gap-10 py-12 lg:grid-cols-[1fr_380px]">
       <div className="max-w-3xl leading-relaxed text-muted-foreground">
+        {/* TODO(company photo): add a unique, real modular OT project photo from this city, alt e.g.
+            "Modular operation theatre installed in {c.name} – Unicare". Do not use stock or AI images. */}
         <h2 className="text-2xl font-bold text-foreground">Modular OT Solutions in {c.name}</h2>
         <p className="mt-3">{c.context}</p>
         <H>Hospital Infrastructure Solutions</H>
