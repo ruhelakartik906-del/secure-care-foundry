@@ -16,6 +16,16 @@ export const pageLastModified: Readonly<Record<string, string>> = {
   "/hepa-filtration-system-for-operation-theatre": "2026-10-24",
   "/modular-ot-doors": "2026-10-24",
   "/operation-theatre-electrical-system": "2026-10-24",
+  "/products/cubicle-curtain-system": "2026-10-28",
+  "/products/led-surgical-light": "2026-10-28",
+  "/products/hospital-furniture": "2026-10-28",
+  "/products/pass-box": "2026-10-28",
+  "/products/medical-gas-pipeline-system": "2026-10-28",
+  "/products/bed-head-panel": "2026-10-28",
+  "/products/surgical-scrub-sink-station": "2026-10-28",
+  "/products/manifold-room-system": "2026-10-28",
+  "/products/agss": "2026-10-28",
+  "/products/cssd-systems": "2026-10-28",
 };
 
 export function sitemapEntries() {

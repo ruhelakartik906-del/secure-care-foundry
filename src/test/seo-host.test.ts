@@ -33,3 +33,12 @@ describe("Company-confirmed SEO host and sitemap policy", () => {
     expect(text).toContain("Sitemap: https://www.unicaremedicalsolutions.com/sitemap.xml");
   });
 });
+import { productLongForm } from "@/data/product-long-form";
+import { describe as d2, it as i2, expect as e2 } from "vitest";
+d2("expanded product pages", () => {
+  i2.each(Object.entries(productLongForm))("%s has 4-5 FAQs and 3 related products", (_slug, lf) => {
+    e2(lf.faqs.length).toBeGreaterThanOrEqual(4);
+    e2(lf.faqs.length).toBeLessThanOrEqual(5);
+    e2(lf.related).toHaveLength(3);
+  });
+});
