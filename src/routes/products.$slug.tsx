@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProduct, modularOtOptions, priceLabel, products } from "@/data/products";
 import { pageSeo } from "@/data/page-seo";
+import { getLongForm, type LongForm } from "@/data/product-long-form";
 import { Button } from "@/components/ui/button";
 import { PageHero, ProductCard, Faqs, faqSchema, CtaBand, SectionHead } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -36,7 +37,7 @@ export const Route = createFileRoute("/products/$slug")({
     const path = `/products/${p.slug}`;
     const s = seo(titleOverrides[p.slug] ?? `${p.name} Manufacturer & Installation | Unicare`, descOverrides[p.slug] ?? p.short, path, "product");
     const productLd = { type: "application/ld+json", children: JSON.stringify(productSchema(p, path)) };
-    return { ...s, scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: p.name, path }]), productLd, faqSchema(p.faqs)] };
+    return { ...s, scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: p.name, path }]), productLd, faqSchema(getLongForm(p.slug)?.faqs ?? p.faqs)] };
   },
   component: ProductPage,
 });
@@ -72,7 +73,8 @@ function ProductPage() {
   const hero = heroImages[p.slug];
   const isOt = p.slug === "modular-operation-theatre";
   const hasLongForm = ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow"].includes(p.slug);
-  const related = products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
+  const lf = getLongForm(p.slug);
+  const related = lf ? lf.related.map((r) => getProduct(r)).filter((x): x is NonNullable<typeof x> => !!x) : products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
 
   return (
     <>
@@ -103,7 +105,7 @@ function ProductPage() {
       <section className="site-wrap grid gap-12 pb-16 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
           {isOt && <OtLongForm />}
-          {p.slug === "medical-gas-pipeline-system" && <MgpsLongForm />}
+          {lf && <LongFormSections lf={lf} name={p.name} />}
           {p.slug === "laminar-air-flow" && <LafLongForm />}
           {isOt && (
             <section aria-labelledby="modular-ot-options">
@@ -120,6 +122,7 @@ function ProductPage() {
               </div>
             </section>
           )}
+          {!lf && <>
           <h2>Features</h2>
           <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
           <h2>Specifications</h2>
@@ -135,6 +138,7 @@ function ProductPage() {
           <ul>{p.benefits.map((b) => <li key={b}>{b}</li>)}</ul>
           <h2>Frequently Asked Questions</h2>
           <Faqs faqs={p.faqs} />
+          </>}
           {(complianceFor[p.slug] ?? []).length > 0 && <><h2>Compliance & Standards</h2><p>General overviews of standards referenced for this product (planning guidance only, not a certification claim):</p><ul>{(complianceFor[p.slug] ?? []).map((c) => { const r = getCompliance(c); return r ? <li key={c}><Link to="/resources/compliance/$slug" params={{ slug: c }}>{r.title.replace(/ – An Overview$/, "")}</Link></li> : null; })}</ul></>}
           {comparisons.filter((c) => c.products.includes(p.slug)).length > 0 && <p>Comparing options? Read {comparisons.filter((c) => c.products.includes(p.slug)).map((c, i) => <span key={c.slug}>{i ? ", " : ""}<Link to="/resources/comparisons/$slug" params={{ slug: c.slug }}>{c.title}</Link></span>)}.</p>}
           <h2>Pricing & Service Areas</h2>
@@ -185,28 +189,28 @@ function OtLongForm() {
   );
 }
 
-function MgpsLongForm() {
+function LongFormSections({ lf, name }: { lf: LongForm; name: string }) {
   return (
     <>
-      <h2>MGPS Overview</h2>
-      <p>A medical gas pipeline system replaces bedside cylinders with a central supply. Gases are generated or stored at a plant room, distributed through cleaned medical-grade copper pipework and delivered at gas-specific terminal outlets in OTs, ICUs, wards and emergency areas. We plan the system around your bed count, departments and the standard specified in your tender.</p>
-      <h2>Gas Sources and Manifolds</h2>
-      <ResponsiveImage src={mgpsPlantPhoto.url} alt="Medical gas plant room with medical air compressors, vacuum plant and cylinder manifold pipework" loading="lazy" width={1128} height={716} className="mb-4 aspect-[1128/716] w-full object-cover" />
-      <p>Typical sources include oxygen cylinder manifolds, liquid oxygen tanks or PSA oxygen plants, medical air compressors, vacuum pumps and nitrous oxide manifolds. Manifolds are normally duplex (duty and standby) so supply continues during cylinder changeover.</p>
-      <h2>Pipeline, Zone Valve Boxes and Alarms</h2>
-      <ul>
-        <li>Copper distribution pipeline, cleaned and jointed for medical gas service</li>
-        <li>Zone (area) valve service units to isolate departments for maintenance or emergencies</li>
-        <li>Area alarm panels showing high/low pressure for each gas in a department</li>
-        <li>Master alarm panel monitoring the plant room sources</li>
-        <li>Terminal outlets on walls, <Link to="/products/$slug" params={{ slug: "bed-head-panel" }}>bed head panels</Link> or <Link to="/products/$slug" params={{ slug: "ot-pendant" }}>OT pendants</Link></li>
-      </ul>
-      <h2>Testing and Commissioning</h2>
-      <p>Before handover the system is pressure tested for leaks, purged, checked for cross-connection and gas identity at every outlet, and alarms are verified. Test records are shared with the hospital.</p>
-      <h2>Maintenance</h2>
-      <p>Routine checks cover plant equipment, manifold changeover, alarm function, valve operation and outlet condition, at intervals set by the hospital's maintenance plan.</p>
-      <h2>MGPS Cost Factors</h2>
-      <p>Cost depends on the number of beds and outlets, gases required, source equipment, pipeline length and building layout. Indicatively, MGPS inside one OT is ₹60,000 – ₹1 Lakh and a hospital MGPS project ₹5 Lakh – ₹30 Lakh; see the <Link to="/modular-ot-cost-india">pricing guide</Link>. For theatres, MGPS is usually planned with the <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular OT</Link> and <Link to="/products/$slug" params={{ slug: "agss" }}>AGSS</Link>.</p>
+      <h2>{lf.whatTitle}</h2>
+      {lf.what.map((t) => <p key={t}>{t}</p>)}
+      {lf.image && <ResponsiveImage src={lf.image.src} alt={lf.image.alt} loading="lazy" width={lf.image.w} height={lf.image.h} className="mb-4 h-auto w-full" />}
+      <h2>{lf.typesTitle}</h2>
+      {lf.typesIntro && <p>{lf.typesIntro}</p>}
+      <ul>{lf.types.map((t) => <li key={t.name}><strong>{t.name}:</strong> {t.text}</li>)}</ul>
+      <h2>{lf.specsTitle}</h2>
+      <table className="mb-6 w-full border border-border text-sm">
+        <tbody>{lf.specs.map(([k, v]) => <tr key={k} className="border-b border-border"><th className="w-1/3 bg-muted p-3 text-left font-semibold">{k}</th><td className="p-3 text-muted-foreground">{v}</td></tr>)}</tbody>
+      </table>
+      <p className="text-xs">Final specifications of the {name.toLowerCase()} are confirmed per project after technical planning.</p>
+      <h2>{lf.installTitle}</h2>
+      {lf.install.map((t) => <p key={t}>{t}</p>)}
+      <ol className="mb-6 grid gap-2 sm:grid-cols-2">{lf.steps.map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol>
+      <h2>{lf.priceTitle}</h2>
+      {lf.price.map((t) => <p key={t}>{t}</p>)}
+      <ul>{lf.priceFactors.map((f) => <li key={f}>{f}</li>)}</ul>
+      <h2>Frequently Asked Questions</h2>
+      <Faqs faqs={lf.faqs} />
     </>
   );
 }
