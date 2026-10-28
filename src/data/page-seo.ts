@@ -106,6 +106,31 @@ export const pageSeo: Record<string, PageCopy> = {
   "/modular-ot-wall-panels": { h1: "Modular OT Wall Panels – PUF, HPL & Stainless Steel" },
   "/operation-theatre-hvac-system": { h1: "Operation Theatre HVAC System Design & Installation" },
   "/operation-theatre-electrical-system": { h1: "Operation Theatre Electrical System & Control Panel" },
+  "/products/ot-table": {
+    title: "OT Table (Operating Table) Supplier | Unicare",
+    h1: "OT Table – Operating Tables for Every Surgical Speciality",
+    description: "Operating tables for every surgical speciality: orthopaedic extensions, neurosurgery clamps and C-arm compatible tables, premium and economy. Get a quote.",
+  },
+  "/modular-ot-flooring": {
+    title: "Modular OT Flooring – Anti-Static Vinyl | Unicare",
+    h1: "Anti-Static Vinyl Flooring for Operation Theatres",
+    description: "Anti-static vinyl flooring for operation theatres, laid on prepared, self-levelled and cured base floors by trained installers. Get a project quote.",
+  },
+  "/ot-accessories": {
+    title: "OT Accessories – Storage, X-Ray Viewer, Boards | Unicare",
+    h1: "Operation Theatre Accessories",
+    description: "Operation theatre accessories: clean utility storage units, LED X-ray film viewers and OT schedule boards, sized to your theatre. Get a quote.",
+  },
+  "/digital-operation-theatre": {
+    title: "Digital OT – Recording, Integration & Streaming | Unicare",
+    h1: "Digital Operation Theatre – OT Integration and Live Streaming",
+    description: "Digital operation theatre with recording, imaging integration, two-way IP communication and live streaming for teaching, plus an economical BMS option.",
+  },
+  "/services/hospital-project-consulting": {
+    title: "Hospital Project Consulting – OT, MGPS, ICU | Unicare",
+    h1: "Hospital Project & Healthcare Consulting",
+    description: "Independent online consulting for hospital projects: OT, MGPS, CSSD, ICU and MEP planning, vendor selection, NABH compliance and commissioning checks.",
+  },
   "/modular-ot-manufacturer-agra": {
     title: "Modular OT Manufacturer in Agra | Unicare",
     description: "Modular OT design, panels, laminar air flow, MGPS and installation for hospitals in Agra, Uttar Pradesh. Discuss your project with Unicare. Get a quote.",

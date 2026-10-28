@@ -26,6 +26,7 @@ export const routes = {
   faqs: "/faqs",
   contact: "/contact",
   quote: "/get-a-quote",
+  consulting: "/services/hospital-project-consulting",
 } as const;
 
 export const priorityCityPaths = cities.map((c) => ({ name: c.name, url: cityPath(c) }));

@@ -49,6 +49,7 @@ import { Route as ModularOperationTheatreManufacturersInStateRouteImport } from 
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ServicesHospitalProjectConsultingRouteImport } from './routes/services.hospital-project-consulting'
 import { Route as ProductsModularOperationTheatreVariantRouteImport } from './routes/products.modular-operation-theatre.$variant'
 import { Route as ResourcesComparisonsIndexRouteImport } from './routes/resources.comparisons.index'
 import { Route as ResourcesComparisonsSlugRouteImport } from './routes/resources.comparisons.$slug'
@@ -269,6 +270,12 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesHospitalProjectConsultingRoute =
+  ServicesHospitalProjectConsultingRouteImport.update({
+    id: '/services/hospital-project-consulting',
+    path: '/services/hospital-project-consulting',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProductsModularOperationTheatreVariantRoute =
   ProductsModularOperationTheatreVariantRouteImport.update({
     id: '/products/modular-operation-theatre/$variant',
@@ -337,6 +344,7 @@ export interface FileRoutesByFullPath {
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/services/hospital-project-consulting': typeof ServicesHospitalProjectConsultingRoute
   '/blogs/': typeof BlogsIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -384,6 +392,7 @@ export interface FileRoutesByTo {
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/services/hospital-project-consulting': typeof ServicesHospitalProjectConsultingRoute
   '/blogs': typeof BlogsIndexRoute
   '/products': typeof ProductsIndexRoute
   '/resources': typeof ResourcesIndexRoute
@@ -432,6 +441,7 @@ export interface FileRoutesById {
   '/modular-operation-theatre-manufacturer/$state': typeof ModularOperationTheatreManufacturerStateRoute
   '/modular-operation-theatre-manufacturers-in/$state': typeof ModularOperationTheatreManufacturersInStateRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/services/hospital-project-consulting': typeof ServicesHospitalProjectConsultingRoute
   '/blogs/': typeof BlogsIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -481,6 +491,7 @@ export interface FileRouteTypes {
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
+    | '/services/hospital-project-consulting'
     | '/blogs/'
     | '/products/'
     | '/resources/'
@@ -528,6 +539,7 @@ export interface FileRouteTypes {
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
+    | '/services/hospital-project-consulting'
     | '/blogs'
     | '/products'
     | '/resources'
@@ -575,6 +587,7 @@ export interface FileRouteTypes {
     | '/modular-operation-theatre-manufacturer/$state'
     | '/modular-operation-theatre-manufacturers-in/$state'
     | '/products/$slug'
+    | '/services/hospital-project-consulting'
     | '/blogs/'
     | '/products/'
     | '/resources/'
@@ -623,6 +636,7 @@ export interface RootRouteChildren {
   ModularOperationTheatreManufacturerStateRoute: typeof ModularOperationTheatreManufacturerStateRoute
   ModularOperationTheatreManufacturersInStateRoute: typeof ModularOperationTheatreManufacturersInStateRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  ServicesHospitalProjectConsultingRoute: typeof ServicesHospitalProjectConsultingRoute
   BlogsIndexRoute: typeof BlogsIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
@@ -915,6 +929,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/hospital-project-consulting': {
+      id: '/services/hospital-project-consulting'
+      path: '/services/hospital-project-consulting'
+      fullPath: '/services/hospital-project-consulting'
+      preLoaderRoute: typeof ServicesHospitalProjectConsultingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/modular-operation-theatre/$variant': {
       id: '/products/modular-operation-theatre/$variant'
       path: '/products/modular-operation-theatre/$variant'
@@ -996,6 +1017,8 @@ const rootRouteChildren: RootRouteChildren = {
   ModularOperationTheatreManufacturersInStateRoute:
     ModularOperationTheatreManufacturersInStateRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  ServicesHospitalProjectConsultingRoute:
+    ServicesHospitalProjectConsultingRoute,
   BlogsIndexRoute: BlogsIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
