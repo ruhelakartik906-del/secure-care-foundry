@@ -226,8 +226,6 @@ function OtLongForm() {
       </ul>
       <h2>Modular OT Materials</h2>
       <p>Panel materials are chosen per project and budget — common options include powder-coated galvanised steel, stainless steel and high-pressure laminate. Material choice affects durability, appearance and modular OT cost.</p>
-      <h2>Modular OT Installation</h2>
-      <p>Installation follows site readiness: panel framing, wall and ceiling panels, laminar air flow and HVAC integration, doors, electricals, gas outlets, flooring, and finally testing and commissioning.</p>
       <h2>Modular OT Cost</h2>
       <p>Modular operation theatre price in India varies with OT size, materials, laminar air flow specification, doors, controls and scope of HVAC and installation. Indicatively, a complete modular OT is ₹8.5 Lakh – ₹35 Lakh and OT paneling ₹400 – ₹3,500 per sq.ft (see the <Link to="/modular-ot-cost-india">modular OT cost guide</Link>); a project-specific quotation follows a review of your requirement.</p>
       <h2>Modular OT Maintenance</h2>
@@ -239,23 +237,30 @@ function OtLongForm() {
 function LongFormSections({ lf, name }: { lf: LongForm; name: string }) {
   return (
     <>
-      <h2>{lf.whatTitle}</h2>
-      {lf.what.map((t) => <p key={t}>{t}</p>)}
-      {lf.image && <ResponsiveImage src={lf.image.src} alt={lf.image.alt} loading="lazy" width={lf.image.w} height={lf.image.h} className="mb-4 h-auto w-full" />}
-      <h2>{lf.typesTitle}</h2>
-      {lf.typesIntro && <p>{lf.typesIntro}</p>}
-      <ul>{lf.types.map((t) => <li key={t.name}><strong>{t.name}:</strong> {t.text}</li>)}</ul>
-      <h2>{lf.specsTitle}</h2>
-      <table className="mb-6 w-full border border-border text-sm">
-        <tbody>{lf.specs.map(([k, v]) => <tr key={k} className="border-b border-border"><th className="w-1/3 bg-muted p-3 text-left font-semibold">{k}</th><td className="p-3 text-muted-foreground">{v}</td></tr>)}</tbody>
-      </table>
-      <p className="text-xs">Final specifications of the {name.toLowerCase()} are confirmed per project after technical planning.</p>
-      <h2>{lf.installTitle}</h2>
-      {lf.install.map((t) => <p key={t}>{t}</p>)}
-      <ol className="mb-6 grid gap-2 sm:grid-cols-2">{lf.steps.map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol>
-      <h2>{lf.priceTitle}</h2>
-      {lf.price.map((t) => <p key={t}>{t}</p>)}
-      <ul>{lf.priceFactors.map((f) => <li key={f}>{f}</li>)}</ul>
+      {lf.body ? (
+        <ContentBlocks blocks={lf.body} />
+      ) : (
+        <>
+          <h2>{lf.whatTitle}</h2>
+          {lf.what?.map((t) => <p key={t}>{t}</p>)}
+          {lf.image && <ResponsiveImage src={lf.image.src} alt={lf.image.alt} loading="lazy" width={lf.image.w} height={lf.image.h} className="mb-4 h-auto w-full" />}
+          <h2>{lf.typesTitle}</h2>
+          {lf.typesIntro && <p>{lf.typesIntro}</p>}
+          <ul>{lf.types?.map((t) => <li key={t.name}><strong>{t.name}:</strong> {t.text}</li>)}</ul>
+          <h2>{lf.specsTitle}</h2>
+          <table className="mb-6 w-full border border-border text-sm">
+            <tbody>{lf.specs?.map(([k, v]) => <tr key={k} className="border-b border-border"><th className="w-1/3 bg-muted p-3 text-left font-semibold">{k}</th><td className="p-3 text-muted-foreground">{v}</td></tr>)}</tbody>
+          </table>
+          <p className="text-xs">Final specifications of the {name.toLowerCase()} are confirmed per project after technical planning.</p>
+          <h2>{lf.installTitle}</h2>
+          {lf.install?.map((t) => <p key={t}>{t}</p>)}
+          <ol className="mb-6 grid gap-2 sm:grid-cols-2">{lf.steps?.map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol>
+          <h2>{lf.priceTitle}</h2>
+          {lf.price?.map((t) => <p key={t}>{t}</p>)}
+          <ul>{lf.priceFactors?.map((f) => <li key={f}>{f}</li>)}</ul>
+        </>
+      )}
+      {lf.extra && <ContentBlocks blocks={lf.extra} />}
       <h2>Frequently Asked Questions</h2>
       <Faqs faqs={lf.faqs} />
     </>
