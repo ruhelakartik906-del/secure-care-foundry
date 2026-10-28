@@ -17,9 +17,12 @@ describe("Company-confirmed SEO host and sitemap policy", () => {
   });
   it("records this revision's content changes without inventing dates for unchanged pages", () => {
     const entries = sitemapEntries();
-    expect(entries.find((entry) => entry.path === "/products/modular-operation-theatre")?.lastmod).toBe("2026-10-24");
-    expect(entries.find((entry) => entry.path === "/products/ot-pendant")?.lastmod).toBeUndefined();
-    expect(sitemapXml()).toContain("<lastmod>2026-10-24</lastmod>");
+    // Both pages gained company-supplied sections in the October 28 content brief.
+    expect(entries.find((entry) => entry.path === "/products/modular-operation-theatre")?.lastmod).toBe("2026-10-28");
+    expect(entries.find((entry) => entry.path === "/products/ot-pendant")?.lastmod).toBe("2026-10-28");
+    expect(sitemapXml()).toContain("<lastmod>2026-10-28</lastmod>");
+    // Unchanged pages keep their earlier authoritative date.
+    expect(entries.find((entry) => entry.path === "/hepa-filtration-system-for-operation-theatre")?.lastmod).toBe("2026-10-24");
   });
   it("redirects apex to www without changing path or query", async () => {
     const response = await server.fetch(new Request("https://unicaremedicalsolutions.com/products/laminar-air-flow?source=test"), {}, {});
