@@ -32,4 +32,4 @@
 - [x] Stabilize repeated mobile menu opening, closing and reopening after navigation; verify touch and focus restoration.
 - [x] Add the company-supplied Google Search Console verification meta tag to every page head; verify in preview and built HTML.
 - [x] Publish the company-supplied Laminar Air-Flow System wording verbatim on the Laminar Air Flow product page; verify exact text renders.
-- [ ] Deploy the verification tag to the live origin, then complete verification in Search Console.
+- [ ] Deploy the verification tag to the live origin, then complete verification in Search Console.- [ ] Oct 28 content brief (9 tasks): expand Modular OT, wall/ceiling panels, HVAC, electrical, doors, pass box, MGPS, AGSS, pendant, scrub, OT light pages with company-supplied verbatim text; create /products/ot-table, /modular-ot-flooring, /ot-accessories, /digital-operation-theatre, /services/hospital-project-consulting; update /about; sitemap lastmod 2026-10-28; /products/laminar-air-flow untouched; final report with word counts and string sweep.
