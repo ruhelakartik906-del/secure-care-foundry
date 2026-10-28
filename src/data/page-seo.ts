@@ -46,7 +46,7 @@ export const pageSeo: Record<string, PageCopy> = {
     description: "Single and double arm surgical and anaesthesia OT pendants from ₹30,000 to ₹1 lakh, with gas outlets, power and shelves. Supply and installation.",
   },
   "/products/led-surgical-light": {
-    h1: "LED Surgical Light (OT Light) Manufacturer",
+    h1: "LED OT Light & Surgical Light Manufacturer",
     description: "LED Surgical Light supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/modular-icu-nicu": {
@@ -55,7 +55,7 @@ export const pageSeo: Record<string, PageCopy> = {
     description: "Modular ICU & NICU supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/pass-box": {
-    h1: "Stainless Steel Pass Box Manufacturer",
+    h1: "Pass Box Manufacturer – Dynamic & Static Pass Box",
     description: "Stainless Steel Pass Box supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/hermetic-ot-door": {
@@ -64,7 +64,7 @@ export const pageSeo: Record<string, PageCopy> = {
   },
   "/products/manifold-room-system": {
     title: "Medical Gas Manifold Room System | Unicare",
-    h1: "Medical Gas Manifold Room System Manufacturer",
+    h1: "Oxygen Manifold & Medical Gas Manifold Room System",
     description: "Manifold Room System supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/agss": {
@@ -73,20 +73,20 @@ export const pageSeo: Record<string, PageCopy> = {
     description: "AGSS (Anaesthetic Gas Scavenging System) supply and installation for hospitals, planned around facility layout and project requirements. Get a quote.",
   },
   "/products/surgical-scrub-sink-station": {
-    h1: "Surgical Scrub Sink Station Manufacturer",
+    h1: "Surgical Scrub Sink & Scrub Station Manufacturer",
     description: "Surgical Scrub Sink supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/cssd-systems": {
-    h1: "CSSD Systems & Equipment for Hospitals",
+    h1: "CSSD Equipment & Systems for Hospitals",
     description: "CSSD Systems and equipment supply and installation for hospitals, with scope planned around your layout and project requirements. Get a quote.",
   },
   "/products/cubicle-curtain-system": {
     title: "Hospital Cubicle Curtain Tracks & Installation | Unicare",
-    h1: "Hospital Cubicle Curtain Tracks – Supply & Installation",
+    h1: "Hospital Cubicle Curtain & Curtain Track System",
     description: "Cubicle Curtain Tracks supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/hospital-furniture": {
-    h1: "Hospital Furniture Manufacturer",
+    h1: "Hospital Furniture Manufacturer & Supplier",
     description: "Hospital Furniture supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/bed-head-panel": {
