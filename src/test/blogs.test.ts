@@ -13,8 +13,8 @@ describe("Static company-supplied blogs", () => {
       const words = b.sections.flatMap((s) => [s.heading ?? "", ...s.paragraphs, ...(s.bullets ?? [])]).join(" ").split(/\s+/).filter(Boolean).length;
       expect(words).toBeGreaterThanOrEqual(1200);
     }
-    expect(blogs[0].relatedProducts).toContain("cssd-systems");
-    expect(blogs[1].relatedProducts).toContain("pass-box");
+    expect(blogs[0]?.relatedProducts).toContain("cssd-systems");
+    expect(blogs[1]?.relatedProducts).toContain("pass-box");
   });
 
   it("includes the Blogs listing in static hosting paths", () => {
