@@ -68,6 +68,7 @@ function ProductPage() {
   const p = getProduct(slug);
   const { open } = useEnquiry();
   if (!p) return null;
+  const path = `/products/${p.slug}`;
   const hero = heroImages[p.slug];
   const isOt = p.slug === "modular-operation-theatre";
   const hasLongForm = ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow"].includes(p.slug);
