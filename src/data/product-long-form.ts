@@ -334,6 +334,7 @@ export const productLongForm: Record<string, LongForm> = {
       { name: "Sensor-operated taps", text: "Most common in new OTs; water starts when hands are placed under the spout." },
       { name: "Knee-operated taps", text: "A reliable non-electric option controlled with the knee." },
       { name: "Elbow-operated taps", text: "A non-electric lever option operated with the elbow." },
+      { name: "Wall-mounted or free-standing", text: "The mounting arrangement is chosen to suit the scrub area wall, plumbing points and the space available in front of each bay." },
     ],
     specsTitle: "Surgical Scrub Sink Specifications",
     specs: [
@@ -380,6 +381,7 @@ export const productLongForm: Record<string, LongForm> = {
       { name: "Other medical gas manifolds", text: "Manifolds for other gases, such as nitrous oxide, as the project requires." },
       { name: "Duty and standby banks", text: "Manifolds are normally duplex (duty and standby) so supply continues during cylinder changeover." },
       { name: "Changeover arrangement", text: "The changeover method is confirmed against the hospital gas requirements." },
+      { name: "Pressure regulation and monitoring", text: "Regulation and pressure monitoring are selected per project so the pipeline receives gas at the pressure the hospital system is designed for." },
     ],
     specsTitle: "Manifold Room System Specifications",
     specs: [
@@ -428,6 +430,7 @@ export const productLongForm: Record<string, LongForm> = {
       { name: "Receiver and transfer system", text: "Carries the waste gas from the terminal unit to the exhaust plant." },
       { name: "Dedicated exhaust plant", text: "Sized per number of theatres." },
       { name: "Integration with MGPS", text: "Planned with the medical gas pipeline and OT pendants." },
+      { name: "Coordination with the OT layout", text: "Terminal units are placed near the anaesthesia machine position and coordinated with pendants, wall panels and medical gas outlets." },
     ],
     specsTitle: "AGSS Specifications",
     specs: [
@@ -476,6 +479,7 @@ export const productLongForm: Record<string, LongForm> = {
       { name: "Sterilisation", text: "Sterilisers selected for the hospital's workload." },
       { name: "Sterile storage", text: "Racks and storage for sterile sets before issue." },
       { name: "Pass boxes", text: "Transfer between zones without staff crossing over." },
+      { name: "Trolleys and transport", text: "Closed or covered trolleys for moving used and sterile instruments between operation theatres and CSSD, as agreed with the hospital." },
     ],
     specsTitle: "CSSD System Specifications",
     specs: [
