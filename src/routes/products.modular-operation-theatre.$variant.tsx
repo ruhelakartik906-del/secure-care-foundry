@@ -37,6 +37,7 @@ function ModularOtVariantPage() {
   const option = getModularOtOption(variant);
   if (!option) return null;
   const faqs = variantFaqs(option);
+  const extraSections = variantSections[option.slug];
   return (
     <>
       <PageHero title={option.name} intro={option.description} crumbs={[{ label: "Products", to: "/products" }, { label: "Modular Operation Theatre", to: "/products/modular-operation-theatre" }, { label: option.name }]} />
