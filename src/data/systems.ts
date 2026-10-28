@@ -433,10 +433,4 @@ export const systemPages: SystemPage[] = [
   },
 ];
 
-// Kept as a function so the shared PPGI section array is not mutated between pages.
-import { ppgiPanelSection, stainlessPanelSection } from "./content-blocks";
-function ppgiSection(): ContentBlock[] {
-  return [...ppgiPanelSection, ...stainlessPanelSection];
-}
-
 export const getSystemPage = (path: SystemPage["path"]) => systemPages.find((p) => p.path === path)!;
