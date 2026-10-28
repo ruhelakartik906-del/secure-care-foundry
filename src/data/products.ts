@@ -368,6 +368,23 @@ export const products: Product[] = [
     benefits: ["Centralised cylinder connections", "Organised gas supply infrastructure"],
     faqs: [{ q: "How is a manifold room system selected?", a: "Selection depends on the medical gas, hospital demand, cylinder arrangement and site requirements. Share your requirements for a project-specific proposal." }],
   },
+  {
+    // TODO(image): replace with a dedicated photo of Unicare medical gas / oxygen outlets; currently shares the MGPS outlet photo.
+    slug: "oxygen-outlet",
+    name: "Medical Gas & Oxygen Outlet",
+    shortName: "Oxygen Outlet",
+    category: "Medical Gas Systems",
+    image: mgpsOutletPhoto.url,
+    keyword: "Oxygen Outlet",
+    short: "Gas-specific oxygen, medical air, vacuum and nitrous oxide wall outlets for wards, ICUs and operation theatres.",
+    intro: "A medical gas outlet, often called an oxygen outlet or oxygen wall outlet, is the terminal point where clinical staff connect flowmeters, suction regulators and anaesthesia equipment to the hospital's medical gas pipeline. Unicare supplies and installs gas-specific outlets as part of MGPS, bed head panel and modular OT projects.",
+    price: onRequest,
+    features: ["Gas-specific outlets for each pipeline gas", "Wall, bed head panel or pendant mounting", "Colour coding and labelling per gas", "Tested at handover for gas identity"],
+    specs: [["Gases", "Oxygen, medical air, vacuum, nitrous oxide as required"], ["Mounting", "Wall, bed head panel or pendant"]],
+    applications: ["Wards", "ICU", "Operation theatres", "Emergency", "Recovery"],
+    benefits: ["Quick, gas-specific connection at the bedside"],
+    faqs: [{ q: "What is an oxygen outlet?", a: "It is the terminal point on the wall, panel or pendant where equipment connects to the hospital oxygen pipeline." }],
+  },
 ];
 
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug);

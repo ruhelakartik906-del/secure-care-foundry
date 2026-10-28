@@ -2,6 +2,16 @@
 export type PageCopy = { title?: string; h1?: string; description?: string };
 
 export const pageSeo: Record<string, PageCopy> = {
+  "/products/oxygen-outlet": {
+    title: "Oxygen Outlet & Medical Gas Outlet Supplier | Unicare",
+    h1: "Medical Gas & Oxygen Outlet Manufacturer",
+    description: "Oxygen wall outlets and medical gas outlets for O2, air, vacuum and N2O, fitted to walls, bed head panels and OT pendants. Supply and testing. Get a quote.",
+  },
+  "/mgps-cost-india": {
+    title: "MGPS Cost in India 2026: Price Guide | Unicare",
+    h1: "Medical Gas Pipeline System Cost in India 2026",
+    description: "Indicative 2026 MGPS cost in India: ₹60,000–₹1 lakh inside one OT and ₹5–30 lakh per hospital project, plus what drives the final quote. Get a quote.",
+  },
   "/": {
     title: "Modular OT & MGPS Manufacturer in India | Unicare",
     h1: "Modular Operation Theatre & MGPS Manufacturer in India",

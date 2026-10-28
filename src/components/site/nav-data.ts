@@ -25,9 +25,9 @@ export const solutionGroups: { title: string; items: SolutionItem[] }[] = [
 ];
 
 // Any product in the catalogue not listed above is added automatically, so new products appear in the menu.
-const extraIcons: Record<string, typeof Activity> = { agss: ShieldCheck, "cssd-systems": Wrench, "hospital-furniture": Armchair, "bed-head-panel": BedDouble, "cubicle-curtain-system": PanelsTopLeft };
+const extraIcons: Record<string, typeof Activity> = { agss: ShieldCheck, "cssd-systems": Wrench, "hospital-furniture": Armchair, "bed-head-panel": BedDouble, "cubicle-curtain-system": PanelsTopLeft, "oxygen-outlet": Activity };
 const listed = new Set(solutionGroups.flatMap((g) => g.items.map((i) => i.productSlug).filter(Boolean)));
-const extraDesc: Record<string, string> = { agss: "Removal of waste anaesthetic gases from theatres.", "cssd-systems": "Planning and equipment for sterile services.", "hospital-furniture": "Beds and furniture for wards and ICUs.", "bed-head-panel": "Bed head panels with integrated gas outlets.", "cubicle-curtain-system": "Ceiling curtain tracks for wards and ICUs." };
+const extraDesc: Record<string, string> = { agss: "Removal of waste anaesthetic gases from theatres.", "cssd-systems": "Planning and equipment for sterile services.", "hospital-furniture": "Beds and furniture for wards and ICUs.", "bed-head-panel": "Bed head panels with integrated gas outlets.", "cubicle-curtain-system": "Ceiling curtain tracks for wards and ICUs.", "oxygen-outlet": "Oxygen and medical gas wall outlets." };
 const shortDesc = (t: string) => { const w = t.split(" "); let o = ""; for (const x of w) { if ((o + " " + x).length > 60) break; o = o ? o + " " + x : x; } return o.replace(/[.,;]$/, "") + "."; };
 solutionGroups.push({ title: "Hospital Infrastructure", items: [] });
 solutionGroups[3]!.items.push(...products.filter((x) => !listed.has(x.slug)).map((x) => ({

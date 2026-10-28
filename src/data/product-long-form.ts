@@ -237,7 +237,7 @@ export const productLongForm: Record<string, LongForm> = {
       { name: "Copper distribution pipeline", text: "Cleaned and jointed for medical gas service." },
       { name: "Zone (area) valve service units", text: "Isolate departments for maintenance or emergencies." },
       { name: "Area alarm panels", text: "Show high/low pressure for each gas in a department; a master alarm panel monitors the plant room sources." },
-      { name: "Terminal outlets", text: "On walls, bed head panels or OT pendants." },
+      { name: "Terminal outlets", text: "Gas-specific medical gas and oxygen outlets on walls, bed head panels or OT pendants." },
     ],
     specsTitle: "Medical Gas Pipeline System Specifications",
     specs: [
@@ -269,7 +269,7 @@ export const productLongForm: Record<string, LongForm> = {
       { q: "How is a medical gas pipeline tested before use?", a: "It is pressure tested for leaks, purged, checked for cross-connection and gas identity at every outlet, and the alarms are verified before handover." },
       { q: "Can MGPS be added to an existing hospital?", a: "Usually yes, after a site survey of pipe routes, the plant room location and the departments to be served." },
     ],
-    related: ["manifold-room-system", "bed-head-panel", "agss"],
+    related: ["oxygen-outlet", "manifold-room-system", "bed-head-panel"],
   },
 
   "bed-head-panel": {
