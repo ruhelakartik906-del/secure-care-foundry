@@ -10,6 +10,8 @@ import { breadcrumbSchema, seo } from "@/lib/seo";
 import { serviceSchema, variantFaqs } from "@/lib/structured-data";
 import { hospitalOtDestination } from "@/lib/retired-pages";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
+import { ContentBlocks } from "@/components/site/ContentBlocks";
+import { variantSections } from "@/data/product-long-form";
 
 export const Route = createFileRoute("/products/modular-operation-theatre/$variant")({
   loader: ({ params }) => {
@@ -35,6 +37,7 @@ function ModularOtVariantPage() {
   const option = getModularOtOption(variant);
   if (!option) return null;
   const faqs = variantFaqs(option);
+  const extraSections = variantSections[option.slug];
   return (
     <>
       <PageHero title={option.name} intro={option.description} crumbs={[{ label: "Products", to: "/products" }, { label: "Modular Operation Theatre", to: "/products/modular-operation-theatre" }, { label: option.name }]} />
@@ -45,6 +48,7 @@ function ModularOtVariantPage() {
           <h2>Project features</h2><ul><li>Room-specific planning and panel layout</li><li>Integration with laminar air flow, medical gases, electrical and control systems</li><li>Coordinated installation, testing and handover</li><li>Material and finish selection based on the approved project brief</li></ul>
           <h2>Applications</h2><ul><li>New hospital operation theatres</li><li>Existing OT renovation and upgrades</li><li>Multispecialty and specialist surgical facilities</li></ul>
           <h2>Installation approach</h2><p>Installation begins after a review of room dimensions, drawings and site readiness. The final technical scope and schedule are confirmed before manufacturing and on-site execution.</p>
+          {extraSections && <ContentBlocks blocks={extraSections} />}
           <h2>Frequently Asked Questions</h2><Faqs faqs={faqs} />
           <div className="not-prose mt-8 flex flex-wrap gap-3"><Button asChild><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button><Button asChild variant="outline"><a href={whatsappLink(`Hello Unicare Medical Solutions, I am interested in ${option.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" />WhatsApp</a></Button></div>
           <h2>Other Modular OT Types</h2><div className="not-prose grid gap-2 sm:grid-cols-2">{modularOtOptions.filter((item) => item.slug !== option.slug).map((item) => <Link key={item.slug} to="/products/modular-operation-theatre/$variant" params={{ variant: item.slug }} className="border border-border p-3 text-sm font-semibold hover:border-brand-blue hover:text-brand-blue">{item.menuName}</Link>)}</div>

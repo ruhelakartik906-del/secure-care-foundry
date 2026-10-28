@@ -1,5 +1,5 @@
 import { products } from "@/data/products";
-import { Activity, BedDouble, Armchair, PanelsTopLeft, ShieldCheck, Wrench, AirVent, DoorOpen, Droplets, Fan, Grid3x3, Hospital, LayoutPanelTop, Wind, Zap } from "lucide-react";
+import { Activity, BedDouble, Armchair, PanelsTopLeft, ShieldCheck, Wrench, AirVent, DoorOpen, Droplets, Fan, Grid3x3, Hospital, LayoutPanelTop, Wind, Zap, Layers, Monitor, Package } from "lucide-react";
 
 export type SolutionItem = { label: string; desc: string; path: string; productSlug?: string; icon: typeof Activity };
 const p = (slug: string) => `/products/${slug}`;
@@ -11,6 +11,8 @@ export const solutionGroups: { title: string; items: SolutionItem[] }[] = [
     { label: "Modular OT Wall Panels", desc: "Factory-made wall panel systems for clean OT interiors.", path: "/modular-ot-wall-panels", icon: LayoutPanelTop },
     { label: "Modular OT Ceiling", desc: "Panelled ceiling systems integrated with OT services.", path: "/modular-ot-ceiling", icon: Grid3x3 },
     { label: "OT Doors", desc: "Hermetic and swing doors suited to operation theatres.", path: "/modular-ot-doors", icon: DoorOpen },
+    { label: "Modular OT Flooring", desc: "Anti-static vinyl flooring for operation theatres.", path: "/modular-ot-flooring", icon: Layers },
+    { label: "Digital Operation Theatre", desc: "Recording, integration and live streaming for OTs.", path: "/digital-operation-theatre", icon: Monitor },
   ] },
   { title: "Air & Filtration", items: [
     { label: "OT HVAC System", desc: "Air management designed for operation theatre environments.", path: "/operation-theatre-hvac-system", icon: Fan },
@@ -21,6 +23,7 @@ export const solutionGroups: { title: string; items: SolutionItem[] }[] = [
     { label: "Medical Gas Pipeline", desc: "Oxygen, vacuum and air pipeline systems for hospitals.", path: p("medical-gas-pipeline-system"), productSlug: "medical-gas-pipeline-system", icon: Activity },
     { label: "Surgical Scrub Stations", desc: "Stainless steel scrub sinks for pre-surgery hand washing.", path: p("surgical-scrub-sink-station"), productSlug: "surgical-scrub-sink-station", icon: Droplets },
     { label: "OT Electrical Infrastructure", desc: "Power, lighting and control panels for theatres.", path: "/operation-theatre-electrical-system", icon: Zap },
+    { label: "OT Accessories", desc: "Storage units, X-ray viewers and schedule boards.", path: "/ot-accessories", icon: Package },
   ] },
 ];
 

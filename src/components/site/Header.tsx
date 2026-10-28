@@ -14,6 +14,7 @@ import { isActiveItem, isSolutionPath, solutionGroups, type SolutionItem } from 
 const after = [
   { to: routes.blogs, label: "Blogs" },
   { to: "/modular-ot-cost-india", label: "Pricing Guide" },
+  { to: routes.consulting, label: "Consulting" },
   { to: "/contact", label: "Contact" },
 ] as const;
 

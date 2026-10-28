@@ -3,21 +3,27 @@
  * Rules: no invented specs, prices or certifications. Unknown figures are
  * shown as "confirmed per project" and carry a TODO comment for the company.
  */
+import { ppgiPanelSection, stainlessPanelSection, type ContentBlock } from "./content-blocks";
+
 export type LongForm = {
-  whatTitle: string;
-  what: string[];
+  whatTitle?: string;
+  what?: string[];
   image?: { src: string; alt: string; w: number; h: number };
-  typesTitle: string;
+  typesTitle?: string;
   typesIntro?: string;
-  types: { name: string; text: string }[];
-  specsTitle: string;
-  specs: [string, string][];
-  installTitle: string;
-  install: string[];
-  steps: string[];
-  priceTitle: string;
-  price: string[];
-  priceFactors: string[];
+  types?: { name: string; text: string }[];
+  specsTitle?: string;
+  specs?: [string, string][];
+  installTitle?: string;
+  install?: string[];
+  steps?: string[];
+  priceTitle?: string;
+  price?: string[];
+  priceFactors?: string[];
+  /** Company-supplied verbatim body; replaces the standard sections when present. */
+  body?: ContentBlock[];
+  /** Company-supplied verbatim sections rendered after the standard sections, before FAQs. */
+  extra?: ContentBlock[];
   faqs: { q: string; a: string }[];
   related: string[];
 };
@@ -114,6 +120,23 @@ export const productLongForm: Record<string, LongForm> = {
       "OT light price depends on the dome configuration, light output and the features chosen. We quote for suitable models once we understand how the theatre will be used.",
     ],
     priceFactors: ["Single dome or double dome", "Light output and field size of the model", "Camera or monitor arm", "Control panel type", "Ceiling height and support work", "Number of theatres in the project"],
+    extra: [
+      { kind: "h2", text: "Choosing a surgical light" },
+      { kind: "p", text: ["For a major OT, if the budget allows, we recommend a premium double-dome LED surgical light. What to look for:"] },
+      {
+        kind: "ul",
+        items: [
+          ["Brightness: up to 160,000 lux from each dome"],
+          ["Colour temperature: 3,500 K to 4,200 K"],
+          ["Light field: 150 mm to 200 mm"],
+          ["Low heat at the surgeon's head and minimal shadows"],
+          ["Easy positioning of the light heads"],
+          ["Optional camera: built into the handle or mounted separately"],
+          ["Standards: CE, IEC and ISO"],
+        ],
+      },
+      { kind: "p", text: ["Premium lights cost more at the start, but over their life their total cost can be similar or even lower, thanks to reliability, warranty and service terms. For minor OTs, or where the budget is tight, we also supply economy LED lights with a similar configuration, warranty and AMC or CMC options. They are widely used across India and do the job well, even if they do not match every feature or standard of a premium light."] },
+    ],
     faqs: [
       { q: "Single dome or double dome — which surgical light do I need?", a: "Major and speciality theatres commonly use a double-dome light so a second head is available. Minor OTs and procedure rooms often use a single dome. We recommend after reviewing the theatre use." },
       { q: "What standard applies to surgical lights?", a: "IEC 60601-2-41 is the international particular standard for surgical and diagnostic luminaires. Ask for the manufacturer's conformity documentation for the model being supplied." },
@@ -213,6 +236,20 @@ export const productLongForm: Record<string, LongForm> = {
       "Pass box price depends mainly on the type and size. A dynamic pass box includes a fan and filter, so it is a higher-specification item than a static pass box of the same size.",
     ],
     priceFactors: ["Static or dynamic type", "Internal chamber size", "Mechanical or electromagnetic interlock", "UV lamp option", "Wall type and opening work", "Number of units"],
+    extra: [
+      { kind: "h2", text: "Why an OT complex needs a pass box" },
+      { kind: "p", text: ["An OT with HEPA-filtered air usually works as a Class 100 (ISO 5) clean room. In a complex with several theatres, the space is divided into protected, clean, aseptic (inside the OT) and disposal zones. A pass box (also called a hatch box) lets staff send used instruments, dirty linen and biomedical waste from the theatre to the disposal zone without walking through clean areas, so contamination does not cross over."] },
+      { kind: "h2", text: "Features" },
+      {
+        kind: "ul",
+        items: [
+          ["Magnetic door interlock: only one door opens at a time"],
+          ["Indicator lights for lock status and power"],
+          ["IR light inside the chamber"],
+          ["LED interior lighting"],
+        ],
+      },
+    ],
     faqs: [
       { q: "What is the difference between a static and a dynamic pass box?", a: "A static pass box is a sealed chamber without airflow. A dynamic pass box has a fan and filter to supply filtered air inside the chamber and is used where higher cleanliness is needed." },
       { q: "Where is a pass box installed in a hospital?", a: "Typically between the operation theatre and the sterile or dirty corridor, between CSSD zones, and in laboratories and pharmacies." },
@@ -262,6 +299,20 @@ export const productLongForm: Record<string, LongForm> = {
       "Cost depends on the number of beds and outlets, gases required, source equipment, pipeline length and building layout. Indicatively, MGPS inside one OT is ₹60,000 – ₹1 Lakh and a hospital MGPS project ₹5 Lakh – ₹30 Lakh. These are indicative ranges, not a quotation; we quote after reviewing your drawings.",
     ],
     priceFactors: ["Number of beds and outlets", "Gases required", "Source equipment (manifold, LOX or PSA, compressors, vacuum)", "Pipeline length and building layout", "Alarm and valve box quantities"],
+    extra: [
+      { kind: "h2", text: "Medical gas pipeline inside the operation theatre" },
+      { kind: "p", text: ["The part of the gas system that runs inside the OT, from the point where it enters through the wall, has to be built as part of the theatre itself. It can include:"] },
+      {
+        kind: "ul",
+        items: [
+          ["Zone valve box and control panels"],
+          ["Pressure regulators and pressure switches"],
+          ["Copper piping, connectors and hoses"],
+          ["Gas outlets at the pendants and walls"],
+        ],
+      },
+      { kind: "p", text: ["When the same team builds the OT and the gas system inside it, the two fit together properly and the theatre gets an uninterrupted supply of gases and medical air. These parts need after-sales service, spare parts and AMC or CMC cover over the years. We prepare a detailed offer for each site after studying your requirements."] },
+    ],
     faqs: [
       { q: "What is the cost of a medical gas pipeline?", a: "Cost depends on the number of outlets, gases, pipeline length, source equipment and building layout. Indicatively, MGPS inside one OT is ₹60,000 – ₹1 Lakh and a hospital project ₹5 Lakh – ₹30 Lakh. We quote after reviewing your drawings." },
       { q: "What is MGPS in a hospital?", a: "It is the central system that supplies oxygen, nitrous oxide, medical air and vacuum through pipelines to outlets in OTs, ICUs, wards and emergency areas." },
@@ -328,12 +379,8 @@ export const productLongForm: Record<string, LongForm> = {
       "Planning the scrub area together with the operation theatre layout helps the surgical team move straight from scrubbing into the theatre without touching doors or surfaces. Space in front of each bay, splash control, drainage and the position of soap and brush dispensers are all considered so that several staff can scrub at once without crowding.",
       "For hospitals upgrading an existing theatre, a scrub station can usually be replaced or added within the existing scrub area after checking water supply, drainage and power for sensor taps.",
     ],
-    typesTitle: "Scrub Station Types and Tap Options",
+    typesTitle: "Scrub Station Mounting Options",
     types: [
-      { name: "Single, double or triple bay", text: "One, two or three scrubbing positions in one unit." },
-      { name: "Sensor-operated taps", text: "Most common in new OTs; water starts when hands are placed under the spout." },
-      { name: "Knee-operated taps", text: "A reliable non-electric option controlled with the knee." },
-      { name: "Elbow-operated taps", text: "A non-electric lever option operated with the elbow." },
       { name: "Wall-mounted or free-standing", text: "The mounting arrangement is chosen to suit the scrub area wall, plumbing points and the space available in front of each bay." },
     ],
     specsTitle: "Surgical Scrub Sink Specifications",
@@ -357,6 +404,34 @@ export const productLongForm: Record<string, LongForm> = {
     // TODO(price): add indicative scrub station price ranges by bay count if the company approves them.
     price: ["Scrub sink price depends mainly on the number of bays and tap operation. Share your requirement for a quotation."],
     priceFactors: ["Number of bays", "Sensor, knee or elbow operation", "Accessories required", "Plumbing and drainage work on site", "Number of units"],
+    extra: [
+      { kind: "h2", text: "Hands-free scrub stations for operation theatres" },
+      { kind: "p", text: ["Surgical hand scrubbing is the last line of defence before an incision, so the scrub station has to be completely hands-free and easy to keep clean. Our scrub sinks are made from heavy-gauge stainless steel with rounded (coved) inner corners, so there are no sharp joints where bacteria can form a film."] },
+      { kind: "h2", text: "Models" },
+      {
+        kind: "table",
+        head: ["Model", "Users at a time"],
+        rows: [
+          ["Single station (1 bay)", "1"],
+          ["Double station (2 bay)", "2"],
+          ["Triple station (3 bay)", "3"],
+        ],
+      },
+      { kind: "h2", text: "Features" },
+      {
+        kind: "ul",
+        items: [
+          ["Hands-free water control: infrared sensor, knee panel, foot pedal, or a combination with manual override"],
+          ["Deep anti-splash basin with sloping sides and rounded corners"],
+          ["Scrub timer: LED countdown display (3 to 5 minutes) that starts automatically"],
+          ["Thermostatic mixing valve (TMV) for a safe, steady water temperature"],
+          ["Optional water treatment: UV steriliser and 0.2-micron filter to remove waterborne germs"],
+          ["Accessories: touch-free soap and iodine dispensers, LED mirror canopy, tall side splash guards"],
+        ],
+      },
+      { kind: "h2", text: "Material and compliance" },
+      { kind: "p", text: ["1.5 mm AISI 304 stainless steel (AISI 316 on request) with a satin hairline finish. Compliant with NABH, BIS / IS, CDSCO and ISO 13485 requirements."] },
+    ],
     faqs: [
       { q: "Which tap operation is best?", a: "Sensor taps are most common in new OTs; knee and elbow operation are reliable non-electric options." },
       { q: "How many bays does a scrub station need?", a: "It depends on how many staff scrub at the same time and how many theatres share the area. Single, double and triple-bay units are available." },
@@ -415,43 +490,15 @@ export const productLongForm: Record<string, LongForm> = {
   },
 
   // TODO(image): confirm the AGSS photo shows a real Unicare installation; replace if not.
+  // Company-supplied replacement body (Oct 2026 brief); H1, FAQs, related products and enquiry form kept.
   agss: {
-    whatTitle: "What Is AGSS and Where Is It Used?",
-    what: [
-      "AGSS, the Anaesthetic Gas Scavenging System, collects waste anaesthetic gases from the anaesthesia breathing circuit and safely exhausts them outside the operation theatre. Without scavenging, exhaled anaesthetic gas can build up in the room, so AGSS reduces exposure for surgeons, anaesthetists and nurses. Unicare supplies and installs AGSS as part of OT and medical gas projects.",
-      "AGSS is used in operation theatres, anaesthesia induction rooms and recovery areas — wherever anaesthetic gases are delivered. Terminal units are mounted on the OT wall or on an OT pendant, and connect to a dedicated exhaust plant.",
-      "Because AGSS terminal units sit alongside medical gas outlets, it is usually planned together with the MGPS and the theatre layout.",
-      "Planning AGSS early in an OT project means the terminal units can be placed where the anaesthesia machine will stand, the pipe route to the exhaust plant can be kept short, and the plant can be located where its exhaust is safely discharged outside the building. In theatre upgrades, the existing ceiling, pendants and service routes are checked to find a practical way to add scavenging.",
-      "Regular checks of terminal units and the exhaust plant, at intervals set by the hospital's maintenance plan, help keep the system working as intended.",
+    body: [
+      { kind: "h2", text: "What an AGSS does" },
+      { kind: "p", text: ["During surgery, patients breathe out anaesthetic gases that should not be breathed in by the surgical team. An AGSS collects these exhaled gases, and any other gas or aerosolised medicine meant only for the patient, and carries them safely out of the theatre."] },
+      { kind: "p", text: ["Regular exposure to waste anaesthetic gas above safe limits is recognised as an occupational health hazard, so keeping staff exposure low is part of a safe OT."] },
+      { kind: "h2", text: "Active or passive AGSS?" },
+      { kind: "p", text: ["Both types are available. We recommend an active system: a specially designed outlet uses compressed air from the hospital's MGPS to create suction that draws waste gas into a pipeline and releases it outside, ideally above the roof line. Where the hospital has no MGPS air supply, simplex or duplex pumps can be used instead. We propose the right system for each hospital during project discussions."] },
     ],
-    typesTitle: "AGSS Components and Options",
-    types: [
-      { name: "Terminal units", text: "Wall or pendant mounted, where the anaesthesia machine connects." },
-      { name: "Receiver and transfer system", text: "Carries the waste gas from the terminal unit to the exhaust plant." },
-      { name: "Dedicated exhaust plant", text: "Sized per number of theatres." },
-      { name: "Integration with MGPS", text: "Planned with the medical gas pipeline and OT pendants." },
-      { name: "Coordination with the OT layout", text: "Terminal units are placed near the anaesthesia machine position and coordinated with pendants, wall panels and medical gas outlets." },
-    ],
-    specsTitle: "AGSS Specifications",
-    specs: [
-      ["Installation", "Wall or pendant mounted terminal units"],
-      ["Plant", "Sized per number of theatres"],
-      ["Integration", "With MGPS and OT pendants"],
-      // TODO(specs): add plant type, flow rates and terminal unit standard used by the company.
-      ["Plant type and flow rates", perProject],
-    ],
-    installTitle: "AGSS Installation and Timeline",
-    install: [
-      "We confirm the number of theatres and terminal positions, then install the terminal units, transfer pipework and exhaust plant. The system is tested for correct operation at every terminal before handover.",
-      "The timeline depends on the number of theatres and whether the work is part of a new modular OT or an upgrade, and is confirmed after the site assessment.",
-      "At handover, the anaesthesia and maintenance teams are shown how terminal units connect to the anaesthesia machine and how the exhaust plant is switched and monitored. Where AGSS is part of a modular OT, the terminal unit positions are coordinated with the OT pendant, wall panels and medical gas outlets so that the anaesthetist has every connection within easy reach.",
-    ],
-    // TODO(timeline): add typical AGSS installation duration.
-    steps: ["Theatre count and terminal positions", "Terminal units and pipework", "Exhaust plant installation", "Testing and handover"],
-    priceTitle: "AGSS Price: What Affects the Cost",
-    // TODO(price): add an indicative AGSS price range if the company approves one.
-    price: ["AGSS price is quoted per project and depends mainly on how many theatres and terminal units it serves."],
-    priceFactors: ["Number of theatres", "Number of terminal units", "Wall or pendant mounting", "Exhaust plant size", "Pipe route length"],
     faqs: [
       { q: "What is AGSS?", a: "AGSS stands for Anaesthetic Gas Scavenging System — a system that removes waste anaesthetic gases from the OT." },
       { q: "Why does an operation theatre need AGSS?", a: "It removes waste anaesthetic gas so it does not build up in the room, reducing exposure for clinical staff." },
@@ -564,3 +611,68 @@ export const productLongForm: Record<string, LongForm> = {
 };
 
 export const getLongForm = (slug: string) => productLongForm[slug];
+
+/** Company-supplied verbatim sections for product pages without a long-form entry (Oct 2026 brief). */
+export const productExtraSections: Record<string, ContentBlock[]> = {
+  "hermetic-ot-door": [
+    { kind: "h2", text: "Why the OT door matters" },
+    { kind: "p", text: ["A hermetically sealed door does two jobs: it keeps the theatre aseptic, and it holds the positive pressure that stops outside air from drifting in. Both protect patients and staff from infection."] },
+    { kind: "p", text: ["Our doors come from an established, professionally managed manufacturer with a large installed base in India and overseas, so quality and after-sales support stay consistent, and spare parts remain available for years."] },
+    { kind: "h2", text: "Door options" },
+    {
+      kind: "ul",
+      items: [
+        ["Finish: HPL, stainless steel, or panel with aluminium frame"],
+        ["Opening: sliding (preferred by NABH), single-leaf hinged, or double-leaf hinged"],
+        ["Operation: automatic or manual"],
+        ["Lead-lined doors: required if the OT uses a C-arm or other X-ray equipment"],
+      ],
+    },
+    { kind: "h2", text: "Why sliding doors are preferred" },
+    { kind: "p", text: ["A hinged door swings air in and out every time it opens, which disturbs the theatre's controlled airflow. A sliding door moves along the wall and barely affects it, which is why NABH recommends sliding doors for operating rooms."] },
+  ],
+  "ot-pendant": [
+    { kind: "h2", text: "Ceiling pendants for modular OTs" },
+    { kind: "p", text: ["OT pendants are ceiling-mounted arms that bring medical gases, power, data and equipment shelves to the operating table. With cables and hoses off the floor, the area around the patient stays clean, uncluttered and easy to work in."] },
+    {
+      kind: "table",
+      head: ["", "Surgical pendant (foot or side end)", "Anaesthesia pendant (head end)"],
+      rows: [
+        ["Gases", "O₂, vacuum, compressed air (4/7 bar), CO₂ for laparoscopy", "O₂, N₂O, medical air (4 bar), vacuum, optional AGSS port"],
+        ["Equipment", "Heavy-duty shelves for camera stacks and electrocautery, optional suction carriers", "Monitor mounts and anaesthesia workstation docking frame"],
+      ],
+    },
+    { kind: "h2", text: "Options and compliance" },
+    {
+      kind: "ul",
+      items: [
+        ["Single-arm or double-arm models"],
+        ["Pneumatic or electromagnetic brakes, and motorised height adjustment (optional)"],
+        ["Colour-coded, self-sealing gas outlets to DIN or BS standards"],
+        ["Power and data sockets, storage trays and drawers"],
+        ["Compliant with NABH, BIS / IS 13350 and CDSCO norms"],
+      ],
+    },
+  ],
+  "ot-table": [
+    { kind: "h2", text: "Choosing an OT table" },
+    { kind: "p", text: ["For a major OT, we recommend a premium operating table with strong warranty, service and AMC or CMC terms. These tables meet CE, IEC and ISO standards, and their long-term cost often matches or beats cheaper alternatives. Economy tables with similar configurations are available for minor OTs or tighter budgets."] },
+    { kind: "h2", text: "The right table for each speciality" },
+    {
+      kind: "ul",
+      items: [
+        ["Orthopaedics: orthopaedic extension devices"],
+        ["Neurosurgery: Mayfield clamps and U-clamps with 3 to 6 pins"],
+        ["Cardiac, gastro and other specialities: speciality attachments"],
+        ["Imaging cases: C-arm compatible tables with X-ray-permeable tops and sliding tops"],
+      ],
+    },
+    { kind: "p", text: ["Ask us for our speciality-wise OT table catalogue."] },
+  ],
+};
+
+/** Company-supplied verbatim sections for modular OT variant pages (Oct 2026 brief). */
+export const variantSections: Record<string, ContentBlock[]> = {
+  "ppgi-modular-ot": ppgiPanelSection,
+  "stainless-steel-modular-ot": stainlessPanelSection,
+};
