@@ -1,24 +1,28 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { modularOtOptions, products } from "@/data/products";
-import { locations } from "@/data/locations";
+import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/common";
 import { seo } from "@/lib/seo";
+import { htmlSitemap } from "@/lib/html-sitemap";
 
 export const Route = createFileRoute("/sitemap")({
   head: () => seo("Sitemap | Unicare Medical Solutions", "All pages on the Unicare Medical Solutions website.", "/sitemap"),
-  component: () => (
+  component: SitemapPage,
+});
+
+function SitemapPage() {
+  const groups = htmlSitemap();
+  return (
     <>
       <PageHero title="Sitemap" crumbs={[{ label: "Sitemap" }]} />
-      <section className="site-wrap grid gap-10 py-14 text-sm md:grid-cols-2 lg:grid-cols-4">
-        <div><h2 className="mb-3 font-bold">Pages</h2><ul className="space-y-2">
-          {([["/", "Home"], ["/products", "Products"], ["/blogs", "Blogs"], ["/about", "About Us"], ["/contact", "Contact Us"], ["/locations", "Service Locations"], ["/privacy-policy", "Privacy Policy"], ["/disclaimer", "Disclaimer"], ["/terms-and-conditions", "Terms & Conditions"]] as const).map(([to, l]) => <li key={to}><Link to={to} className="hover:text-brand-blue">{l}</Link></li>)}
-        </ul></div>
-        <div><h2 className="mb-3 font-bold">Products</h2><ul className="space-y-2">{products.map((p) => <li key={p.slug}><Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-brand-blue">{p.name}</Link></li>)}{modularOtOptions.map((p) => <li key={p.slug}><Link to="/products/modular-operation-theatre/$variant" params={{ variant: p.slug }} className="hover:text-brand-blue">{p.name}</Link></li>)}</ul></div>
-        <div><h2 className="mb-3 font-bold">Locations</h2><ul className="space-y-2">
-          {locations.map((l) => <li key={l.slug}><Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }} className="hover:text-brand-blue">Modular OT — {l.name}</Link></li>)}
-          {locations.map((l) => <li key={`g-${l.slug}`}><Link to="/medical-gas-pipeline-manufacturers-in/$state" params={{ state: l.slug }} className="hover:text-brand-blue">Medical Gas Pipeline — {l.name}</Link></li>)}
-        </ul></div>
+      <section className="site-wrap grid gap-10 py-14 text-sm md:grid-cols-2 lg:grid-cols-3">
+        {groups.map(({ group, links }) => (
+          <div key={group} className="min-w-0">
+            <h2 className="mb-3 font-bold">{group}</h2>
+            <ul className="space-y-2">
+              {links.map((l) => <li key={l.path}><a href={l.path} className="hover:text-brand-blue">{l.label}</a></li>)}
+            </ul>
+          </div>
+        ))}
       </section>
     </>
-  ),
-});
+  );
+}
