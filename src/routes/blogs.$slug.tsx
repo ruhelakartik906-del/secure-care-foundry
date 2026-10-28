@@ -22,7 +22,7 @@ export const Route = createFileRoute("/blogs/$slug")({
   head: ({ loaderData: blog }) => {
     if (!blog) { const s = blogSeo("Article unavailable | Unicare Medical Solutions", "The requested Unicare Medical Solutions article is unavailable.", routes.blogs); return { ...s, meta: [...s.meta, { name: "robots", content: "noindex, follow" }] }; }
     return {
-      ...blogSeo(blog.title.length > 60 ? blog.title : `${blog.title} | Unicare`, blog.excerpt, blogPath(blog.slug), blog.image, true),
+      ...blogSeo(blog.title.length + 10 > 60 ? blog.title : `${blog.title} | Unicare`, blog.excerpt, blogPath(blog.slug), blog.image, true),
       scripts: [
         breadcrumbSchema([{ name: "Blogs", path: routes.blogs }, { name: blog.title, path: blogPath(blog.slug) }]),
         { type: "application/ld+json", children: JSON.stringify({

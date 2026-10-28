@@ -10,11 +10,15 @@ import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { Button } from "@/components/ui/button";
 import { absUrl } from "@/lib/site-url";
 
+// TODO: replace with company-confirmed original publication dates if known.
+export const resourcePublished = "2026-10-28";
+export const resourceUpdated = "2026-10-28";
+
 export const articleSchema = (r: Resource, path: string) => ({
   type: "application/ld+json",
   children: JSON.stringify({
     "@context": "https://schema.org", "@type": "Article", headline: r.title, description: r.description,
-    mainEntityOfPage: absUrl(path), author: { "@type": "Organization", name: "Unicare Medical Solutions" },
+    mainEntityOfPage: absUrl(path), datePublished: resourcePublished, dateModified: resourceUpdated, author: { "@type": "Organization", name: "Unicare Medical Solutions" },
     publisher: { "@type": "Organization", name: "Unicare Medical Solutions" },
   }),
 });
@@ -25,10 +29,11 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
     <PageHero title={r.title} intro={r.intro} crumbs={[{ label: "Resources", to: "/resources" }, section, { label: r.title }]} />
     <section className="site-wrap grid gap-10 py-12 lg:grid-cols-12">
       <article className="prose-unicare lg:col-span-8">
+        <p className="text-sm">Updated: <time dateTime={resourceUpdated}>{resourceUpdated}</time></p>
         {r.table && <>
           <h2>Comparison at a Glance</h2>
-          <div className="not-prose mb-8 overflow-x-auto border border-border">
-            <table className="w-full text-left text-sm">
+          <div className="not-prose mb-8 w-full overflow-x-auto border border-border">
+            <table className="min-w-full text-left text-sm">
               <thead className="bg-muted"><tr>{r.table.head.map((h) => <th key={h} className="p-3 font-semibold">{h}</th>)}</tr></thead>
               <tbody>{r.table.rows.map((row) => <tr key={row[0]} className="border-t border-border">{row.map((c, i) => <td key={i} className={i === 0 ? "p-3 font-medium" : "p-3 text-muted-foreground"}>{c}</td>)}</tr>)}</tbody>
             </table>

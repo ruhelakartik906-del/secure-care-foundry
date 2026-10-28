@@ -75,7 +75,7 @@ export const cities: City[] = [
   {
     slug: "agra", name: "Agra", state: "Uttar Pradesh",
     intro: "Unicare provides modular operation theatre solutions for hospitals in Agra, including OT wall and ceiling panels, hermetic doors, laminar air flow and medical gas pipeline systems.",
-    context: "Agra is within road reach of our Faridabad works, which helps with quicker material dispatch and site visits during planning and installation.",
+    context: "Agra lies within road reach of our Faridabad works, which helps with quicker material dispatch and site visits during planning and installation.",
     coverage: "We serve Agra city and nearby areas including Mathura, Firozabad, Etah and Fatehabad.",
     logistics: "Being close to our manufacturing unit, Agra projects can get faster site surveys and shorter material transit compared with distant locations.",
     faqs: [

@@ -1,6 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { getProduct, products, modularOtOptions } from "@/data/products";
-import { locations, type Location } from "@/data/locations";
+import { locations, locationLead, type Location } from "@/data/locations";
+
+/** Lowercases a product name but keeps acronyms such as OT and MGPS upper-case. */
+const lc = (t: string) => t.toLowerCase().replace(/\b(ot|mgps|agss|icu|nicu|led|cssd|hvac|laf|hpl|ppgi|ss)\b/g, (m) => m.toUpperCase());
 import { Button } from "@/components/ui/button";
 import { PageHero, Faqs, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
@@ -12,7 +15,7 @@ export const locationFaqs = (productSlug: string, l: Location) => {
   const p = getProduct(productSlug);
   if (!p) return [];
   return [
-    { q: `Do you install ${p.shortName} in ${l.name}?`, a: `Yes. We take up ${p.shortName.toLowerCase()} projects in ${l.name}, including ${l.cities.slice(0, 3).join(", ")}. Share your project location and requirement for a site assessment.` },
+    { q: `Do you install ${p.shortName} in ${l.name}?`, a: `Yes. We take up ${lc(p.shortName)} projects in ${l.name}, including ${l.cities.slice(0, 3).join(", ")}. Share your project location and requirement for a site assessment.` },
     { q: `What is the ${p.shortName} price in ${l.name}?`, a: `Pricing depends on specification, size, materials and installation scope. We provide a project-specific quotation after understanding your requirement.` },
   ];
 };
@@ -24,11 +27,18 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
   const title = locationTitle(productSlug, l);
   return (
     <>
-      <PageHero title={title} intro={`Design, manufacturing and installation of ${p.name.toLowerCase()} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: "Locations", to: "/locations" }, { label: l.name }]} />
+      <PageHero title={title} intro={`Design, manufacturing and installation of ${lc(p.name)} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: "Locations", to: "/locations" }, { label: l.name }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
+          {/* TODO(company photo): add a unique, real project photo installed in this state, with alt text such as
+              "{p.name} installed in {l.name} – Unicare". Do not use stock or AI images. */}
           <h2>{p.shortName} solutions in {l.name}</h2>
-          <p>{l.name} is {l.context} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {p.name.toLowerCase()} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
+          <p>{locationLead(l)} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {lc(p.name)} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
+          <p className="font-medium text-foreground">Also see:{" "}
+            {productSlug === "medical-gas-pipeline-system"
+              ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>
+              : <Link to="/medical-gas-pipeline-manufacturers-in/$state" params={{ state: l.slug }}>Medical gas pipeline in {l.name}</Link>}
+          </p>
           <h2>Hospital infrastructure requirements</h2>
           <p>{p.intro}</p>
           <h2>Manufacturing &amp; installation</h2>

@@ -24,8 +24,8 @@ function Pricing() {
     <section className="site-wrap grid gap-10 py-12 lg:grid-cols-[1fr_380px]">
       <div className="max-w-3xl">
         <h2 className="text-2xl font-bold">Indicative Pricing</h2>
-        <div className="mt-4 overflow-x-auto border border-border">
-          <table className="w-full text-left text-sm">
+        <div className="mt-4 w-full overflow-x-auto border border-border">
+          <table className="min-w-full text-left text-sm">
             <thead className="bg-muted"><tr><th className="p-3">System</th><th className="p-3">Indicative range</th><th className="p-3">Basis</th></tr></thead>
             <tbody>{pricing.map((r) => <tr key={r.item} className="border-t border-border"><td className="p-3 font-medium">{r.item}</td><td className="p-3 font-semibold text-brand-blue">{r.range}</td><td className="p-3 text-muted-foreground">{r.unit}</td></tr>)}</tbody>
           </table>

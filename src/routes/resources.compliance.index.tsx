@@ -11,7 +11,7 @@ export const Route = createFileRoute("/resources/compliance/")({
   },
   component: () => <>
     <PageHero title="Compliance Guides for Operation Theatres and MGPS" intro="Plain-language overviews of the standards and regulations commonly referenced in hospital infrastructure projects." crumbs={[{ label: "Resources", to: "/resources" }, { label: "Compliance" }]} />
-    <section className="site-wrap py-12"><ResourceList items={compliance} base="compliance" /><p className="mt-8 border-l-4 border-accent bg-muted p-4 text-sm">{complianceDisclaimer}</p></section>
+    <section className="site-wrap py-12"><h2 className="mb-6 text-2xl font-bold">Compliance Guides</h2><ResourceList items={compliance} base="compliance" /><p className="mt-8 border-l-4 border-accent bg-muted p-4 text-sm">{complianceDisclaimer}</p></section>
     <CtaBand />
   </>,
 });

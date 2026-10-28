@@ -11,7 +11,7 @@ export const Route = createFileRoute("/resources/comparisons/")({
   },
   component: () => <>
     <PageHero title="Operation Theatre Comparisons" intro="Side-by-side comparisons to help hospital teams choose the right theatre systems for their project." crumbs={[{ label: "Resources", to: "/resources" }, { label: "Comparisons" }]} />
-    <section className="site-wrap py-12"><ResourceList items={comparisons} base="comparisons" /></section>
+    <section className="site-wrap py-12"><h2 className="mb-6 text-2xl font-bold">Comparisons</h2><ResourceList items={comparisons} base="comparisons" /></section>
     <CtaBand />
   </>,
 });
