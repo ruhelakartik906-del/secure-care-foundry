@@ -64,6 +64,10 @@ const siteServer = {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const url = new URL(request.url);
+      // Retire only the published duplicate; leave preview and production rendering untouched.
+      if (url.hostname === "secure-care-foundry.lovable.app") {
+        return permanent(`${SITE_ORIGIN}${url.pathname}${url.search}`);
+      }
       if (url.pathname.replace(/\/+$/, "") === hospitalOtPath) return permanent(`${hospitalOtDestination}${url.search}`);
       const isProdHost = [CANONICAL_HOST, "unicaremedicalsolutions.com"].includes(url.hostname);
       // apex → www, http → https (production domain only, never preview/localhost)

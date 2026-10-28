@@ -13,6 +13,16 @@ const walk = (dir: string): string[] => readdirSync(dir).flatMap((file) => {
 });
 
 describe("Technical SEO requirements", () => {
+  it("301 redirects every duplicate-host path to www without rendering or changing paths", async () => {
+    for (const path of ["/", "/products/ot-pendant", "/unknown/path/", "/robots.txt", "/images/modular-ot-hero.webp", hospitalOtPath]) {
+      for (const method of ["GET", "HEAD"]) {
+        const response = await server.fetch(new Request(`https://secure-care-foundry.lovable.app${path}?source=test`, { method }), {}, {});
+        expect(response.status).toBe(301);
+        expect(response.headers.get("location")).toBe(`https://www.unicaremedicalsolutions.com${path}?source=test`);
+        expect(await response.text()).toBe("");
+      }
+    }
+  });
   it("permanently redirects Hospital OT to the main OT and retains the query", async () => {
     const response = await server.fetch(new Request(`https://www.unicaremedicalsolutions.com${hospitalOtPath}?source=test`), {}, {});
     expect(response.status).toBe(301);

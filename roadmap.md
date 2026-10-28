@@ -1,5 +1,7 @@
 # Revision roadmap
 
+- [ ] Retire old Lovable deployment with all-path same-path www 301; test and publish, then verify public HTTP responses.
+
 - [x] Technical SEO: Hospital OT 301/removal, sitemap exclusions, image dimensions and 768px sources, WebP limits, local swap fonts/one preload, deferred enquiry module, native script-free FAQs, matching breadcrumbs, 404 links, host security headers and OT cross-links; 111 sitemap pages checked and 86 tests passed, design/submission logic retained.
 
 - [x] Task 4: updated 28 named pages, verified 86 unlisted pages unchanged, all titles under 60 and descriptions 140–155 characters, synced social metadata and one SSR H1 per page; desktop/mobile checks and 82 tests passed; URL/title/H1 table prepared.
