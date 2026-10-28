@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProduct, modularOtOptions, priceLabel, products } from "@/data/products";
 import { pageSeo } from "@/data/page-seo";
-import { getLongForm, type LongForm } from "@/data/product-long-form";
+import { getLongForm, productExtraSections, type LongForm } from "@/data/product-long-form";
 import { Button } from "@/components/ui/button";
 import { PageHero, ProductCard, Faqs, faqSchema, CtaBand, SectionHead } from "@/components/site/common";
+import { ContentBlocks } from "@/components/site/ContentBlocks";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { useEnquiry } from "@/components/site/EnquiryDialog";
 import { site, whatsappLink } from "@/data/site";
@@ -72,7 +73,9 @@ function ProductPage() {
   const isOt = p.slug === "modular-operation-theatre";
   const hasLongForm = ["modular-operation-theatre", "medical-gas-pipeline-system", "laminar-air-flow"].includes(p.slug);
   const lf = getLongForm(p.slug);
-  const related = lf ? lf.related.map((r) => getProduct(r)).filter((x): x is NonNullable<typeof x> => !!x) : products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
+  const extras = productExtraSections[p.slug];
+  const pickRelated = (slugs: string[]) => slugs.map((r) => getProduct(r)).filter((x): x is NonNullable<typeof x> => !!x);
+  const related = lf ? pickRelated(lf.related) : p.related ? pickRelated(p.related) : products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
 
   return (
     <>
@@ -136,6 +139,7 @@ function ProductPage() {
           <ol className="mb-6 grid gap-2 sm:grid-cols-2">{(p.installation ?? installSteps).map((s, i) => <li key={s} className="border border-border p-3 text-sm"><span className="font-bold text-brand-blue">0{i + 1}</span> — {s}</li>)}</ol></>}
           <h2>Benefits</h2>
           <ul>{p.benefits.map((b) => <li key={b}>{b}</li>)}</ul>
+          {extras && <ContentBlocks blocks={extras} />}
           <h2>Frequently Asked Questions</h2>
           <Faqs faqs={p.faqs} />
           </>}
