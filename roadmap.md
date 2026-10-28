@@ -1,6 +1,6 @@
 # Revision roadmap
 
-- [ ] Retire old Lovable deployment with all-path same-path www 301; test and publish, then verify public HTTP responses.
+- [ ] Deploy tested all-path Lovable-to-www 301 and noindex/follow fallback; blocked because publishing was declined. Public HTTP verification remains pending; old deployment was not unpublished.
 
 - [x] Technical SEO: Hospital OT 301/removal, sitemap exclusions, image dimensions and 768px sources, WebP limits, local swap fonts/one preload, deferred enquiry module, native script-free FAQs, matching breadcrumbs, 404 links, host security headers and OT cross-links; 111 sitemap pages checked and 86 tests passed, design/submission logic retained.
 
