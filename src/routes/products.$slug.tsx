@@ -12,8 +12,6 @@ import { Phone } from "lucide-react";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { productSchema } from "@/lib/structured-data";
-const mgpsPlantPhotoSrc = "/images/mgps-plant-room.webp";
-const mgpsPlantPhoto = { url: mgpsPlantPhotoSrc };
 import { cities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
 const otHeroSrc = "/images/modular-ot-hero.webp";
