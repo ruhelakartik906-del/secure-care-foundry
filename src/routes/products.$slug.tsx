@@ -1,3 +1,4 @@
+import { blogs } from "@/data/blogs";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProduct, modularOtOptions, priceLabel, products } from "@/data/products";
 import { pageSeo } from "@/data/page-seo";
@@ -75,6 +76,7 @@ function ProductPage() {
   const lf = getLongForm(p.slug);
   const extras = productExtraSections[p.slug];
   const pickRelated = (slugs: string[]) => slugs.map((r) => getProduct(r)).filter((x): x is NonNullable<typeof x> => !!x);
+  const relatedBlogs = blogs.filter((b) => b.relatedProducts?.[0] === p.slug);
   const related = lf ? pickRelated(lf.related) : p.related ? pickRelated(p.related) : products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
 
   return (
@@ -161,6 +163,8 @@ function ProductPage() {
         <div className="site-wrap">
           <SectionHead title="Related Products" />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{related.map((r) => <ProductCard key={r.slug} p={r} />)}</div>
+          {p.slug === "modular-operation-theatre" && <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold"><li><Link to="/ot-accessories" className="text-brand-blue hover:underline">OT Accessories →</Link></li><li><Link to="/digital-operation-theatre" className="text-brand-blue hover:underline">Digital Operation Theatre →</Link></li></ul>}
+          {relatedBlogs.length > 0 && <div className="mt-8 border-t border-border pt-6"><h3 className="text-sm font-semibold uppercase tracking-wider">Related article</h3><ul className="mt-3 space-y-2 text-sm">{relatedBlogs.map((b) => <li key={b.slug}><Link to="/blogs/$slug" params={{ slug: b.slug }} className="font-semibold text-brand-blue hover:underline">{b.title} →</Link></li>)}</ul></div>}
         </div>
       </section>
       <CtaBand title={`Get a Quote for ${p.shortName}`} />
