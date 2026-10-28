@@ -75,6 +75,8 @@ export type Product = {
   benefits: string[];
   faqs: { q: string; a: string }[];
   installation?: string[];
+  /** Explicit related-product slugs; falls back to same-category picks when absent. */
+  related?: string[];
   keyword: string; // used for location pages: "{keyword} Manufacturers in {State}"
 };
 
@@ -384,6 +386,27 @@ export const products: Product[] = [
     applications: ["Wards", "ICU", "Operation theatres", "Emergency", "Recovery"],
     benefits: ["Quick, gas-specific connection at the bedside"],
     faqs: [{ q: "What is an oxygen outlet?", a: "It is the terminal point on the wall, panel or pendant where equipment connects to the hospital oxygen pipeline." }],
+  },
+  {
+    // TODO(image): replace with a real photo of an OT table Unicare supplies; currently shares the modular OT room photo.
+    slug: "ot-table",
+    name: "OT Table",
+    shortName: "OT Table",
+    category: "Operation Theatre",
+    image: modularOtRoomPhoto.url,
+    keyword: "OT Table",
+    short: "Operating tables for every surgical speciality, from premium C-arm compatible tables for major OTs to economy tables for minor OTs.",
+    intro: "An OT table (operating table) positions the patient correctly for each surgical speciality. Unicare supplies operating tables for new modular OTs and theatre upgrades, from premium tables for major theatres to economy models for minor OTs, with speciality attachments planned around your case mix.",
+    price: onRequest,
+    features: ["Premium and economy operating table options", "Orthopaedic extension devices", "Mayfield clamps and U-clamps for neurosurgery", "Speciality attachments for cardiac, gastro and other specialities", "C-arm compatible tables with X-ray-permeable and sliding tops"],
+    specs: [["Configuration", "Selected per surgical speciality"], ["Imaging", "C-arm compatible options with X-ray-permeable tops"], ["Standards", "Premium tables meet CE, IEC and ISO standards"]],
+    applications: ["General surgery", "Orthopaedics", "Neurosurgery", "Cardiac and gastro surgery", "Imaging-guided procedures"],
+    benefits: ["The right table for each speciality", "Premium and economy options for every budget", "Warranty, service and AMC or CMC terms"],
+    related: ["led-surgical-light", "ot-pendant", "modular-operation-theatre"],
+    faqs: [
+      { q: "Which OT table do I need for my hospital?", a: "It depends on your surgical specialities. Orthopaedics needs extension devices, neurosurgery needs Mayfield clamps, and imaging cases need C-arm compatible tables. Ask us for our speciality-wise OT table catalogue." },
+      { q: "Do you supply economy operating tables?", a: "Yes. Economy tables with similar configurations are available for minor OTs or tighter budgets, alongside premium tables for major OTs." },
+    ],
   },
 ];
 

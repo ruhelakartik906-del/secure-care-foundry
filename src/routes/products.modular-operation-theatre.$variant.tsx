@@ -10,6 +10,8 @@ import { breadcrumbSchema, seo } from "@/lib/seo";
 import { serviceSchema, variantFaqs } from "@/lib/structured-data";
 import { hospitalOtDestination } from "@/lib/retired-pages";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
+import { ContentBlocks } from "@/components/site/ContentBlocks";
+import { variantSections } from "@/data/product-long-form";
 
 export const Route = createFileRoute("/products/modular-operation-theatre/$variant")({
   loader: ({ params }) => {
