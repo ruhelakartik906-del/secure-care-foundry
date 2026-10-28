@@ -174,12 +174,55 @@ function OtLongForm() {
       <h2>What is a Modular Operation Theatre?</h2>
       <p>A modular operation theatre is a surgical room assembled from factory-manufactured wall and ceiling panels with integrated services. Instead of plastered brick walls, the OT uses smooth, joint-sealed panels that are easier to clean and maintain, and that allow HVAC, laminar air flow, gases, lighting and controls to be built in neatly.</p>
       <ResponsiveImage src={otSupportSrc} alt="Modular operating theatre showing integrated medical infrastructure and surgical equipment." loading="lazy" width={1600} height={900} className="mb-4 h-auto w-full" />
+      <h2>How we deliver a modular operation theatre</h2>
+      <p>A modular OT works only when the room, the air, the power and the gases are planned together. We take each project through one connected sequence, so nothing is left for a different contractor to fix later:</p>
+      <ol>
+        <li>Concept and discussion. We study your surgical specialities, case load and site, and present an OT concept that fits them.</li>
+        <li>Services planning. Electrical distribution, OT-specific HVAC, the medical gas pipeline inside the theatre and fire protection are planned at the start, not added afterwards.</li>
+        <li>Zoning and associated rooms. Scrub, preparation, recovery and disposal areas are laid out so clean and dirty movement never cross.</li>
+        <li>Room design and BOQ. Final drawings and a line-by-line bill of quantities, so you can see exactly what is included.</li>
+        <li>Quotation and order. A techno-commercial offer, then order confirmation.</li>
+        <li>Execution. Scheduling, procurement, site changes, installation and quality checks at every stage.</li>
+        <li>Testing and handover. Validation, documentation and commissioning before the theatre is handed to your team.</li>
+      </ol>
+      <h2>Two ways to work with us</h2>
+      <p><strong>Turnkey execution.</strong> We take the project from concept to a working theatre and deliver NABH-compliant products and services. Turnkey projects come with an extended warranty of 18 to 24 months and Annual Maintenance Contract (AMC) support for 5 to 7 years after the warranty ends.</p>
+      <p><strong>Consultancy with direct OEM purchase.</strong> If you prefer to buy equipment yourself, we act as your technical consultant. We help you specify standardised, good-quality products and buy them directly from the original manufacturers, which usually lowers the overall project cost.</p>
+      <h2>How we work</h2>
+      <p>We believe hospitals should know why a product is recommended and what it will cost to run, not just what it costs to buy. Every proposal explains the standard equipment an OT needs, the optional upgrades, and the reasoning behind each price, so you can choose the right mix for your clinical needs and budget.</p>
+      <h2>Testing and validation before handover</h2>
+      <p>Before an OT is handed over, it is tested against NABH requirements. Typical checks include:</p>
+      <ul>
+        <li>Air changes per hour (ACPH) and airflow velocity</li>
+        <li>Positive pressure difference against the corridor</li>
+        <li>Particle count and air cleanliness</li>
+        <li>HEPA filter integrity</li>
+        <li>Temperature and humidity control</li>
+        <li>Microbiological sampling</li>
+        <li>Medical gas purity and pressure</li>
+        <li>Electrical safety, including line isolation monitoring and backup power</li>
+      </ul>
+      <p>All results are documented and handed over with the theatre, along with warranty and AMC terms.</p>
+      <h2>Why a cheap OT can become expensive</h2>
+      <p>Saving money at the planning stage often costs more later. Common problems in low-cost theatres include:</p>
+      <ul>
+        <li>Air and climate failures: poor cooling, high humidity and condensation that force the OT to close.</li>
+        <li>Infection risk: damp, badly handled air that raises hospital-acquired infections.</li>
+        <li>Power problems: voltage swings and surges that damage control panels, surgical lights and gas systems.</li>
+        <li>Safety and legal exposure: low-grade wiring and materials that increase the risk of shock and fire.</li>
+        <li>Downtime: missing spare parts, slow service and warranties that are not honoured.</li>
+        <li>High running costs: inefficient cooling and gas systems that raise monthly bills.</li>
+      </ul>
+      <p>Planning the OT as one engineered project avoids most of these. Talk to our team about a compliant, reliable theatre for your hospital.</p>
+      <div className="not-prose mt-6"><Button asChild size="lg" className="rounded-sm"><Link to="/get-a-quote">Get a Quote</Link></Button></div>
+      <h2>Natural light window (optional)</h2>
+      <p>A double-glazed, vacuum-sealed window with a motorised blind lets in daylight when the surgical team wants it. Many surgeons value a view of daylight during long procedures. Because it is a sealed technical unit, quality matters: a good window does not leak, fog up or upset temperature control.</p>
       <h2>Modular OT Design</h2>
       <p>Design starts with the room dimensions, surgical specialities, equipment list and workflow (clean and dirty corridors, scrub area, pre-op and recovery). We prepare layouts showing panel arrangement, laminar air flow position, pendants, lights, doors, storage and control panels.</p>
       <h2>Modular OT Components</h2>
       <ul>
         <li><Link to="/modular-ot-wall-panels">Wall panels</Link> and <Link to="/modular-ot-ceiling">ceiling</Link> with coved corners</li><li><Link to="/products/$slug" params={{ slug: "laminar-air-flow" }}>Laminar air flow</Link> unit with <Link to="/hepa-filtration-system-for-operation-theatre">HEPA filters</Link>, fed by the <Link to="/operation-theatre-hvac-system">OT HVAC</Link></li><li><Link to="/products/$slug" params={{ slug: "hermetic-ot-door" }}>Hermetic sliding doors</Link></li>
-        <li><Link to="/operation-theatre-electrical-system">Electrical system and surgeon control panel</Link></li><li><Link to="/modular-ot-doors">Modular OT doors</Link></li><li><Link to="/products/$slug" params={{ slug: "led-surgical-light" }}>LED surgical lights</Link> and <Link to="/products/$slug" params={{ slug: "ot-pendant" }}>OT pendants</Link></li><li><Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }}>Medical gas outlets (MGPS)</Link> and <Link to="/products/$slug" params={{ slug: "agss" }}>AGSS</Link></li><li>Storage cabinets, X-ray viewer and <Link to="/products/$slug" params={{ slug: "pass-box" }}>pass box</Link></li><li>Flooring suited to OT use</li>
+        <li><Link to="/operation-theatre-electrical-system">Electrical system and surgeon control panel</Link></li><li><Link to="/modular-ot-doors">Modular OT doors</Link></li><li><Link to="/products/$slug" params={{ slug: "led-surgical-light" }}>LED surgical lights</Link> and <Link to="/products/$slug" params={{ slug: "ot-pendant" }}>OT pendants</Link></li><li><Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }}>Medical gas outlets (MGPS)</Link> and <Link to="/products/$slug" params={{ slug: "agss" }}>AGSS</Link></li><li>Storage cabinets, X-ray viewer and <Link to="/products/$slug" params={{ slug: "pass-box" }}>pass box</Link></li><li><Link to="/modular-ot-flooring">Anti-static vinyl flooring</Link> suited to OT use</li>
       </ul>
       <h2>Modular OT Materials</h2>
       <p>Panel materials are chosen per project and budget — common options include powder-coated galvanised steel, stainless steel and high-pressure laminate. Material choice affects durability, appearance and modular OT cost.</p>
