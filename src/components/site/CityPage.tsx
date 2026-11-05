@@ -48,7 +48,7 @@ export function CityPage({ c }: { c: City }) {
         <p className="mt-3">Hospitals preparing for accreditation such as NABH should share their requirements at the start. We plan layouts, surfaces, airflow and gas systems with these requirements in mind; final assessment is done by the accrediting body.</p>
         <H>Project and Service Coverage</H>
         <p className="mt-3">{c.coverage}</p>
-        <p className="mt-3">TODO — Unique real photo for {c.name}: provide a company-approved modular OT installation photograph, the hospital and scope, completion year and publication permission. No photograph from another city is described as a local installation.</p>
+        {/* TODO(company photo): real local project photo; see docs/content-todo.md */}
         <H>Indicative Cost Factors</H>
         <p className="mt-3">The cost of a modular OT in {c.name} depends on:</p>
         <ul className="mt-2 flex flex-wrap gap-2">{priceFactors.map((f) => <li key={f} className="border border-border px-3 py-1 text-sm">{f}</li>)}</ul>

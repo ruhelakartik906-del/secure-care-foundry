@@ -39,9 +39,8 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           <p>For {lc(p.shortName)} enquiries, start with your hospital's exact address. {l.slug === "chandigarh" ? "Chandigarh is the city covered by this Union Territory page." : l.slug === "delhi" ? `Delhi areas include ${l.cities.slice(0, 6).join(", ")}. These are localities within Delhi, not six separate cities.` : `Major city destinations include ${l.cities.slice(0, 6).join(", ")}.`}</p>
           {(stateServing[l.slug] ?? []).map((text) => <p key={text}>{text}</p>)}
           <h3>Road delivery from Faridabad</h3>
-          <p>TODO — Supply the company-confirmed typical road-delivery time from the Faridabad works to the specific hospital destination in {l.name}. Manufacturing, transit and on-site installation are different milestones; no unconfirmed number of days is published.</p>
-          <h3>Real project and unique photo</h3>
-          <p>TODO — Add one approved {lc(p.shortName)} case example in {l.name}: hospital, city, scope, completion year and one real photo with permission. No stock image, AI image or photograph from another location will be represented as this installation.</p>
+          <p>Delivery is planned from our Faridabad works to the hospital site in {l.name}. Manufacturing, transit and on-site installation are scheduled as separate milestones and confirmed in the project programme.</p>
+          {/* TODO(company): add one approved project example and real photo for this state; see docs/content-todo.md */}
           <p className="font-medium text-foreground">Also see:{" "}
             {productSlug === "medical-gas-pipeline-system"
               ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>

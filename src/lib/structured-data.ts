@@ -76,5 +76,5 @@ export const variantFaqs = (option: ModularOtOption) => [
   { q: `How is ${option.menuName} pricing calculated?`, a: "Pricing depends on room size, material selection, equipment integration and site scope. We provide a project-specific quotation after reviewing your requirement." },
   { q: `How should we compare ${option.menuName} with other options?`, a: "Compare the complete assembly, not the material name alone. Review backing, supports, junctions, service access, cleaning compatibility and the repair or replacement method against the hospital's approved requirements." },
   { q: `How should ${option.menuName} surfaces be maintained?`, a: "Follow the offered material and finish supplier's cleaning instructions, inspect damaged surfaces and service junctions, and use an approved repair method. Material selection does not replace hospital infection-control procedures." },
-  { q: `What is the lead time for ${option.menuName}?`, a: "TODO — Company-confirmed manufacturing and installation lead time is needed for the approved system and room scope. No fixed duration is available without drawings, approvals and site-readiness review." },
+  { q: `What is the lead time for ${option.menuName}?`, a: "Lead time is confirmed in the quotation after drawings, approvals and site readiness have been reviewed for the room scope." },
 ];

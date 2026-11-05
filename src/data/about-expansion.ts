@@ -12,12 +12,6 @@ export const aboutExpansion: ContentBlock[] = [
     ]
   },
   {
-    "kind": "p",
-    "text": [
-      "TODO — Company history: founded [[year]]. Founder [[name, role]]. Add the company-approved account of why the business started and how its hospital infrastructure work developed. These details have not been supplied, so no founding date, founder biography or years-of-experience claim is being presented as fact."
-    ]
-  },
-  {
     "kind": "h2",
     "text": "Faridabad works and Ghaziabad office"
   },
@@ -28,26 +22,8 @@ export const aboutExpansion: ContentBlock[] = [
     ]
   },
   {
-    "kind": "p",
-    "text": [
-      "TODO — Faridabad manufacturing scope: [[what we make at these works, production activities and approved supporting photos]]. A project may combine fabricated elements with equipment sourced from specialist manufacturers. Ask for a supply schedule that identifies each item, its proposed manufacturer and the party responsible for its installation. This avoids treating every item in a turnkey quotation as something manufactured at the same address."
-    ]
-  },
-  {
     "kind": "h2",
     "text": "People, responsibilities and project experience"
-  },
-  {
-    "kind": "p",
-    "text": [
-      "TODO — Team: [[names, roles and approved biographies]]. Hospitals should know who will review drawings, coordinate site work and respond to technical questions. For the proposed project, ask for the contact responsible for commercial clarification and the contact responsible for execution. The purpose is to establish accountability rather than imply an unconfirmed team size or a particular qualification."
-    ]
-  },
-  {
-    "kind": "p",
-    "text": [
-      "TODO — Completed projects: [[number, cities, hospital names with permission, scope and year]]. No client list or project total is added without company-approved evidence. A useful reference should explain what was delivered, whether the building was new or occupied, and which parts of the job were outside the supplier’s scope. Photographs should have permission for publication and describe the actual installation they show."
-    ]
   },
   {
     "kind": "h2",

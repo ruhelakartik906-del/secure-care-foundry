@@ -90,7 +90,7 @@ export const novemberBlogs: Blog[] = [
         "heading": "What to send with an MGPS enquiry",
         "paragraphs": [
           "Share the hospital location, building drawings, bed and department schedule, intended gases and the consultant's specified requirements. Explain whether the work is new construction, a replacement or an extension, and identify any retained sources or pipelines. Ask for a scope that clearly separates supply, installation, building preparation, testing and documentation. This is a more useful starting point than requesting a price per outlet without a layout.",
-          "Unicare's published hospital-project MGPS range is indicative only; no new price, flow, pressure or delivery figure is introduced in this guide. TODO — Confirm the actual project's design criteria, source configuration, approved outlet models and delivery programme with the hospital and supplier. Review the related medical gas pipeline, manifold and outlet pages below, then send a drawing-based enquiry for a project-specific proposal."
+          "Unicare's published hospital-project MGPS range is indicative only; no new price, flow, pressure or delivery figure is introduced in this guide. Review the related medical gas pipeline, manifold and outlet pages below, then send a drawing-based enquiry for a project-specific proposal."
         ]
       }
     ]
@@ -170,14 +170,14 @@ export const novemberBlogs: Blog[] = [
         "heading": "What drives the project budget",
         "paragraphs": [
           "ICU cost depends on the approved scope: room preparation, surfaces, bedside interfaces, medical gases, electrical work, mounting, environmental services and any equipment included in the offer. A renovation can add removal, correction and temporary-work requirements that are absent from a new room. Freight, site access and coordination with other contractors also need commercial clarification. Compare proposals with the same equipment and responsibility schedule.",
-          "There is no company-approved complete-ICU price range supplied for this article. Published figures for other products should not be repurposed as an ICU price per bed. Ask for a bill of quantities that distinguishes infrastructure from clinical equipment and identifies exclusions. TODO — Confirm the actual room layout, equipment list, retained-system condition, approved product models and commercial terms before preparing a reliable project budget."
+          "There is no company-approved complete-ICU price range supplied for this article. Published figures for other products should not be repurposed as an ICU price per bed. Ask for a bill of quantities that distinguishes infrastructure from clinical equipment and identifies exclusions."
         ]
       },
       {
         "heading": "Renovation phasing and installation milestones",
         "paragraphs": [
           "Work in an operating hospital needs authorised arrangements for isolation, access and protection of adjacent clinical areas. The hospital must decide where care continues while the proposed zone is unavailable. Contractors should not alter live medical gas or electrical services without the approved process. Establish the site-readiness requirements and coordinate noisy or dusty work with the hospital's responsible team.",
-          "Separate design approval, procurement, dispatch, installation, specialist testing and clinical reopening in the programme. A promised delivery date does not include all of those activities unless the written scope says so. TODO — Company-confirmed procurement and installation lead time for this defined ICU project. The timeline depends on approvals and the actual site, so no generic number of days is presented as a reliable commitment."
+          "Separate design approval, procurement, dispatch, installation, specialist testing and clinical reopening in the programme. A promised delivery date does not include all of those activities unless the written scope says so. The timeline depends on approvals and the actual site, so no generic number of days is presented as a reliable commitment."
         ]
       },
       {

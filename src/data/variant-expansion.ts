@@ -39,7 +39,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Review a physical sample under the proposed room lighting before approving colour and sheen. Ask for the finish manufacturer’s cleaning instructions and evidence applicable to the exact product offered, not a broadly worded claim about hygienic coatings. TODO — Confirm available substrate, coating, colours, approved disinfectants and repair system. A hospital-specific approval should record which finish is accepted and how it joins to the other room elements."
+        "Review a physical sample under the proposed room lighting before approving colour and sheen. Ask for the finish manufacturer’s cleaning instructions and evidence applicable to the exact product offered, not a broadly worded claim about hygienic coatings. A hospital-specific approval should record which finish is accepted and how it joins to the other room elements."
       ]
     },
     {
@@ -59,7 +59,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Room preparation, joint treatment, finishing, curing where applicable and final inspection must be placed in the project programme. Adjacent dusty work should be completed before final finishing begins. The hospital should also arrange access for inspection before services conceal parts of the lining. TODO — Company-confirmed manufacturing, site finishing and curing schedule for the selected system; no standard number of days is available. Delivery and clinical reopening are separate milestones."
+        "Room preparation, joint treatment, finishing, curing where applicable and final inspection must be placed in the project programme. Adjacent dusty work should be completed before final finishing begins. The hospital should also arrange access for inspection before services conceal parts of the lining. Delivery and clinical reopening are separate milestones."
       ]
     },
     {
@@ -141,12 +141,6 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
           "label": "Indicative Modular OT cost guide"
         }
       ]
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Unique real photo: supply one company-approved installation photograph for this exact OT option, with its hospital or project context and publication permission. The current photograph illustrates the option; no location or named completed project is inferred from it."
-      ]
     }
   ],
   "hpl-modular-ot": [
@@ -187,7 +181,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Assess samples with the surgeon, housekeeping supervisor and project team. Colour, reflectance and the visibility of marks can influence the final choice, but none replaces a technical review. TODO — Confirm HPL manufacturer, grade, thickness, backing, colour range and edge details supplied by Unicare. Keep the signed sample reference in the purchase order so that substitution is not decided informally at installation."
+        "Assess samples with the surgeon, housekeeping supervisor and project team. Colour, reflectance and the visibility of marks can influence the final choice, but none replaces a technical review. Keep the signed sample reference in the purchase order so that substitution is not decided informally at installation."
       ]
     },
     {
@@ -207,7 +201,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Set out the panel grid around equipment positions and accessible service zones. Approve door frames and ceiling junctions before fitting panels, then protect exposed surfaces while the remaining trades finish. The programme needs separate allowances for manufacturing, dispatch, installation and final checks. TODO — Typical HPL production and installation lead time for an approved room layout. No site-independent delivery promise is made on this page."
+        "Set out the panel grid around equipment positions and accessible service zones. Approve door frames and ceiling junctions before fitting panels, then protect exposed surfaces while the remaining trades finish. The programme needs separate allowances for manufacturing, dispatch, installation and final checks. No site-independent delivery promise is made on this page."
       ]
     },
     {
@@ -289,12 +283,6 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
           "label": "Indicative Modular OT cost guide"
         }
       ]
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Unique real photo: supply one company-approved installation photograph for this exact OT option, with its hospital or project context and publication permission. The current photograph illustrates the option; no location or named completed project is inferred from it."
-      ]
     }
   ],
   "bioclad-modular-ot": [
@@ -305,7 +293,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Bioclad modular OT is a cladding-led option, but buyers should not infer a particular manufacturer or performance from the page name. The offered sheet or panel needs its own technical documentation, mounting method and compatible joint treatment. TODO — Confirm the exact cladding manufacturer, product, material and evidence. The hospital should assess the actual construction offered rather than a generic claim that a named hygienic lining makes an entire theatre compliant."
+        "Bioclad modular OT is a cladding-led option, but buyers should not infer a particular manufacturer or performance from the page name. The offered sheet or panel needs its own technical documentation, mounting method and compatible joint treatment. The hospital should assess the actual construction offered rather than a generic claim that a named hygienic lining makes an entire theatre compliant."
       ]
     },
     {
@@ -335,7 +323,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Review colour and surface samples together with the cleaning instructions. The hospital should approve the selected material and the visible junction details before ordering. TODO — Available colours, finish texture, sheet dimensions, joining method and compatible disinfectants. If branding or a proprietary material is specified, record the precise product reference in the quotation and agree the approval procedure for any substitution."
+        "Review colour and surface samples together with the cleaning instructions. The hospital should approve the selected material and the visible junction details before ordering. If branding or a proprietary material is specified, record the precise product reference in the quotation and agree the approval procedure for any substitution."
       ]
     },
     {
@@ -355,7 +343,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Before installation, check the wall condition, dimensions, service routes and any moisture-related defects. Complete concealed services and agree the opening positions before fitting the visible lining. Protect the finished wall during final equipment installation and inspect every junction before handover. TODO — Confirm normal procurement, installation and any curing period for the actual cladding product. The programme must also include hospital approval and room reopening requirements."
+        "Before installation, check the wall condition, dimensions, service routes and any moisture-related defects. Complete concealed services and agree the opening positions before fitting the visible lining. Protect the finished wall during final equipment installation and inspect every junction before handover. The programme must also include hospital approval and room reopening requirements."
       ]
     },
     {
@@ -437,12 +425,6 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
           "label": "Indicative Modular OT cost guide"
         }
       ]
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Unique real photo: supply one company-approved installation photograph for this exact OT option, with its hospital or project context and publication permission. The current photograph illustrates the option; no location or named completed project is inferred from it."
-      ]
     }
   ],
   "ppgi-modular-ot": [
@@ -483,7 +465,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Discuss whether the visible face is retained as supplied or finished on site, and agree the colour reference and sheen. Examine how a repaired area will match the surrounding wall. TODO — Confirm the offered PPGI grade, coating, approved colours and repair products for this quotation. The earlier company-supplied panel details on this page should be read with a project-specific drawing; they do not replace agreement on the complete room scope."
+        "Discuss whether the visible face is retained as supplied or finished on site, and agree the colour reference and sheen. Examine how a repaired area will match the surrounding wall. The earlier company-supplied panel details on this page should be read with a project-specific drawing; they do not replace agreement on the complete room scope."
       ]
     },
     {
@@ -503,7 +485,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Panel fabrication follows approval of room measurements and service openings. On site, coordinate supports, doors, ceiling and finish work so trades do not damage completed surfaces. If the specified assembly uses a site coating, include preparation and cure requirements in the schedule. TODO — Confirm procurement, manufacturing, finishing and installation lead time for the approved PPGI scope; do not infer a deadline from the panel material alone."
+        "Panel fabrication follows approval of room measurements and service openings. On site, coordinate supports, doors, ceiling and finish work so trades do not damage completed surfaces. If the specified assembly uses a site coating, include preparation and cure requirements in the schedule."
       ]
     },
     {
@@ -585,12 +567,6 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
           "label": "Indicative Modular OT cost guide"
         }
       ]
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Unique real photo: supply one company-approved installation photograph for this exact OT option, with its hospital or project context and publication permission. The current photograph illustrates the option; no location or named completed project is inferred from it."
-      ]
     }
   ],
   "glass-modular-ot": [
@@ -601,7 +577,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "A glass modular operation theatre uses specified glass surfaces as part of its lining. It is not simply a glazed room or a guarantee of a particular cleanroom result. The assembly needs an agreed glass specification, support, safe edges, junctions and service openings. TODO — Confirm glass type, safety treatment, thickness and backing supplied for the project. The hospital should approve technical details before considering colour or graphics."
+        "A glass modular operation theatre uses specified glass surfaces as part of its lining. It is not simply a glazed room or a guarantee of a particular cleanroom result. The assembly needs an agreed glass specification, support, safe edges, junctions and service openings. The hospital should approve technical details before considering colour or graphics."
       ]
     },
     {
@@ -631,7 +607,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Review the proposed surface under the actual lighting arrangement if possible. Consider glare near monitors, reflections from surgical lights and whether printed graphics distract from clinical tasks. TODO — Approved colours, printing process, backing, edge treatment and graphic permissions. Any illustration or photograph used in a wall finish should have the hospital’s approval; it is not evidence of a completed Unicare project."
+        "Review the proposed surface under the actual lighting arrangement if possible. Consider glare near monitors, reflections from surgical lights and whether printed graphics distract from clinical tasks. Any illustration or photograph used in a wall finish should have the hospital’s approval; it is not evidence of a completed Unicare project."
       ]
     },
     {
@@ -651,7 +627,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Confirm measurements, concealed services and opening positions before production. Plan handling routes, storage protection and the sequence of fitting panels with doors and equipment. The theatre should not reopen merely because the visible surfaces are installed; the other room systems need their own acceptance checks. TODO — Company-confirmed fabrication, transport and installation lead time for the glass configuration. No general transit or reopening time has been supplied."
+        "Confirm measurements, concealed services and opening positions before production. Plan handling routes, storage protection and the sequence of fitting panels with doors and equipment. The theatre should not reopen merely because the visible surfaces are installed; the other room systems need their own acceptance checks. No general transit or reopening time has been supplied."
       ]
     },
     {
@@ -733,12 +709,6 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
           "label": "Indicative Modular OT cost guide"
         }
       ]
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Unique real photo: supply one company-approved installation photograph for this exact OT option, with its hospital or project context and publication permission. The current photograph illustrates the option; no location or named completed project is inferred from it."
-      ]
     }
   ],
   "stainless-steel-modular-ot": [
@@ -779,7 +749,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Review a physical finish sample and agree the appearance of junctions and corners. Ask whether welds or edges are treated and how repairs are carried out. TODO — Confirm the stainless grade, surface finish, thickness, supplier documentation and offered options for this project. Retain the sample and written reference so that procurement and installation teams work to the same approved finish."
+        "Review a physical finish sample and agree the appearance of junctions and corners. Ask whether welds or edges are treated and how repairs are carried out. Retain the sample and written reference so that procurement and installation teams work to the same approved finish."
       ]
     },
     {
@@ -799,7 +769,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Approve the room layout, equipment positions and service openings before fabrication. Coordinate the supporting system with the ceiling, door frames and floor junctions, then protect the visible surface during final equipment installation. TODO — Company-confirmed stainless-panel production, transport and installation duration for the selected scope. The actual programme also depends on hospital approvals, site preparation and the checks required before clinical use."
+        "Approve the room layout, equipment positions and service openings before fabrication. Coordinate the supporting system with the ceiling, door frames and floor junctions, then protect the visible surface during final equipment installation. The actual programme also depends on hospital approvals, site preparation and the checks required before clinical use."
       ]
     },
     {
@@ -881,12 +851,6 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
           "label": "Indicative Modular OT cost guide"
         }
       ]
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Unique real photo: supply one company-approved installation photograph for this exact OT option, with its hospital or project context and publication permission. The current photograph illustrates the option; no location or named completed project is inferred from it."
-      ]
     }
   ],
   "semi-modular-ot": [
@@ -927,7 +891,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "A semi-modular scope can use one of several specified surface systems; the word describes the extent of the upgrade, not a separate material. Discuss compatibility with retained doors, ceiling, floor and services. TODO — Confirm selected panel or cladding, retained components, finish options and approved joining details. Agree a sample at the junction between old and new work so that the final appearance and cleanability are understood before installation."
+        "A semi-modular scope can use one of several specified surface systems; the word describes the extent of the upgrade, not a separate material. Discuss compatibility with retained doors, ceiling, floor and services. Agree a sample at the junction between old and new work so that the final appearance and cleanability are understood before installation."
       ]
     },
     {
@@ -947,7 +911,7 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Survey the occupied facility, agree isolation arrangements and plan a safe work zone before dismantling begins. No live clinical service should be altered without the hospital’s authorised shutdown process. Schedule the retained-system checks, new installation and final room review as distinct tasks. TODO — Approved shutdown, procurement and installation programme for this hospital; a standard lead time would be misleading without the existing-condition assessment."
+        "Survey the occupied facility, agree isolation arrangements and plan a safe work zone before dismantling begins. No live clinical service should be altered without the hospital’s authorised shutdown process. Schedule the retained-system checks, new installation and final room review as distinct tasks."
       ]
     },
     {
@@ -1028,12 +992,6 @@ export const variantExpansion: Record<string, ContentBlock[]> = {
           "to": "/modular-ot-cost-india",
           "label": "Indicative Modular OT cost guide"
         }
-      ]
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Unique real photo: supply one company-approved installation photograph for this exact OT option, with its hospital or project context and publication permission. The current photograph illustrates the option; no location or named completed project is inferred from it."
       ]
     }
   ]

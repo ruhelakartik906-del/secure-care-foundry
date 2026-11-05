@@ -86,12 +86,6 @@ export const planningExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "h2",
       "text": "Schedule and specification details to confirm"
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Confirm flooring manufacturer and product, electrical classification, available finishes, installation test method, warranty and indicative price if approved. TODO — Confirm preparation, curing and installation lead time after the subfloor survey. These details cannot be inferred from the published complete-OT cost range. A floor installation may be only one part of the room programme, and completion does not by itself mean the theatre is ready for clinical use."
-      ]
     }
   ],
   "/digital-operation-theatre": [
@@ -183,7 +177,7 @@ export const planningExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Share the proposed procedures, room drawing, equipment inventory and desired display or recording workflow. Identify whether teaching or remote consultation is required and who in IT will review the design. TODO — Confirm offered integration hardware, supported interfaces, recording retention options, licensing, maintenance coverage and price. TODO — Confirm procurement and commissioning schedule once compatibility is reviewed. No universal storage size, system capacity or delivery duration is asserted without a confirmed configuration."
+        "Share the proposed procedures, room drawing, equipment inventory and desired display or recording workflow. Identify whether teaching or remote consultation is required and who in IT will review the design. No universal storage size, system capacity or delivery duration is asserted without a confirmed configuration."
       ]
     }
   ],
@@ -276,7 +270,7 @@ export const planningExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "p",
       "text": [
-        "Send the room drawing, consultant’s filtration requirements, proposed airflow layout and details of any existing HVAC equipment. State whether the requirement is new installation, housing modification or filter replacement. TODO — Confirm filter grade, size, supplier documentation, housing construction, test protocol, price and replacement availability. TODO — Confirm procurement and installation lead time for this configuration. These placeholders remain until product-specific information is supplied, rather than introducing unsupported technical figures."
+        "Send the room drawing, consultant’s filtration requirements, proposed airflow layout and details of any existing HVAC equipment. State whether the requirement is new installation, housing modification or filter replacement."
       ]
     }
   ],
@@ -365,12 +359,6 @@ export const planningExpansion: Record<string, ContentBlock[]> = {
     {
       "kind": "h2",
       "text": "Missing price and schedule details"
-    },
-    {
-      "kind": "p",
-      "text": [
-        "TODO — Confirm material-specific rates beyond the published indicative ranges, quotation validity, tax and freight treatment, payment stages and typical lead time for a defined reference scope. No new price figures are supplied here. Use the ranges already on this page as planning references, then request a quotation for the actual hospital. If the design changes after approval, ask for a revised scope and commercial clarification before procurement or installation proceeds."
-      ]
     }
   ]
 };
