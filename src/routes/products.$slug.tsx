@@ -76,7 +76,7 @@ function ProductPage() {
   const lf = getLongForm(p.slug);
   const extras = productExtraSections[p.slug];
   const pickRelated = (slugs: string[]) => slugs.map((r) => getProduct(r)).filter((x): x is NonNullable<typeof x> => !!x);
-  const relatedBlogs = blogs.filter((b) => b.relatedProducts?.[0] === p.slug);
+  const relatedBlogs = blogs.filter((b) => b.relatedProducts?.includes(p.slug));
   const related = lf ? pickRelated(lf.related) : p.related ? pickRelated(p.related) : products.filter((x) => x.slug !== p.slug && x.category === p.category).concat(products.filter((x) => x.category !== p.category)).slice(0, 3);
 
   return (

@@ -71,6 +71,7 @@ export function ResourceList({ items, base }: { items: Resource[]; base: "compli
     <article key={r.slug} className="flex flex-col border border-border bg-background p-6 transition hover:border-brand-blue">
       <h3 className="text-lg font-bold">{r.title}</h3>
       <p className="mt-2 flex-1 text-sm text-muted-foreground">{r.description}</p>
+      <p className="mt-3 text-sm">{r.intro.split(/(?<=[.!?])\s+/)[0]}</p>
       {base === "compliance"
         ? <Link to="/resources/compliance/$slug" params={{ slug: r.slug }} className="mt-4 text-sm font-semibold text-brand-blue">Read overview →</Link>
         : <Link to="/resources/comparisons/$slug" params={{ slug: r.slug }} className="mt-4 text-sm font-semibold text-brand-blue">Read comparison →</Link>}

@@ -1,6 +1,6 @@
 # Revision roadmap
 
-- [ ] Nov 5 brief: deterministic page hydration; expand About, seven OT variants, four planning pages and two hubs; unique sections on 48 state pages; page-specific photo TODOs; confirmed entity/email fields; two new blogs and cross-links; verify unchanged titles/design/LAF and report word counts.
+- [x] Nov 5 brief: expanded About, seven OT variants, four planning pages and two hubs; unique sections on 48 locality pages; explicit project/photo/delivery/company TODOs; public email and two address entities; two 1200+ word blogs and product connections. All 124 available paths checked for hydration/runtime errors, one H1, photos and FAQ agreement; no errors reproduced. Existing titles/design/LAF retained; missing company facts remain pending company supply.
 
 - [ ] Deploy tested all-path Lovable-to-www 301 and noindex/follow fallback; blocked because publishing was declined. Public HTTP verification remains pending; old deployment was not unpublished.
 

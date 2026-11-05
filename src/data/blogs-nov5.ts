@@ -99,7 +99,7 @@ export const novemberBlogs: Blog[] = [
     "slug": "plan-modular-icu-space-equipment-cost-factors",
     "title": "How to Plan a Modular ICU: Space, Equipment and Cost Factors",
     "metaTitle": "Planning a Modular ICU: Space, Equipment & Cost | Unicare",
-    "excerpt": "A practical ICU planning guide covering bed layouts, staff movement, medical gases, bedside services, renovation phasing and a clearly scoped project quote.",
+    "excerpt": "Practical ICU planning guide covering bed layouts, staff movement, medical gases, bedside services, renovation phasing and a clearly scoped project quote.",
     "publishedAt": "2026-11-05",
     "updatedAt": "2026-11-05",
     "author": "Unicare Medical Solutions Team",

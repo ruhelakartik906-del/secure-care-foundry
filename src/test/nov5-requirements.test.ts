@@ -21,7 +21,7 @@ describe("November 5 company requirements", () => {
       expect(stateServing[location.slug]?.length).toBe(2);
       if (location.slug !== "chandigarh") expect(location.cities.slice(0, 6).length).toBeGreaterThanOrEqual(5);
     }
-    expect(stateServing.chandigarh?.join(" ")).toContain("outside Chandigarh");
+    expect(stateServing['chandigarh']?.join(" ")).toContain("outside Chandigarh");
   });
   it("publishes both requested new articles above 1200 words with product connections", () => {
     const cases = [["medical-gas-pipeline-hospitals-components-layout-safety", "medical-gas-pipeline-system"], ["plan-modular-icu-space-equipment-cost-factors", "modular-icu-nicu"]];

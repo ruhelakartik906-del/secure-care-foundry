@@ -47,7 +47,7 @@ export const pageLastModified: Readonly<Record<string, string>> = {
   "/blogs/dynamic-vs-static-pass-box": "2026-10-28",
   // Significant editorial updates made on November 5; not derived from build time.
   ...Object.fromEntries([
-    "/about", "/contact", "/modular-ot-cost-india", "/modular-ot-flooring", "/digital-operation-theatre", "/hepa-filtration-system-for-operation-theatre",
+    "/", "/about", "/contact", "/products/medical-gas-pipeline-system", "/products/modular-icu-nicu", "/modular-ot-cost-india", "/modular-ot-flooring", "/digital-operation-theatre", "/hepa-filtration-system-for-operation-theatre",
     "/resources/compliance", "/resources/comparisons", "/blogs",
     "/blogs/medical-gas-pipeline-hospitals-components-layout-safety", "/blogs/plan-modular-icu-space-equipment-cost-factors",
     ...modularOtOptions.map((option) => `/products/modular-operation-theatre/${option.slug}`),
