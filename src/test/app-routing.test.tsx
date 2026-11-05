@@ -27,7 +27,7 @@ describe("App routing", () => {
   it("uses the supplied Unicare contact details", () => {
     expect(site.phone).toBe("+91-7678443838");
     expect(site.secondaryPhone).toBe("+91-7736077740");
-    expect(site.email).toBe("unicaremedical2023@gmail.com");
+    expect(site.email).toBe("info@unicaremedicalsolutions.com");
     expect(site.officeAddress).toContain("Ghaziabad – 201001");
     expect(site.worksAddress).toContain("Faridabad – 121004");
     expect(site.whatsapp).toBe("917678443838");

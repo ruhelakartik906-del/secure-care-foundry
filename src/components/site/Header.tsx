@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
+import { ChevronDown, Mail, Menu, Phone, Search, X } from "lucide-react";
 const logo = "/images/unicare-logo.webp";
 import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
@@ -64,7 +64,7 @@ export function Header() {
       <div className="hidden bg-navy text-navy-foreground md:block">
         <div className="site-wrap flex h-9 items-center justify-between text-xs">
           <span>Modular Operation Theatres · Medical Gas Pipeline · Hospital Infrastructure</span>
-          <a href={site.phoneHref} className="flex items-center gap-1.5 hover:underline"><Phone className="h-3 w-3" />{site.phone}</a>
+          <div className="flex items-center gap-4"><a href={`mailto:${site.email}`} className="hidden items-center gap-1.5 hover:underline xl:flex"><Mail className="h-3 w-3" />{site.email}</a><a href={site.phoneHref} className="flex items-center gap-1.5 hover:underline"><Phone className="h-3 w-3" />{site.phone}</a></div>
         </div>
       </div>
       <div className="site-wrap relative flex h-16 items-center justify-between gap-4 md:h-20">
@@ -161,6 +161,7 @@ export function Header() {
               ))}
               <Button className="mt-6 rounded-sm" size="lg" onClick={() => { closeAll(); open(); }}>Get a Quote</Button>
               <a href={site.phoneHref} className="mt-3 border border-border py-3 text-center text-sm font-medium">Call {site.phone}</a>
+              <a href={`mailto:${site.email}`} className="mt-3 break-all text-center text-sm text-brand-blue">{site.email}</a>
             </nav>
           </Dialog.Content>
         </Dialog.Portal>

@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { seo } from "@/lib/seo";
+import { localBusinessSchemas } from "@/lib/structured-data";
 
 export const Route = createFileRoute("/contact")({
-  head: () => seo("Contact Us | Unicare Medical Solutions", "Contact Unicare Medical Solutions for modular OT, medical gas pipeline and hospital infrastructure quotations.", "/contact"),
+  head: () => ({ ...seo("Contact Us | Unicare Medical Solutions", "Contact Unicare Medical Solutions for modular OT, medical gas pipeline and hospital infrastructure quotations.", "/contact"), scripts: localBusinessSchemas().map((schema) => ({ type: "application/ld+json", children: JSON.stringify(schema) })) }),
   component: Contact,
 });
 

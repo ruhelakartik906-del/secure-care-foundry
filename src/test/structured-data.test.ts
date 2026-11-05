@@ -39,7 +39,7 @@ describe("Company-supplied Task 3 schema rules", () => {
     expect(org["@type"]).toEqual(["Organization", "LocalBusiness"]);
     expect(org.legalName).toBe("Unicare Medical Solutions");
     expect(org.telephone).toBe("+91-7678443838");
-    expect(org.email).toBe("unicaremedical2023@gmail.com");
+    expect(org.email).toBe("info@unicaremedicalsolutions.com");
     expect(org.address.map((a) => a.addressLocality)).toEqual(["Ghaziabad", "Ballabhgarh"]);
     expect(org.openingHoursSpecification[0]).toEqual({ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:30", closes: "18:30" });
     expect(org).not.toHaveProperty("sameAs");

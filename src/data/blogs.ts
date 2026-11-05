@@ -1,3 +1,5 @@
+import { novemberBlogs } from "./blogs-nov5";
+
 export type BlogSection = {
   heading?: string;
   paragraphs: string[];
@@ -7,6 +9,7 @@ export type BlogSection = {
 export type Blog = {
   slug: string;
   title: string;
+  metaTitle?: string;
   excerpt: string;
   publishedAt: string;
   updatedAt?: string;
@@ -217,6 +220,7 @@ export const blogs: Blog[] = [
       ] },
     ],
   },
+  ...novemberBlogs,
 ];
 
 export function findBlog(slug: string, articles: readonly Blog[] = blogs) {

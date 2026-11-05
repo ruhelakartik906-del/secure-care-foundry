@@ -21,8 +21,8 @@ describe("Company-confirmed SEO host and sitemap policy", () => {
     expect(entries.find((entry) => entry.path === "/products/modular-operation-theatre")?.lastmod).toBe("2026-10-28");
     expect(entries.find((entry) => entry.path === "/products/ot-pendant")?.lastmod).toBe("2026-10-28");
     expect(sitemapXml()).toContain("<lastmod>2026-10-28</lastmod>");
-    // Unchanged pages keep their earlier authoritative date.
-    expect(entries.find((entry) => entry.path === "/hepa-filtration-system-for-operation-theatre")?.lastmod).toBe("2026-10-24");
+    // The HEPA guide received a significant editorial expansion on November 5.
+    expect(entries.find((entry) => entry.path === "/hepa-filtration-system-for-operation-theatre")?.lastmod).toBe("2026-11-05");
   });
   it("redirects apex to www without changing path or query", async () => {
     const response = await server.fetch(new Request("https://unicaremedicalsolutions.com/products/laminar-air-flow?source=test"), {}, {});

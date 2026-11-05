@@ -7,10 +7,10 @@ import { getLongForm, productExtraSections, variantSections } from "@/data/produ
 const newPages = ["/products/ot-table", "/modular-ot-flooring", "/ot-accessories", "/digital-operation-theatre", "/services/hospital-project-consulting"];
 
 describe("October 28 company content brief", () => {
-  it.each(newPages)("lists %s in the sitemap with the 2026-10-28 lastmod", (path) => {
+  it.each(newPages)("lists %s with its latest significant content date", (path) => {
     const entry = sitemapEntries().find((e) => e.path === path);
     expect(entry).toBeDefined();
-    expect(entry?.lastmod).toBe("2026-10-28");
+    expect(entry?.lastmod).toBe(["/modular-ot-flooring", "/digital-operation-theatre"].includes(path) ? "2026-11-05" : "2026-10-28");
   });
   it("adds the OT table product with its three requested related products", () => {
     expect(getProduct("ot-table")?.related).toEqual(["led-surgical-light", "ot-pendant", "modular-operation-theatre"]);

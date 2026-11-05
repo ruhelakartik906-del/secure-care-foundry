@@ -15,7 +15,7 @@ describe("October 28 site fixes", () => {
   });
   it("blog titles are at most 60 characters and excerpts 140-155", () => {
     for (const b of blogs) {
-      expect(b.title.length).toBeLessThanOrEqual(60);
+      expect((b.metaTitle ?? b.title).length).toBeLessThanOrEqual(60);
       expect(b.excerpt.length).toBeGreaterThanOrEqual(140);
       expect(b.excerpt.length).toBeLessThanOrEqual(155);
     }

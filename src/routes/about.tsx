@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 const cssd = "/images/cssd-systems.webp";
-import { PageHero, CtaBand } from "@/components/site/common";
-import { seo } from "@/lib/seo";
+import { PageHero, CtaBand, Faqs, faqSchema } from "@/components/site/common";
+import { seo, breadcrumbSchema } from "@/lib/seo";
 import { site } from "@/data/site";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
+import { ContentBlocks } from "@/components/site/ContentBlocks";
+import { aboutExpansion } from "@/data/about-expansion";
+import { aboutFaqs } from "@/data/expansion-faqs";
 
 export const Route = createFileRoute("/about")({
-  head: () => seo("About Us | Unicare Medical Solutions", "Unicare Medical Solutions designs, manufactures and installs hospital infrastructure including modular OTs and medical gas pipeline systems.", "/about"),
+  head: () => ({ ...seo("About Us | Unicare Medical Solutions", "Unicare Medical Solutions designs, manufactures and installs hospital infrastructure including modular OTs and medical gas pipeline systems.", "/about"), scripts: [breadcrumbSchema([{ name: "About Us", path: "/about" }]), faqSchema(aboutFaqs)] }),
   component: About,
 });
 
@@ -46,6 +49,7 @@ function About() {
           <p className="mt-4 leading-relaxed text-muted-foreground">We work with hospital owners, doctors, architects, consultants and contractors to translate clinical requirements into a practical manufacturing and installation scope.</p>
         </div>
       </section>
+      <section className="site-wrap pb-16"><article className="prose-unicare max-w-3xl"><ContentBlocks blocks={aboutExpansion} /><h2>Frequently asked questions</h2><Faqs faqs={aboutFaqs} /></article></section>
       <CtaBand title="Discuss Your Project" />
     </>
   );

@@ -12,6 +12,9 @@ export function pageSocialSource(path: string) {
     if (segments[1] === "modular-operation-theatre") return homepageHero;
     return getProduct(segments[1] ?? "")?.image ?? homepageHero;
   }
+  // Editorial photos match the relevant product; existing article crop assignments stay unchanged.
+  if (path === "/blogs/medical-gas-pipeline-hospitals-components-layout-safety") return getProduct("medical-gas-pipeline-system")?.image ?? homepageHero;
+  if (path === "/blogs/plan-modular-icu-space-equipment-cost-factors") return getProduct("modular-icu-nicu")?.image ?? homepageHero;
   return homepageHero;
 }
 

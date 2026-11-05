@@ -23,6 +23,7 @@ export const organizationSchema = () => ({
   image: absUrl(homepageHero),
   telephone: site.phone,
   email: site.email,
+  contactPoint: [{ "@type": "ContactPoint", telephone: site.phone, email: site.email, contactType: "sales enquiries", areaServed: "IN" }],
   areaServed: "IN",
   openingHoursSpecification: [{
     "@type": "OpeningHoursSpecification",
@@ -35,7 +36,20 @@ export const organizationSchema = () => ({
     { "@type": "PostalAddress", streetAddress: "Plot No. B/260, Adarsh Nagar, Subedar Colony", addressLocality: "Ballabhgarh", postalCode: "121004", addressRegion: "Haryana", addressCountry: "IN" },
   ],
   // TODO: Add sameAs only after the company supplies verified LinkedIn, Facebook, IndiaMART and YouTube profile URLs.
+  // TODO: foundingDate, founder and GSTIN require actual company-approved values.
 });
+
+export const localBusinessSchemas = () => organizationSchema().address.map((address, i) => ({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${absUrl("/")}#${i === 0 ? "ghaziabad-office" : "faridabad-works"}`,
+  name: `${site.name} – ${i === 0 ? "Ghaziabad office" : "Faridabad works"}`,
+  parentOrganization: { "@id": organizationId },
+  url: absUrl("/contact"),
+  telephone: site.phone,
+  email: site.email,
+  address,
+}));
 
 export function serviceSchema(name: string, description: string, path: string, image: string) {
   return {
@@ -60,4 +74,7 @@ export function productSchema(p: Product, path: string) {
 export const variantFaqs = (option: ModularOtOption) => [
   { q: `What does a ${option.menuName} project include?`, a: "The final scope is prepared around room dimensions, selected panel system, airflow, doors, controls, medical gases and installation requirements." },
   { q: `How is ${option.menuName} pricing calculated?`, a: "Pricing depends on room size, material selection, equipment integration and site scope. We provide a project-specific quotation after reviewing your requirement." },
+  { q: `How should we compare ${option.menuName} with other options?`, a: "Compare the complete assembly, not the material name alone. Review backing, supports, junctions, service access, cleaning compatibility and the repair or replacement method against the hospital's approved requirements." },
+  { q: `How should ${option.menuName} surfaces be maintained?`, a: "Follow the offered material and finish supplier's cleaning instructions, inspect damaged surfaces and service junctions, and use an approved repair method. Material selection does not replace hospital infection-control procedures." },
+  { q: `What is the lead time for ${option.menuName}?`, a: "TODO — Company-confirmed manufacturing and installation lead time is needed for the approved system and room scope. No fixed duration is available without drawings, approvals and site-readiness review." },
 ];

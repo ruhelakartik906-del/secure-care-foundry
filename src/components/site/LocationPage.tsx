@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { PageHero, Faqs, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
 import { useEnquiry } from "./EnquiryDialog";
+import { stateServing } from "@/data/state-serving";
 
 export const locationTitle = (productSlug: string, l: Location) => `${getProduct(productSlug)?.keyword ?? "Hospital Infrastructure"} Manufacturers in ${l.name}`;
 
@@ -34,6 +35,13 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
               "{p.name} installed in {l.name} – Unicare". Do not use stock or AI images. */}
           <h2>{p.shortName} solutions in {l.name}</h2>
           <p>{locationLead(l)} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {lc(p.name)} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
+          <h2>Serving hospitals across {l.name}</h2>
+          <p>For {lc(p.shortName)} enquiries, start with your hospital's exact address. {l.slug === "chandigarh" ? "Chandigarh is the city covered by this Union Territory page." : l.slug === "delhi" ? `Delhi areas include ${l.cities.slice(0, 6).join(", ")}. These are localities within Delhi, not six separate cities.` : `Major city destinations include ${l.cities.slice(0, 6).join(", ")}.`}</p>
+          {(stateServing[l.slug] ?? []).map((text) => <p key={text}>{text}</p>)}
+          <h3>Road delivery from Faridabad</h3>
+          <p>TODO — Supply the company-confirmed typical road-delivery time from the Faridabad works to the specific hospital destination in {l.name}. Manufacturing, transit and on-site installation are different milestones; no unconfirmed number of days is published.</p>
+          <h3>Real project and unique photo</h3>
+          <p>TODO — Add one approved {lc(p.shortName)} case example in {l.name}: hospital, city, scope, completion year and one real photo with permission. No stock image, AI image or photograph from another location will be represented as this installation.</p>
           <p className="font-medium text-foreground">Also see:{" "}
             {productSlug === "medical-gas-pipeline-system"
               ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>

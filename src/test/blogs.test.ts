@@ -8,7 +8,7 @@ import { blogPath } from "@/lib/routes";
 
 describe("Static company-supplied blogs", () => {
   it("publishes the two requested guides at 1,200+ words with related product links", () => {
-    expect(blogs.map((b) => b.slug)).toEqual(["what-is-cssd-hospital-sterilisation-department-guide", "dynamic-vs-static-pass-box"]);
+    expect(blogs.map((b) => b.slug)).toEqual(["what-is-cssd-hospital-sterilisation-department-guide", "dynamic-vs-static-pass-box", "medical-gas-pipeline-hospitals-components-layout-safety", "plan-modular-icu-space-equipment-cost-factors"]);
     for (const b of blogs) {
       const words = b.sections.flatMap((s) => [s.heading ?? "", ...s.paragraphs, ...(s.bullets ?? [])]).join(" ").split(/\s+/).filter(Boolean).length;
       expect(words).toBeGreaterThanOrEqual(1200);

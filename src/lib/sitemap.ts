@@ -1,6 +1,9 @@
 import { staticPaths } from "./static-pages";
 import { absUrl } from "./site-url";
 import { hospitalOtPath } from "./retired-pages";
+import { locations } from "@/data/locations";
+import { modularOtOptions } from "@/data/products";
+import { cities, cityPath } from "@/data/cities";
 
 // Production page indexing policy; preview-host noindex must not empty this sitemap.
 export const sitemapExcludedPaths: readonly string[] = ["/search", "/page-not-found", hospitalOtPath];
@@ -42,6 +45,15 @@ export const pageLastModified: Readonly<Record<string, string>> = {
   "/blogs": "2026-10-28",
   "/blogs/what-is-cssd-hospital-sterilisation-department-guide": "2026-10-28",
   "/blogs/dynamic-vs-static-pass-box": "2026-10-28",
+  // Significant editorial updates made on November 5; not derived from build time.
+  ...Object.fromEntries([
+    "/about", "/contact", "/modular-ot-cost-india", "/modular-ot-flooring", "/digital-operation-theatre", "/hepa-filtration-system-for-operation-theatre",
+    "/resources/compliance", "/resources/comparisons", "/blogs",
+    "/blogs/medical-gas-pipeline-hospitals-components-layout-safety", "/blogs/plan-modular-icu-space-equipment-cost-factors",
+    ...modularOtOptions.map((option) => `/products/modular-operation-theatre/${option.slug}`),
+    ...locations.flatMap((location) => [`/modular-operation-theatre-manufacturers-in/${location.slug}`, `/medical-gas-pipeline-manufacturers-in/${location.slug}`]),
+    ...cities.map(cityPath),
+  ].map((path) => [path, "2026-11-05"])),
 };
 
 export function sitemapEntries() {

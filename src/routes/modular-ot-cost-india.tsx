@@ -3,11 +3,15 @@ import { pricing, priceFactors } from "@/data/pricing";
 import { PageHero, Faqs, faqSchema, CtaBand } from "@/components/site/common";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { seo, breadcrumbSchema } from "@/lib/seo";
+import { ContentBlocks } from "@/components/site/ContentBlocks";
+import { planningExpansion } from "@/data/planning-expansion";
 
 const faqs = [
   { q: "How much does a modular OT cost in India?", a: "A complete modular operation theatre typically costs between ₹8.5 Lakh and ₹35 Lakh. The final price depends on OT size, panel material, laminar air flow, doors, equipment and installation scope." },
   { q: "What is the modular OT price per square feet?", a: "OT paneling is indicatively ₹400 to ₹3,500 per sq.ft, depending on the panel material and finish. This covers paneling only, not the complete theatre." },
   { q: "Is the price on this page a final quotation?", a: "No. These are indicative ranges. A final quotation is prepared after reviewing your drawings, specifications and site." },
+  { q: "Can paneling rates be used to calculate a complete OT price?", a: "No. Paneling rates apply to the stated paneling scope and measurement basis, not automatically to floor area or a commissioned room with all systems and equipment." },
+  { q: "What details should a quotation request include?", a: "Send room drawings, location, clinical specialities, equipment list, consultant requirements and the condition of existing services. Ask for clear inclusions, exclusions and installation responsibilities." },
 ];
 
 export const Route = createFileRoute("/modular-ot-cost-india")({
@@ -33,6 +37,7 @@ function Pricing() {
         <p className="mt-4 border-l-4 border-accent bg-muted p-4 text-sm"><strong>Important:</strong> these prices are indicative only and are not a quotation. Your final price is confirmed after we review your project.</p>
         <h2 className="mt-10 text-2xl font-bold">What Decides the Final Price</h2>
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">{priceFactors.map((f) => <li key={f} className="border border-border px-3 py-2 text-sm">{f}</li>)}</ul>
+        <article className="prose-unicare mt-10"><ContentBlocks blocks={planningExpansion["/modular-ot-cost-india"] ?? []} /></article>
         <h2 className="mt-10 text-2xl font-bold">Related Products</h2>
         <p className="mt-3 text-muted-foreground">
           <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }} className="text-brand-blue underline">Modular Operation Theatre</Link> · <Link to="/products/$slug" params={{ slug: "laminar-air-flow" }} className="text-brand-blue underline">Laminar Air Flow</Link> · <Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }} className="text-brand-blue underline">Medical Gas Pipeline System</Link>
