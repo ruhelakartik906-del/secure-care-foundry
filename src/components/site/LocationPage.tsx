@@ -10,7 +10,8 @@ import { EnquiryForm } from "./EnquiryForm";
 import { useEnquiry } from "./EnquiryDialog";
 import { stateServing } from "@/data/state-serving";
 
-export const locationTitle = (productSlug: string, l: Location) => `${getProduct(productSlug)?.keyword ?? "Hospital Infrastructure"} Manufacturers in ${l.name}`;
+export const locationTitle = (productSlug: string, l: Location) =>
+  productSlug === "modular-operation-theatre" ? `${l.name} Modular OT Manufacturers` : `${getProduct(productSlug)?.keyword ?? "Hospital Infrastructure"} Manufacturers in ${l.name}`;
 
 export const locationFaqs = (productSlug: string, l: Location) => {
   const p = getProduct(productSlug);
@@ -41,6 +42,7 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           <h3>Road delivery from Faridabad</h3>
           <p>Delivery is planned from our Faridabad works to the hospital site in {l.name}. Manufacturing, transit and on-site installation are scheduled as separate milestones and confirmed in the project programme.</p>
           {/* TODO(company): add one approved project example and real photo for this state; see docs/content-todo.md */}
+          <p>Compare all wall, ceiling and finish options on our main page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre manufacturers</Link>.</p>
           <p className="font-medium text-foreground">Also see:{" "}
             {productSlug === "medical-gas-pipeline-system"
               ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>

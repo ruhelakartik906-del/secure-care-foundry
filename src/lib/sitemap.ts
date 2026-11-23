@@ -45,6 +45,13 @@ export const pageLastModified: Readonly<Record<string, string>> = {
   "/blogs": "2026-10-28",
   "/blogs/what-is-cssd-hospital-sterilisation-department-guide": "2026-10-28",
   "/blogs/dynamic-vs-static-pass-box": "2026-10-28",
+  // Dates of the last commit that changed each page's own content (git history).
+  "/disclaimer": "2026-10-04", "/privacy-policy": "2026-10-04", "/terms-and-conditions": "2026-10-04",
+  "/faqs": "2026-10-28", "/get-a-quote": "2026-10-28", "/locations": "2026-10-28", "/products": "2026-10-28",
+  "/sitemap": "2026-10-28", "/solutions": "2026-10-28", "/resources": "2026-10-10",
+  "/products/laminar-air-flow": "2026-10-22",
+  ...Object.fromEntries(["nabh-guidelines-modular-ot", "mgps-standards", "htm-02-01", "nfpa-99", "iso-13485", "cdsco-mdr-2017", "iec-60601-2-41-surgical-lights"].map((s) => [`/resources/compliance/${s}`, "2026-10-08"])),
+  ...Object.fromEntries(["modular-ot-vs-conventional-ot", "puf-vs-hpl-ot-panels", "laf-vs-conventional-hvac", "single-arm-vs-double-arm-ot-pendant", "indian-vs-imported-surgical-lights"].map((s) => [`/resources/comparisons/${s}`, "2026-10-08"])),
   // Significant editorial updates made on November 5; not derived from build time.
   ...Object.fromEntries([
     "/", "/about", "/contact", "/products/medical-gas-pipeline-system", "/products/modular-icu-nicu", "/modular-ot-cost-india", "/modular-ot-flooring", "/digital-operation-theatre", "/hepa-filtration-system-for-operation-theatre",
@@ -54,6 +61,12 @@ export const pageLastModified: Readonly<Record<string, string>> = {
     ...locations.flatMap((location) => [`/modular-operation-theatre-manufacturers-in/${location.slug}`, `/medical-gas-pipeline-manufacturers-in/${location.slug}`]),
     ...cities.map(cityPath),
   ].map((path) => [path, "2026-11-05"])),
+  // November 23: modular OT keyword links and state-led titles/H1s.
+  ...Object.fromEntries([
+    "/", "/products/modular-operation-theatre",
+    ...locations.flatMap((location) => [`/modular-operation-theatre-manufacturers-in/${location.slug}`, `/medical-gas-pipeline-manufacturers-in/${location.slug}`]),
+    ...cities.map(cityPath),
+  ].map((path) => [path, "2026-11-23"])),
 };
 
 export function sitemapEntries() {

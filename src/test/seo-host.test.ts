@@ -18,7 +18,7 @@ describe("Company-confirmed SEO host and sitemap policy", () => {
   it("records this revision's content changes without inventing dates for unchanged pages", () => {
     const entries = sitemapEntries();
     // Both pages gained company-supplied sections in the October 28 content brief.
-    expect(entries.find((entry) => entry.path === "/products/modular-operation-theatre")?.lastmod).toBe("2026-10-28");
+    expect(entries.find((entry) => entry.path === "/products/modular-operation-theatre")?.lastmod).toBe("2026-11-23");
     expect(entries.find((entry) => entry.path === "/products/ot-pendant")?.lastmod).toBe("2026-10-28");
     expect(sitemapXml()).toContain("<lastmod>2026-10-28</lastmod>");
     // The HEPA guide received a significant editorial expansion on November 5.

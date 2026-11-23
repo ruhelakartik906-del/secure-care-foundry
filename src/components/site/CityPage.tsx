@@ -34,6 +34,7 @@ export function CityPage({ c }: { c: City }) {
             "Modular operation theatre installed in {c.name} – Unicare". Do not use stock or AI images. */}
         <h2 className="text-2xl font-bold text-foreground">Modular OT Solutions in {c.name}</h2>
         <p className="mt-3">{c.context}</p>
+        <p className="mt-3">For panel systems, finishes and full scope details, see our main page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }} className="text-brand-blue underline">modular operation theatre manufacturers</Link>.</p>
         <H>Hospital Infrastructure Solutions</H>
         <p className="mt-3">Along with the operation theatre, we supply the connected hospital infrastructure: medical gas pipelines for wards and ICUs, bed head panels, cubicle curtain tracks, CSSD planning and hospital furniture.</p>
         <H>Products We Install</H>

@@ -38,7 +38,8 @@ export const pageSeo: Record<string, PageCopy> = {
   },
   "/faqs": { h1: "Modular OT & MGPS: Frequently Asked Questions" },
   "/products/modular-operation-theatre": {
-    h1: "Modular Operation Theatre Manufacturer in India",
+    title: "Modular Operation Theatre Manufacturers & Suppliers",
+    h1: "Modular Operation Theatre Manufacturers & Suppliers in India",
     description: "Modular Operation Theatre supply and installation for hospitals, with scope planned around your facility, layout and project requirements. Get a quote.",
   },
   "/products/medical-gas-pipeline-system": {

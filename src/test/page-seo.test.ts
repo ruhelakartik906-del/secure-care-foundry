@@ -19,7 +19,7 @@ describe("Task 4 metadata limits", () => {
 
 describe("requested H1 copy", () => {
   const requestedH1s: Record<string, string> = {
-    "/products/modular-operation-theatre": "Modular Operation Theatre Manufacturer in India",
+    "/products/modular-operation-theatre": "Modular Operation Theatre Manufacturers & Suppliers in India",
     "/products/medical-gas-pipeline-system": "Medical Gas Pipeline System (MGPS) Manufacturer in India",
     "/products/laminar-air-flow": "Laminar Air Flow System for Operation Theatres",
     "/products/ot-pendant": "OT Pendant Manufacturer – Surgical & Anaesthesia Pendants",

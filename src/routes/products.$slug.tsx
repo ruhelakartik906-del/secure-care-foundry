@@ -16,6 +16,7 @@ import { seo, breadcrumbSchema } from "@/lib/seo";
 import { productSchema } from "@/lib/structured-data";
 import { cities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
+import { locations } from "@/data/locations";
 const otHeroSrc = "/images/modular-ot-hero.webp";
 const otSupportSrc = "/images/modular-ot-room.webp";
 const lafDiffuserSrc = "/images/perforated-cleanroom-ceiling-air-diffuser.webp";
@@ -108,6 +109,7 @@ function ProductPage() {
       <section className="site-wrap grid gap-12 pb-16 lg:grid-cols-12">
         <div className="prose-unicare min-w-0 max-w-full lg:col-span-8">
           {isOt && <OtLongForm />}
+          {isOt && <OtSuppliersAcrossIndia />}
           {lf && <LongFormSections lf={lf} name={p.name} />}
           {p.slug === "medical-gas-pipeline-system" && <p>Looking for the outlets themselves? See our <Link to="/products/$slug" params={{ slug: "oxygen-outlet" }}>medical gas and oxygen outlets</Link>, or read the <Link to="/mgps-cost-india">MGPS cost guide</Link> for indicative budgets.</p>}
           {p.slug === "oxygen-outlet" && <p>Outlets are part of a complete <Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }}>medical gas pipeline system</Link>. For indicative pipeline budgets, see the <Link to="/mgps-cost-india">MGPS cost guide</Link>.</p>}
@@ -282,5 +284,18 @@ function LafLongForm() {
       <h2>LAF Cost Factors</h2>
       <p>Price depends on plenum size, filter grade and quantity, material and the HVAC scope. Indicatively ₹85,000 – ₹2.5 Lakh per unit — see the <Link to="/modular-ot-cost-india">pricing guide</Link>. For a comparison with mixed-flow systems read <Link to="/resources/comparisons/$slug" params={{ slug: "laf-vs-conventional-hvac" }}>LAF vs conventional HVAC</Link>.</p>
     </>
+  );
+}
+
+const topOtStates = ["uttar-pradesh", "maharashtra", "bihar", "west-bengal", "madhya-pradesh", "tamil-nadu", "rajasthan", "karnataka", "gujarat", "delhi"];
+
+function OtSuppliersAcrossIndia() {
+  const list = topOtStates.map((slug) => locations.find((l) => l.slug === slug)).filter((l): l is NonNullable<typeof l> => Boolean(l));
+  return (
+    <section aria-labelledby="ot-suppliers-india">
+      <h2 id="ot-suppliers-india">Modular OT Suppliers Across India</h2>
+      <p>We manufacture modular OT panels and systems at our Faridabad works and supply and install them for hospitals in many states. Each state page explains how surveys, delivery and installation are planned for projects there.</p>
+      <ul className="grid gap-2 sm:grid-cols-2">{list.map((l) => <li key={l.slug}><Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular OT manufacturers in {l.name}</Link></li>)}</ul>
+    </section>
   );
 }

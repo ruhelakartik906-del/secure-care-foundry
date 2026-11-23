@@ -60,7 +60,9 @@ export function Crumbs({ items }: { items: { label: string; to?: string }[] }) {
 
 export function PageHero({ title, intro, crumbs }: { title: string; intro?: string; crumbs: { label: string; to?: string }[] }) {
   const path = useRouterState({ select: (state) => state.location.pathname });
-  const heading = pageSeo[path]?.h1 ?? title;
+  // Normalise so prerendered ("/products/", "/x/index.html") and client paths pick the same H1 (avoids React #418).
+  const key = path.replace(/\/index\.html$/, "").replace(/(.)\/+$/, "$1") || "/";
+  const heading = pageSeo[key]?.h1 ?? title;
   return (
     <section className="bg-navy text-navy-foreground">
       <div className="site-wrap py-12 md:py-16">
