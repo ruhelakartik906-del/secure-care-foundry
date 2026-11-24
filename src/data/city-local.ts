@@ -1,0 +1,251 @@
+import type { City } from "./cities";
+
+/** Local detail added to every city page. Distances are approximate road figures from
+ *  Ballabhgarh, Faridabad; confirmed dispatch dates are set in each project programme. */
+export type CityLocal = Pick<City, "districts" | "delivery" | "local"> & { faq: { q: string; a: string } };
+
+export const cityLocal: Record<string, CityLocal> = {
+  ghaziabad: {
+    districts: ["Hapur", "Bulandshahr", "Meerut", "Gautam Buddh Nagar (Noida)", "Baghpat", "East Delhi"],
+    delivery: "Ghaziabad is roughly 45 km from our Ballabhgarh, Faridabad works, usually 1.5 to 2 hours by road through Delhi or the Eastern Peripheral Expressway depending on traffic and permitted hours for goods vehicles. Our Ghaziabad office on Dasna Road sits between the works and most city hospitals, so the project engineer can attend weekly site reviews without separate travel planning.",
+    local: [
+      "Hospitals in Ghaziabad range from multispecialty hospitals along NH-9 and in Indirapuram and Vaishali to nursing homes in Raj Nagar, Kavi Nagar and Modinagar. Many of these buildings were designed with a conventional plastered OT, and the common request is to convert it to a modular theatre without closing the hospital. That usually means one theatre is converted at a time while surgery continues in the others.",
+      "Because the Ghaziabad office is close by, the hospital can review sample panels, door finishes and the surgeon control panel layout before approval, and changes during installation can be inspected on the same day. Smaller hospitals often combine the OT with a central oxygen manifold and a few ICU bed head panels in the same contract.",
+    ],
+    faq: { q: "How quickly can you visit a Ghaziabad hospital for a survey?", a: "Ghaziabad visits are arranged from our Dasna Road office. The visit date is fixed when you call or WhatsApp us with your address and requirement." },
+  },
+  kanpur: {
+    districts: ["Kanpur Dehat", "Unnao", "Fatehpur", "Etawah", "Auraiya", "Kannauj"],
+    delivery: "Kanpur is about 470 km from our Faridabad works by road via the Yamuna Expressway and the Agra–Lucknow Expressway, roughly 7 to 8 hours of driving. Panels, doors, the laminar air flow unit and accessories are loaded in the order they will be installed, so the site team in Kanpur can begin with the wall frame and ceiling grid as soon as the first vehicle is unloaded.",
+    local: [
+      "Kanpur has a large base of private hospitals and nursing homes around Swaroop Nagar, Kakadeo, Kidwai Nagar and the GT Road belt, along with GSVM Medical College and its associated hospitals. Industrial-area hospitals and trust hospitals also take up OT upgrades when they expand surgical services.",
+      "Many Kanpur buildings have high ceilings with exposed beams, which helps when fitting a laminar air flow plenum but requires the false ceiling to be levelled carefully. Summer temperatures in Kanpur are high, so the HVAC contractor's cooling capacity and the OT's room sealing are reviewed together before panels are released for manufacture.",
+    ],
+    faq: { q: "How long does material take to reach Kanpur from Faridabad?", a: "The road drive is about 7 to 8 hours. The actual dispatch and arrival dates are confirmed in the project programme once the room is ready." },
+  },
+  varanasi: {
+    districts: ["Chandauli", "Ghazipur", "Jaunpur", "Mirzapur", "Bhadohi", "Azamgarh"],
+    delivery: "Varanasi is approximately 820 km from our Faridabad works via the Yamuna, Agra–Lucknow and Purvanchal Expressways, about 12 to 13 hours of driving. Large panels are routed to avoid the congested old-city lanes; where a hospital is in a narrow area, panels are delivered in shorter lengths or transferred to a smaller vehicle for the last stretch.",
+    local: [
+      "Varanasi serves as a referral centre for eastern UP and parts of Bihar, with the Institute of Medical Sciences at BHU, government hospitals and a growing number of private hospitals along the Ring Road, Sigra, Lanka and Mahmoorganj. Nursing homes in Jaunpur, Ghazipur and Mirzapur also refer complex surgery to the city.",
+      "The humid monsoon in Varanasi makes moisture control in the OT a recurring discussion, so panel joints are sealed and the HVAC plan includes dehumidification. Where an older building has thick load-bearing walls, the modular wall is fixed on a separate frame so services can run behind it without cutting the structure.",
+    ],
+    faq: { q: "Can you deliver panels to a hospital in a narrow lane of Varanasi?", a: "Yes, by planning panel lengths and a smaller vehicle for the final stretch. The survey confirms the access route before manufacturing." },
+  },
+  prayagraj: {
+    districts: ["Kaushambi", "Pratapgarh", "Fatehpur", "Mirzapur", "Bhadohi", "Rewa (Madhya Pradesh, nearby)"],
+    delivery: "Prayagraj is about 680 km from our Faridabad works via the Yamuna Expressway, the Agra–Lucknow Expressway and NH-19 from Kanpur, roughly 10 to 11 hours of driving. During major melas the city has traffic restrictions, so dispatch dates for Prayagraj are planned around the local calendar.",
+    local: [
+      "Prayagraj has the Swaroop Rani Nehru Hospital associated with MLN Medical College, other government hospitals, and private hospitals in Civil Lines, George Town and along the Allahabad–Kanpur road. Hospitals are adding surgical wings and ICUs to handle patients from the surrounding districts.",
+      "A common Prayagraj project combines a modular OT with a recovery room and an ICU on the same floor. Planning these together allows the pass box, scrub station, gas outlets and bed head panels to be positioned in one drawing, so the civil team does not open walls twice.",
+    ],
+    faq: { q: "Does the Magh Mela or Kumbh affect installation in Prayagraj?", a: "It can affect vehicle entry and site access. We schedule dispatch and installation dates with the hospital to avoid restricted periods." },
+  },
+  gorakhpur: {
+    districts: ["Deoria", "Kushinagar", "Maharajganj", "Basti", "Sant Kabir Nagar", "Siddharthnagar"],
+    delivery: "Gorakhpur is approximately 800 km from our Faridabad works via the Agra–Lucknow Expressway, Lucknow and the Purvanchal and Gorakhpur Link Expressways, about 12 to 13 hours of driving. Material is dispatched in complete lots because a missing item would otherwise need another long trip.",
+    local: [
+      "Gorakhpur is the main healthcare centre for north-eastern UP and the Nepal border districts, with AIIMS Gorakhpur, BRD Medical College and private hospitals and nursing homes in Medical College Road, Golghar and Mohaddipur areas.",
+      "Hospitals in Gorakhpur frequently handle patients from Deoria, Kushinagar and Maharajganj, which increases demand for additional theatres and ICU beds. Monsoon flooding in low-lying parts of the region is considered when planning delivery dates and the position of ground-floor plant rooms.",
+    ],
+  faq: { q: "Can you deliver everything for a Gorakhpur OT in one dispatch?", a: "We plan dispatch in complete lots matched to the installation sequence, confirmed after the site survey, so work is not held up waiting for parts." },
+  },
+  agra: {
+    districts: ["Mathura", "Firozabad", "Etah", "Aligarh", "Dholpur (Rajasthan)", "Bharatpur (Rajasthan)"],
+    delivery: "Agra is about 175 to 190 km from our Ballabhgarh works by NH-19 through Palwal and Mathura, or via the Yamuna Expressway, roughly 3 to 3.5 hours of driving. This makes Agra one of the quickest destinations for a sample review, survey or follow-up visit outside the NCR.",
+    local: [
+      "Agra has SN Medical College and its hospital, district hospitals, and private hospitals along the Delhi Gate, Sikandra, Kamla Nagar and Fatehabad Road areas. Nursing homes in Mathura, Firozabad and Aligarh also take up OT upgrades.",
+      "Agra's dry, hot summers and dusty conditions make pre-filtration and positive room pressure important. Restrictions around the Taj Trapezium Zone mainly concern industrial emissions, but the hospital should still confirm any local rules on diesel generator use and construction work with the authorities.",
+    ],
+    faq: { q: "How far is Agra from your Faridabad works?", a: "About 175 to 190 km by road, roughly 3 to 3.5 hours. Exact dispatch dates are set in the project programme." },
+  },
+  dehradun: {
+    districts: ["Haridwar", "Tehri Garhwal", "Pauri Garhwal", "Uttarkashi", "Saharanpur (Uttar Pradesh)", "Roorkee"],
+    delivery: "Dehradun is around 280 km from our Faridabad works via the Delhi–Meerut Expressway, Muzaffarnagar and Roorkee, about 5 to 6 hours of driving. For hill destinations beyond Dehradun, panel sizes and vehicles are chosen for narrow roads, and deliveries avoid the heaviest monsoon weeks.",
+    local: [
+      "Dehradun has government hospitals including the Doon Medical College hospital, nearby AIIMS Rishikesh, and private hospitals along Rajpur Road, Saharanpur Road and in Prem Nagar. Hospitals in Haridwar and Roorkee also refer complex cases to the city.",
+      "Winter heating, monsoon humidity and occasional power interruptions affect OT design in Dehradun, so the HVAC plan and the electrical back-up for the OT are discussed with the hospital's MEP consultants alongside the panel layout.",
+    ],
+    faq: { q: "Can you deliver to hospitals in the hills beyond Dehradun?", a: "Yes, with smaller vehicles and shorter panels where needed. Delivery dates depend on road conditions and are confirmed for the actual site." },
+  },
+};
+
+/** New local pages requested on 24 Nov 2026. */
+export const newCities: City[] = [
+  {
+    slug: "faridabad", name: "Faridabad", state: "Haryana", heading: "Modular OT Manufacturer in Faridabad",
+    title: "Modular OT Manufacturer in Faridabad | Unicare",
+    description: "Modular OT manufacturer with works in Ballabhgarh, Faridabad: OT panels, laminar air flow, MGPS and installation for hospitals in Faridabad and Palwal.",
+    intro: "Unicare Medical Solutions manufactures modular operation theatre panels and systems at its works in Ballabhgarh, Faridabad. Hospitals in Faridabad can see materials and finishes at the source and work with the same team from design to handover.",
+    context: "Faridabad has a large and growing healthcare sector, from big private hospitals along the Mathura Road and in Sector 16, 21 and Greater Faridabad to ESIC Medical College and Hospital in NIT and many nursing homes in Old Faridabad, Ballabhgarh and Palwal. Many of these hospitals are expanding theatres and ICUs as new residential sectors fill up.",
+    coverage: "We cover all of Faridabad, including NIT, Old Faridabad, Ballabhgarh, Greater Faridabad and the new sectors along the Faridabad–Gurgaon road, as well as Palwal and South Delhi.",
+    logistics: "Since our works are in Ballabhgarh, panels for Faridabad hospitals can be delivered in the exact order of assembly, often on the same day they are released from the shop floor.",
+    districts: ["Palwal", "Gurugram", "Nuh", "South Delhi", "Mathura (Uttar Pradesh)", "Greater Faridabad"],
+    delivery: "Most Faridabad hospitals are between 5 and 25 km from our Ballabhgarh works, usually under an hour by road along Mathura Road (NH-19) or the Faridabad bypass. Short distance allows panel delivery in small batches, which suits hospitals with limited storage space.",
+    local: [
+      "Being in the same city as our manufacturing unit, Faridabad hospitals can visit the works by appointment to review panel samples, door hardware, the surgeon control panel and laminar air flow units before approving drawings. Changes after approval, such as adding a pass box or moving a pendant, can be checked in person at the works.",
+      "Faridabad's new sectors have many hospitals in recently built commercial blocks, where ceiling height and shaft positions were not originally designed for an OT. The survey checks these early so the HVAC ducting, laminar air flow plenum and gas pipeline can fit above the modular ceiling.",
+      "For hospitals in Palwal and the Faridabad–Mathura belt, the same team handles survey, installation and later maintenance visits, which keeps one point of responsibility after handover.",
+    ],
+    faqs: [
+      { q: "Where are your works in Faridabad?", a: "Our works are at Plot No. B/260, Adarsh Nagar, Subedar Colony, Ballabhgarh, District Faridabad – 121004, Haryana. Visits are by appointment." },
+      { q: "Can I see OT panel samples before ordering?", a: "Yes. Faridabad hospitals can review samples and finishes at the works or ask our team to bring them to the site." },
+      { q: "Do you also install MGPS in Faridabad hospitals?", a: "Yes. Medical gas pipelines, manifolds, alarms and outlets can be planned with the modular OT or as a separate project." },
+      { q: "How is a Faridabad project priced?", a: "Each quotation is project-specific, based on room size, panel material, airflow system, doors and the overall scope." },
+    ],
+  },
+  {
+    slug: "noida", name: "Noida", state: "Uttar Pradesh", heading: "Modular OT Manufacturer in Noida & Greater Noida",
+    title: "Modular OT Manufacturer in Noida & Greater Noida",
+    description: "Modular OT design, panels, laminar air flow and MGPS for hospitals in Noida and Greater Noida, made at our Faridabad works and installed by our own team.",
+    intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals in Noida and Greater Noida. Panels are made at our Faridabad works and our Ghaziabad office supports site coordination across Gautam Buddh Nagar.",
+    context: "Noida and Greater Noida have seen rapid hospital growth, with large private hospitals in the sectors along the Noida–Greater Noida Expressway, the Child PGI in Sector 30, the Government Institute of Medical Sciences in Greater Noida, and many nursing homes in the older sectors.",
+    coverage: "We cover Noida sectors, Noida Extension (Greater Noida West), Greater Noida, Knowledge Park, Dadri and the Yamuna Expressway area, as well as nearby Ghaziabad and East Delhi.",
+    logistics: "Noida is close to both our Faridabad works and our Ghaziabad office, so the project engineer can attend design meetings and site reviews regularly.",
+    districts: ["Greater Noida", "Greater Noida West", "Ghaziabad", "Bulandshahr", "Hapur", "East Delhi"],
+    delivery: "Noida is approximately 30 to 40 km from our Ballabhgarh works via the Kalindi Kunj road or the Faridabad–Noida link, about 1 to 1.5 hours by road. Greater Noida and the Yamuna Expressway area are around 45 to 60 km, roughly 1.5 to 2 hours.",
+    local: [
+      "Many Noida hospitals are in high-rise commercial buildings, so the survey records goods lift sizes, loading bays and fire-exit routes before panels are cut. In Greater Noida, new hospital buildings on larger plots allow the OT block, CSSD and ICU to be planned together from the start.",
+      "Hospitals in Noida Extension and Greater Noida West are serving fast-growing residential societies, and many begin with one or two theatres while leaving space and service connections for more. The modular design allows extra theatres to be added later with matching panels and finishes.",
+      "The Noida authority area and the Greater Noida authority area have separate building rules, so the hospital's architect should confirm local building and fire requirements; we supply the drawings and data sheets they need for submission.",
+    ],
+    faqs: [
+      { q: "Do you cover Greater Noida as well as Noida?", a: "Yes. We take up modular OT projects in Noida, Greater Noida, Greater Noida West and along the Yamuna Expressway." },
+      { q: "Can panels be taken up a high-rise building in Noida?", a: "Yes. Panel lengths are planned around the goods lift or staircase measured during the site survey." },
+      { q: "Can we add more theatres later?", a: "Yes. Modular panels allow theatres to be added later with matching finishes, if space and services are planned at the start." },
+      { q: "How long is the drive from your works to Noida?", a: "About 1 to 1.5 hours for Noida and 1.5 to 2 hours for Greater Noida. Dispatch dates are confirmed in the programme." },
+    ],
+  },
+  {
+    slug: "gurgaon", name: "Gurgaon", state: "Haryana", heading: "Modular OT Manufacturer in Gurgaon (Gurugram)",
+    title: "Modular OT Manufacturer in Gurgaon | Unicare",
+    description: "Modular OT manufacturer for Gurgaon (Gurugram) hospitals: OT panels, laminar air flow, hermetic doors and MGPS made in Faridabad and installed by our team.",
+    intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals in Gurgaon (Gurugram). Our Ballabhgarh, Faridabad works is close by, which keeps material transit short and site visits easy to arrange.",
+    context: "Gurgaon is one of north India's main private healthcare centres, with large multispecialty and super-specialty hospitals along the Golf Course Road, Sohna Road and Sector 38–56 belt, the civil hospital, and many nursing homes and day-surgery centres in Old Gurgaon and the newer sectors.",
+    coverage: "We cover Gurgaon city and sectors, Sohna Road, Golf Course Extension, Manesar, Sohna, Pataudi and nearby Rewari, Jhajjar and Dwarka.",
+    logistics: "The short road route from Faridabad allows panels and equipment to be delivered in stages when hospital storage space is limited.",
+    districts: ["Rewari", "Jhajjar", "Nuh", "Palwal", "Dwarka (Delhi)", "Manesar"],
+    delivery: "Central Gurgaon is about 35 to 45 km from our Ballabhgarh works via the Gurgaon–Faridabad road, roughly 1 to 1.5 hours by road; Manesar and Sohna are a little further. Deliveries are timed for the hospital's permitted goods-entry hours.",
+    local: [
+      "Large Gurgaon hospitals often run several theatres at once and want upgrades done one room at a time. The work zone is sealed with dust screens and negative-pressure arrangements agreed with the infection control team, and noisy work is scheduled with the hospital's facility manager.",
+      "Day-surgery centres and specialty clinics in Gurgaon's commercial towers often need a compact theatre with laminar air flow, a pass box and a scrub station within a small floor plate. The survey checks ceiling void depth and exhaust routes, which are frequently limited in office buildings.",
+      "Hospitals in Gurgaon commonly ask for integrated OT features such as the surgeon control panel, recording and display systems. These are coordinated with the panel layout so cables and equipment are concealed behind the modular wall.",
+    ],
+    faqs: [
+      { q: "Do you take up OT upgrades inside running Gurgaon hospitals?", a: "Yes. We plan room-by-room work with dust control and timings agreed with the hospital." },
+      { q: "Can a modular OT be built in a commercial building in Gurgaon?", a: "Often yes, after the survey confirms ceiling void, structure, exhaust routes and local approvals." },
+      { q: "Do you cover Manesar and Sohna?", a: "Yes. Projects in Manesar, Sohna, Pataudi and nearby Rewari and Jhajjar are covered." },
+      { q: "Do you supply digital OT integration in Gurgaon?", a: "Recording, display and integration options can be included; see our digital operation theatre page and ask for a quote." },
+    ],
+  },
+  {
+    slug: "lucknow", name: "Lucknow", state: "Uttar Pradesh", heading: "Modular OT Manufacturer in Lucknow",
+    title: "Modular OT Manufacturer in Lucknow | Unicare",
+    description: "Modular OT design, manufacturing and installation for Lucknow hospitals: OT panels, laminar air flow, hermetic doors and MGPS, with delivery from Faridabad.",
+    intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals and nursing homes in Lucknow. Panels and systems are made at our Faridabad works and installed in Lucknow by our own team.",
+    context: "Lucknow is a major medical centre for Uttar Pradesh, with institutions such as KGMU, SGPGIMS and the Dr. Ram Manohar Lohia Institute, and many private hospitals along Faizabad Road, Shaheed Path, Kanpur Road and in Gomti Nagar, Aliganj and Indira Nagar.",
+    coverage: "We cover Lucknow city including Gomti Nagar, Aliganj, Indira Nagar, Alambagh and Chinhat, and nearby districts such as Barabanki, Unnao, Sitapur, Rae Bareli and Hardoi.",
+    logistics: "Material travels from Faridabad by expressway and is unloaded in the order of installation so assembly can begin without waiting for later items.",
+    districts: ["Barabanki", "Unnao", "Sitapur", "Rae Bareli", "Hardoi", "Lakhimpur Kheri"],
+    delivery: "Lucknow is about 540 km from our Faridabad works via the Yamuna Expressway and the Agra–Lucknow Expressway, roughly 8 to 9 hours of driving. Dispatch is timed so panels reach the site after civil work, ceiling supports and HVAC openings are ready.",
+    local: [
+      "New private hospitals along Shaheed Path and Sultanpur Road are often purpose-built, which allows the OT complex, CSSD and ICUs to be planned together. Older nursing homes in Aminabad, Chowk and Aliganj more often convert an existing room, where ceiling height and beam positions decide what laminar air flow arrangement is possible.",
+      "Lucknow's hot summers and humid monsoon both affect OT conditions, so room sealing, the HVAC plan and the surgeon control panel's temperature and humidity display are coordinated with the hospital's MEP consultant.",
+      "Hospitals in Lucknow that are adding critical care beds often combine the OT project with a medical gas pipeline extension, bed head panels and cubicle curtain tracks, so the whole surgical and ICU floor is handled by one supplier.",
+    ],
+    faqs: [
+      { q: "Do you install modular OTs in Lucknow?", a: "Yes. We manufacture the OT panels and systems at our Faridabad works and install them in Lucknow with our own team." },
+      { q: "How far is Lucknow from your works?", a: "About 540 km by expressway, roughly 8 to 9 hours of driving. Dispatch dates are confirmed in the project programme." },
+      { q: "Can an old nursing home room in Lucknow become a modular OT?", a: "In many cases yes. The site survey checks ceiling height, beams, services and access before design." },
+      { q: "Do you cover Barabanki and Rae Bareli?", a: "Yes. Nearby districts including Barabanki, Unnao, Sitapur, Rae Bareli and Hardoi are covered." },
+    ],
+  },
+  {
+    slug: "meerut", name: "Meerut", state: "Uttar Pradesh", heading: "Modular OT Manufacturer in Meerut",
+    title: "Modular OT Manufacturer in Meerut | Unicare",
+    description: "Modular OT manufacturer for Meerut hospitals and nursing homes: OT panels, laminar air flow, hermetic doors and MGPS, made in Faridabad and installed on site.",
+    intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals and nursing homes in Meerut and western Uttar Pradesh, with panels made at our Faridabad works.",
+    context: "Meerut is a key healthcare centre for western UP, with LLRM Medical College, the district hospital, private medical colleges and many private hospitals and nursing homes along Garh Road, Delhi Road, Mawana Road and in Shastri Nagar.",
+    coverage: "We cover Meerut city, Modipuram, Partapur, Sardhana and Mawana, and nearby districts including Baghpat, Muzaffarnagar, Hapur, Bulandshahr, Bijnor and Shamli.",
+    logistics: "The Delhi–Meerut Expressway keeps road time short, and our Ghaziabad office lies on the way for site coordination.",
+    districts: ["Baghpat", "Muzaffarnagar", "Hapur", "Bulandshahr", "Bijnor", "Shamli"],
+    delivery: "Meerut is approximately 110 to 120 km from our Ballabhgarh works via Delhi and the Delhi–Meerut Expressway, about 2.5 to 3 hours of driving. This allows the hospital to schedule panel delivery close to the installation date rather than storing materials for long periods.",
+    local: [
+      "Many Meerut hospitals are family-run multispecialty or surgical hospitals that have grown floor by floor. The survey checks whether the planned OT floor can take the HVAC equipment and how the pipeline and electrical supplies reach it from existing plant rooms.",
+      "Hospitals in Muzaffarnagar, Baghpat and Bijnor often look for one supplier to handle both the OT and the medical gas pipeline, since local specialist contractors may be limited. Combining the scope reduces coordination between vendors and gives one team responsibility at handover.",
+      "Meerut's cold, foggy winters and hot summers mean the OT must hold stable conditions through the year; the HVAC design is matched to these seasons and the theatre is sealed to hold positive pressure.",
+    ],
+    faqs: [
+      { q: "Do you take up modular OT projects in Meerut?", a: "Yes. We design, manufacture and install modular OTs for hospitals in Meerut and nearby districts." },
+      { q: "How long does it take to reach Meerut from Faridabad?", a: "About 2.5 to 3 hours by road. Dispatch dates are agreed in the project programme." },
+      { q: "Do you also cover Muzaffarnagar and Baghpat?", a: "Yes. Baghpat, Muzaffarnagar, Hapur, Bulandshahr, Bijnor and Shamli are covered." },
+      { q: "Can OT and MGPS be done together in Meerut?", a: "Yes. The modular OT and medical gas pipeline can be planned and installed by the same team." },
+    ],
+  },
+  {
+    slug: "patna", name: "Patna", state: "Bihar", heading: "Modular OT Manufacturer in Patna",
+    title: "Modular OT Manufacturer in Patna | Unicare",
+    description: "Modular OT design, manufacturing and installation for Patna and Bihar hospitals: OT panels, laminar air flow, hermetic doors and MGPS, dispatched from Faridabad.",
+    intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals and nursing homes in Patna. Panels and systems are made at our Faridabad works and dispatched by road for installation by our team.",
+    context: "Patna is Bihar's main referral centre, with AIIMS Patna, PMCH, IGIMS, NMCH and many private hospitals along Bailey Road, Boring Road, Kankarbagh, Rajendra Nagar and the Patna–Gaya road.",
+    coverage: "We cover Patna city, Danapur, Phulwari Sharif, Patna City and Hajipur, and nearby districts including Nalanda, Vaishali, Saran, Bhojpur and Jehanabad.",
+    logistics: "Because the distance is long, every lot is checked against the drawings before dispatch and loaded in the order of installation.",
+    districts: ["Nalanda", "Vaishali (Hajipur)", "Saran", "Bhojpur", "Jehanabad", "Begusarai"],
+    delivery: "Patna is approximately 1,050 km from our Faridabad works via the Yamuna, Agra–Lucknow and Purvanchal Expressways and onward through Buxar, about 17 to 19 hours of driving, so goods transit normally takes more than a day. Dispatch is planned against the Patna site's readiness so materials are not stored for long in a humid building.",
+    local: [
+      "Many Patna hospitals are in multi-storey buildings on busy roads with limited unloading space. The survey records the unloading point, lift or staircase route, and permitted hours for goods vehicles so panels can be moved in without disrupting patients.",
+      "Patna's hot, humid summers and the monsoon make room sealing and HVAC dehumidification important. The OT design is coordinated with the hospital's HVAC contractor so the laminar air flow and room conditions work together.",
+      "Hospitals in Patna that are adding ICU beds often extend their medical gas pipeline at the same time as building a new OT, so the existing system's capacity is checked during the same survey.",
+    ],
+    faqs: [
+      { q: "Do you install modular OTs in Patna?", a: "Yes. We manufacture the OT panels and systems in Faridabad and install them in Patna with our own team." },
+      { q: "How long does road transit to Patna take?", a: "The drive is about 17 to 19 hours, so goods transit normally spans more than a day. Dates are confirmed in the programme." },
+      { q: "Do you cover hospitals outside Patna in Bihar?", a: "Yes. Nearby districts such as Nalanda, Vaishali, Saran and Bhojpur are covered, and other Bihar cities on request." },
+      { q: "Can you check our existing gas pipeline during the OT survey?", a: "Yes. The survey can include the existing pipeline so any extension for the new OT or ICU is planned correctly." },
+    ],
+  },
+  {
+    slug: "mgps-ghaziabad", path: "/medical-gas-pipeline-ghaziabad", kind: "mgps", name: "Ghaziabad", state: "Uttar Pradesh", heading: "Medical Gas Pipeline in Ghaziabad",
+    title: "Medical Gas Pipeline in Ghaziabad | Unicare",
+    description: "Medical gas pipeline system (MGPS) for Ghaziabad hospitals: oxygen, medical air, vacuum and N2O lines, manifolds, alarms and outlets, from our Dasna Road office.",
+    intro: "Unicare designs and installs medical gas pipeline systems for hospitals and nursing homes in Ghaziabad, supported by our office on Dasna Road and our works in Faridabad.",
+    context: "Ghaziabad hospitals in Indirapuram, Vaishali, Raj Nagar, Kavi Nagar and along NH-9 are adding ICU, HDU and operation theatre capacity. Many still depend on portable cylinders at the bedside and are moving to a central manifold and piped supply to improve safety and reduce cylinder handling on wards.",
+    coverage: "We cover Ghaziabad city, Indirapuram, Vaishali, Kaushambi, Raj Nagar Extension, Modinagar, Muradnagar and Loni, with nearby Noida, Hapur and East Delhi.",
+    logistics: "Copper pipe, manifolds and fittings are delivered from Faridabad to Ghaziabad in planned lots, and our Ghaziabad team attends site testing and handover.",
+    districts: ["Hapur", "Bulandshahr", "Gautam Buddh Nagar (Noida)", "Meerut", "Baghpat", "East Delhi"],
+    delivery: "Ghaziabad is roughly 45 km from our Ballabhgarh, Faridabad works, about 1.5 to 2 hours by road. Because our office is on Dasna Road, the engineer can attend pressure tests, purity tests and alarm checks without separate travel planning.",
+    local: [
+      "Many Ghaziabad hospitals are converting existing buildings floor by floor, so the pipeline route usually runs along corridor ceilings with zone valve boxes at each ward entrance. The survey identifies a ventilated ground-floor location for the manifold room with vehicle access for cylinder exchange, away from electrical rooms and kitchens.",
+      "For hospitals adding a modular OT at the same time, gas outlets, pendants and the AGSS are positioned in the same drawing as the OT panels, which avoids opening finished walls later.",
+      "Existing pipelines in older Ghaziabad nursing homes are often undocumented, so we trace and pressure-check them before connecting new branches. Where the old line cannot be relied on, a new main is laid and the old one isolated.",
+    ],
+    faqs: [
+      { q: "Do you install MGPS in Ghaziabad hospitals?", a: "Yes. We design and install oxygen, medical air, vacuum and nitrous oxide pipelines with manifolds, valve boxes, alarms and outlets in Ghaziabad." },
+      { q: "Can you extend our existing gas pipeline?", a: "Yes, after tracing and testing the existing system to confirm it can be extended safely." },
+      { q: "Where should the manifold room be?", a: "Usually at ground level with ventilation and vehicle access, away from electrical rooms and kitchens. The survey confirms the best location." },
+      { q: "Do you test the pipeline before handover?", a: "Yes. Pressure, leak and purity tests are carried out and recorded before the system is handed over." },
+    ],
+  },
+  {
+    slug: "mgps-noida", path: "/medical-gas-pipeline-noida", kind: "mgps", name: "Noida", state: "Uttar Pradesh", heading: "Medical Gas Pipeline in Noida",
+    title: "Medical Gas Pipeline in Noida | Unicare",
+    description: "Medical gas pipeline system (MGPS) for hospitals in Noida and Greater Noida: oxygen, air, vacuum and N2O lines, manifolds, alarm panels and outlets, installed.",
+    intro: "Unicare designs and installs medical gas pipeline systems for hospitals in Noida and Greater Noida, with materials dispatched from our Faridabad works and site support from our Ghaziabad office.",
+    context: "Hospitals in Noida's sectors, Noida Extension and Greater Noida are growing quickly, and many new buildings plan central oxygen, medical air and vacuum from the outset. Older nursing homes in the original sectors are upgrading from bedside cylinders to a piped supply as they add ICU beds.",
+    coverage: "We cover Noida sectors, Greater Noida West, Greater Noida, Knowledge Park, Dadri and the Yamuna Expressway area, with nearby Ghaziabad and East Delhi.",
+    logistics: "Pipeline materials reach Noida from Faridabad in about an hour or two, so materials can be delivered close to the installation stage.",
+    districts: ["Greater Noida", "Greater Noida West", "Ghaziabad", "Bulandshahr", "Hapur", "East Delhi"],
+    delivery: "Noida is approximately 30 to 40 km from our Ballabhgarh works, about 1 to 1.5 hours by road, and Greater Noida around 45 to 60 km, roughly 1.5 to 2 hours. Copper pipe is delivered capped and stored clean until it is installed.",
+    local: [
+      "In Noida's high-rise hospital buildings, the medical gas risers usually run through dedicated shafts, with zone valve boxes on each floor and an area alarm at every nursing station. The survey checks shaft space and fire-stopping requirements before the pipe sizes are fixed.",
+      "Larger hospitals in Greater Noida often install a liquid oxygen tank with a cylinder manifold as back-up. The tank location needs clear vehicle access for the gas supplier and a licence from PESO, so we coordinate the yard layout with the hospital's gas supplier and architect.",
+      "Nursing homes in the older Noida sectors usually start with a duplex cylinder manifold, oxygen and vacuum to the OT and ICU, and capped branches for future wards, so later expansion does not require shutting down the whole system.",
+    ],
+    faqs: [
+      { q: "Do you install MGPS in Noida and Greater Noida?", a: "Yes. We design and install medical gas pipelines with manifolds, alarms and outlets across Noida and Greater Noida." },
+      { q: "Do we need a licence for a liquid oxygen tank?", a: "Yes. Bulk liquid oxygen storage needs a PESO licence; the gas supplier and hospital usually apply, and we coordinate the layout." },
+      { q: "Can the pipeline be extended later?", a: "Yes. We leave isolation valves and capped branches where future wards are planned." },
+      { q: "Which gases can be piped?", a: "Oxygen, medical air, vacuum, nitrous oxide and others as required, decided by the departments in your hospital." },
+    ],
+  },
+];

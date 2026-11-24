@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { PageHero, Faqs, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
 import { useEnquiry } from "./EnquiryDialog";
-import { stateServing } from "@/data/state-serving";
+import { stateLocal } from "@/data/state-local";
+import { cities, cityPath } from "@/data/cities";
 
 export const locationTitle = (productSlug: string, l: Location) =>
   productSlug === "modular-operation-theatre" ? `${l.name} Modular OT Manufacturers` : `${getProduct(productSlug)?.keyword ?? "Hospital Infrastructure"} Manufacturers in ${l.name}`;
@@ -21,6 +22,42 @@ export const locationFaqs = (productSlug: string, l: Location) => {
     { q: `What is the ${p.shortName} price in ${l.name}?`, a: `Pricing depends on specification, size, materials and installation scope. We provide a project-specific quotation after understanding your requirement.` },
   ];
 };
+
+/** State-specific copy; OT and MGPS pages use different paragraphs for the same state. */
+export function stateParagraphs(productSlug: string, l: Location): { heading: string; paragraphs: string[] } {
+  const d = stateLocal[l.slug];
+  if (!d) return { heading: "", paragraphs: [] };
+  const list = d.cities.join(", ");
+  if (productSlug === "medical-gas-pipeline-system") return {
+    heading: `Medical gas pipeline work in ${l.name}`,
+    paragraphs: [
+      `Medical gas pipeline projects in ${l.name} cover hospitals in ${list}. ${d.mgps}`,
+      `${d.hospitals} For a pipeline proposal, the bed count, the number of theatres and ICU beds, and the gases each area needs decide manifold size, pipe diameters and the number of outlets.`,
+      `Copper pipe, manifolds, valve boxes, alarm panels and outlets leave our Ballabhgarh, Faridabad works by road ${d.route}. For ${d.hub} the road distance is approximately ${d.km} km, about ${d.drive}. Pipe and fittings travel capped and bagged to keep the bore clean, and pressure and purity testing is booked only after the installed pipeline is complete; the actual dispatch and test dates are written into the project programme.`,
+      `Gas systems in ${l.name} have their own approval steps. A bulk liquid oxygen tank needs a licence from PESO under the pressure vessel rules, manifold rooms and gas storage are reviewed by the ${d.fire} during fire clearance, and the ${d.pcb} handles the hospital's environmental consents. We provide test certificates, as-built drawings and a valve and alarm schedule that the hospital and its gas supplier can use with these authorities; the approvals themselves are issued by them.`,
+    ],
+  };
+  return {
+    heading: `Modular OT projects in ${l.name}: cities, hospitals and delivery`,
+    paragraphs: [
+      `Modular operation theatre planning in ${l.name} centres on ${list}. ${d.hospitals}`,
+      d.ot,
+      `OT wall and ceiling panels, hermetic doors and laminar air flow units travel from our works in Ballabhgarh, Faridabad ${d.route}. ${d.hub} is approximately ${d.km} km away by road, roughly ${d.drive}. Panels are packed flat with edge protection and dispatched once the room's civil work and ceiling supports are ready; the confirmed arrival and installation dates are set in each project programme.`,
+      `Before a new or rebuilt theatre goes into use, hospitals in ${l.name} usually need state-level clearances in addition to any NABH accreditation they seek: registration of the establishment with the state health authority, fire safety clearance from the ${d.fire}, and biomedical waste authorisation from the ${d.pcb}. Our drawings, material data sheets and room test records are prepared so the hospital's consultant can include them in these submissions.`,
+    ],
+  };
+}
+
+function StateSection({ productSlug, l }: { productSlug: string; l: Location }) {
+  const { heading, paragraphs } = stateParagraphs(productSlug, l);
+  const isMgps = productSlug === "medical-gas-pipeline-system";
+  const local = cities.filter((c) => c.state === l.name && (isMgps ? c.kind === "mgps" : c.kind !== "mgps"));
+  return <>
+    <h2>{heading}</h2>
+    {paragraphs.map((text) => <p key={text}>{text}</p>)}
+    {local.length > 0 && <p>Local pages: {local.map((c, i) => <span key={c.slug}>{i ? " · " : ""}<a href={cityPath(c)}>{c.heading}</a></span>)}</p>}
+  </>;
+}
 
 export function LocationPage({ productSlug, location: l }: { productSlug: string; location: Location }) {
   const p = getProduct(productSlug);
@@ -36,24 +73,15 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
               "{p.name} installed in {l.name} – Unicare". Do not use stock or AI images. */}
           <h2>{p.shortName} solutions in {l.name}</h2>
           <p>{locationLead(l)} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {lc(p.name)} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
-          <h2>Serving hospitals across {l.name}</h2>
-          <p>For {lc(p.shortName)} enquiries, start with your hospital's exact address. {l.slug === "chandigarh" ? "Chandigarh is the city covered by this Union Territory page." : l.slug === "delhi" ? `Delhi areas include ${l.cities.slice(0, 6).join(", ")}. These are localities within Delhi, not six separate cities.` : `Major city destinations include ${l.cities.slice(0, 6).join(", ")}.`}</p>
-          {(stateServing[l.slug] ?? []).map((text) => <p key={text}>{text}</p>)}
-          <h3>Road delivery from Faridabad</h3>
-          <p>Delivery is planned from our Faridabad works to the hospital site in {l.name}. Manufacturing, transit and on-site installation are scheduled as separate milestones and confirmed in the project programme.</p>
-          {/* TODO(company): add one approved project example and real photo for this state; see docs/content-todo.md */}
+          <StateSection productSlug={productSlug} l={l} />
           <p>Compare all wall, ceiling and finish options on our main page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre manufacturers</Link>.</p>
           <p className="font-medium text-foreground">Also see:{" "}
             {productSlug === "medical-gas-pipeline-system"
               ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>
               : <Link to="/medical-gas-pipeline-manufacturers-in/$state" params={{ state: l.slug }}>Medical gas pipeline in {l.name}</Link>}
           </p>
-          <h2>Hospital infrastructure requirements</h2>
-          <p>{p.intro}</p>
           <h2>Manufacturing &amp; installation</h2>
-          <ul>{p.features.slice(0, 5).map((f) => <li key={f}>{f}</li>)}</ul>
-          <h2>Project consultation</h2>
-          <p>For projects in {l.name}, our team reviews your drawings or room details, prepares a technical proposal and coordinates installation with your civil and MEP contractors.</p>
+          <ul>{p.features.slice(0, 3).map((f) => <li key={f}>{f}</li>)}</ul>
           <h2>Cities we serve in {l.name}</h2>
           <ul className="!list-none !pl-0 grid grid-cols-2 gap-2 sm:grid-cols-3">{l.cities.map((c) => <li key={c} className="border border-border px-3 py-2 text-sm text-foreground">{c}</li>)}</ul>
           <h2>Applications</h2>
