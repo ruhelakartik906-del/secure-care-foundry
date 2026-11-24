@@ -18,6 +18,8 @@ import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
 import { Route as HepaFiltrationSystemForOperationTheatreRouteImport } from './routes/hepa-filtration-system-for-operation-theatre'
 import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as MedicalGasPipelineGhaziabadRouteImport } from './routes/medical-gas-pipeline-ghaziabad'
+import { Route as MedicalGasPipelineNoidaRouteImport } from './routes/medical-gas-pipeline-noida'
 import { Route as MgpsCostIndiaRouteImport } from './routes/mgps-cost-india'
 import { Route as ModularOtCeilingRouteImport } from './routes/modular-ot-ceiling'
 import { Route as ModularOtCostIndiaRouteImport } from './routes/modular-ot-cost-india'
@@ -25,9 +27,15 @@ import { Route as ModularOtDoorsRouteImport } from './routes/modular-ot-doors'
 import { Route as ModularOtFlooringRouteImport } from './routes/modular-ot-flooring'
 import { Route as ModularOtManufacturerAgraRouteImport } from './routes/modular-ot-manufacturer-agra'
 import { Route as ModularOtManufacturerDehradunRouteImport } from './routes/modular-ot-manufacturer-dehradun'
+import { Route as ModularOtManufacturerFaridabadRouteImport } from './routes/modular-ot-manufacturer-faridabad'
 import { Route as ModularOtManufacturerGhaziabadRouteImport } from './routes/modular-ot-manufacturer-ghaziabad'
 import { Route as ModularOtManufacturerGorakhpurRouteImport } from './routes/modular-ot-manufacturer-gorakhpur'
+import { Route as ModularOtManufacturerGurgaonRouteImport } from './routes/modular-ot-manufacturer-gurgaon'
 import { Route as ModularOtManufacturerKanpurRouteImport } from './routes/modular-ot-manufacturer-kanpur'
+import { Route as ModularOtManufacturerLucknowRouteImport } from './routes/modular-ot-manufacturer-lucknow'
+import { Route as ModularOtManufacturerMeerutRouteImport } from './routes/modular-ot-manufacturer-meerut'
+import { Route as ModularOtManufacturerNoidaRouteImport } from './routes/modular-ot-manufacturer-noida'
+import { Route as ModularOtManufacturerPatnaRouteImport } from './routes/modular-ot-manufacturer-patna'
 import { Route as ModularOtManufacturerPrayagrajRouteImport } from './routes/modular-ot-manufacturer-prayagraj'
 import { Route as ModularOtManufacturerVaranasiRouteImport } from './routes/modular-ot-manufacturer-varanasi'
 import { Route as ModularOtWallPanelsRouteImport } from './routes/modular-ot-wall-panels'
@@ -102,6 +110,17 @@ const LocationsRoute = LocationsRouteImport.update({
   path: '/locations',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MedicalGasPipelineGhaziabadRoute =
+  MedicalGasPipelineGhaziabadRouteImport.update({
+    id: '/medical-gas-pipeline-ghaziabad',
+    path: '/medical-gas-pipeline-ghaziabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MedicalGasPipelineNoidaRoute = MedicalGasPipelineNoidaRouteImport.update({
+  id: '/medical-gas-pipeline-noida',
+  path: '/medical-gas-pipeline-noida',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MgpsCostIndiaRoute = MgpsCostIndiaRouteImport.update({
   id: '/mgps-cost-india',
   path: '/mgps-cost-india',
@@ -139,6 +158,12 @@ const ModularOtManufacturerDehradunRoute =
     path: '/modular-ot-manufacturer-dehradun',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ModularOtManufacturerFaridabadRoute =
+  ModularOtManufacturerFaridabadRouteImport.update({
+    id: '/modular-ot-manufacturer-faridabad',
+    path: '/modular-ot-manufacturer-faridabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ModularOtManufacturerGhaziabadRoute =
   ModularOtManufacturerGhaziabadRouteImport.update({
     id: '/modular-ot-manufacturer-ghaziabad',
@@ -151,10 +176,40 @@ const ModularOtManufacturerGorakhpurRoute =
     path: '/modular-ot-manufacturer-gorakhpur',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ModularOtManufacturerGurgaonRoute =
+  ModularOtManufacturerGurgaonRouteImport.update({
+    id: '/modular-ot-manufacturer-gurgaon',
+    path: '/modular-ot-manufacturer-gurgaon',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ModularOtManufacturerKanpurRoute =
   ModularOtManufacturerKanpurRouteImport.update({
     id: '/modular-ot-manufacturer-kanpur',
     path: '/modular-ot-manufacturer-kanpur',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerLucknowRoute =
+  ModularOtManufacturerLucknowRouteImport.update({
+    id: '/modular-ot-manufacturer-lucknow',
+    path: '/modular-ot-manufacturer-lucknow',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerMeerutRoute =
+  ModularOtManufacturerMeerutRouteImport.update({
+    id: '/modular-ot-manufacturer-meerut',
+    path: '/modular-ot-manufacturer-meerut',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerNoidaRoute =
+  ModularOtManufacturerNoidaRouteImport.update({
+    id: '/modular-ot-manufacturer-noida',
+    path: '/modular-ot-manufacturer-noida',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ModularOtManufacturerPatnaRoute =
+  ModularOtManufacturerPatnaRouteImport.update({
+    id: '/modular-ot-manufacturer-patna',
+    path: '/modular-ot-manufacturer-patna',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ModularOtManufacturerPrayagrajRoute =
@@ -316,6 +371,8 @@ export interface FileRoutesByFullPath {
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/medical-gas-pipeline-ghaziabad': typeof MedicalGasPipelineGhaziabadRoute
+  '/medical-gas-pipeline-noida': typeof MedicalGasPipelineNoidaRoute
   '/mgps-cost-india': typeof MgpsCostIndiaRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
@@ -323,9 +380,15 @@ export interface FileRoutesByFullPath {
   '/modular-ot-flooring': typeof ModularOtFlooringRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
+  '/modular-ot-manufacturer-faridabad': typeof ModularOtManufacturerFaridabadRoute
   '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
   '/modular-ot-manufacturer-gorakhpur': typeof ModularOtManufacturerGorakhpurRoute
+  '/modular-ot-manufacturer-gurgaon': typeof ModularOtManufacturerGurgaonRoute
   '/modular-ot-manufacturer-kanpur': typeof ModularOtManufacturerKanpurRoute
+  '/modular-ot-manufacturer-lucknow': typeof ModularOtManufacturerLucknowRoute
+  '/modular-ot-manufacturer-meerut': typeof ModularOtManufacturerMeerutRoute
+  '/modular-ot-manufacturer-noida': typeof ModularOtManufacturerNoidaRoute
+  '/modular-ot-manufacturer-patna': typeof ModularOtManufacturerPatnaRoute
   '/modular-ot-manufacturer-prayagraj': typeof ModularOtManufacturerPrayagrajRoute
   '/modular-ot-manufacturer-varanasi': typeof ModularOtManufacturerVaranasiRoute
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
@@ -364,6 +427,8 @@ export interface FileRoutesByTo {
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/medical-gas-pipeline-ghaziabad': typeof MedicalGasPipelineGhaziabadRoute
+  '/medical-gas-pipeline-noida': typeof MedicalGasPipelineNoidaRoute
   '/mgps-cost-india': typeof MgpsCostIndiaRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
@@ -371,9 +436,15 @@ export interface FileRoutesByTo {
   '/modular-ot-flooring': typeof ModularOtFlooringRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
+  '/modular-ot-manufacturer-faridabad': typeof ModularOtManufacturerFaridabadRoute
   '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
   '/modular-ot-manufacturer-gorakhpur': typeof ModularOtManufacturerGorakhpurRoute
+  '/modular-ot-manufacturer-gurgaon': typeof ModularOtManufacturerGurgaonRoute
   '/modular-ot-manufacturer-kanpur': typeof ModularOtManufacturerKanpurRoute
+  '/modular-ot-manufacturer-lucknow': typeof ModularOtManufacturerLucknowRoute
+  '/modular-ot-manufacturer-meerut': typeof ModularOtManufacturerMeerutRoute
+  '/modular-ot-manufacturer-noida': typeof ModularOtManufacturerNoidaRoute
+  '/modular-ot-manufacturer-patna': typeof ModularOtManufacturerPatnaRoute
   '/modular-ot-manufacturer-prayagraj': typeof ModularOtManufacturerPrayagrajRoute
   '/modular-ot-manufacturer-varanasi': typeof ModularOtManufacturerVaranasiRoute
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
@@ -413,6 +484,8 @@ export interface FileRoutesById {
   '/get-a-quote': typeof GetAQuoteRoute
   '/hepa-filtration-system-for-operation-theatre': typeof HepaFiltrationSystemForOperationTheatreRoute
   '/locations': typeof LocationsRoute
+  '/medical-gas-pipeline-ghaziabad': typeof MedicalGasPipelineGhaziabadRoute
+  '/medical-gas-pipeline-noida': typeof MedicalGasPipelineNoidaRoute
   '/mgps-cost-india': typeof MgpsCostIndiaRoute
   '/modular-ot-ceiling': typeof ModularOtCeilingRoute
   '/modular-ot-cost-india': typeof ModularOtCostIndiaRoute
@@ -420,9 +493,15 @@ export interface FileRoutesById {
   '/modular-ot-flooring': typeof ModularOtFlooringRoute
   '/modular-ot-manufacturer-agra': typeof ModularOtManufacturerAgraRoute
   '/modular-ot-manufacturer-dehradun': typeof ModularOtManufacturerDehradunRoute
+  '/modular-ot-manufacturer-faridabad': typeof ModularOtManufacturerFaridabadRoute
   '/modular-ot-manufacturer-ghaziabad': typeof ModularOtManufacturerGhaziabadRoute
   '/modular-ot-manufacturer-gorakhpur': typeof ModularOtManufacturerGorakhpurRoute
+  '/modular-ot-manufacturer-gurgaon': typeof ModularOtManufacturerGurgaonRoute
   '/modular-ot-manufacturer-kanpur': typeof ModularOtManufacturerKanpurRoute
+  '/modular-ot-manufacturer-lucknow': typeof ModularOtManufacturerLucknowRoute
+  '/modular-ot-manufacturer-meerut': typeof ModularOtManufacturerMeerutRoute
+  '/modular-ot-manufacturer-noida': typeof ModularOtManufacturerNoidaRoute
+  '/modular-ot-manufacturer-patna': typeof ModularOtManufacturerPatnaRoute
   '/modular-ot-manufacturer-prayagraj': typeof ModularOtManufacturerPrayagrajRoute
   '/modular-ot-manufacturer-varanasi': typeof ModularOtManufacturerVaranasiRoute
   '/modular-ot-wall-panels': typeof ModularOtWallPanelsRoute
@@ -463,6 +542,8 @@ export interface FileRouteTypes {
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/medical-gas-pipeline-ghaziabad'
+    | '/medical-gas-pipeline-noida'
     | '/mgps-cost-india'
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
@@ -470,9 +551,15 @@ export interface FileRouteTypes {
     | '/modular-ot-flooring'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
+    | '/modular-ot-manufacturer-faridabad'
     | '/modular-ot-manufacturer-ghaziabad'
     | '/modular-ot-manufacturer-gorakhpur'
+    | '/modular-ot-manufacturer-gurgaon'
     | '/modular-ot-manufacturer-kanpur'
+    | '/modular-ot-manufacturer-lucknow'
+    | '/modular-ot-manufacturer-meerut'
+    | '/modular-ot-manufacturer-noida'
+    | '/modular-ot-manufacturer-patna'
     | '/modular-ot-manufacturer-prayagraj'
     | '/modular-ot-manufacturer-varanasi'
     | '/modular-ot-wall-panels'
@@ -511,6 +598,8 @@ export interface FileRouteTypes {
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/medical-gas-pipeline-ghaziabad'
+    | '/medical-gas-pipeline-noida'
     | '/mgps-cost-india'
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
@@ -518,9 +607,15 @@ export interface FileRouteTypes {
     | '/modular-ot-flooring'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
+    | '/modular-ot-manufacturer-faridabad'
     | '/modular-ot-manufacturer-ghaziabad'
     | '/modular-ot-manufacturer-gorakhpur'
+    | '/modular-ot-manufacturer-gurgaon'
     | '/modular-ot-manufacturer-kanpur'
+    | '/modular-ot-manufacturer-lucknow'
+    | '/modular-ot-manufacturer-meerut'
+    | '/modular-ot-manufacturer-noida'
+    | '/modular-ot-manufacturer-patna'
     | '/modular-ot-manufacturer-prayagraj'
     | '/modular-ot-manufacturer-varanasi'
     | '/modular-ot-wall-panels'
@@ -559,6 +654,8 @@ export interface FileRouteTypes {
     | '/get-a-quote'
     | '/hepa-filtration-system-for-operation-theatre'
     | '/locations'
+    | '/medical-gas-pipeline-ghaziabad'
+    | '/medical-gas-pipeline-noida'
     | '/mgps-cost-india'
     | '/modular-ot-ceiling'
     | '/modular-ot-cost-india'
@@ -566,9 +663,15 @@ export interface FileRouteTypes {
     | '/modular-ot-flooring'
     | '/modular-ot-manufacturer-agra'
     | '/modular-ot-manufacturer-dehradun'
+    | '/modular-ot-manufacturer-faridabad'
     | '/modular-ot-manufacturer-ghaziabad'
     | '/modular-ot-manufacturer-gorakhpur'
+    | '/modular-ot-manufacturer-gurgaon'
     | '/modular-ot-manufacturer-kanpur'
+    | '/modular-ot-manufacturer-lucknow'
+    | '/modular-ot-manufacturer-meerut'
+    | '/modular-ot-manufacturer-noida'
+    | '/modular-ot-manufacturer-patna'
     | '/modular-ot-manufacturer-prayagraj'
     | '/modular-ot-manufacturer-varanasi'
     | '/modular-ot-wall-panels'
@@ -608,6 +711,8 @@ export interface RootRouteChildren {
   GetAQuoteRoute: typeof GetAQuoteRoute
   HepaFiltrationSystemForOperationTheatreRoute: typeof HepaFiltrationSystemForOperationTheatreRoute
   LocationsRoute: typeof LocationsRoute
+  MedicalGasPipelineGhaziabadRoute: typeof MedicalGasPipelineGhaziabadRoute
+  MedicalGasPipelineNoidaRoute: typeof MedicalGasPipelineNoidaRoute
   MgpsCostIndiaRoute: typeof MgpsCostIndiaRoute
   ModularOtCeilingRoute: typeof ModularOtCeilingRoute
   ModularOtCostIndiaRoute: typeof ModularOtCostIndiaRoute
@@ -615,9 +720,15 @@ export interface RootRouteChildren {
   ModularOtFlooringRoute: typeof ModularOtFlooringRoute
   ModularOtManufacturerAgraRoute: typeof ModularOtManufacturerAgraRoute
   ModularOtManufacturerDehradunRoute: typeof ModularOtManufacturerDehradunRoute
+  ModularOtManufacturerFaridabadRoute: typeof ModularOtManufacturerFaridabadRoute
   ModularOtManufacturerGhaziabadRoute: typeof ModularOtManufacturerGhaziabadRoute
   ModularOtManufacturerGorakhpurRoute: typeof ModularOtManufacturerGorakhpurRoute
+  ModularOtManufacturerGurgaonRoute: typeof ModularOtManufacturerGurgaonRoute
   ModularOtManufacturerKanpurRoute: typeof ModularOtManufacturerKanpurRoute
+  ModularOtManufacturerLucknowRoute: typeof ModularOtManufacturerLucknowRoute
+  ModularOtManufacturerMeerutRoute: typeof ModularOtManufacturerMeerutRoute
+  ModularOtManufacturerNoidaRoute: typeof ModularOtManufacturerNoidaRoute
+  ModularOtManufacturerPatnaRoute: typeof ModularOtManufacturerPatnaRoute
   ModularOtManufacturerPrayagrajRoute: typeof ModularOtManufacturerPrayagrajRoute
   ModularOtManufacturerVaranasiRoute: typeof ModularOtManufacturerVaranasiRoute
   ModularOtWallPanelsRoute: typeof ModularOtWallPanelsRoute
@@ -712,6 +823,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/medical-gas-pipeline-ghaziabad': {
+      id: '/medical-gas-pipeline-ghaziabad'
+      path: '/medical-gas-pipeline-ghaziabad'
+      fullPath: '/medical-gas-pipeline-ghaziabad'
+      preLoaderRoute: typeof MedicalGasPipelineGhaziabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medical-gas-pipeline-noida': {
+      id: '/medical-gas-pipeline-noida'
+      path: '/medical-gas-pipeline-noida'
+      fullPath: '/medical-gas-pipeline-noida'
+      preLoaderRoute: typeof MedicalGasPipelineNoidaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mgps-cost-india': {
       id: '/mgps-cost-india'
       path: '/mgps-cost-india'
@@ -761,6 +886,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModularOtManufacturerDehradunRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modular-ot-manufacturer-faridabad': {
+      id: '/modular-ot-manufacturer-faridabad'
+      path: '/modular-ot-manufacturer-faridabad'
+      fullPath: '/modular-ot-manufacturer-faridabad'
+      preLoaderRoute: typeof ModularOtManufacturerFaridabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/modular-ot-manufacturer-ghaziabad': {
       id: '/modular-ot-manufacturer-ghaziabad'
       path: '/modular-ot-manufacturer-ghaziabad'
@@ -775,11 +907,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModularOtManufacturerGorakhpurRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modular-ot-manufacturer-gurgaon': {
+      id: '/modular-ot-manufacturer-gurgaon'
+      path: '/modular-ot-manufacturer-gurgaon'
+      fullPath: '/modular-ot-manufacturer-gurgaon'
+      preLoaderRoute: typeof ModularOtManufacturerGurgaonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/modular-ot-manufacturer-kanpur': {
       id: '/modular-ot-manufacturer-kanpur'
       path: '/modular-ot-manufacturer-kanpur'
       fullPath: '/modular-ot-manufacturer-kanpur'
       preLoaderRoute: typeof ModularOtManufacturerKanpurRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-lucknow': {
+      id: '/modular-ot-manufacturer-lucknow'
+      path: '/modular-ot-manufacturer-lucknow'
+      fullPath: '/modular-ot-manufacturer-lucknow'
+      preLoaderRoute: typeof ModularOtManufacturerLucknowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-meerut': {
+      id: '/modular-ot-manufacturer-meerut'
+      path: '/modular-ot-manufacturer-meerut'
+      fullPath: '/modular-ot-manufacturer-meerut'
+      preLoaderRoute: typeof ModularOtManufacturerMeerutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-noida': {
+      id: '/modular-ot-manufacturer-noida'
+      path: '/modular-ot-manufacturer-noida'
+      fullPath: '/modular-ot-manufacturer-noida'
+      preLoaderRoute: typeof ModularOtManufacturerNoidaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modular-ot-manufacturer-patna': {
+      id: '/modular-ot-manufacturer-patna'
+      path: '/modular-ot-manufacturer-patna'
+      fullPath: '/modular-ot-manufacturer-patna'
+      preLoaderRoute: typeof ModularOtManufacturerPatnaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/modular-ot-manufacturer-prayagraj': {
@@ -985,6 +1152,8 @@ const rootRouteChildren: RootRouteChildren = {
   HepaFiltrationSystemForOperationTheatreRoute:
     HepaFiltrationSystemForOperationTheatreRoute,
   LocationsRoute: LocationsRoute,
+  MedicalGasPipelineGhaziabadRoute: MedicalGasPipelineGhaziabadRoute,
+  MedicalGasPipelineNoidaRoute: MedicalGasPipelineNoidaRoute,
   MgpsCostIndiaRoute: MgpsCostIndiaRoute,
   ModularOtCeilingRoute: ModularOtCeilingRoute,
   ModularOtCostIndiaRoute: ModularOtCostIndiaRoute,
@@ -992,9 +1161,15 @@ const rootRouteChildren: RootRouteChildren = {
   ModularOtFlooringRoute: ModularOtFlooringRoute,
   ModularOtManufacturerAgraRoute: ModularOtManufacturerAgraRoute,
   ModularOtManufacturerDehradunRoute: ModularOtManufacturerDehradunRoute,
+  ModularOtManufacturerFaridabadRoute: ModularOtManufacturerFaridabadRoute,
   ModularOtManufacturerGhaziabadRoute: ModularOtManufacturerGhaziabadRoute,
   ModularOtManufacturerGorakhpurRoute: ModularOtManufacturerGorakhpurRoute,
+  ModularOtManufacturerGurgaonRoute: ModularOtManufacturerGurgaonRoute,
   ModularOtManufacturerKanpurRoute: ModularOtManufacturerKanpurRoute,
+  ModularOtManufacturerLucknowRoute: ModularOtManufacturerLucknowRoute,
+  ModularOtManufacturerMeerutRoute: ModularOtManufacturerMeerutRoute,
+  ModularOtManufacturerNoidaRoute: ModularOtManufacturerNoidaRoute,
+  ModularOtManufacturerPatnaRoute: ModularOtManufacturerPatnaRoute,
   ModularOtManufacturerPrayagrajRoute: ModularOtManufacturerPrayagrajRoute,
   ModularOtManufacturerVaranasiRoute: ModularOtManufacturerVaranasiRoute,
   ModularOtWallPanelsRoute: ModularOtWallPanelsRoute,

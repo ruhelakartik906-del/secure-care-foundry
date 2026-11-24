@@ -1,3 +1,4 @@
+import { cityLocal, newCities } from "./city-local";
 export type City = {
   slug: string; // URL is /modular-ot-manufacturer-{slug}
   name: string;
@@ -7,11 +8,20 @@ export type City = {
   coverage: string;
   logistics: string;
   faqs: { q: string; a: string }[];
+  /** H1 and link text. */
+  heading: string;
+  kind?: "ot" | "mgps";
+  path?: string;
+  title?: string;
+  description?: string;
+  districts: string[];
+  delivery: string;
+  local: string[];
 };
 
-export const cityPath = (c: Pick<City, "slug">) => `/modular-ot-manufacturer-${c.slug}`;
+export const cityPath = (c: Pick<City, "slug"> & { path?: string }) => c.path ?? `/modular-ot-manufacturer-${c.slug}`;
 
-export const cities: City[] = [
+const baseCities: Omit<City, "heading" | "districts" | "delivery" | "local">[] = [
   {
     slug: "ghaziabad", name: "Ghaziabad", state: "Uttar Pradesh",
     intro: "Unicare Medical Solutions has its office in Ghaziabad, on Dasna Road, which makes site visits, design meetings and after-installation support in the city quick to arrange. We plan, manufacture and install modular operation theatres for hospitals and nursing homes across Ghaziabad and nearby NCR areas.",
@@ -97,5 +107,15 @@ export const cities: City[] = [
     ],
   },
 ];
+
+export const cities: City[] = [
+  ...baseCities.map((c) => {
+    const x = cityLocal[c.slug]!;
+    return { ...c, heading: `Modular OT Manufacturer in ${c.name}`, districts: x.districts, delivery: x.delivery, local: x.local, faqs: [...c.faqs, x.faq] };
+  }),
+  ...newCities,
+];
+/** Modular OT city pages only (MGPS city pages excluded). */
+export const otCities = cities.filter((c) => c.kind !== "mgps");
 
 export const getCity = (slug: string) => cities.find((c) => c.slug === slug);
