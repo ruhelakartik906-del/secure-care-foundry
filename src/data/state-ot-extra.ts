@@ -2,10 +2,11 @@
  * Additional state-specific copy for the 24 modular OT state pages only (MGPS pages unaffected).
  * General, publicly known context; no clients, projects or figures beyond the road estimates in state-local.ts.
  */
-export type StateOtExtra = { mix: string; needs: string; site: string; steps: string; faqs: { q: string; a: string }[] };
+export type StateOtExtra = { extra?: string; local?: string; mix: string; needs: string; site: string; steps: string; faqs: { q: string; a: string }[] };
 
 export const stateOtExtra: Record<string, StateOtExtra> = {
   "uttar-pradesh": {
+    local: "Bundelkhand towns such as Jhansi and Banda face very hot summers and long distances to tertiary centres, so their hospitals often want robust, low-maintenance theatres.",
     mix: "Medical hubs form around Lucknow, Kanpur, Prayagraj and Varanasi in the east and the Noida–Ghaziabad belt in the west. Government medical colleges and district hospitals handle a large public caseload, while private multispecialty hospitals and teaching institutions keep adding theatres.",
     needs: "Typical requests range from a single general theatre in a district-level nursing home to multiple orthopaedic and cardiac theatres in tertiary hospitals, along with eye and IVF centres in the larger cities.",
     site: "Summers across the Gangetic plain are hot and dusty and the monsoon brings high humidity, so we pay attention to sealed panel joints, positive room pressure and a protected power supply where grid interruptions are common in smaller towns.",
@@ -18,6 +19,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   delhi: {
+    local: "South Delhi neighbourhoods such as Saket and Greater Kailash, west Delhi around Janakpuri and Dwarka, and north-west Delhi around Rohini each have their own cluster of private hospitals. Because these buildings are often fully occupied, the survey identifies a dust-safe material route, a holding area for panels and the hours when noisy work is allowed.",
     mix: "Delhi combines large central government hospitals, state-run hospitals, private corporate hospitals and many specialist nursing homes across south, west and north districts. Teaching hospitals and medical colleges add steady demand for theatre upgrades.",
     needs: "Most Delhi work is the refurbishment of theatres inside running hospitals: replacing old finishes, adding laminar air flow for joint replacement, or creating day-care, eye and IVF procedure rooms in compact buildings.",
     site: "Winter air pollution and summer dust make filtration and sealed rooms important, and dense neighbourhoods often restrict delivery vehicles to certain hours, so dispatch is timed around access windows.",
@@ -30,6 +32,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   haryana: {
+    local: "Southern Haryana districts such as Rewari, Palwal and Nuh are seeing new private and government facilities, while the GT Road belt from Sonipat to Ambala has many family-run surgical hospitals. Short travel times from our works mean that small theatre upgrades in these towns can be surveyed, measured and installed with fewer site visits than distant projects need.",
     mix: "Gurugram and Faridabad host private corporate and multispecialty hospitals, while Rohtak, Karnal, Hisar and Panipat have government medical colleges, civil hospitals and growing private hospitals along the national highways.",
     needs: "Requests include new theatre complexes in Gurugram towers, upgrades in Faridabad hospitals, and general and gynaecology theatres for tier-2 cities on the NH-44 corridor.",
     site: "Hot, dry summers and dust on highway sites need sealed rooms, while cold winter mornings in north Haryana make humidity and temperature control part of the HVAC brief; power backup is planned with the hospital's electrical team.",
@@ -42,6 +45,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   rajasthan: {
+    local: "Udaipur and Ajmer also draw tourists and pilgrims, so emergency and trauma capacity matters there, while Kota's large student population adds to demand for general surgical services. In the Shekhawati and Marwar regions, water quality and dust are considered when planning scrub stations and filter maintenance schedules.",
     mix: "Jaipur is the main medical hub, with Jodhpur, Udaipur, Kota, Ajmer and Bikaner serving large surrounding regions through government medical colleges, district hospitals and private multispecialty hospitals.",
     needs: "Typical needs include general and orthopaedic theatres for regional hospitals, maternity theatres in district towns, and eye centres in the larger cities.",
     site: "Extreme summer heat and desert dust are the main site factors; well-insulated panels, sealed joints and dependable air conditioning help keep conditions stable, and long distances between cities make one-lot delivery important.",
@@ -54,6 +58,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   maharashtra: {
+    local: "Pune's IT corridors and the Mumbai Metropolitan Region, including Thane, Navi Mumbai and Kalyan, have many hospitals operating in mixed-use buildings, whereas Marathwada cities such as Aurangabad and Latur rely more on medical colleges and regional private hospitals. Each setting brings different access, lift and ceiling-height constraints that are checked during the survey.",
     mix: "Mumbai and Pune have large private, trust and corporate hospitals, while Nagpur, Nashik and Aurangabad have government medical colleges and expanding private hospitals serving wide regions.",
     needs: "Requests range from compact theatres in Mumbai buildings with limited ceiling height to multi-theatre complexes in Pune and Nagpur, plus IVF and eye centres in metro areas.",
     site: "The coastal monsoon brings heavy rain and high humidity in Mumbai and Konkan, so moisture control and corrosion-resistant finishes matter; Vidarbha summers are very hot, which affects HVAC sizing.",
@@ -66,6 +71,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   gujarat: {
+    local: "Industrial estates around Vapi, Ankleshwar and Bharuch create demand for trauma and occupational health care, and Gandhinagar has seen new public and private institutions. Projects in these areas often run alongside wider hospital expansions, so theatre panels and doors are coordinated with the main contractor's programme from the start. Surat's diamond and textile workforce also supports a busy network of private surgical hospitals.",
     mix: "Ahmedabad, Surat, Vadodara and Rajkot are the main medical hubs, with private multispecialty hospitals, trust hospitals, government medical colleges and many specialist centres.",
     needs: "Hospitals commonly request multispecialty theatre complexes in Ahmedabad and Surat, cardiac and orthopaedic theatres, and IVF and eye centres in growing cities.",
     site: "Coastal humidity around Surat and Bhavnagar and dry heat in Saurashtra and Kutch both influence HVAC design; finishes are selected for the hospital's cleaning chemicals and local conditions.",
@@ -78,6 +84,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   "madhya-pradesh": {
+    local: "Indore's private hospital sector serves patients from Malwa and parts of neighbouring states, while Gwalior and Jabalpur have long-standing government teaching hospitals. Smaller centres such as Ujjain, Sagar and Rewa are adding theatres in district-level facilities, which often favour practical, easily maintained finishes over premium options.",
     mix: "Indore and Bhopal are the main private hospital hubs, while Jabalpur, Gwalior and Sagar have government medical colleges and district hospitals; new medical colleges are adding theatre capacity across the state.",
     needs: "Common needs include general and obstetric theatres for district-level hospitals, multispecialty complexes in Indore and Bhopal, and teaching theatres for medical colleges.",
     site: "Hot summers and a strong monsoon both matter; sites in smaller towns often need a careful plan for backup power and protection of materials during the rains.",
@@ -90,6 +97,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   punjab: {
+    local: "Majha cities around Amritsar have a mix of charitable, trust and private hospitals, and Malwa towns such as Bathinda and Patiala rely on medical colleges alongside private centres. Hospitals in the state often ask for theatres that can be cleaned quickly between cases because surgical lists are long.",
+    extra: "Doaba towns such as Jalandhar, Phagwara and Hoshiarpur have a strong culture of privately run surgical nursing homes, many of which occupy converted residential buildings. These often need careful planning of ceiling height, door widths and staff movement before a modular theatre can be fitted.",
     mix: "Ludhiana, Amritsar, Jalandhar, Patiala and Mohali have private multispecialty hospitals and many surgeon-owned nursing homes, alongside government medical colleges and civil hospitals.",
     needs: "Requests often come from nursing homes upgrading one or two theatres, orthopaedic and trauma hospitals along the highway, and IVF and eye centres in the major cities.",
     site: "Cold, damp winters and hot summers both affect HVAC needs, and dust during the harvest season makes sealed rooms and filter maintenance important.",
@@ -102,6 +111,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   uttarakhand: {
+    local: "Kumaon hospitals in Haldwani and Rudrapur are reachable on plains roads, while sites in Almora, Pithoragarh, Pauri or Tehri require hill transport and careful unloading. Pilgrim routes to Char Dham destinations also put seasonal pressure on emergency services, which shapes when hospitals prefer to schedule theatre shutdowns. Roorkee and Haridwar, close to the plains, are the easiest sites to reach and are often surveyed on the same trip as Dehradun projects.",
     mix: "Dehradun, Haridwar and Rishikesh have government teaching hospitals and private hospitals, while Haldwani and Rudrapur serve the Kumaon plains; hill districts depend on smaller government hospitals.",
     needs: "Typical needs include general and trauma theatres, maternity theatres for district hospitals, and multispecialty complexes in Dehradun and Haldwani.",
     site: "Hill roads, landslide-prone monsoon months and cold winters affect logistics and HVAC design; panels are packed for rough roads, and backup power is planned for areas with unreliable supply.",
@@ -114,6 +124,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   bihar: {
+    local: "North Bihar cities such as Muzaffarpur and Darbhanga sit on flood-prone plains, while south Bihar towns such as Gaya and Nalanda are drier. Many private hospitals in Patna occupy converted buildings, and new government medical colleges in districts are adding operation theatres, so both refurbishment and new-build layouts are common.",
     mix: "Patna is the main medical hub with government medical colleges and private hospitals; Gaya, Muzaffarpur, Bhagalpur and Darbhanga have medical colleges and district hospitals serving large rural populations.",
     needs: "Requests include maternity and general theatres for district-level hospitals, multispecialty theatres in Patna, and eye and IVF centres in the larger towns.",
     site: "Flood-prone monsoon months, high humidity and irregular power in some districts make humidity control, raised storage of materials and dependable backup power important.",
@@ -126,6 +137,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   jharkhand: {
+    local: "Ranchi has become the state's main referral centre, and Deoghar's pilgrim traffic adds seasonal pressure on its hospitals. Projects in Hazaribagh and Giridih often involve smaller private hospitals adding their first proper theatre suite.",
+    extra: "Steel and coal towns such as Jamshedpur, Bokaro and Dhanbad have long-established company hospitals alongside newer private facilities, and many older buildings were not designed with false-ceiling plenums in mind. The site survey therefore checks slab height, beam depth and space for ducting before the theatre layout is fixed.",
     mix: "Ranchi, Jamshedpur, Dhanbad and Bokaro have government medical colleges, industry-linked hospitals and private hospitals serving mining and industrial regions.",
     needs: "Typical needs are trauma and orthopaedic theatres linked to industrial areas, general theatres in district hospitals, and multispecialty complexes in Ranchi and Jamshedpur.",
     site: "Dust from mining and industrial areas and hot summers make sealed rooms and filtration important; the plateau monsoon is heavy, so materials are stored covered.",
@@ -138,6 +151,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   "west-bengal": {
+    extra: "North Bengal hospitals around Siliguri and Jalpaiguri also receive patients from Sikkim and neighbouring hill areas, while the industrial belt of Durgapur and Asansol has long-standing company and private hospitals. Older multi-storey buildings in central Kolkata may have narrow staircases, so panel sizes are matched to the access route.",
     mix: "Kolkata is a major medical destination for eastern India with government medical colleges, private corporate hospitals and nursing homes; Siliguri, Durgapur and Asansol serve north and western Bengal.",
     needs: "Requests include theatre upgrades in older Kolkata buildings, multispecialty theatres in Siliguri for the northern region, and eye and IVF centres.",
     site: "High humidity for much of the year and heavy monsoon rain make humidity control and moisture-resistant finishes important; older buildings may need structural checks for ceiling loads.",
@@ -150,6 +164,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   odisha: {
+    local: "Bhubaneswar's growing private sector and Cuttack's long-established teaching hospital make the twin cities the main surgical referral centre, so many projects there involve adding theatres to busy existing campuses rather than building new blocks.",
+    extra: "Industrial and mining areas around Rourkela, Angul and Jharsuguda add trauma and occupational health demand, while the coastal belt from Balasore to Berhampur depends on a mix of government and private institutions. Sites in the western districts are drier and hotter in summer than coastal Odisha, which affects cooling requirements.",
     mix: "Bhubaneswar and Cuttack host government medical colleges and private hospitals, with Rourkela, Sambalpur and Berhampur serving western and southern Odisha.",
     needs: "Typical needs include multispecialty theatres in Bhubaneswar, general and maternity theatres in district hospitals, and eye centres.",
     site: "Cyclone-prone coastal districts, high humidity and heavy rain influence storage, finishes and humidity control; backup power is planned for storm-related outages.",
@@ -162,6 +178,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   chhattisgarh: {
+    local: "Bastar and Surguja in the south and north of the state rely mostly on government hospitals, with long road distances to Raipur. Bilaspur and Korba have expanding private facilities, and Durg–Bhilai's industrial hospitals have older theatre blocks that are candidates for modular upgrades. For distant districts, all panels, doors and fittings are dispatched together to avoid repeat trips. Raipur's newer private hospitals along the city's expanding ring road are typically purpose-built, which makes modular theatre installation more straightforward than in older blocks.",
     mix: "Raipur is the main hub with a government medical college and private hospitals, while Bhilai, Bilaspur and Korba have industry-linked and government hospitals; new medical colleges are expanding capacity.",
     needs: "Requests include multispecialty theatres in Raipur, trauma theatres near industrial towns, and general theatres in district hospitals.",
     site: "Very hot summers, industrial dust and a strong monsoon affect HVAC sizing, sealing and site storage.",
@@ -174,6 +191,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   karnataka: {
+    local: "North Karnataka cities such as Hubballi, Dharwad, Belagavi and Kalaburagi have medical colleges and private hospitals serving large rural areas, with hotter and drier summers than Bengaluru. Mysuru and Mangaluru are established medical education centres whose teaching hospitals regularly upgrade theatres. Coastal Udupi also hosts teaching institutions. Belagavi, close to the Maharashtra and Goa borders, also draws patients from neighbouring districts in those states.",
     mix: "Bengaluru has large corporate and multispecialty hospitals, while Mysuru, Mangaluru, Hubballi and Belagavi have medical colleges, trust hospitals and private hospitals serving their regions.",
     needs: "Requests include multi-theatre complexes in Bengaluru, cardiac and orthopaedic theatres, and IVF and eye centres in growing cities.",
     site: "Bengaluru's mild climate eases HVAC loads, while coastal Mangaluru is humid; long transit from Faridabad means materials are packed for multi-day transport.",
@@ -186,6 +204,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   "tamil-nadu": {
+    local: "Many hospitals in the state are run by family groups that operate across several cities, so a theatre standard agreed for one site is often repeated at another.",
+    extra: "Western Tamil Nadu around Coimbatore, Tiruppur and Erode has many private multispecialty and eye hospitals serving an industrial population, while the southern districts around Madurai and Tirunelveli rely on large teaching hospitals alongside private centres.",
     mix: "Chennai is a major medical tourism base with corporate, trust and government teaching hospitals; Coimbatore, Madurai and Tiruchirappalli have medical colleges and private hospitals.",
     needs: "Requests include high-end multispecialty theatres in Chennai, eye and IVF centres across the state, and general theatres in regional hospitals.",
     site: "Hot, humid conditions in Chennai and coastal districts make humidity control important, and the north-east monsoon affects scheduling late in the year.",
@@ -198,6 +218,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   kerala: {
+    local: "Medical tourism around Thiruvananthapuram and Kochi also brings international patients, so hospitals there often expect high finish quality and clear documentation. Northern districts such as Kannur and Kasaragod also send complex cases south, adding to theatre demand in Kozhikode.",
+    extra: "Kerala has an unusually dense spread of hospitals across small towns, so even mid-sized facilities in Kottayam, Thrissur or Malappuram may operate several theatres. Coastal salt air near Kochi and Kollam is another factor; exposed metal parts and fixings are reviewed for corrosion resistance during specification.",
     mix: "Kochi, Thiruvananthapuram and Kozhikode host government medical colleges, mission and trust hospitals and private multispecialty hospitals; Thrissur and Kannur add regional hubs.",
     needs: "Requests include multispecialty theatres, cardiac and orthopaedic theatres, and IVF and eye centres in the larger cities.",
     site: "High humidity and two monsoon seasons make humidity control, corrosion-resistant finishes and dry site storage especially important.",
@@ -210,6 +232,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   telangana: {
+    local: "Corporate hospital groups headquartered in Hyderabad frequently expand into district towns, carrying their theatre standards with them, which makes consistent specifications across sites important. Warangal's long-established teaching hospital also serves as a referral centre for the state's northern districts.",
+    extra: "Outside Hyderabad, district headquarters such as Nizamabad, Karimnagar and Khammam have seen new government medical colleges and private hospitals open, creating demand for general, orthopaedic and obstetric theatres. Hyderabad's outer ring road also makes it practical to stage deliveries for sites on the city's edge.",
     mix: "Hyderabad is a major centre for corporate hospitals and medical colleges, with Warangal, Karimnagar and Khammam having government and private hospitals.",
     needs: "Requests include multi-theatre complexes in Hyderabad, cardiac and transplant-capable theatres in tertiary hospitals, and IVF and eye centres.",
     site: "Hot, dry summers drive HVAC loads, and Hyderabad's large campuses often require coordination with an existing central plant.",
@@ -222,10 +246,12 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   "andhra-pradesh": {
+    local: "Nellore and Guntur have active private hospital sectors, and district hospitals across the state are being upgraded, so demand covers both new theatres and refurbishment.",
+    extra: "Since the state reorganisation, Andhra Pradesh has been building up hospital capacity in Amaravati's surrounding region, Visakhapatnam and Tirupati, where pilgrim traffic also creates steady demand for emergency and surgical services. Projects in the Rayalaseema region around Kurnool and Anantapur face a drier, hotter climate than the coastal belt, so cooling loads are reviewed site by site.",
     mix: "Visakhapatnam, Vijayawada, Guntur and Tirupati have government medical colleges and private hospitals, with coastal cities growing as regional hubs.",
     needs: "Requests include multispecialty theatres in coastal cities, general theatres in district hospitals, and eye and IVF centres.",
     site: "Coastal humidity and cyclone risk on the eastern coast affect finishes, scheduling and backup power planning.",
-    steps: "Hospitals follow state registration, fire clearance and pollution board consent, and prepare OT documentation for NABH where applicable.",
+    steps: "New theatres in coastal Andhra cities are normally covered by the hospital's state establishment registration, fire department clearance and pollution board consent; teams pursuing NABH add OT validation and cleaning records to their file.",
     faqs: [
       { q: "Does cyclone risk in coastal Andhra affect OT installation?", a: "Scheduling and backup power planning take seasonal weather into account." },
       { q: "Do you cover Visakhapatnam as well as Vijayawada?", a: "Yes, both are planned on the southern dispatch route." },
@@ -234,6 +260,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   goa: {
+    local: "Because Goa is compact, hospitals across the state are usually reachable within a few hours from Panaji once materials arrive, which simplifies site visits during installation. Its government medical college at Bambolim remains the main referral centre for complex surgery.",
+    extra: "North Goa around Mapusa and South Goa around Margao each have their own cluster of private hospitals, and tourist seasons bring extra emergency and trauma cases. Projects are often timed for quieter months so that theatre shutdowns do not coincide with peak visitor periods.",
     mix: "Goa has a government medical college, private hospitals and nursing homes in Panaji, Margao, Vasco and Mapusa, serving residents and visitors.",
     needs: "Requests are usually for one or two theatres in private hospitals, day-care surgery rooms and eye or IVF procedure rooms.",
     site: "Very high humidity and a heavy monsoon make moisture control and corrosion-resistant finishes important; deliveries are often scheduled outside the peak monsoon weeks.",
@@ -246,6 +274,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   "himachal-pradesh": {
+    local: "Tourist towns such as Manali, Kullu and Dharamshala see seasonal surges in trauma cases, and many hill hospitals occupy older buildings with limited floor heights. Shimla's main government teaching hospital remains the referral centre for much of the upper hills.",
+    extra: "The pharmaceutical belt around Baddi, Nalagarh and Parwanoo has brought industry-linked clinics and private hospitals, while Kangra and Mandi districts depend heavily on government institutions. Site access in these areas can involve narrow approach roads, so the survey records turning space for delivery vehicles and the route panels must take into the building.",
     mix: "Shimla, Mandi, Dharamshala and Hamirpur have government medical colleges and hospitals, while Solan and Baddi have growing private and industry-linked facilities.",
     needs: "Requests include general and trauma theatres for hill hospitals, maternity theatres, and upgrades in older government buildings.",
     site: "Steep roads, snow in higher areas and cold winters affect delivery and heating needs; panels are packed for hill transport and installation avoids heavy snow periods.",
@@ -258,6 +288,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   "jammu-and-kashmir": {
+    local: "Hospitals in Srinagar and Jammu serve patients from distant districts such as Kupwara, Poonch and Doda, where road travel can be long. Projects there are therefore planned to keep at least one theatre open throughout the work.",
+    extra: "Hospitals in the Jammu division generally have easier year-round access than those in the Valley, so projects in Kathua, Samba or Udhampur can be scheduled with fewer weather constraints. Valley projects usually need materials to arrive well before winter so that installation finishes in good conditions.",
     mix: "Jammu and Srinagar host government medical colleges and hospitals, with district hospitals and private hospitals expanding in Anantnag, Baramulla and Kathua.",
     needs: "Requests include general and trauma theatres, maternity theatres and multispecialty upgrades in the two capitals.",
     site: "Severe winters in the Valley, snow and occasional road closures affect delivery and heating needs; summer is often preferred for Valley installations.",
@@ -270,10 +302,12 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   assam: {
+    local: "Guwahati's private hospitals also receive referrals from Meghalaya, Arunachal Pradesh and Nagaland.",
+    extra: "Hospitals in Barak Valley around Silchar and in tea-growing districts of upper Assam often serve patients from neighbouring states as well, which can push theatre schedules hard. Projects there benefit from clear phasing so that one theatre stays available, and from local storage that keeps panels off the ground during the wet months.",
     mix: "Guwahati is the healthcare gateway of the North East with a government medical college and private hospitals; Dibrugarh, Silchar and Jorhat have medical colleges serving upper and southern Assam.",
     needs: "Requests include multispecialty theatres in Guwahati, general and maternity theatres in district hospitals, and eye centres.",
     site: "Very high humidity, heavy rain and seasonal floods make humidity control, dry storage and backup power planning important.",
-    steps: "Hospitals follow state registration, fire clearance and pollution board consent, and prepare OT documentation for NABH where applicable.",
+    steps: "Before a theatre opens in the Brahmaputra valley, the hospital usually completes state registration, fire safety inspection and pollution board consent, and keeps validation reports and maintenance logs if NABH accreditation is the next goal.",
     faqs: [
       { q: "How do Assam floods affect OT projects?", a: "Delivery and site storage are planned to avoid flood-prone weeks and keep materials dry." },
       { q: "Do you serve upper Assam cities such as Dibrugarh?", a: "Yes, as consolidated dispatches beyond Guwahati." },
@@ -282,6 +316,8 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   chandigarh: {
+    local: "Panchkula's and Mohali's newer hospitals are generally purpose-built, while some Chandigarh sector buildings need careful planning around existing structure.",
+    extra: "Because the tricity draws referrals from Punjab, Haryana and Himachal Pradesh, many hospitals here run long surgical lists and cannot close theatres for extended periods. Planned weekend or night-shift work, pre-assembled door sets and early delivery of ceiling components help keep shutdowns short when an upgrade is unavoidable.",
     mix: "Chandigarh is a regional medical hub with a major government teaching institute, a government medical college and private hospitals, with Mohali and Panchkula adding private capacity.",
     needs: "Requests include multispecialty theatre upgrades, orthopaedic and trauma theatres, and IVF and eye centres across the tricity.",
     site: "Cold winters and hot summers both affect HVAC needs, and sector planning rules can limit delivery access, so dispatch is coordinated with the site.",

@@ -45,8 +45,7 @@ export function stateParagraphs(productSlug: string, l: Location): { heading: st
     paragraphs: [
       `Modular operation theatre planning in ${l.name} centres on ${list}. ${d.hospitals}`,
       d.ot,
-      `OT wall and ceiling panels, hermetic doors and laminar air flow units travel from our works in Ballabhgarh, Faridabad ${d.route}. ${d.hub} is approximately ${d.km} km away by road, roughly ${d.drive}. Panels are packed flat with edge protection and dispatched once the room's civil work and ceiling supports are ready; the confirmed arrival and installation dates are set in each project programme.`,
-      `Before a new or rebuilt theatre goes into use, hospitals in ${l.name} usually need state-level clearances in addition to any NABH accreditation they seek: registration of the establishment with the state health authority, fire safety clearance from the ${d.fire}, and biomedical waste authorisation from the ${d.pcb}. Our drawings, material data sheets and room test records are prepared so the hospital's consultant can include them in these submissions.`,
+      `OT wall and ceiling panels, hermetic doors and laminar air flow units travel from our works in Ballabhgarh, Faridabad ${d.route}. ${d.hub} is approximately ${d.km} km away by road, roughly ${d.drive}. Fire clearance comes from the ${d.fire} and biomedical waste authorisation from the ${d.pcb}.`,
     ],
   };
 }
@@ -63,6 +62,8 @@ function StateSection({ productSlug, l }: { productSlug: string; l: Location }) 
       <h2>Hospitals, theatre needs and site conditions in {l.name}</h2>
       <p>{extra.mix}</p>
       <p>{extra.needs}</p>
+      {extra.extra && <p>{extra.extra}</p>}
+      {extra.local && <p>{extra.local}</p>}
       <p>{extra.site}</p>
       <h3>Licensing and accreditation steps in {l.name}</h3>
       <p>{extra.steps}</p>
@@ -86,7 +87,7 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           <h2>{p.shortName} solutions in {l.name}</h2>
           <p>{locationLead(l)} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {lc(p.name)} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
           <StateSection productSlug={productSlug} l={l} />
-          <p>Compare all wall, ceiling and finish options on our main page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre manufacturers</Link>.</p>
+          {productSlug !== "modular-operation-theatre" && <p>Compare all wall, ceiling and finish options on our main page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre manufacturers</Link>.</p>}
           <p className="font-medium text-foreground">Also see:{" "}
             {productSlug === "medical-gas-pipeline-system"
               ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>
@@ -94,7 +95,7 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           </p>
           {productSlug === "modular-operation-theatre" ? <>
             <h2>How we work</h2>
-            <p>Every Unicare modular operation theatre follows one process: requirement discussion, site survey, layout and services drawings, manufacturing at our Ballabhgarh, Faridabad works, installation, and testing before handover. Wall, ceiling, door, laminar air flow and finish options are selected around your clinical brief and budget. Explore panel types, variants and accessories on our main <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre</Link> page.</p>
+            <p>Every Unicare modular operation theatre follows one process: requirement discussion, site survey, layout and services drawings, manufacturing at our Ballabhgarh, Faridabad works, installation, and testing before handover; panels travel flat-packed with edge protection, confirmed delivery dates are set in each project programme, and we prepare drawings, material data sheets and room test records for the hospital's approval submissions, so you can compare wall, ceiling, door and finish options from our <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre manufacturers</Link> page.</p>
             <h2>Cities we serve in {l.name}</h2>
             <ul className="!list-none !pl-0 grid grid-cols-2 gap-2 sm:grid-cols-3">{l.cities.map((c) => <li key={c} className="border border-border px-3 py-2 text-sm text-foreground">{c}</li>)}</ul>
           </> : <>
