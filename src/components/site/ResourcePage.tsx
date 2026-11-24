@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import type { Resource } from "@/data/resources";
 import { getProduct } from "@/data/products";
-import { cities, cityPath } from "@/data/cities";
+import { otCities, cityPath } from "@/data/cities";
 import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 import { PageHero, Faqs, ProductCard, CtaBand, SectionHead } from "@/components/site/common";
@@ -46,7 +46,7 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
         <ul>
           <li><Link to="/modular-ot-cost-india">Modular OT cost in India – pricing guide</Link></li>
           <li><Link to="/faqs">All frequently asked questions</Link></li>
-          {cities.slice(0, 4).map((c) => <li key={c.slug}><a href={cityPath(c)}>Modular OT manufacturer in {c.name}</a></li>)}
+          {otCities.slice(0, 4).map((c) => <li key={c.slug}><a href={cityPath(c)}>Modular OT manufacturer in {c.name}</a></li>)}
         </ul>
         <div className="not-prose mt-8 flex flex-wrap gap-3">
           <Button asChild variant="outline"><a href={site.phoneHref}><Phone className="h-4 w-4" />Call Now</a></Button>

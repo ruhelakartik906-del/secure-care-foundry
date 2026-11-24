@@ -5,7 +5,7 @@ import { ChevronDown, Mail, Menu, Phone, Search, X } from "lucide-react";
 const logo = "/images/unicare-logo.webp";
 import { site, whatsappLink } from "@/data/site";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
-import { cities, cityPath } from "@/data/cities";
+import { otCities, cityPath } from "@/data/cities";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/lib/routes";
 import { useEnquiry } from "./EnquiryDialog";
@@ -109,7 +109,7 @@ export function Header() {
           <div className="group relative" onMouseEnter={() => setMega(false)}>
             <button type="button" aria-haspopup="true" className={`flex items-center gap-1 ${linkCls} ${pathname.startsWith("/modular-ot-manufacturer-") ? activeCls : ""}`}>Modular OT Cities <ChevronDown className="h-3.5 w-3.5" /></button>
             <div className="invisible absolute left-0 top-full z-50 w-56 border border-border bg-popover py-2 shadow-lg opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              {cities.map((c) => <a key={c.slug} href={cityPath(c)} className="block px-4 py-2 text-sm hover:bg-muted hover:text-brand-blue">{c.name}</a>)}
+              {otCities.map((c) => <a key={c.slug} href={cityPath(c)} className="block px-4 py-2 text-sm hover:bg-muted hover:text-brand-blue">{c.name}</a>)}
               <Link to="/locations" className="mt-1 block border-t border-border px-4 pt-2 text-sm font-semibold text-brand-blue">All locations →</Link>
             </div>
           </div>
@@ -155,7 +155,7 @@ export function Header() {
                 </div>
               )}
               <p className="px-0 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-blue">Modular OT Cities</p>
-              <div className="grid grid-cols-2 border-b border-border pb-2">{cities.map((c) => <a key={c.slug} href={cityPath(c)} onClick={closeAll} className="flex min-h-10 items-center text-sm">{c.name}</a>)}</div>
+              <div className="grid grid-cols-2 border-b border-border pb-2">{otCities.map((c) => <a key={c.slug} href={cityPath(c)} onClick={closeAll} className="flex min-h-10 items-center text-sm">{c.name}</a>)}</div>
               {after.map((n) => (
                 <Link key={n.to} to={n.to} onClick={closeAll} activeProps={{ className: "text-brand-blue font-semibold" }} className="flex min-h-12 items-center border-b border-border font-medium">{n.label}</Link>
               ))}

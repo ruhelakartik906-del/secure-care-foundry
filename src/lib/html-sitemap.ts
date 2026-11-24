@@ -37,7 +37,7 @@ function classify(path: string): { group: HtmlSitemapGroup; label: string } {
   if (seg[0] === "modular-operation-theatre-manufacturers-in") return { group: "Locations – Modular OT", label: `Modular OT — ${getLocation(seg[1] ?? "")?.name ?? humanize(path)}` };
   if (seg[0] === "medical-gas-pipeline-manufacturers-in") return { group: "Locations – MGPS", label: `Medical Gas Pipeline — ${getLocation(seg[1] ?? "")?.name ?? humanize(path)}` };
   const city = cities.find((c) => cityPath(c) === path);
-  if (city) return { group: "Locations – Modular OT", label: `Modular OT — ${city.name} (city)` };
+  if (city) return city.kind === "mgps" ? { group: "Locations – MGPS", label: `Medical Gas Pipeline — ${city.name} (city)` } : { group: "Locations – Modular OT", label: `Modular OT — ${city.name} (city)` };
   if (path === "/locations") return { group: "Locations – Modular OT", label: "All Service Locations" };
   if (seg[0] === "blogs") return { group: "Blogs", label: seg[1] ? blogs.find((b) => b.slug === seg[1])?.title ?? humanize(path) : "All Blogs" };
   if (seg[0] === "resources") {

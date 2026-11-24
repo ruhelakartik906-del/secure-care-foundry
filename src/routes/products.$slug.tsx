@@ -14,7 +14,7 @@ import { Phone } from "lucide-react";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { productSchema } from "@/lib/structured-data";
-import { cities, cityPath } from "@/data/cities";
+import { otCities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
 import { locations } from "@/data/locations";
 const otHeroSrc = "/images/modular-ot-hero.webp";
@@ -150,7 +150,7 @@ function ProductPage() {
           {(complianceFor[p.slug] ?? []).length > 0 && <><h2>Compliance & Standards</h2><p>General overviews of standards referenced for this product (planning guidance only, not a certification claim):</p><ul>{(complianceFor[p.slug] ?? []).map((c) => { const r = getCompliance(c); return r ? <li key={c}><Link to="/resources/compliance/$slug" params={{ slug: c }}>{r.title.replace(/ – An Overview$/, "")}</Link></li> : null; })}</ul></>}
           {comparisons.filter((c) => c.products.includes(p.slug)).length > 0 && <p>Comparing options? Read {comparisons.filter((c) => c.products.includes(p.slug)).map((c, i) => <span key={c.slug}>{i ? ", " : ""}<Link to="/resources/comparisons/$slug" params={{ slug: c.slug }}>{c.title}</Link></span>)}.</p>}
           <h2>Pricing & Service Areas</h2>
-          <p>See indicative ranges in our <Link to="/modular-ot-cost-india">Modular OT cost guide</Link>, read <Link to="/resources">planning resources</Link> or browse <Link to="/faqs">all FAQs</Link>. We serve hospital projects in {cities.map((c, i) => <span key={c.slug}>{i ? ", " : ""}<a href={cityPath(c)}>{c.name}</a></span>)} and other locations.</p>
+          <p>See indicative ranges in our <Link to="/modular-ot-cost-india">Modular OT cost guide</Link>, read <Link to="/resources">planning resources</Link> or browse <Link to="/faqs">all FAQs</Link>. We serve hospital projects in {otCities.map((c, i) => <span key={c.slug}>{i ? ", " : ""}<a href={cityPath(c)}>{c.name}</a></span>)} and other locations.</p>
         </div>
         <aside className="lg:col-span-4">
           <div className="sticky top-28 border border-border p-6">

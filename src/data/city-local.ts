@@ -47,6 +47,7 @@ export const cityLocal: Record<string, CityLocal> = {
     local: [
       "Gorakhpur is the main healthcare centre for north-eastern UP and the Nepal border districts, with AIIMS Gorakhpur, BRD Medical College and private hospitals and nursing homes in Medical College Road, Golghar and Mohaddipur areas.",
       "Hospitals in Gorakhpur frequently handle patients from Deoria, Kushinagar and Maharajganj, which increases demand for additional theatres and ICU beds. Monsoon flooding in low-lying parts of the region is considered when planning delivery dates and the position of ground-floor plant rooms.",
+      "Nursing homes in Basti, Deoria and Kushinagar that are setting up their first proper theatre often need help with the full room plan: the OT, scrub area, pass box to CSSD and a recovery bay. A single drawing covering all of these is prepared before manufacturing starts, so the civil contractor knows exactly where openings and services are required.",
     ],
   faq: { q: "Can you deliver everything for a Gorakhpur OT in one dispatch?", a: "We plan dispatch in complete lots matched to the installation sequence, confirmed after the site survey, so work is not held up waiting for parts." },
   },
@@ -56,6 +57,7 @@ export const cityLocal: Record<string, CityLocal> = {
     local: [
       "Agra has SN Medical College and its hospital, district hospitals, and private hospitals along the Delhi Gate, Sikandra, Kamla Nagar and Fatehabad Road areas. Nursing homes in Mathura, Firozabad and Aligarh also take up OT upgrades.",
       "Agra's dry, hot summers and dusty conditions make pre-filtration and positive room pressure important. Restrictions around the Taj Trapezium Zone mainly concern industrial emissions, but the hospital should still confirm any local rules on diesel generator use and construction work with the authorities.",
+      "Hospitals in Mathura and Firozabad often send drawings for review before a visit, which lets the survey focus on measurements, service routes and access. Because Agra is close to our works, the hospital can also review panel samples and the surgeon control panel before giving final approval.",
     ],
     faq: { q: "How far is Agra from your Faridabad works?", a: "About 175 to 190 km by road, roughly 3 to 3.5 hours. Exact dispatch dates are set in the project programme." },
   },
@@ -65,6 +67,7 @@ export const cityLocal: Record<string, CityLocal> = {
     local: [
       "Dehradun has government hospitals including the Doon Medical College hospital, nearby AIIMS Rishikesh, and private hospitals along Rajpur Road, Saharanpur Road and in Prem Nagar. Hospitals in Haridwar and Roorkee also refer complex cases to the city.",
       "Winter heating, monsoon humidity and occasional power interruptions affect OT design in Dehradun, so the HVAC plan and the electrical back-up for the OT are discussed with the hospital's MEP consultants alongside the panel layout.",
+      "Hospitals in Haridwar and Roorkee are reached on the same road route, so surveys for these sites are often combined with Dehradun visits. For hospitals in Rishikesh and the hill towns, the site team plans extra time for unloading and carrying panels where vehicles cannot reach the building entrance.",
     ],
     faq: { q: "Can you deliver to hospitals in the hills beyond Dehradun?", a: "Yes, with smaller vehicles and shorter panels where needed. Delivery dates depend on road conditions and are confirmed for the actual site." },
   },
@@ -141,7 +144,7 @@ export const newCities: City[] = [
   {
     slug: "lucknow", name: "Lucknow", state: "Uttar Pradesh", heading: "Modular OT Manufacturer in Lucknow",
     title: "Modular OT Manufacturer in Lucknow | Unicare",
-    description: "Modular OT design, manufacturing and installation for Lucknow hospitals: OT panels, laminar air flow, hermetic doors and MGPS, with delivery from Faridabad.",
+    description: "Modular OT design, manufacturing and installation for Lucknow hospitals: OT panels, laminar air flow, hermetic doors and MGPS, delivered from Faridabad.",
     intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals and nursing homes in Lucknow. Panels and systems are made at our Faridabad works and installed in Lucknow by our own team.",
     context: "Lucknow is a major medical centre for Uttar Pradesh, with institutions such as KGMU, SGPGIMS and the Dr. Ram Manohar Lohia Institute, and many private hospitals along Faizabad Road, Shaheed Path, Kanpur Road and in Gomti Nagar, Aliganj and Indira Nagar.",
     coverage: "We cover Lucknow city including Gomti Nagar, Aliganj, Indira Nagar, Alambagh and Chinhat, and nearby districts such as Barabanki, Unnao, Sitapur, Rae Bareli and Hardoi.",
@@ -163,7 +166,7 @@ export const newCities: City[] = [
   {
     slug: "meerut", name: "Meerut", state: "Uttar Pradesh", heading: "Modular OT Manufacturer in Meerut",
     title: "Modular OT Manufacturer in Meerut | Unicare",
-    description: "Modular OT manufacturer for Meerut hospitals and nursing homes: OT panels, laminar air flow, hermetic doors and MGPS, made in Faridabad and installed on site.",
+    description: "Modular OT manufacturer for Meerut hospitals and nursing homes: OT panels, laminar air flow, hermetic doors and MGPS, made at our Faridabad works.",
     intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals and nursing homes in Meerut and western Uttar Pradesh, with panels made at our Faridabad works.",
     context: "Meerut is a key healthcare centre for western UP, with LLRM Medical College, the district hospital, private medical colleges and many private hospitals and nursing homes along Garh Road, Delhi Road, Mawana Road and in Shastri Nagar.",
     coverage: "We cover Meerut city, Modipuram, Partapur, Sardhana and Mawana, and nearby districts including Baghpat, Muzaffarnagar, Hapur, Bulandshahr, Bijnor and Shamli.",
@@ -185,7 +188,7 @@ export const newCities: City[] = [
   {
     slug: "patna", name: "Patna", state: "Bihar", heading: "Modular OT Manufacturer in Patna",
     title: "Modular OT Manufacturer in Patna | Unicare",
-    description: "Modular OT design, manufacturing and installation for Patna and Bihar hospitals: OT panels, laminar air flow, hermetic doors and MGPS, dispatched from Faridabad.",
+    description: "Modular OT design, manufacturing and installation for Patna and Bihar hospitals: OT panels, laminar air flow, doors and MGPS, sent from Faridabad.",
     intro: "Unicare designs, manufactures and installs modular operation theatres for hospitals and nursing homes in Patna. Panels and systems are made at our Faridabad works and dispatched by road for installation by our team.",
     context: "Patna is Bihar's main referral centre, with AIIMS Patna, PMCH, IGIMS, NMCH and many private hospitals along Bailey Road, Boring Road, Kankarbagh, Rajendra Nagar and the Patna–Gaya road.",
     coverage: "We cover Patna city, Danapur, Phulwari Sharif, Patna City and Hajipur, and nearby districts including Nalanda, Vaishali, Saran, Bhojpur and Jehanabad.",
@@ -207,7 +210,7 @@ export const newCities: City[] = [
   {
     slug: "mgps-ghaziabad", path: "/medical-gas-pipeline-ghaziabad", kind: "mgps", name: "Ghaziabad", state: "Uttar Pradesh", heading: "Medical Gas Pipeline in Ghaziabad",
     title: "Medical Gas Pipeline in Ghaziabad | Unicare",
-    description: "Medical gas pipeline system (MGPS) for Ghaziabad hospitals: oxygen, medical air, vacuum and N2O lines, manifolds, alarms and outlets, from our Dasna Road office.",
+    description: "Medical gas pipeline system (MGPS) for Ghaziabad hospitals: oxygen, air, vacuum and N2O lines, manifolds, alarms and outlets, from our Dasna Road office.",
     intro: "Unicare designs and installs medical gas pipeline systems for hospitals and nursing homes in Ghaziabad, supported by our office on Dasna Road and our works in Faridabad.",
     context: "Ghaziabad hospitals in Indirapuram, Vaishali, Raj Nagar, Kavi Nagar and along NH-9 are adding ICU, HDU and operation theatre capacity. Many still depend on portable cylinders at the bedside and are moving to a central manifold and piped supply to improve safety and reduce cylinder handling on wards.",
     coverage: "We cover Ghaziabad city, Indirapuram, Vaishali, Kaushambi, Raj Nagar Extension, Modinagar, Muradnagar and Loni, with nearby Noida, Hapur and East Delhi.",
@@ -218,6 +221,8 @@ export const newCities: City[] = [
       "Many Ghaziabad hospitals are converting existing buildings floor by floor, so the pipeline route usually runs along corridor ceilings with zone valve boxes at each ward entrance. The survey identifies a ventilated ground-floor location for the manifold room with vehicle access for cylinder exchange, away from electrical rooms and kitchens.",
       "For hospitals adding a modular OT at the same time, gas outlets, pendants and the AGSS are positioned in the same drawing as the OT panels, which avoids opening finished walls later.",
       "Existing pipelines in older Ghaziabad nursing homes are often undocumented, so we trace and pressure-check them before connecting new branches. Where the old line cannot be relied on, a new main is laid and the old one isolated.",
+      "Hospitals in Ghaziabad that run around the clock need the new pipeline connected without cutting supply to occupied wards. Tie-ins are planned in short, pre-agreed windows with temporary cylinder supply at the bedside, and the area alarm panels are tested before each zone is handed back to nursing staff.",
+      "Smaller nursing homes in Modinagar, Muradnagar and Loni often begin with oxygen and vacuum only, serving the OT, ICU and a few ward beds. Zone valves and capped branches are left in place so medical air or nitrous oxide can be added when the hospital expands.",
     ],
     faqs: [
       { q: "Do you install MGPS in Ghaziabad hospitals?", a: "Yes. We design and install oxygen, medical air, vacuum and nitrous oxide pipelines with manifolds, valve boxes, alarms and outlets in Ghaziabad." },
@@ -229,7 +234,7 @@ export const newCities: City[] = [
   {
     slug: "mgps-noida", path: "/medical-gas-pipeline-noida", kind: "mgps", name: "Noida", state: "Uttar Pradesh", heading: "Medical Gas Pipeline in Noida",
     title: "Medical Gas Pipeline in Noida | Unicare",
-    description: "Medical gas pipeline system (MGPS) for hospitals in Noida and Greater Noida: oxygen, air, vacuum and N2O lines, manifolds, alarm panels and outlets, installed.",
+    description: "Medical gas pipeline system (MGPS) for hospitals in Noida and Greater Noida: oxygen, air, vacuum and N2O lines, manifolds, alarms and outlets.",
     intro: "Unicare designs and installs medical gas pipeline systems for hospitals in Noida and Greater Noida, with materials dispatched from our Faridabad works and site support from our Ghaziabad office.",
     context: "Hospitals in Noida's sectors, Noida Extension and Greater Noida are growing quickly, and many new buildings plan central oxygen, medical air and vacuum from the outset. Older nursing homes in the original sectors are upgrading from bedside cylinders to a piped supply as they add ICU beds.",
     coverage: "We cover Noida sectors, Greater Noida West, Greater Noida, Knowledge Park, Dadri and the Yamuna Expressway area, with nearby Ghaziabad and East Delhi.",
@@ -240,6 +245,8 @@ export const newCities: City[] = [
       "In Noida's high-rise hospital buildings, the medical gas risers usually run through dedicated shafts, with zone valve boxes on each floor and an area alarm at every nursing station. The survey checks shaft space and fire-stopping requirements before the pipe sizes are fixed.",
       "Larger hospitals in Greater Noida often install a liquid oxygen tank with a cylinder manifold as back-up. The tank location needs clear vehicle access for the gas supplier and a licence from PESO, so we coordinate the yard layout with the hospital's gas supplier and architect.",
       "Nursing homes in the older Noida sectors usually start with a duplex cylinder manifold, oxygen and vacuum to the OT and ICU, and capped branches for future wards, so later expansion does not require shutting down the whole system.",
+      "Hospitals in Noida that are already operating usually need tie-ins to the existing system during low-occupancy hours, with a temporary cylinder supply for affected beds. Each zone is pressure-tested and its alarm checked before it is returned to use, and the test records are handed to the hospital.",
+      "Day-surgery centres in Noida's commercial towers often need only oxygen, vacuum and an AGSS connection in one or two theatres, while larger hospitals plan medical air, nitrous oxide and carbon dioxide as well. The gas list is decided department by department during the survey.",
     ],
     faqs: [
       { q: "Do you install MGPS in Noida and Greater Noida?", a: "Yes. We design and install medical gas pipelines with manifolds, alarms and outlets across Noida and Greater Noida." },

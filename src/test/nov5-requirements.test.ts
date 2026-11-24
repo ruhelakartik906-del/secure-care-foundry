@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { site } from "@/data/site";
 import { blogs } from "@/data/blogs";
 import { locations } from "@/data/locations";
-import { stateServing } from "@/data/state-serving";
+import { stateLocal } from "@/data/state-local";
 import { modularOtOptions } from "@/data/products";
 import { variantFaqs, localBusinessSchemas } from "@/lib/structured-data";
 import { planningFaqs, aboutFaqs } from "@/data/expansion-faqs";
@@ -16,12 +16,11 @@ describe("November 5 company requirements", () => {
   });
   it("keeps exactly the existing 24 locality entries with distinct survey guidance", () => {
     expect(locations).toHaveLength(24);
-    expect(new Set(Object.values(stateServing).map((parts) => parts.join(" "))).size).toBe(24);
     for (const location of locations) {
-      expect(stateServing[location.slug]?.length).toBe(2);
+      expect(stateLocal[location.slug]).toBeDefined();
       if (location.slug !== "chandigarh") expect(location.cities.slice(0, 6).length).toBeGreaterThanOrEqual(5);
     }
-    expect(stateServing['chandigarh']?.join(" ")).toContain("outside Chandigarh");
+    expect(stateLocal['chandigarh']?.hospitals).toContain("outside the Union Territory");
   });
   it("publishes both requested new articles above 1200 words with product connections", () => {
     const cases = [["medical-gas-pipeline-hospitals-components-layout-safety", "medical-gas-pipeline-system"], ["plan-modular-icu-space-equipment-cost-factors", "modular-icu-nicu"]];

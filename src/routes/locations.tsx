@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { locations } from "@/data/locations";
-import { cities, cityPath } from "@/data/cities";
+import { cities, otCities, cityPath } from "@/data/cities";
 import { PageHero, CtaBand } from "@/components/site/common";
 import { seo } from "@/lib/seo";
 
@@ -17,7 +17,7 @@ function LocationsDirectory() {
       <section className="site-wrap pt-14">
         <h2 className="text-2xl font-bold">Priority Cities</h2>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {cities.map((c) => <a key={c.slug} href={cityPath(c)} className="group flex gap-3 border border-border p-5 hover:border-brand-blue"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" /><div><h3 className="font-bold group-hover:text-brand-blue">Modular OT Manufacturer in {c.name}</h3><p className="mt-1 text-sm text-muted-foreground">{c.state}</p></div></a>)}
+          {[...otCities, ...cities.filter((c) => c.kind === "mgps")].map((c) => <a key={c.slug} href={cityPath(c)} className="group flex gap-3 border border-border p-5 hover:border-brand-blue"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" /><div><h3 className="font-bold group-hover:text-brand-blue">{c.heading}</h3><p className="mt-1 text-sm text-muted-foreground">{c.state}</p></div></a>)}
         </div>
         <h2 className="mt-14 text-2xl font-bold">States &amp; Union Territories</h2>
       </section>

@@ -67,6 +67,12 @@ export const pageLastModified: Readonly<Record<string, string>> = {
     ...locations.flatMap((location) => [`/modular-operation-theatre-manufacturers-in/${location.slug}`, `/medical-gas-pipeline-manufacturers-in/${location.slug}`]),
     ...cities.map(cityPath),
   ].map((path) => [path, "2026-11-23"])),
+  // November 24: state-specific rewrites, expanded and new local city pages.
+  ...Object.fromEntries([
+    "/locations", "/sitemap",
+    ...locations.flatMap((location) => [`/modular-operation-theatre-manufacturers-in/${location.slug}`, `/medical-gas-pipeline-manufacturers-in/${location.slug}`]),
+    ...cities.map(cityPath),
+  ].map((path) => [path, "2026-11-24"])),
 };
 
 export function sitemapEntries() {

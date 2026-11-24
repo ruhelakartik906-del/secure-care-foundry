@@ -8,7 +8,7 @@ function walk(dir: string): string[] {
 
 describe("no visible content placeholders", () => {
   it("content data files contain no TODO or [[ ]] strings", () => {
-    for (const f of ["about-expansion", "variant-expansion", "planning-expansion", "expansion-faqs", "blogs-nov5", "state-serving"]) {
+    for (const f of ["about-expansion", "variant-expansion", "planning-expansion", "expansion-faqs", "blogs-nov5", "state-local"]) {
       const s = readFileSync(`src/data/${f}.ts`, "utf8");
       expect(s, f).not.toMatch(/TODO —|\[\[[a-z]/i);
     }

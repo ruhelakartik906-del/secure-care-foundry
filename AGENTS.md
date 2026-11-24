@@ -41,3 +41,4 @@
 - Company-supplied verbatim sections live in src/data/content-blocks.ts (ContentBlock type) rendered by src/components/site/ContentBlocks.tsx, reused across product, system and variant pages; keep text byte-exact.
 - Editorial expansions live in dedicated static data modules and append to existing company-supplied sections; shared FAQ arrays feed visible content and JSON-LD so new guidance cannot overwrite supplied text or diverge from schema.
 - `PageHero` normalises trailing slashes before the `page-seo` H1 lookup, so prerendered and client paths render the same H1 (prevents React #418).
+- State-page local copy lives in `src/data/state-local.ts` with separate OT and MGPS paragraphs (never shared); city pages (OT and MGPS kinds) merge `src/data/city-local.ts` into `cities`, with `otCities` used wherever links are labelled "Modular OT".
