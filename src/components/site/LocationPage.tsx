@@ -9,6 +9,7 @@ import { PageHero, Faqs, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
 import { useEnquiry } from "./EnquiryDialog";
 import { stateLocal } from "@/data/state-local";
+import { stateOtExtra } from "@/data/state-ot-extra";
 import { cities, cityPath } from "@/data/cities";
 
 export const locationTitle = (productSlug: string, l: Location) =>
@@ -17,6 +18,8 @@ export const locationTitle = (productSlug: string, l: Location) =>
 export const locationFaqs = (productSlug: string, l: Location) => {
   const p = getProduct(productSlug);
   if (!p) return [];
+  const extra = productSlug === "modular-operation-theatre" ? stateOtExtra[l.slug] : undefined;
+  if (extra) return extra.faqs;
   return [
     { q: `Do you install ${p.shortName} in ${l.name}?`, a: `Yes. We take up ${lc(p.shortName)} projects in ${l.name}, including ${l.cities.slice(0, 3).join(", ")}. Share your project location and requirement for a site assessment.` },
     { q: `What is the ${p.shortName} price in ${l.name}?`, a: `Pricing depends on specification, size, materials and installation scope. We provide a project-specific quotation after understanding your requirement.` },
@@ -51,10 +54,19 @@ export function stateParagraphs(productSlug: string, l: Location): { heading: st
 function StateSection({ productSlug, l }: { productSlug: string; l: Location }) {
   const { heading, paragraphs } = stateParagraphs(productSlug, l);
   const isMgps = productSlug === "medical-gas-pipeline-system";
-  const local = cities.filter((c) => c.state === l.name && (isMgps ? c.kind === "mgps" : c.kind !== "mgps"));
+  const local = cities.filter((c) => c.state === l.name && (isMgps ? c.kind === "mgps" : true));
+  const extra = isMgps ? undefined : stateOtExtra[l.slug];
   return <>
     <h2>{heading}</h2>
     {paragraphs.map((text) => <p key={text}>{text}</p>)}
+    {extra && <>
+      <h2>Hospitals, theatre needs and site conditions in {l.name}</h2>
+      <p>{extra.mix}</p>
+      <p>{extra.needs}</p>
+      <p>{extra.site}</p>
+      <h3>Licensing and accreditation steps in {l.name}</h3>
+      <p>{extra.steps}</p>
+    </>}
     {local.length > 0 && <p>Local pages: {local.map((c, i) => <span key={c.slug}>{i ? " · " : ""}<a href={cityPath(c)}>{c.heading}</a></span>)}</p>}
   </>;
 }
@@ -80,14 +92,22 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
               ? <Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: l.slug }}>Modular operation theatre in {l.name}</Link>
               : <Link to="/medical-gas-pipeline-manufacturers-in/$state" params={{ state: l.slug }}>Medical gas pipeline in {l.name}</Link>}
           </p>
+          {productSlug === "modular-operation-theatre" ? <>
+            <h2>How we work</h2>
+            <p>Every Unicare modular operation theatre follows one process: requirement discussion, site survey, layout and services drawings, manufacturing at our Ballabhgarh, Faridabad works, installation, and testing before handover. Wall, ceiling, door, laminar air flow and finish options are selected around your clinical brief and budget. Explore panel types, variants and accessories on our main <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre</Link> page.</p>
+            <h2>Cities we serve in {l.name}</h2>
+            <ul className="!list-none !pl-0 grid grid-cols-2 gap-2 sm:grid-cols-3">{l.cities.map((c) => <li key={c} className="border border-border px-3 py-2 text-sm text-foreground">{c}</li>)}</ul>
+          </> : <>
           <h2>Manufacturing &amp; installation</h2>
-          <ul>{p.features.slice(0, 3).map((f) => <li key={f}>{f}</li>)}</ul>
-          <h2>Cities we serve in {l.name}</h2>
-          <ul className="!list-none !pl-0 grid grid-cols-2 gap-2 sm:grid-cols-3">{l.cities.map((c) => <li key={c} className="border border-border px-3 py-2 text-sm text-foreground">{c}</li>)}</ul>
-          <h2>Applications</h2>
-          <ul>{p.applications.map((a) => <li key={a}>{a}</li>)}</ul>
+            <ul>{p.features.slice(0, 3).map((f) => <li key={f}>{f}</li>)}</ul>
+            <h2>Cities we serve in {l.name}</h2>
+            <ul className="!list-none !pl-0 grid grid-cols-2 gap-2 sm:grid-cols-3">{l.cities.map((c) => <li key={c} className="border border-border px-3 py-2 text-sm text-foreground">{c}</li>)}</ul>
+            <h2>Applications</h2>
+            <ul>{p.applications.map((a) => <li key={a}>{a}</li>)}</ul>
+          </>}
           <h2>Frequently asked questions</h2>
           <Faqs faqs={locationFaqs(productSlug, l)} />
+          {productSlug !== "modular-operation-theatre" && <>
           <h3>Modular Operation Theatre</h3>
           <ul>
             <li><Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>Modular Operation Theatre</Link></li>
@@ -96,8 +116,9 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           </ul>
           <h3>Our main products</h3>
           <ul className="!list-none !pl-0 grid grid-cols-1 gap-2 sm:grid-cols-2">{products.map((x) => <li key={x.slug}><Link to="/products/$slug" params={{ slug: x.slug }}>{x.name}</Link></li>)}</ul>
+          </>}
           <h3>Other locations</h3>
-          <p>{locations.filter((x) => x.slug !== l.slug).slice(0, 10).map((x, i) => <span key={x.slug}>{i > 0 && " · "}<Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: x.slug }}>{x.name}</Link></span>)}</p>
+          <p>{[...locations.slice(locations.indexOf(l) + 1), ...locations.slice(0, locations.indexOf(l))].slice(0, 8).map((x, i) => <span key={x.slug}>{i > 0 && " · "}<Link to="/modular-operation-theatre-manufacturers-in/$state" params={{ state: x.slug }}>{x.name}</Link></span>)}</p>
         </div>
         <aside className="lg:col-span-4">
           <div className="sticky top-28 border border-border p-6">
