@@ -40,3 +40,4 @@
 - `scripts/post-build.mjs` copies `.vercel/output/static` into `dist/client` (and fails if no `index.html`), because on Vercel the build auto-switches to Vercel's output format and every host must serve the same `dist/client` folder.
 - Company-supplied verbatim sections live in src/data/content-blocks.ts (ContentBlock type) rendered by src/components/site/ContentBlocks.tsx, reused across product, system and variant pages; keep text byte-exact.
 - Editorial expansions live in dedicated static data modules and append to existing company-supplied sections; shared FAQ arrays feed visible content and JSON-LD so new guidance cannot overwrite supplied text or diverge from schema.
+- `PageHero` normalises trailing slashes before the `page-seo` H1 lookup, so prerendered and client paths render the same H1 (prevents React #418).

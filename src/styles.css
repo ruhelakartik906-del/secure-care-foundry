@@ -199,5 +199,7 @@
 /* Mobile tap targets: footer links and inline text links get at least a 24px-tall hit area. */
 @media (max-width: 767px) {
   footer a { display: inline-flex; align-items: center; min-height: 24px; }
+  main a.block { min-height: 24px; }
+  main nav a, main ol li a { display: inline-flex; align-items: center; min-height: 24px; }
   main p a, main li a, main td a, main dd a, main address a { padding-block: 4px; }
 }
