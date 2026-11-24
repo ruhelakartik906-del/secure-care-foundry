@@ -1,4 +1,5 @@
 import { novemberBlogs } from "./blogs-nov5";
+import { modularOtBlogs } from "./blogs-modular-ot";
 
 export type BlogSection = {
   heading?: string;
@@ -19,6 +20,8 @@ export type Blog = {
   /** Product slugs shown in the "Related products" box. */
   relatedProducts?: string[];
   sections: BlogSection[];
+  /** Visible FAQ section mirrored in FAQPage JSON-LD. */
+  faqs?: { q: string; a: string }[];
 };
 
 const AUTHOR = "Unicare Medical Solutions Team";
@@ -36,6 +39,7 @@ export const blogs: Blog[] = [
     relatedProducts: ["cssd-systems", "pass-box", "surgical-scrub-sink-station"],
     sections: [
       { paragraphs: [
+        "Because the CSSD supplies every theatre, it is usually planned at the same time as the operating suite with your [modular operation theatre manufacturers](/products/modular-operation-theatre), so instrument routes and pass boxes line up.",
         "Every surgical instrument, dressing tray and reusable device used in a hospital has to be cleaned, checked, packed and sterilised before it touches the next patient. In most hospitals this work is done in one place: the Central Sterile Services Department, usually called the CSSD. It is rarely seen by patients, yet the operation theatres, ICUs, labour rooms and wards all depend on it every day.",
         "This guide explains what a CSSD is, what happens inside it, how it is laid out, which equipment it uses and what hospital owners, administrators and planners should think about when building or upgrading one. It is written for people planning a new facility or improving an existing one, not as a substitute for the infection-control standards and guidelines your hospital follows.",
       ] },
@@ -141,6 +145,7 @@ export const blogs: Blog[] = [
     relatedProducts: ["pass-box", "cssd-systems", "modular-operation-theatre"],
     sections: [
       { paragraphs: [
+        "Pass boxes are normally fixed into the theatre wall system, so it helps to agree their size and position early with your [modular OT suppliers](/products/modular-operation-theatre).",
         "A pass box looks like a simple cabinet set into a wall, but it does an important job. It lets materials move between two areas without people walking between them and without both sides being open to each other at the same time. In hospitals, pass boxes are common between operation theatres and corridors, between CSSD zones, and in laboratories, pharmacies and other controlled spaces.",
         "When you start looking at pass boxes, you will quickly come across two main types: static and dynamic. This guide explains the difference in plain language, where each type usually fits, and what to consider before you decide which one your hospital needs.",
       ] },
@@ -221,6 +226,7 @@ export const blogs: Blog[] = [
     ],
   },
   ...novemberBlogs,
+  ...modularOtBlogs,
 ];
 
 export function findBlog(slug: string, articles: readonly Blog[] = blogs) {

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero, CtaBand } from "@/components/site/common";
 import { ResourceList } from "@/components/site/ResourcePage";
 import { compliance, complianceDisclaimer } from "@/data/resources";
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/resources/compliance/")({
   },
   component: () => <>
     <PageHero title="Compliance Guides for Operation Theatres and MGPS" intro="Plain-language overviews of the standards and regulations commonly referenced in hospital infrastructure projects." crumbs={[{ label: "Resources", to: "/resources" }, { label: "Compliance" }]} />
-    <section className="site-wrap py-12"><h2 className="mb-6 text-2xl font-bold">Compliance Guides</h2><div className="prose-unicare mb-8 max-w-3xl">{complianceIntro.map((text) => <p key={text}>{text}</p>)}</div><ResourceList items={compliance} base="compliance" /><p className="mt-8 border-l-4 border-accent bg-muted p-4 text-sm">{complianceDisclaimer}</p></section>
+    <section className="site-wrap py-12"><h2 className="mb-6 text-2xl font-bold">Compliance Guides</h2><div className="prose-unicare mb-8 max-w-3xl">{complianceIntro.map((text) => <p key={text}>{text}</p>)}</div><p className="mb-6 max-w-3xl text-muted-foreground">Planning a new theatre? Read these guides alongside our page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }} className="text-brand-blue underline">modular operation theatre manufacturers</Link>.</p><ResourceList items={compliance} base="compliance" /><p className="mt-8 border-l-4 border-accent bg-muted p-4 text-sm">{complianceDisclaimer}</p></section>
     <CtaBand />
   </>,
 });

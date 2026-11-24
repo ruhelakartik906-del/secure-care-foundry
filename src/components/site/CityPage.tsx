@@ -9,6 +9,7 @@ import { PageHero, Faqs, faqSchema, CtaBand } from "./common";
 import { EnquiryForm } from "./EnquiryForm";
 import { seo, breadcrumbSchema } from "@/lib/seo";
 import { absUrl } from "@/lib/site-url";
+import { ghaziabadWhy } from "@/data/modular-ot-keywords";
 
 export const cityHead = (c: City) => {
   const path = cityPath(c);
@@ -60,6 +61,14 @@ export function CityPage({ c }: { c: City }) {
         {mgps
           ? <p className="mt-3">For system components and gases, see our <Link to="/products/$slug" params={{ slug: "medical-gas-pipeline-system" }} className="text-brand-blue underline">medical gas pipeline system</Link> page and the <Link to="/products/$slug" params={{ slug: "manifold-room-system" }} className="text-brand-blue underline">manifold room system</Link>.</p>
           : <p className="mt-3">For panel systems, finishes and full scope details, see our main page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }} className="text-brand-blue underline">modular operation theatre manufacturers</Link>.</p>}
+        {c.slug === "ghaziabad" && <>
+          <H>{ghaziabadWhy.heading}</H>
+          {ghaziabadWhy.paragraphs.map((t) => <p key={t} className="mt-3">{t}</p>)}
+          <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">{ghaziabadWhy.areas.map((a) => <li key={a} className="border border-border px-3 py-2 text-sm text-foreground">{a}</li>)}</ul>
+          <p className="mt-4"><strong className="text-foreground">Ghaziabad office:</strong> {site.officeAddress}</p>
+          <iframe title="Unicare Medical Solutions Ghaziabad office map" src={`https://www.google.com/maps?q=${encodeURIComponent("357 Malkhan Singh Complex Opp Ambedkar Bhawan Dasna Road Ghaziabad 201001 Uttar Pradesh India")}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="mt-3 aspect-[4/3] w-full border border-border" />
+          <p className="mt-2 text-sm">{ghaziabadWhy.mapCaption}</p>
+        </>}
         <H>Delivery from our Faridabad works</H>
         <p className="mt-3">{c.delivery} {c.logistics}</p>
         <H>Nearby districts served</H>

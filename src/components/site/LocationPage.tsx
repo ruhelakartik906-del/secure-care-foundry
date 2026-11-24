@@ -10,6 +10,7 @@ import { EnquiryForm } from "./EnquiryForm";
 import { useEnquiry } from "./EnquiryDialog";
 import { stateLocal } from "@/data/state-local";
 import { stateOtExtra } from "@/data/state-ot-extra";
+import { delhiIntro, delhiZones, delhiDelivery, delhiNcr } from "@/data/modular-ot-keywords";
 import { cities, cityPath } from "@/data/cities";
 
 export const locationTitle = (productSlug: string, l: Location) =>
@@ -77,9 +78,11 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
   const { open } = useEnquiry();
   if (!p) return null;
   const title = locationTitle(productSlug, l);
+  const isDelhiOt = productSlug === "modular-operation-theatre" && l.slug === "delhi";
+  const ncr = ["noida", "gurgaon", "faridabad", "ghaziabad"].map((slug) => cities.find((c) => c.slug === slug)).filter((c): c is NonNullable<typeof c> => Boolean(c));
   return (
     <>
-      <PageHero title={title} intro={`Design, manufacturing and installation of ${lc(p.name)} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: "Locations", to: "/locations" }, { label: l.name }]} />
+      <PageHero title={title} intro={isDelhiOt ? delhiIntro : `Design, manufacturing and installation of ${lc(p.name)} for hospitals and healthcare projects across ${l.name}.`} crumbs={[{ label: "Locations", to: "/locations" }, { label: l.name }]} />
       <section className="site-wrap grid gap-12 py-14 lg:grid-cols-12">
         <div className="prose-unicare lg:col-span-8">
           {/* TODO(company photo): add a unique, real project photo installed in this state, with alt text such as
@@ -87,6 +90,15 @@ export function LocationPage({ productSlug, location: l }: { productSlug: string
           <h2>{p.shortName} solutions in {l.name}</h2>
           <p>{locationLead(l)} Unicare Medical Solutions supports hospitals, nursing homes, medical colleges and healthcare contractors in {l.name} with {lc(p.name)} projects — from requirement discussion and site assessment to manufacturing, installation and handover.</p>
           <StateSection productSlug={productSlug} l={l} />
+          {isDelhiOt && <>
+            <h2>Delhi hospital zones we serve</h2>
+            {delhiZones.map((z) => <section key={z.zone}><h3>{z.zone}</h3><p>{z.text}</p></section>)}
+            <h2>Delivery time from our Faridabad works to Delhi</h2>
+            <p>{delhiDelivery}</p>
+            <h2>Modular OT in Delhi NCR cities</h2>
+            <p>{delhiNcr}</p>
+            <ul>{ncr.map((c) => <li key={c.slug}><a href={cityPath(c)}>{c.heading}</a></li>)}</ul>
+          </>}
           {productSlug !== "modular-operation-theatre" && <p>Compare all wall, ceiling and finish options on our main page for <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>modular operation theatre manufacturers</Link>.</p>}
           <p className="font-medium text-foreground">Also see:{" "}
             {productSlug === "medical-gas-pipeline-system"

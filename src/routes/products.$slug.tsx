@@ -17,6 +17,7 @@ import { productSchema } from "@/lib/structured-data";
 import { otCities, cityPath } from "@/data/cities";
 import { getCompliance, comparisons } from "@/data/resources";
 import { locations } from "@/data/locations";
+import { otIntro, otDefinition, otVsConventional, supplierChecklist, priceFactorsText, otFaqs } from "@/data/modular-ot-keywords";
 const otHeroSrc = "/images/modular-ot-hero.webp";
 const otSupportSrc = "/images/modular-ot-room.webp";
 const lafDiffuserSrc = "/images/perforated-cleanroom-ceiling-air-diffuser.webp";
@@ -38,7 +39,7 @@ export const Route = createFileRoute("/products/$slug")({
     const path = `/products/${p.slug}`;
     const s = seo(titleOverrides[p.slug] ?? `${p.name} Manufacturer & Installation | Unicare`, descOverrides[p.slug] ?? p.short, path, "product");
     const productLd = { type: "application/ld+json", children: JSON.stringify(productSchema(p, path)) };
-    return { ...s, scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: p.name, path }]), productLd, faqSchema(getLongForm(p.slug)?.faqs ?? p.faqs)] };
+    return { ...s, scripts: [breadcrumbSchema([{ name: "Products", path: "/products" }, { name: p.name, path }]), productLd, faqSchema(p.slug === "modular-operation-theatre" ? otFaqs : getLongForm(p.slug)?.faqs ?? p.faqs)] };
   },
   component: ProductPage,
 });
@@ -93,7 +94,7 @@ function ProductPage() {
         </div>
         <div className="lg:col-span-5">
           <p className="eyebrow">{p.category}</p>
-          <p className="mt-3 text-lg leading-relaxed text-foreground">{p.intro}</p>
+          <p className="mt-3 text-lg leading-relaxed text-foreground">{isOt ? otIntro : p.intro}</p>
           <div className="mt-6 border border-border bg-muted p-5">
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Price</p>
             <p className="mt-1 text-xl font-bold">{priceLabel(p.price)}</p>
@@ -145,7 +146,7 @@ function ProductPage() {
           <ul>{p.benefits.map((b) => <li key={b}>{b}</li>)}</ul>
           {extras && <ContentBlocks blocks={extras} />}
           <h2>Frequently Asked Questions</h2>
-          <Faqs faqs={p.faqs} />
+          <Faqs faqs={isOt ? otFaqs : p.faqs} />
           </>}
           {(complianceFor[p.slug] ?? []).length > 0 && <><h2>Compliance & Standards</h2><p>General overviews of standards referenced for this product (planning guidance only, not a certification claim):</p><ul>{(complianceFor[p.slug] ?? []).map((c) => { const r = getCompliance(c); return r ? <li key={c}><Link to="/resources/compliance/$slug" params={{ slug: c }}>{r.title.replace(/ – An Overview$/, "")}</Link></li> : null; })}</ul></>}
           {comparisons.filter((c) => c.products.includes(p.slug)).length > 0 && <p>Comparing options? Read {comparisons.filter((c) => c.products.includes(p.slug)).map((c, i) => <span key={c.slug}>{i ? ", " : ""}<Link to="/resources/comparisons/$slug" params={{ slug: c.slug }}>{c.title}</Link></span>)}.</p>}
@@ -178,8 +179,22 @@ function OtLongForm() {
   return (
     <>
       <h2>What is a Modular Operation Theatre?</h2>
-      <p>A modular operation theatre is a surgical room assembled from factory-manufactured wall and ceiling panels with integrated services. Instead of plastered brick walls, the OT uses smooth, joint-sealed panels that are easier to clean and maintain, and that allow HVAC, laminar air flow, gases, lighting and controls to be built in neatly.</p>
+      <p><strong>{otDefinition}</strong></p>
+      <p>In practice, a modular operation theatre is a surgical room assembled from factory-manufactured wall and ceiling panels with integrated services. Instead of plastered brick walls, the OT uses smooth, joint-sealed panels that are easier to clean and maintain, and that allow HVAC, laminar air flow, gases, lighting and controls to be built in neatly.</p>
       <ResponsiveImage src={otSupportSrc} alt="Modular operating theatre showing integrated medical infrastructure and surgical equipment." loading="lazy" width={1600} height={900} className="mb-4 h-auto w-full" />
+      <h2>Modular OT Manufacturers vs Conventional OT Contractors</h2>
+      <p>{otVsConventional.intro}</p>
+      <div className="mb-6 w-full overflow-x-auto"><table className="min-w-full border border-border text-sm">
+        <thead className="bg-muted"><tr><th className="p-3 text-left">Aspect</th><th className="p-3 text-left">Modular OT manufacturer</th><th className="p-3 text-left">Conventional OT contractor</th></tr></thead>
+        <tbody>{otVsConventional.rows.map(([a, b, c]) => <tr key={a} className="border-t border-border"><th className="bg-muted p-3 text-left font-semibold">{a}</th><td className="p-3">{b}</td><td className="p-3">{c}</td></tr>)}</tbody>
+      </table></div>
+      <p>{otVsConventional.after}</p>
+      <h2>How to Choose Modular OT Suppliers</h2>
+      <p>Use this checklist when comparing quotations from modular OT suppliers:</p>
+      <ul>{supplierChecklist.map((x) => <li key={x}>{x}</li>)}</ul>
+      <h2>Modular OT Price Factors</h2>
+      {priceFactorsText.map((x) => <p key={x}>{x}</p>)}
+      <p>See the <Link to="/modular-ot-cost-india">modular OT cost in India guide</Link> for indicative price ranges.</p>
       <h2>How we deliver a modular operation theatre</h2>
       <p>A modular OT works only when the room, the air, the power and the gases are planned together. We take each project through one connected sequence, so nothing is left for a different contractor to fix later:</p>
       <ol>

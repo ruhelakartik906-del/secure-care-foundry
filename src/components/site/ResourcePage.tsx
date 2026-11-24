@@ -23,6 +23,11 @@ export const articleSchema = (r: Resource, path: string) => ({
   }),
 });
 
+const hash = (x: string) => [...x].reduce((a, c) => a + c.charCodeAt(0), 0) % 2;
+export const otAnchor = (slug: string) => (hash(slug) ? "modular OT suppliers" : "modular operation theatre manufacturers");
+const otLinkLead = (slug: string) => (hash(slug) ? "When this guidance shapes a theatre project, compare scope and finishes from" : "To turn these requirements into a working theatre, see our page for");
+const otLinkTail = (slug: string) => (hash(slug) ? "before you finalise drawings." : "and the systems they integrate.");
+
 export function ResourcePage({ r, section }: { r: Resource; section: { label: string; to: string } }) {
   const related = r.products.map(getProduct).filter((p): p is NonNullable<typeof p> => !!p);
   return <>
@@ -42,6 +47,7 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
         </>}
         {r.sections.map((s) => <section key={s.h}><h2>{s.h}</h2>{s.p.map((p) => <p key={p}>{p}</p>)}{s.list && <ul>{s.list.map((x) => <li key={x}>{x}</li>)}</ul>}</section>)}
         {r.india && <section><h2>What this means for Indian hospitals</h2><p>{r.india.p}</p><ol>{r.india.steps.map((x) => <li key={x}>{x}</li>)}</ol></section>}
+        <p>{otLinkLead(r.slug)} <Link to="/products/$slug" params={{ slug: "modular-operation-theatre" }}>{otAnchor(r.slug)}</Link> {otLinkTail(r.slug)}</p>
         {r.helps && <section><h2>How Unicare helps</h2><p>{r.helps.p}</p><ul>{r.helps.links.map((l) => <li key={l.slug}><Link to="/products/$slug" params={{ slug: l.slug }}>{l.anchor}</Link></li>)}</ul></section>}
         <h2>Frequently Asked Questions</h2>
         <Faqs faqs={r.faqs} />

@@ -19,6 +19,7 @@ export const novemberBlogs: Blog[] = [
     "sections": [
       {
         "paragraphs": [
+          "Inside the theatre, outlets and pendants are built into the panel layout, so pipeline routes are best coordinated with your [modular operation theatre manufacturers](/products/modular-operation-theatre) at the drawing stage.",
           "A medical gas pipeline system in a hospital connects a planned source of supply to the points where clinical staff use oxygen, medical air, vacuum and other specified services. The visible outlet is only the end of that system. Behind it are sources, pipework, isolation valves, alarms and records that must work together. For hospital owners and project teams, understanding that complete chain is the first step towards a useful design brief.",
           "This guide explains how to approach the components, layout and safety review of a new MGPS or an extension to an existing installation. It is practical planning guidance, not an installation manual or permission to alter a live clinical system. The hospital must appoint competent designers, installers and reviewers, specify the requirements applicable to the project and follow an authorised process before any patient is connected."
         ]
@@ -113,6 +114,7 @@ export const novemberBlogs: Blog[] = [
     "sections": [
       {
         "paragraphs": [
+          "Hospitals that add an ICU often upgrade the surgical suite at the same time; the same panel principles apply, and [modular OT suppliers](/products/modular-operation-theatre) can plan both areas together.",
           "Planning a modular ICU begins with how care will be delivered, not with a choice of wall colour or a list of products. The room has to support staff observation, patient movement, equipment, bedside services and cleaning as one coordinated environment. Hospital owners, intensivists, nursing teams, architects and engineers should agree the clinical brief before choosing a fit-out package. Otherwise the project may deliver an attractive room while leaving practical bedside problems unresolved.",
           "This guide sets out the questions that shape space planning, equipment coordination and cost. It does not prescribe a universal bed area, outlet count or price. Those decisions require the hospital's clinical requirements, the applicable guidance and competent design review. ICU and NICU are not interchangeable briefs: patient groups, equipment and care processes can differ, so each facility must approve the requirements appropriate to its intended use."
         ]
