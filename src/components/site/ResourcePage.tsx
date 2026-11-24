@@ -10,9 +10,9 @@ import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { Button } from "@/components/ui/button";
 import { absUrl } from "@/lib/site-url";
 
-// TODO: replace with company-confirmed original publication dates if known.
+// Publication date is provisional; dateModified reflects the November 24 expansion.
 export const resourcePublished = "2026-10-28";
-export const resourceUpdated = "2026-10-28";
+export const resourceUpdated = "2026-11-24";
 
 export const articleSchema = (r: Resource, path: string) => ({
   type: "application/ld+json",
@@ -30,8 +30,9 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
     <section className="site-wrap grid gap-10 py-12 lg:grid-cols-12">
       <article className="prose-unicare lg:col-span-8">
         <p className="text-sm">Updated: <time dateTime={resourceUpdated}>{resourceUpdated}</time></p>
+        {r.answer && <p className="text-lg">{r.answer}</p>}
         {r.table && <>
-          <h2>Comparison at a Glance</h2>
+          <h2>{r.table.head[0] === "Factor" ? "Comparison at a Glance" : "Summary at a Glance"}</h2>
           <div className="not-prose mb-8 w-full overflow-x-auto border border-border">
             <table className="min-w-full text-left text-sm">
               <thead className="bg-muted"><tr>{r.table.head.map((h) => <th key={h} className="p-3 font-semibold">{h}</th>)}</tr></thead>
@@ -40,6 +41,8 @@ export function ResourcePage({ r, section }: { r: Resource; section: { label: st
           </div>
         </>}
         {r.sections.map((s) => <section key={s.h}><h2>{s.h}</h2>{s.p.map((p) => <p key={p}>{p}</p>)}{s.list && <ul>{s.list.map((x) => <li key={x}>{x}</li>)}</ul>}</section>)}
+        {r.india && <section><h2>What this means for Indian hospitals</h2><p>{r.india.p}</p><ol>{r.india.steps.map((x) => <li key={x}>{x}</li>)}</ol></section>}
+        {r.helps && <section><h2>How Unicare helps</h2><p>{r.helps.p}</p><ul>{r.helps.links.map((l) => <li key={l.slug}><Link to="/products/$slug" params={{ slug: l.slug }}>{l.anchor}</Link></li>)}</ul></section>}
         <h2>Frequently Asked Questions</h2>
         <Faqs faqs={r.faqs} />
         <h2>Useful Links</h2>
@@ -71,7 +74,7 @@ export function ResourceList({ items, base }: { items: Resource[]; base: "compli
     <article key={r.slug} className="flex flex-col border border-border bg-background p-6 transition hover:border-brand-blue">
       <h3 className="text-lg font-bold">{r.title}</h3>
       <p className="mt-2 flex-1 text-sm text-muted-foreground">{r.description}</p>
-      <p className="mt-3 text-sm">{r.intro.split(/(?<=[.!?])\s+/)[0]}</p>
+      <p className="mt-3 text-sm">{r.summary ?? r.intro.split(/(?<=[.!?])\s+/)[0]}</p>
       {base === "compliance"
         ? <Link to="/resources/compliance/$slug" params={{ slug: r.slug }} className="mt-4 text-sm font-semibold text-brand-blue">Read overview →</Link>
         : <Link to="/resources/comparisons/$slug" params={{ slug: r.slug }} className="mt-4 text-sm font-semibold text-brand-blue">Read comparison →</Link>}

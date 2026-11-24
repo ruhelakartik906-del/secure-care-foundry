@@ -69,7 +69,9 @@ export const pageLastModified: Readonly<Record<string, string>> = {
   ].map((path) => [path, "2026-11-23"])),
   // November 24: state-specific rewrites, expanded and new local city pages.
   ...Object.fromEntries([
-    "/locations", "/sitemap",
+    "/locations", "/sitemap", "/resources/compliance", "/resources/comparisons",
+    ...["nabh-guidelines-modular-ot", "mgps-standards", "htm-02-01", "nfpa-99", "iso-13485", "cdsco-mdr-2017", "iec-60601-2-41-surgical-lights"].map((s) => `/resources/compliance/${s}`),
+    ...["modular-ot-vs-conventional-ot", "puf-vs-hpl-ot-panels", "laf-vs-conventional-hvac", "single-arm-vs-double-arm-ot-pendant", "indian-vs-imported-surgical-lights"].map((s) => `/resources/comparisons/${s}`),
     ...locations.flatMap((location) => [`/modular-operation-theatre-manufacturers-in/${location.slug}`, `/medical-gas-pipeline-manufacturers-in/${location.slug}`]),
     ...cities.map(cityPath),
   ].map((path) => [path, "2026-11-24"])),

@@ -9,3 +9,6 @@ export const comparisonIntro = [
   "These comparisons help hospital owners, doctors, architects and procurement teams structure that conversation. They explain differences that matter when shortlisting panels, airflow arrangements, pendants and surgical lights. None ranks one option as universally best. A sensible choice depends on the actual layout, compatibility, maintainability and approved project requirements. Review samples and supporting documents for the specific product offered rather than inferring durability, certification or clinical outcomes from a broad category name.",
   "Use the summary beneath each card to select the comparison relevant to your project. Take the resulting questions to the design team before ordering, and request a bill of quantities with consistent inclusions and exclusions. Consider maintenance access, local service arrangements and the method of future replacement alongside the initial quote. Where dimensions, performance values, prices or lead times remain unconfirmed, obtain written project-specific clarification instead of using an assumed figure from another hospital's installation.",
 ];
+import { complianceHubExtra, comparisonHubExtra } from "@/data/resource-expansion";
+complianceIntro.push(...complianceHubExtra);
+comparisonIntro.push(...comparisonHubExtra);

@@ -43,7 +43,6 @@ export const resourceExpansion: Record<string, ResourceExpansion> = {
       { slug: "hermetic-ot-door", anchor: "hermetically sealed OT doors" },
     ] },
     faqs: [
-      { q: "When should the accreditation consultant be involved in OT planning?", a: "Ideally before the layout is frozen, so zoning, movement paths and air system requirements are agreed before materials are ordered." },
       { q: "Can an existing conventional theatre be upgraded for accreditation?", a: "Often yes. A semi-modular or full modular upgrade can improve surfaces and services, but the hospital's processes and records must also meet the assessment." },
       { q: "Which documents should a hospital keep for its theatres?", a: "Typically design drawings, validation and test records, cleaning schedules and maintenance logs, as advised by the hospital's accreditation consultant." },
     ],

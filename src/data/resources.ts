@@ -1,3 +1,5 @@
+import { resourceExpansion } from "@/data/resource-expansion";
+import { resourceMore } from "@/data/resource-expansion-more";
 /**
  * Resource content (compliance overviews and comparisons).
  * General educational overviews only — never a claim that Unicare holds any certification.
@@ -15,12 +17,16 @@ export type Resource = {
   table?: { head: [string, string, string]; rows: [string, string, string][] };
   faqs: Faq[];
   products: string[]; // related product slugs
+  summary?: string;
+  answer?: string;
+  india?: { p: string; steps: string[] };
+  helps?: { p: string; links: { slug: string; anchor: string }[] };
 };
 
 const disclaimer = "This page is a general overview for planning purposes. It is not legal or regulatory advice. Always refer to the current official text of the standard or regulation and your hospital's accreditation consultant.";
 export const complianceDisclaimer = disclaimer;
 
-export const compliance: Resource[] = [
+const baseCompliance: Resource[] = [
   {
     slug: "nabh-guidelines-modular-ot",
     title: "NABH Guidelines for Modular Operation Theatres – An Overview",
@@ -130,7 +136,7 @@ export const compliance: Resource[] = [
   },
 ];
 
-export const comparisons: Resource[] = [
+const baseComparisons: Resource[] = [
   {
     slug: "modular-ot-vs-conventional-ot",
     title: "Modular OT vs Conventional OT",
@@ -218,6 +224,16 @@ export const comparisons: Resource[] = [
     products: ["led-surgical-light"],
   },
 ];
+
+const expand = (r: Resource): Resource => {
+  const x = resourceExpansion[r.slug];
+  if (!x) return r;
+  const important = r.sections.filter((s) => s.h === "Important");
+  const rest = r.sections.filter((s) => s.h !== "Important");
+  return { ...r, summary: x.summary, answer: x.answer, ...((r.table ?? x.table) ? { table: (r.table ?? x.table)! } : {}), sections: [...rest, ...x.sections, ...(resourceMore[r.slug] ?? []), ...important], india: x.india, helps: x.helps, faqs: [...r.faqs, ...x.faqs] };
+};
+export const compliance: Resource[] = baseCompliance.map(expand);
+export const comparisons: Resource[] = baseComparisons.map(expand);
 
 export const getCompliance = (slug: string) => compliance.find((c) => c.slug === slug);
 export const getComparison = (slug: string) => comparisons.find((c) => c.slug === slug);
