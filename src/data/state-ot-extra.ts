@@ -191,7 +191,7 @@ export const stateOtExtra: Record<string, StateOtExtra> = {
     ],
   },
   karnataka: {
-    local: "North Karnataka cities such as Hubballi, Dharwad, Belagavi and Kalaburagi have medical colleges and private hospitals serving large rural areas, with hotter and drier summers than Bengaluru. Mysuru and Mangaluru are established medical education centres whose teaching hospitals regularly upgrade theatres. Coastal Udupi also hosts teaching institutions. Belagavi, close to the Maharashtra and Goa borders, also draws patients from neighbouring districts in those states.",
+    local: "North Karnataka cities such as Hubballi, Dharwad, Belagavi and Kalaburagi have medical colleges and private hospitals serving large rural areas, with hotter and drier summers than Bengaluru. Mysuru and Mangaluru are established medical education centres whose teaching hospitals regularly upgrade theatres. Coastal Udupi also hosts teaching institutions. Belagavi, close to the Maharashtra and Goa borders, also draws patients from neighbouring districts in those states, adding to theatre demand there.",
     mix: "Bengaluru has large corporate and multispecialty hospitals, while Mysuru, Mangaluru, Hubballi and Belagavi have medical colleges, trust hospitals and private hospitals serving their regions.",
     needs: "Requests include multi-theatre complexes in Bengaluru, cardiac and orthopaedic theatres, and IVF and eye centres in growing cities.",
     site: "Bengaluru's mild climate eases HVAC loads, while coastal Mangaluru is humid; long transit from Faridabad means materials are packed for multi-day transport.",

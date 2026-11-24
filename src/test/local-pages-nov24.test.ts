@@ -13,7 +13,7 @@ describe("November 24 local pages", () => {
       const x = stateOtExtra[l.slug]!;
       const ot = [...stateParagraphs("modular-operation-theatre", l).paragraphs, x.mix, x.needs, x.extra ?? "", x.local ?? "", x.site, x.steps];
       const mg = stateParagraphs("medical-gas-pipeline-system", l).paragraphs;
-      expect(words(ot.join(" "))).toBeGreaterThanOrEqual(300);
+      expect(words(ot.join(" ")), l.slug).toBeGreaterThanOrEqual(300);
       expect(words(mg.join(" "))).toBeGreaterThanOrEqual(200);
       expect(ot.filter((p) => mg.includes(p))).toEqual([]);
     }
